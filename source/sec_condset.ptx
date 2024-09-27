@@ -1,0 +1,523 @@
+﻿<section xml:id="sec_condset">
+  <title>Condensed sets</title>
+  <introduction>
+    <p>
+      We describe the category of condensed sets.
+      This is formally similar to the construction of solid modules, but with a rather different set of test objects.
+    </p>
+    <p>
+      As in <xref ref="sec_solid1"/>, we fix an infinite cardinal <m>\kappa</m>.
+      In subsequent sections we will make the blanket assumption <m>\kappa = \aleph_0</m>;
+      this will correspond to restricting attention to <q>light</q> condensed sets in the terminology of <xref ref="bib-Clausen-Scholze-youtube"/>.
+    </p>
+    <p>
+      Note: by convention, whenever we write <m>\RR</m> we mean the corresponding object in <m>\Top</m> with the usual archimedean topology.
+      In case we mean the underlying set with the discrete topology, we instead write <m>\RR_{\disc}</m>.
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This lecture is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lectures 1 and 2.
+        See also <xref ref="bib-Clausen-Scholze-notes"/>, Lecture 1.
+      </p>
+      <p>
+        Although we do not use this perspective here, we also wish to draw attention to the alternate interpretation
+        available in the language of <term>pyknotic sets</term> of Barwick<ndash/>Haine <xref ref="bib-Barwick-Haine"/>.
+        Roughly speaking, this amounts to using two separate cardinality cutoffs.
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>Pro-objects in a category</title>
+    <definition>
+      <p>
+        A <term>directed set</term> is a partially ordered set <m>(I, \leq)</m> with the property that for any <m>i,j \in I</m>,
+        the set <m>\{k \in I\colon k \geq i, k \geq j\}</m> is nonempty. We may view a directed set as a category in which there
+        is a single morphism <m>i \to j</m> if <m>i \leq j</m> and none otherwise.
+      </p>
+      <p>
+        Given a category <m>\calC</m>, we define an associated category <m>\varprojlim_\kappa \calC</m> as follows.
+        The objects of <m>\varprojlim_\kappa \calC</m> (also called <term>pro-objects</term> of <m>\calC</m>) 
+        are the <m>\kappa</m>-small inverse systems,
+        i.e., contravariant functors to <m>\calC</m> out of directed sets of cardinality <m> \leq \kappa</m>.
+        The homsets are given by the formula
+        <me>
+          \Hom_{\varprojlim_\kappa \calC}\left(\varprojlim_{i \in I} X_i, \varprojlim_{j \in J} Y_j\right) 
+          = \varprojlim_{j \in J} \left( \varinjlim_{i \in I} \Hom_{\calC}(X_i, Y_j) \right).
+        </me>
+        Another way to interpret <m>\varprojlim_\kappa \calC</m> is as the subcategory of <m>\Fun(\calC, \Set)^{\op}</m>
+        consisting of cofiltered limits of representable functors.
+      </p>
+      <p>
+        Note that for formal reasons, <m>\varprojlim_\kappa \calC</m> admits <m>\kappa</m>-small limits. Moreover,
+        any functor <m>\calC \to \calC'</m> whose target admits <m>\kappa</m>-small limits
+        induces a canonical <term>inverse limit functor</term> <m>\varprojlim_\kappa \calC \to \calC'</m>.
+        For instance this applies when <m>\calC</m> admits a forgetful functor to <m>\Set</m>.
+      </p>
+    </definition>
+    <example xml:id="exa-maps-between-inverse-systems">
+      <p>
+        In the category <m>\varprojlim_\kappa \Ab</m>,
+        consider the inverse system of <m>\ZZ/p^n \ZZ</m> over all positive integers <m>n</m>, which has inverse limit <m>\ZZ_p</m>.
+        According to the definition, the family of reduction maps <m>\ZZ/p^{2n} \ZZ \to \ZZ/p^n \ZZ</m> constitutes a morphism
+        <m>\varprojlim_\kappa \ZZ/p^n \ZZ \to \varprojlim_\kappa \ZZ/p^n \ZZ</m>. However, this is <em>the same</em> morphism
+        in <m>\varprojlim_\kappa \Ab</m> as the one constituted by the family of identity maps <m>\ZZ/p^{n} \ZZ \to \ZZ/p^n \ZZ</m>,
+        which is consistent with the fact that they both induce the identity map on the inverse limits in <m>\Ab</m>.
+      </p>
+      <p>
+        Another way to say this is that if we take the inverse system of <m>\ZZ/p^{2n}\ZZ</m> over all <em>even</em> positive integers <m>n</m>,
+        the resulting pro-object is isomorphic to the one we started with. More generally, this implies if we start with any index set <m>I</m>
+        and replace it with a <term>cofinal</term> subset <m>I'</m>, meaning one such that for any <m>i \in I</m> there exists <m>i' \in I'</m>
+        with <m>i \leq i'</m>.
+      </p>
+    </example>
+    <remark xml:id="rem-change-pro-system">
+      <p>
+        Building on <xref ref="exa-maps-between-inverse-systems"/>, keep in mind that pro-objects indexed by different partially
+        ordered sets <m>I</m> can nonetheless be isomorphic; that is, the index set is not an intrinsic datum of a pro-object but only
+        an artifact used to give a concrete description.
+      </p>
+      <p>
+        This is closely related (via Stone duality; see <xref ref="rem-Stone-duality"/>) 
+        to the fact that it is useful to describe a topology on a set in terms of a neighborhood basis,
+        but the neighborhood basis is not an intrinsic datum of the resulting topological space.
+      </p>
+      <p>
+        Another side effect is that it can be confusing to think about properties of a morphism of pro-objects such as injectivity or surjectivity.
+        It is better to view these as properties of the corresponding morphisms of topological spaces (again see <xref ref="rem-Stone-duality"/>).
+      </p>
+    </remark>
+    <remark>
+      <p>
+        As an example of <xref ref="rem-change-pro-system"/>,
+        consider the category of pro-systems of abelian groups, for which the inverse limit functor is left exact
+        and hence admits right derived functors. 
+        For <em>sequential</em> pro-objects the derived functors
+        beyond <m>R^1 \varprojlim</m> all vanish (<xref ref="bib-Stacks"/>, tag 07KW);
+        by <xref ref="rem-change-pro-system"/> the same applies to any countable
+        pro-object in abelian groups.
+        By contrast, for a larger pro-object it can happen that <m>R^i \varprojlim</m> is nonzero for <m>i \gt 1</m>.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>The category of profinite sets</title>
+    <definition>
+      <p>
+        The category of <term>profinite sets</term> is defined to be <m>\Prof := \varprojlim_\kappa \Set^{\fin}</m> 
+        where <m>\Set^{\fin}</m> denotes the full subcategory of <m>\Set</m> consisting of finite sets.
+      </p>
+    </definition>
+    <p>
+      We introduce two key examples, one <q>maximal</q> and one <q>minimal</q>.
+    </p>
+    <example>
+      <p>
+        By the <term>(abstract) Cantor set</term>, we will mean the object <m>\{0,1\}^{\NN}</m> of <m>\Prof</m>
+        indexed by <m>\NN</m>, where <m>n</m> corresponds to <m>\{0,1\}^n</m> and the projection <m>\{0,1\}^{n+1} \to \{0,1\}^n</m>
+        is the map that forgets the last coordinate.
+        This example is in a certain sense maximal when <m>\kappa = \aleph_0</m>; see <xref ref="rmk-Cantor-set-surjection"/>.
+      </p>
+    </example>
+    <example xml:id="exa-one-point-compactification-of-N">
+      <p>
+        Let <m>\NN_\infty</m> be the object of <m>\Prof</m> indexed by <m>\NN</m>, where <m>n</m> corresponds to <m>\{1,\dots,n,\infty\}</m>
+        and the projection <m>\{1,\dots,n+1,\infty\} \to \{1,\dots,n,\infty\}</m>.
+        This example plays an important role in the relationship between topological spaces and condensed sets;
+        see <xref ref="rem-interpret-sequential-limits"/>.
+      </p>
+    </example>
+    <p>
+      We will freely pass between the given definition of profinite sets and the following alternate interpretation.
+    </p>
+    <remark xml:id="rem-Stone-duality">
+      <title>Stone duality, part 1</title>
+      <p>
+        Since <m>\Set</m> admits limits, we obtain a natural functor <m>\Prof \to \Set</m> taking an inverse system to its inverse limit. 
+        Alternatively, by viewing every finite set as a topological space for the
+        discrete topology, we may factor <m>\Prof \to \Set</m> through the category <m>\Top</m> of topological spaces.
+      </p>
+      <p>
+        Now observe that the inverse limit of a family of Hausdorff topological spaces is a <em>closed</em> subspace of the full product over the same family:
+        the compatibility with morphisms is a collection of conditions involving two factors at a time, and hence a closed condition for the product topology.
+        By Tykhonoff's theorem, any product of compact Hausdorff spaces is compact, so any inverse limit of compact Hausdorff spaces is compact.
+        As a result, the functor <m>\Prof \to \Top</m> factors through the full subcategory <m>\CHaus</m> of <m>\Top</m> 
+        consisting of compact Hausdorff spaces admitting a neighborhood basis of cardinality <m>\leq \kappa</m>.
+        (When <m>\kappa = \aleph_0</m>, Urysohn's theorem says that these are just the <term>metrizable</term> compact Hausdorff spaces.)
+      </p>
+      <p>
+        Conversely, an object of <m>\CHaus</m> belongs to the essential image of <m>\Prof \to \Top</m> if and only if it is
+        <term>totally disconnected</term>, meaning that any two distinct points can be separated by a partition of the
+        space into two closed-open subsets.
+        Namely, we can write down a corresponding inverse system with terms corresponding to the finite closed-open coverings;
+        see <xref ref="rem-construct-profinite-cover"/> for the detailed construction in a more general context.
+        One side effect of the construction is that we can represent any object of <m>\Prof</m> as an inverse system with <em>surjective</em> transition maps,
+        which we will almost always do in practice.
+      </p>
+    </remark>
+    <remark xml:id="rmk-Cantor-set">
+      <p>
+        Note that the cardinality cutoff <m>\kappa</m> applies to a neighborhood basis of a totally disconnected compact Hausdorff space,
+        not to the underlying set of the topological space. For example, for <m>\kappa = \aleph_0</m>, the Cantor set
+        <m>\{0,1\}^{\NN}</m> belongs to <m>\Prof</m> but its underlying set <m>\prod_{n=1}^\infty \{0,1\}</m> has cardinality <m>2^\kappa</m>.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        The object of <m>\CHaus</m> corresponding to <m>\NN_\infty \in \Prof</m> is the <term>one-point compactification</term> of <m>\NN</m>.
+        That is, if we interpret <m>\NN</m> as an object of <m>\Top</m> for the discrete topology, then <m>\NN_\infty</m>
+        corresponds to the topological space with underlying set <m>\NN \cup \{\infty\}</m> 
+        in which an open subset of <m>\NN</m> is either an arbitrary subset of <m>\NN</m> or <m>\infty</m> 
+        plus a <em>cofinite</em> subset of <m>\NN</m>.
+      </p>
+    </remark>
+    <p>
+      In connection with Stone duality, we will make frequent use of the following fact about compact Hausdorff topological spaces,
+      which in a sense makes them quite similar to objects of more algebraic categories.
+    </p>
+    <lemma xml:id="lem-every-surjection-in-CHaus-is-quotient">
+      <statement>
+        Any continuous surjection <m>f\colon Y \to X</m> of compact Hausdorff spaces is a quotient map.
+      </statement>
+      <proof>
+        <p>
+          The quotient map property says that a subset <m>V</m> of <m>X</m> is closed if its preimage <m>f^{-1}(V)</m> is closed
+          (the <q>only if</q> statement being the property that <m>f</m> is continuous). The surjectivity of <m>f</m>
+          means that <m>f(f^{-1}(V)) = V</m>; since any closed subset of <m>Y</m> is again compact, <m>V</m> is the image of a
+          quasicompact topological space and hence is also quasicompact (we can test whether a finite subcollection of a covering is a covering by
+          checking the inverse images). 
+          Since <m>X</m> is Hausdorff, 
+          for any <m>x \in X \setminus V</m>, for each <m>y \in V</m> we can find open subsets separating <m>x</m> and <m>y</m>.
+          We can choose finitely many <m>y</m> so that the opens covering those <m>y</m> cover all of <m>V</m>;
+          intersecting the corresponding opens covering <m>x</m> produces an open neighborhood of <m>x</m> within <m>X \setminus V</m>.
+          Since <m>x \in X \setminus V</m> was arbitrary, we conclude that <m>X \setminus V</m> is open and hence <m>V</m> is closed.
+        </p>
+      </proof>
+    </lemma>
+    <p>
+      We will make occasional use of a third interpretation of profinite sets.
+    </p>
+    <remark>
+      <title>Stone duality, part 2</title>
+      <p>
+        We can also describe <m>\Prof</m> in terms of Boolean algebras:
+        the space <m>X</m> corresponds to <m>\Hom_{\Top}(X, \FF_2)</m>
+        (i.e., the partitions of <m>X</m> into two closed-open subsets labeled <m>0</m> and <m>1</m>). 
+        and we recover <m>X</m> by taking <m>\MaxSpec</m> (the set of maximal ideals with the Zariski topology). 
+        From this point of view, the cardinality cutoff is that <m>|\Hom_{\Top}(X, \FF_2)| \leq \kappa</m>.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>The category of condensed sets</title>
+    <p>
+      We now now imitate the passage from modules to solid modules over a ring to pass from sets to condensed sets.
+      One important difference is that we do impose certain structure on the functors; this will correspond to enforcing the
+      sheaf axiom with respect to a certain topology.
+    </p>
+    <definition>
+      <p>
+        The category of <term>condensed sets</term> is the full subcategory <m>\CSet</m> of <m>\Fun(\Prof^{\op}, \Set)</m> consisting of those functors <m>X</m> 
+        such that:
+        <ul>
+          <li>
+            <m>X</m> carries finite disjoint unions to finite products (in particular <m>X(\emptyset)</m> is a singleton set);
+          </li>
+          <li>
+            for every surjection <m>T \to S</m> in <m>\Prof</m>, the diagram
+            <me>
+              X(S) \to X(T) \rightrightarrows X(T \times_S T)
+            </me>
+            is an equalizer.
+          </li>
+        </ul>
+      </p>
+      <p>
+        For any <m>S \in \Prof</m>, the representable functor <m>h_S</m> belongs to <m>\CSet</m> 
+        (we will prove a stronger statement in <xref ref="lem-top-space-as-condensed-set"/>).
+        By Yoneda's lemma, this yields a fully faithful functor <m>\Prof \to \CSet</m>.
+        We will see a bit later that <m>\CSet</m> also contains some other familiar categories
+        as full subcategories, including <m>\Set</m> (<xref ref="cor-sets-are-condensed-set"/>),
+        <m>\CHaus</m> (<xref ref="prop-compact-hausdorff-in-condensed"/>),
+        and even a sizable subcategory of <m>\Top</m> (<xref ref="prop-sequential"/>).
+      </p>
+    </definition>
+    <remark xml:id="rem-surjection-of-sheaves">
+      <p>
+        The compatibilities in the definition of <m>\CSet</m> can be reformulated as the statement that
+        we are considering presheaves in sets on <m>\Prof</m> which are sheaves for the following Grothendieck topology:
+        a family <m>\{U_i \to S\}_{i \in I}</m> of morphisms is a covering if and only if there is a <em>finite</em> subset <m>J</m> of <m>I</m>
+        such that <m>\bigsqcup_{i \in J} U_i \to S</m> is surjective as a morphism in <m>\Top</m>.
+        (The point is that this topology is generated by finite disjoint unions and arbitrary surjections.)
+      </p>
+      <p>
+        The fact that we are considering sheaves has a consequence which is standard but worth recalling here:
+        while a monomorphism in <m>\CSet</m> is precisely the same thing as a pointwise injection,
+        an epimorphism in <m>\CSet</m> is not necessarily a pointwise surjection.
+        Rather, a morphism <m>Y \to X</m> in <m>\CSet</m> is an epimorphism if and only if the following weaker condition holds:
+        for every <m>S \in \Prof</m>
+        and every <m>x \in X(S)</m>, we can find a surjection <m>T \to S</m> in <m>\Prof</m> such that
+        <m>x</m> lifts to some <m>y \in Y(T)</m>, which need not equalize the maps <m>Y(T) \rightrightarrows Y(T \times_S T)</m>.
+      </p>
+    </remark>
+    <remark xml:id="rem-evaluate-condensed-at-singleton">
+      <p>
+        Evaluation at a fixed singleton in <m>\Prof</m> defines a functor <m>\CSet \to \Set</m>.
+        We will interpret this as an <q>underlying set</q> construction, although this should be interpreted carefully
+        as the functor is <em>not</em> faithful; that is, one cannot view condensed sets as <q>sets with extra structure</q>.
+        One can however interpret this as a <q>forgetful functor</q> in the sense that it does admit a left adjoint
+        <xref ref="cor-sets-are-condensed-set"/>.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        The functor <m>\Prof \to \CSet</m> does not preserve colimits.
+        For example, any object of <m>\Prof</m> can be viewed as a colimit over its closed subspaces of cardinality <m>\leq \kappa</m>,
+        but this description no longer applies in <m>\CSet</m>.
+      </p>
+    </remark>
+    <p>
+      Before proceeding, we first enrich our collection of examples of condensed sets.
+    </p>
+    <lemma xml:id="lem-top-space-as-condensed-set">
+      <statement>
+        For any <m>X \in \Top</m>, the assignment  <m>X(S) = \Hom_{\Top}(S, X)</m> 
+        (i.e., the restriction of the representable functor <m>h_X</m> 
+        from <m>\Top</m> to <m>\Prof</m>) defines an object <m>\underline{X}</m> of <m>\CSet</m>.
+        (Warning: we may sometimes forget the underline.)
+      </statement>
+      <proof>
+        <p>
+          The only issue is to check the compatibilities in the definition of <m>\CSet</m>.
+          Compatibility with disjoint unions is clear because disjoint unions in <m>\Top</m> are coproducts.
+          For compatibility with surjections, note that this is obvious at the level of sets, and we can use 
+          <xref ref="lem-every-surjection-in-CHaus-is-quotient"/> to promote the conculsion to <m>\Top</m>.
+        </p>
+      </proof>
+    </lemma>
+    <corollary xml:id="cor-sets-are-condensed-set">
+      <statement>
+        <p>
+          Consider the functor <m>\Set \to \Top</m> promoting a set to a discrete topological space
+          (i.e., the left adjoint to the forgetful functor <m>\Top \to \Set</m>).
+          Then the composition <m>\Set \to \Top \to \CSet \to \Set</m> is naturally equivalent to the identity;
+          hence <m>\Set \to \Top \to \CSet</m> is fully faithful.
+          Moreover, this composition is left adjoint to the forgetful functor <m>\CSet \to \Set</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The composition <m>\Set \to \Top \to \CSet</m> carries <m>X</m> to the functor taking <m>S \in \Prof</m>
+          to <m>\Hom_{\Top}(S, X)</m>, which is the set of closed-open partitions of <m>S</m> 
+          indexed by <em>finite</em> subsets of <m>X</m>.
+          Hence for any <m>X,Y \in \Set</m>, any natural transformation between
+          the functors <m>S \mapsto \Hom_{\Top}(S, X)</m> and <m>S \mapsto \Hom_{\Top}(S, Y)</m> on <m>\Prof</m>
+          can be reconstructed from its effect on all singletons, or equivalently on one singleton.
+        </p>
+        <p>
+          For the proof of adjunction, see the closely related argument given in <xref ref="prop-cset-to-top-left-adjoint"/>.
+        </p>
+      </proof>
+    </corollary>
+    <remark xml:id="rem-interpret-sequential-limits">
+      <p>
+        It is worth noting that there is no cardinality cutoff in <xref ref="cor-sets-are-condensed-set"/>.
+        That is, <m>\CSet</m> contains the entire category <m>\Set</m> as a full subcategory;
+        the effect of the cardinality cutoff is only felt in <q>topological</q> ways.
+      </p>
+      <p>
+        For instance, in light of <xref ref="exa-one-point-compactification-of-N"/>, we have the object <m>\NN_\infty \in \Prof</m>,
+        at which we can then evaluate any condensed set. 
+        For an object <m>X \in \Top</m>, 
+        this gives the collection of <q>limited</q> convergent sequences in <m>X</m> (i.e., if <m>X</m> is not Hausdorff we must
+        specify a choice of the limit); we thus obtain an arrow-theoretic interpretation of sequential convergence.
+        In particular, this test object can distinguish an object of <m>\Top</m> from its underlying set viewed as a discrete topological space.
+      </p>
+      <p>
+        By contrast, in the crucial case <m>\kappa = \aleph_0</m> we will have no comparable construction to study
+        convergence of larger nets. This will then limit the extent to which topological spaces embed into <m>\CSet</m>,
+        but not to an extent that will impede our work (<xref ref="prop-sequential" />).
+      </p>
+    </remark>
+    <p>
+      Here is a key example of a condensed set not in the essential image of <m>\Top</m>.
+    </p>
+    <lemma xml:id="lem-difference-on-product-is-locally-constant">
+      <statement>
+        <p>
+          Let <m>T \to S</m> be a surjection in <m>\Prof</m>. For any abelian group <m>X</m>, if <m>f\colon T \to X</m>
+          is a map of sets such that the difference between the two induced maps <m>f_1, f_2\colon T \times_S T \to X</m> is locally constant,
+          then <m>f</m> is the sum of a locally constant map plus a map that factors through <m>S</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By hypothesis we have a finite covering of <m>T \times_S T</m> such that <m>f_1-f_2</m> is constant on each term.
+          Since the topology on <m>T \times_S T</m> is generated by products <m>U_1 \times_S U_2</m> where <m>U_i \subseteq T</m> is open,
+          we may assume our covering is given by opens of this form. We can then choose a finite covering of <m>T</m> such that
+          every <m>U_i</m> appearing in the previous sentence is a finite union of opens in our chosen covering.
+          Then for every open <m>V</m> in our chosen covering of <m>T</m>, <m>f_1 - f_2</m> is constant on <m>V \times_S V</m>;
+          let <m>g\colon T \to X</m> be the function assigning all elements of <m>V</m> to this constant value.
+          Then <m>f-g</m> indeed factors through <m>S</m>. 
+        </p>
+      </proof>
+    </lemma>
+    <example xml:id="exa-quotient-of-r-by-discrete">
+      <p>
+        Let <m>F \in \Fun(\Prof^{\op}, \Set)</m> be the functor taking <m>S</m> to the quotient
+        of the group of continuous maps <m>S \to \RR</m> by the subgroup of locally constant maps.
+        It is clear that this is compatible with finite disjoint unions.
+        To check compatibility with a surjection <m>T \to \RR</m>, we must check that if <m>f\colon T \to \RR</m>
+        is continuous and the two maps <m>f_1, f_2\colon T \times_S T \to \RR</m> differ by a locally constant map,
+        then <m>f</m> can be written as a locally constant map plus a map that factors through <m>S</m> (which will then
+        necessarily be continuous); this follows from <xref ref="lem-difference-on-product-is-locally-constant"/>.
+      </p>
+      <p>
+        When <m>S</m> is a singleton, we have <m>F(S) = \{0\}</m>,
+        so if <m>F</m> were in the essential image of <m>\Top</m> it would arise from a singleton space.
+        However, we can compute some other evaluations to see that this is far from what is going on.
+      </p>
+      <ul>
+        <li>
+          For <m>S = \NN_\infty</m>, <m>F(S)</m> consists of convergent sequences modulo eventually constant sequences,
+          or equivalently, null sequences modulo sequences of finite support.
+        </li>
+        <li>
+          For <m>S = \{0,1\}^\NN</m>, we can produce a nontrivial element of <m>F(S)</m> using the 
+          standard <q>middle third</q> representation in <m>\RR</m>:
+          <me>
+            (s_1, s_2, \dots) \mapsto \sum_{n=1}^\infty (2s_n) 3^{-n}.
+          </me>
+          This defines a continuous map <m>S \to \RR</m> which is not locally constant.
+        </li>
+      </ul>
+    </example>
+  </subsection>
+  <subsection>
+    <title>Free resolutions of topological spaces</title>
+    <p>
+      While by definition one can only evaluate condensed sets on test objects in the category of profinite sets,
+      we can use the functor <m>\Top \to \CSet</m> to evaluate condensed sets on arbitrary topological spaces.
+      To quantify the extent to which this retains information from <m>\Top</m>, we use the following concept.
+    </p>
+    <definition>
+      <p>
+        By a <term>free resolution</term> of an object <m>S \in \CHaus</m>, we will mean a coequalizer diagram of the form
+        <me>
+          S_2 \rightrightarrows S_1 \to S
+        </me>
+        in which <m>S_1, S_2 \in \Prof</m>.
+      </p>
+      <p>
+        Given such a diagram, for any <m>X \in \CSet</m> we can define the evaluation <m>X(S)</m> as an equalizer:
+        <me>
+          X(S) \to X(S_1) \rightrightarrows X(S_2).
+        </me>
+        By construction, this reproduces the previous definition when <m>X \in \Prof</m>.
+      </p>
+    </definition>
+    <remark xml:id="rem-construct-profinite-cover">
+      <p>
+        For any <m>S \in \CHaus</m>, we can form a surjection <m>S_1 \to S</m> with <m>S_1 \in \Prof</m> by taking an inverse limit over finite coverings
+        by neighborhoods in a basis of cardinality <m>\leq \kappa</m>. 
+        More precisely, for any two finite coverings <m>\{U_i\}_{i \in I}</m> and <m>\{V_j\}_{j \in J}</m>,
+        if the second covering refines the first, then we make one choice of a function <m>f\colon J \to I</m> such that 
+        <m>V_j \subseteq U_{f(j)}</m> for all <m>j</m> (the final construction will depend on these choices).
+      </p>
+      <p>
+        Now note that <m>S_1</m> again has a neighborhood basis of cardinality at most <m>\kappa</m>, as then does <m>S_1 \times_S S_1</m>.
+        We can thus repeat the construction to obtain a surjection <m>S_2 \to S_1 \times_S S_1</m> and hence a free resolution of <m>S</m>.
+      </p>
+      <p>
+        In connection with <xref ref="rem-Stone-duality"/>, note that if <m>S</m> is totally disconnected, then <m>S_1 \to S</m> is an isomorphism.
+        That is, this construction completes the identification of <m>\Prof</m> with the full subcategory of totally disconnected objects of <m>\CHaus</m>.
+      </p>
+    </remark>
+    <proposition xml:id="prop-compact-hausdorff-in-condensed">
+      <statement>
+        The functor <m>\CHaus \to \CSet</m> is fully faithful.
+      </statement>
+      <proof>
+        <p>
+          We already know formally that the restriction of this functor to <m>\Prof</m> is fully faithful.
+          Using the existence of a free resolution, we may extend this to <m>\CHaus</m>.
+        </p>
+      </proof>
+    </proposition>
+    <remark>
+      <p>
+        Another way to interpret <xref ref="prop-compact-hausdorff-in-condensed"/> is to say that
+        we can also interpret <m>\CSet</m> as the category of sheaves on <m>\CHaus</m> for the Grothendieck
+        topology generated by finite coverings. When working in the context of nonarchimedean analysis/geometry
+        the interpretation in terms of <m>\Prof</m> is perhaps more natural; however, one of the points of
+        condensed mathematics is to prove access to <em>archimedean</em> analysis/geometry on an equal footing,
+        and in the archimedean setting one certainly would like access to test objects like the closed unit interval.
+      </p>
+      <p>
+        Going further, one even dreams of doing some sort of <em>global</em> analysis/geometry that bridges between
+        archimedean and nonarchimedean, and in that context one might like access to even more exotic test objects like the
+        idele class group of a number field.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        The forgetful functor <m>\CHaus \to \Set</m> admits a left adjoint <m>\beta\colon \Set \to \CHaus</m> known as 
+        <term>Stone-Čech compactification</term>. Concretely, this is the functor
+        <me>
+          S \mapsto \MaxSpec \FF_2[S] \subset \Spec \FF_2[S]
+        </me>
+        for the usual Zariski topology on <m>\Spec \FF_2[S]</m>; maximal ideals of <m>\FF_2[S]</m> are classically known as
+        <term>ultrafilters</term> on the sets <m>S</m>.
+      </p>
+      <p>
+        If the underlying set of <m>S</m> has cardinality <m>\leq \kappa</m>,
+        this gives a canonical covering of <m>S</m> by an object of <m>\Prof</m>.
+        However, in general even if <m>S \in \Prof</m> its underlying set may be as large as <m>2^\kappa</m> 
+        (<xref ref="rmk-Cantor-set"/>).
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>Condensed sets and topological spaces</title>
+    <definition xml:id="def-functor-cset-top">
+      <p>
+        We factor the forgetful functor <m>\CSet \to \Set</m> through <m>\Top</m> as follows.
+        Pick any singleton set <m>*</m> and write the forgetful functor <m>\CSet \to \Set</m> as <m>X \mapsto X(*)</m>.
+        Now equip <m>X(*)</m> with the finest topology (i.e., the one with the most open sets)
+        such that for any <m>S \in \Prof</m> and any element of <m>X(S)</m>,
+        the resulting map <m>S \cong S(*) \to X(*)</m> is continuous as a map of topological spaces.
+      </p>
+      <p>
+        For <m>X \in \Prof</m> we formally recover the correct topology on the underlying set.
+        Using <xref ref="rem-construct-profinite-cover"/> we may upgrade this conclusion to cover <m>X \in \CHaus</m>;
+        we will upgrade this further later (<xref ref="prop-sequential"/>).
+      </p>
+    </definition>
+    <proposition xml:id="prop-cset-to-top-left-adjoint">
+      <statement>
+        The functor <m>\CSet \to \Top</m> from <xref ref="def-functor-cset-top"/> is left adjoint to the functor
+        <m>\Top \to \CSet</m> from <xref ref="lem-top-space-as-condensed-set"/>.
+      </statement>
+      <proof>
+        <p>
+          Denote the functors as <m>F\colon \CSet \to \Top</m> and <m>G\colon \Top \to \CSet</m>.
+          The assertion is that for <m>S \in \CSet, X \in \Top</m>,
+          there is a natural bijection <m>\Hom_{\Top}(F(S), X) \to \Hom_{\CSet}(S, G(X))</m>
+          specified by a pair of natural transformations <m>\id \to G \circ F</m>, <m>F \circ G \to \id</m>.
+        </p>
+        <p>
+          For the first composition, starting with <m>X \in \CSet</m>, for each <m>S \in \Prof</m> we must
+          map <m>X(S)</m> to <m>(G \circ F(X))(S) = \Hom_{\Top}(S, F(X))</m>. Given an element of <m>X(S)</m>,
+          restriction along inclusions of singletons defines a set-theoretic map <m>S \to F(X)</m>;
+          the definition of <m>F</m> ensures that this map is continuous.
+        </p>
+        <p>
+          For the second composition, starting with <m>X \in \Top</m>, we have a natural bijection 
+          <m>(F \circ G)(X) \to X</m> which we must check is continuous. By the definition of <m>F</m>,
+          it suffices to check that precomposing this map with any map out of an object of <m>\Prof</m>
+          still yields a continuous map, which follows from the definition of <m>G</m>.
+        </p>
+      </proof>
+    </proposition>
+  </subsection>
+</section>

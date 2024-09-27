@@ -1,0 +1,160 @@
+﻿<section xml:id="sec_solid3">
+  <title>More on solid abelian groups</title>
+  <introduction>
+    <p>
+      In this lecture, we continue the discussion of solid condensed abelian groups.
+      Unlike in <xref ref="sec_solid1"/> we now carry the running hypothesis that <m>\kappa = \aleph_0</m>;
+      this allows for some additional arguments that were not available in the general setup.
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This section is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 6,
+        except that we interpret solid abelian groups in the framework of <xref ref="sec_solid1"/>.
+        See also <xref ref="bib-Clausen-Scholze-notes"/>, Lecture 6.
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>Finiteness conditions</title>
+    <p>
+      We prove a <q>coherence</q> property for <m>\ZZ_\solid</m>.
+    </p>
+    <definition>
+      <p>
+        An object <m>M \in \Mod_{\ZZ_\solid}</m> is <term>finitely generated</term> if it can be written as a quotient of <m>\prod_\NN \ZZ_\solid</m>.
+        (It is not necessarily to allow a finite product of copies of <m>\prod_\NN \ZZ_\solid</m> because this is again a copy of <m>\prod_\NN \ZZ_\solid</m>.)
+        The object <m>M</m> is <term>finitely presented</term> if it occurs as the cokernel of some morphism <m>\prod_\NN \ZZ_\solid \to \prod_\NN \ZZ_\solid</m>.
+      </p>
+    </definition>
+    <lemma xml:id="lem-submodule-free-over-PID">
+      <statement>
+        <p>
+          Any submodule of a free module (of arbitrary rank) over a principal ideal domain is itself free.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          See <xref ref="bib-Rotman"/>, Theorem B-2.28.
+        </p>
+      </proof>
+    </lemma>
+    <lemma>
+      <statement>
+        <p>
+          Let <m>Q \in \Mod_\ZZ</m> be a torsion <m>\ZZ</m>-module.
+          Then <m>\iHom_{\ZZ_\solid}(Q \otimes_\ZZ \ZZ_\solid, \ZZ_\solid) = 0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          It suffices to compute the evaluation on <m>\prod_I \ZZ_\solid</m> for <m>I</m> at most countable:
+          using Hom-tensor adjunction plus <xref ref="eq-solid-internal-hom"/>, we obtain
+          <md>
+            <mrow>
+              \iHom_{\ZZ_\solid}(Q \otimes_\ZZ \ZZ_\solid, \ZZ_\solid)\left( \prod_I \ZZ_\solid \right) &amp;= 
+              \Hom_{\ZZ_\solid}(\prod_I \ZZ_\solid, \iHom_{\ZZ_\solid}(Q \otimes_\ZZ \ZZ_\solid, \ZZ_\solid))
+            </mrow>
+            <mrow>
+            &amp; =  \Hom_{\ZZ_\solid}(\prod_I \ZZ_\solid \otimes_{\ZZ_\solid} (Q \otimes_\ZZ \ZZ_\solid), \ZZ_\solid)
+            </mrow>
+            <mrow>
+            &amp; = \Hom_{\ZZ_{\solid}}(Q \otimes_\ZZ \ZZ_\solid, \iHom_{\ZZ_\solid}(\prod_I \ZZ_\solid, \ZZ_\solid))
+            </mrow>
+            <mrow>
+            &amp; = \Hom_{\ZZ_{\solid}}(Q \otimes_\ZZ \ZZ_\solid, \bigoplus_I \ZZ_\solid)
+            </mrow>
+            <mrow>
+             &amp; = \Hom_{\ZZ}(Q, \bigoplus_I \ZZ) = 0
+            </mrow>
+          </md>
+          where the last term vanishes because <m>Q</m> is torsion.
+        </p>
+        <p>
+          Alternatively, one can make the computation in <m>\CAb</m> instead: for <m>S \in \Prof</m>,
+          <me>
+            \iHom_{\CAb}(\underline{Q}, \underline{Z})(S) = \Hom_{\CAb}(Q \otimes \ZZ[\underline{S}], \underline{\ZZ})
+            = \Hom_{\CAb}(Q, \iHom_{\CAb}(\ZZ[\underline{S}], \underline{\ZZ})).
+          </me>
+          In this expression, <m>\iHom_{\CAb}(\ZZ[\underline{S}], \underline{\ZZ})</m> is represented by the locally compact topological abelian gruop
+          consisting of the continuous (i.e., locally constant) functions <m>S \to \ZZ</m>, and we can interpret the outer <m>\Hom</m> in the category of topological abelian groups.
+          But even at the level of underlying abelian groups this Hom is zero because <m>Q</m> cannot admit a nonzero map to any torsion-free abelian group.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-subobject-of-finitely-generated">
+      <statement>
+        <p>
+          Any finitely generated subobject of <m>\prod_\NN \ZZ_\solid</m> is itself a finite or countable product of copies of <m>\ZZ_\solid</m>. 
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Let <m>M</m> be a finitely generated subobject of <m>\prod_\NN \ZZ_\solid</m>. By definition, it sits in a sequence
+          <men xml:id="eq-sandwich-free-module">
+            \prod_I \ZZ_\solid \to M \to \prod_\NN \ZZ_\solid
+          </men>
+          where the first map is surjective and the second map is injective (here <m>I</m> could be either finite or countable).
+        </p>
+        <p>
+          Let <m>g\colon \prod_\NN \ZZ_\solid \to \prod_\NN \ZZ_\solid</m> be the composition.
+          By taking duals (<xref ref="prop-solid-internal-hom"/>), we get a map <m>h \colon \bigoplus_\NN \ZZ \to \bigoplus_I \ZZ</m>;
+          note that we are now considering <em>discrete</em> <m>\ZZ</m>-modules, so we may write <m>\ZZ</m> instead of <m>\ZZ_\solid</m>
+          and reason in terms of discrete <m>\ZZ</m>-modules.
+        </p>
+        <p>
+          By <xref ref="lem-submodule-free-over-PID"/>, <m>\image(h)</m> is also a free <m>\ZZ</m>-module, so the source
+          <m>\bigoplus_\NN \ZZ</m> splits as <m>\ker(h)</m> plus a submodule isomorphic to <m>\image(h)</m>.
+          This splitting transposes to a decomposition of the target <m>\prod_\NN \ZZ_\solid</m> as a product into two factors,
+          each itself a finite or countable product of copies of <m>\ZZ_\solid</m>. The point is that we can replace the target <m>\prod_\NN \ZZ_\solid</m> with a smaller
+          target (discarding the dual of <m>\ker(h)</m>) in such a way that <m>M</m> still embeds as a subobject, but the map <m>h</m> is now injective.
+          (We ignore the case where <m>M</m> ends up inside a <em>finite</em> product, as in that case the claim is obvious.)
+        </p>
+        <p>
+          Set <m>Q := \coker(h)</m>. Let <m>\overline{Q}</m> be the quotient of <m>Q</m> by its torsion subgroup; by
+          <xref ref="lem-submodule-free-over-PID"/> again, <m>\overline{Q}</m> is again a free <m>\ZZ</m>-module,
+          so the target <m>\bigoplus_\NN \ZZ</m> admits a splitting with <m>\overline{Q}</m> as a direct summand.
+          This now transposes to a decomposition of the source <m>\prod_I \ZZ_\solid</m> as a product into two factors,
+          each itself a finite or countable product of copies of <m>\ZZ_\solid</m>, and we can replace the source with one of these factors
+          (discarding the dual of <m>\overline{Q}</m>m>) in such a way that we now have a new sequence as in <xref ref="eq-sandwich-free-module"/>, but
+          now <m>Q</m> is a torsion <m>\ZZ</m>-module.
+        </p>
+        <p>
+          Now dualizing the sequence
+          <me>
+            0 \to \bigoplus_\NN \ZZ \stackrel{h}{\to} \bigoplus_I \ZZ \to Q \to 0
+          </me>
+          yields
+          <me>
+            0 \to \iHom_{\ZZ_\solid}(Q \otimes_\ZZ \ZZ_\solid, \ZZ_\solid) \to \prod_I \ZZ_\solid \stackrel{g}{\to} \prod_\NN \ZZ_\solid
+            \to \iExt^1_{\ZZ_\solid}(Q \otimes_\ZZ \ZZ_\solid, \ZZ_\solid) \to 0.
+          </me>
+          However, since <m>Q</m> is a torsion <m>\ZZ</m>-module, <m>\Hom_\ZZ(Q, \ZZ) = 0</m>;
+          using <xref ref="eq-solid-internal-hom"/>, we deduce that also <m>\iHom_\ZZ(</m>
+        </p>
+        <p>
+          At this point, we know that in <xref ref="eq-sandwich-free-module"/>, the first map is surjective, the second map is injective,
+          and the composition is also injective. Consequently the first map <m>\prod_I \ZZ_\solid \to M</m> is an isomorphism, proving the claim.
+        </p>
+      </proof>
+    </lemma>
+    <proposition>
+      <statement>
+        <p>
+          The finitely presented objects in <m>\Mod_{\ZZ_\solid}</m> form a subcategory closed under kernels, cokernels, and extensions.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The only point which is not formal is stability under kernels; this follows from <xref ref="lem-subobject-of-finitely-generated"/>.
+        </p>
+      </proof>
+    </proposition>
+  </subsection>
+  <subsection>
+    <title>Solid functional analysis</title>
+    <p>
+      We next indicate how to import some concepts from nonarchimedean functional analysis into the framework of solid abelian groups.
+    </p>
+  </subsection>
+</section>

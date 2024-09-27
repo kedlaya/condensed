@@ -1,0 +1,18 @@
+﻿<references>
+  <title>Bibliography</title>
+  <biblio type="raw" xml:id="bib-Barwick-Haine">
+    C. Barwick and P. Haine, <articletitle>Pyknotic objects, I. Basic Notions</articletitle>, <url>https://arxiv.org/pdf/1904.09966</url> <year>2019</year>.
+  </biblio>
+  <biblio type="raw" xml:id="bib-Clausen-Scholze-notes">
+    D. Clausen and P. Scholze, <articletitle>Lectures on condensed mathematics</articletitle>, <url>https://www.math.uni-bonn.de/people/scholze/Condensed.pdf</url>.
+  </biblio>
+  <biblio type="raw" xml:id="bib-Clausen-Scholze-youtube">
+    D. Clausen and P. Scholze, <articletitle>Analytic Stacks</articletitle>, <url>https://www.youtube.com/watch?v=YxSZ1mTIpaA</url>.
+  </biblio>
+  <biblio type="raw" xml:id="bib-Rotman">
+    J.J. Rotman, <pubtitle>Advanced Modern Algebra, Part 1</pubtitle>, third edition, Graduate Studies in Mathematics 165, American Mathematical Society <year>2015</year>.
+  </biblio>
+  <biblio type="raw" xml:id="bib-Stacks">
+    The Stacks Project Authors, <pubtitle>Stacks Project</pubtitle>, <url>https://stacks.math.columbia.edu/</url>.
+  </biblio>
+</references>

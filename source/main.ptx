@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pretext xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en-US">
+  <docinfo>
+    <macros>
+    \def\AA{\mathbb{A}}
+    \def\CC{\mathbb{C}}
+    \def\FF{\mathbb{F}}
+    \def\NN{\mathbb{N}}
+    \def\PP{\mathbb{P}}
+    \def\QQ{\mathbb{Q}}
+    \def\RR{\mathbb{R}}
+    \def\ZZ{\mathbb{Z}}
+
+    \def\gotha{\mathfrak{a}}
+    \def\gothb{\mathfrak{b}}
+    \def\gothm{\mathfrak{m}}
+    \def\gotho{\mathfrak{o}}
+    \def\gothp{\mathfrak{p}}
+    \def\gothq{\mathfrak{q}}
+    \def\gothr{\mathfrak{r}}
+
+    \def\calA{\mathscr{A}}
+    \def\calB{\mathscr{B}}
+    \def\calC{\mathscr{C}}
+    \def\calF{\mathscr{F}}
+
+    \def\solid{\blacksquare}
+
+    \DeclareMathOperator{\bd}{bd}
+    \DeclareMathOperator{\colim}{colim}
+    \DeclareMathOperator{\disc}{disc}
+    \DeclareMathOperator{\End}{End}
+    \DeclareMathOperator{\Ext}{Ext}
+    \DeclareMathOperator{\fin}{fin}
+    \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\id}{id}
+    \DeclareMathOperator{\MaxSpec}{MaxSpec}
+    \DeclareMathOperator{\op}{op}
+    \DeclareMathOperator{\seq}{seq}
+    \DeclareMathOperator{\sing}{sing}
+    \DeclareMathOperator{\Spec}{Spec}
+
+    \DeclareMathOperator{\Ab}{\mathbf{Ab}}
+    \DeclareMathOperator{\CAb}{\mathbf{CAb}}
+    \DeclareMathOperator{\CHaus}{\mathbf{CHaus}}
+    \DeclareMathOperator{\CSet}{\mathbf{CSet}}
+    \DeclareMathOperator{\iExt}{\underline{Ext}}
+    \DeclareMathOperator{\Fun}{\mathbf{Fun}}
+    \DeclareMathOperator{\iHom}{\underline{Hom}}
+    \DeclareMathOperator{\Mod}{\mathbf{Mod}}
+    \DeclareMathOperator{\Prof}{\mathbf{Prof}}
+    \DeclareMathOperator{\Set}{\mathbf{Set}}
+    \DeclareMathOperator{\Top}{\mathbf{Top}}
+  </macros>
+  <latex-image-preamble>
+    \usepackage{tikz}
+    \usepackage{tkz-graph}
+    \usepackage{tkz-euclide}
+    \usetikzlibrary{patterns}
+    \usetikzlibrary{positioning}
+    \usetikzlibrary{matrix,arrows}
+    \usetikzlibrary{calc}
+    \usetikzlibrary{shapes}
+    \usetikzlibrary{through,intersections,decorations,shadows,fadings}
+    \usepackage{pgfplots}
+    \usepackage[all]{xy}
+    \usepackage{accents}
+    \usepackage{mathrsfs}
+  </latex-image-preamble>
+  </docinfo>
+  <article xml:id="condensed">
+    <title>Notes on condensed mathematics</title>
+    <frontmatter>
+      <titlepage>
+        <author>
+          <personname>Kiran S. Kedlaya</personname>
+          <department>Department of Mathematics</department>
+          <institution>
+            <line>University of California San Diego</line>
+            <line>La Jolla, CA, USA</line>
+          </institution>
+          <email>kedlaya@ucsd.edu</email>
+        </author>
+        <date><today /></date>
+      </titlepage>
+      <abstract>
+        <p>
+          These are notes from a <url visual="kskedlaya.org/math205-fall24/" href="https://kskedlaya.org/math205-fall24/">graduate topics course</url> given at UC San Diego 
+          during the fall 2024 quarter; recordings of the lectures can be found at the same web site.
+          The notes were typeset using <url visual="pretextbook.org" href="pretextbook.org/"><pretext /></url> so as to produce matching <url visual="kskedlaya.org/condensed/" href="https://kskedlaya.org/condensed/">HTML</url> and 
+          <url visual="kskedlaya.org/papers/condensed.pdf" href="https://kskedlaya.org/papers/condensed.pdf">PDF</url> versions.
+        </p>
+        <p>
+          As of this writing, condensed mathematics is a moving target: the first version of the theory appears in 
+          <xref ref="bib-Clausen-Scholze-notes"/>, but this theory is set up in a way that exposes it to a sensitive
+          dependence on large cardinal axioms. We will instead follow the approach sketched in <xref ref="bib-Clausen-Scholze-youtube"/>,
+          which limits this exposure without too much of a cost when it comes to practical applications; unfortunately, there
+          is not yet an entirely satisfactory print reference (and these notes do not aim to provide one either).
+        </p>
+        <p>
+          Our goal here is <em>not</em> to give a sweeping overview; for this we defer to the other references.
+          Rather, we try to err on the side of filling in some details in the basic development,
+          and explaining some concepts that are not specific to condensed mathematics but are crucial for understanding what is going on.
+        </p>
+      </abstract>
+    </frontmatter>
+    <xi:include href="./sec_solid1.ptx"/>
+    <xi:include href="./sec_condset.ptx"/>
+    <xi:include href="./sec_condab.ptx"/>
+    <xi:include href="./sec_solid2.ptx"/>
+    <xi:include href="./sec_solid3.ptx"/>
+    <xi:include href="./sec_cohomology.ptx"/>
+    <backmatter>
+      <xi:include href="./bibliography.ptx"/>
+    </backmatter>
+  </article>
+</pretext>

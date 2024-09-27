@@ -1,0 +1,445 @@
+﻿<section xml:id="sec_condab">
+  <title>Condensed abelian groups</title>
+  <introduction>
+    <p>
+      We now fix once and for all the cardinal cutoff <m>\kappa = \aleph_0</m> and say more about the resulting theory
+      of <q>light</q> condensed sets (but we will omit the qualifier as we consider no other versions of the theory).
+      We also consider the condensed analogues of abelian groups;
+      similar considerations apply to condensed <m>R</m>-modules for any (discrete) commutative ring <m>R</m>.
+    </p>
+    <p>
+      As a reminder, we hereafter fix the cardinality cutoff <m>\kappa = \aleph_0</m> in the definition of the category <m>\CSet</m> of condensed sets.
+      That is, we are always working with <q>light</q> condensed sets, but we will omit this qualifier as we do not consider any other form of the theory. 
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This lecture is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lectures 2 and 3.
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>Effects of the cardinality cutoff</title>
+    <p>
+      We spell out some effects of the condition <m>\kappa = \aleph_0</m>,
+      starting with an important special case of <xref ref="rem-change-pro-system"/>.
+    </p>
+    <remark xml:id="rem-change-pro-system-to-sequential">
+      <p>
+        Now that we are assuming <m>\kappa = \aleph_0</m>, 
+        every pro-object is isomorphic to an inverse system on the index set <m>\NN</m>.
+        In <m>\Prof</m>, we can further ensure (by <xref ref="rem-Stone-duality"/>) that the transition maps are surjective.
+      </p>
+      <p>
+        We will use this repeatedly in the following discussion.
+        However, when describing pro-objects in practice it is sometimes more natural to use an alternate index set, 
+        e.g., when forming products the index set <m>\NN \times \NN</m> occurs naturally.
+      </p>
+    </remark>
+    <proposition>
+      <statement>
+        For <m>S \in \Prof</m>, any open subset <m>U</m> of <m>S</m> (as an object of <m>\Top</m>) is an at most
+        <em>countable</em> disjoint union of objects of <m>\Prof</m>.
+      </statement>
+      <proof>
+        <p>
+          Per <xref ref="rem-change-pro-system-to-sequential"/>, we may write <m>S</m> as a sequential inverse limit of finite sets with surjective transition maps:
+          <m>S = \varprojlim_{n \in \NN} S_n</m>. For each <m>n \in \NN, x \in S_n</m>, let <m>U_{n,x}</m>
+          be the preimage of <m>x</m> in <m>S</m>; this is an open (and closed) subset of <m>S</m>,
+          and <m>U</m> is the union of <m>U_{n,x}</m> over all pairs <m>(n,x)</m> such that <m>U_{n,x} \subseteq U</m>.
+        </p>
+        <p>
+           Now consider the set of pairs <m>(n,x)</m> such that <m>U_{n,x} \subseteq U</m> and there is no <m>n' \lt n</m>
+           for which the image <m>x'</m> of <m>x</m> in <m>X_{n'}</m> satisfies <m>U_{n',x'} \subseteq U</m> (that is, this pair
+           is <q>irredundant</q>). For these pairs, the sets <m>U_{n,x}</m> form a countable disjoint union of objects of <m>\Prof</m>
+           with union <m>U</m>.
+        </p>
+      </proof>
+    </proposition>
+    <proposition xml:id="prop-profinite-injective">
+      <statement>
+        <p>
+          Every object of <m>\Prof</m> is injective in the full pro-category of <m>\Set^{\fin}</m> (with no cardinality cutoff).
+          That is, for any <m>S \in \Prof</m> and any injection <m>Y \to Z</m> in the pro-category,
+          any morphism <m>Y \to X</m> can be factored (not necessarily uniquely) through <m>Z</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Per <xref ref="rem-change-pro-system-to-sequential"/>, we may write <m>S</m> as a sequential inverse limit of finite sets with surjective transition maps:
+          <m>S = \varprojlim_{n \in \NN} S_n</m>.
+          We are given a coherent sequence of maps <m>Y \to S_n</m>
+          which we wish to factor through <m>Z</m>. It will suffice to show that 
+          given any maps <m>Y \to S_{n+1}</m>, <m>Z \to S_n</m> which yield the same composition <m>Y \to S_n</m>,
+          we can fill in a map <m>Z \to S_{n+1}</m>; that is, we can fit a dashed arrow into the following diagram.
+          <figure>
+            <image>
+              <latex-image>
+                \xymatrix{
+                  Y \ar[r] \ar[d] &amp; Z \ar[d] \ar@{-->}[dl] \\
+                  S_{n+1} \ar[r] &amp; S_{n}
+                }
+              </latex-image>
+            </image>
+          </figure>
+          By partitioning <m>Z</m> into closed-open subsets, we may reduce to the case where <m>S_n</m> is a singleton
+          (which means we can ignore the bottom right corner of the diagram).
+        </p>
+        <p>
+          At this point, we may choose representations <m>Y = \varprojlim_i Y_i</m>, <m>Z = \varprojlim_i Z_i</m>
+          such that <m>Y \to Z</m> is represented by a sequence of compatible injective morphisms <m>Y_i \to Z_i</m>
+          (to enforce injectivity, we first fix the representation of <m>Y</m> and then choose the representation of <m>Z</m> to fit).
+          The morphism <m>Y \to S_{n+1}</m> factors through some <m>Y_i</m>; but now it is straightforward to
+          factor <m>Y_i \to S_{n+1}</m> through <m>Z_i</m> since all of the sets involved are finite.
+        </p>
+      </proof>
+    </proposition>
+    <p>
+      In a similar vein, we have the following.
+      Again, this is not particularly useful in practice but is convenient for some theoretical considerations;
+      it means we can view an object in <m>\CSet</m> as its value on the Cantor set plus some descent data.
+    </p>
+    <proposition xml:id="rmk-Cantor-set-surjection">
+      <statement>
+        <p>
+          For any <m>S \in \Prof</m>, there exists a surjection of the form <m>\{0,1\}^\NN \to S</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Per <xref ref="rem-change-pro-system"/>, we may write <m>X</m> as a sequential inverse limit of finite sets with finite transition maps:
+          <m>S = \varprojlim_{n \in \NN} S_n</m>. 
+          It will suffice to show that any surjection 
+          <m>\{0,1\}^{n_1} \to S_n</m>
+          for some <m>n_1 \in \NN</m> can be lifted to a surjection <m>\{0,1\}^{n_2} \to S_{n+1}</m> for some <m>n_2 \geq n_1</m>;
+          this is obvious because all of the sets involved are finite.
+        </p>
+      </proof>
+    </proposition>
+  </subsection>
+  <subsection>
+    <title>Sequential topological spaces</title>
+    <p>
+      We next identify the topological spaces which we can view faithfully as condensed sets.
+    </p>
+    <definition xml:id="def-sequential">
+      <p>
+        A space <m>X \in \Top</m> is <term>first countable</term> if every point has a countable neighborhood basis.
+        By contrast, <m>X</m> is <term>second countable</term> if <m>X</m> itself has a countable neighborhood basis.
+      </p>
+      <p>
+        The space <m>X</m> is <term>sequential</term> if every subset of <m>X</m> which is <term>sequentially closed</term>
+        (i.e., contains the limit of any convergent sequence with terms in the subset) is actually closed.
+        An equivalent condition is that <m>X</m> can be written as a quotient of a first countable space
+        (although in practice all reasonable examples are already first countable).
+      </p>
+      <p>
+        Let <m>\Top^{\seq}</m> denote the full subcategory of <m>\Top</m> consisting of sequential spaces.
+        This contains <m>\CHaus</m> as a full subcategory by the definition of the latter.
+      </p>
+    </definition>
+    <proposition xml:id="prop-sequential">
+      <statement>
+        The restriction of the composition <m>\Top \to \CSet \to \Top</m> to sequential spaces is an equivalence.
+        Consequently, we have a fully faithful functor <m>\Top^{\seq} \to \CSet</m>.
+      </statement>
+      <proof>
+        <p>
+          The composition <m>\Top \to \CSet \to \Top</m> induces a canonical equivalence at the level of underlying sets,
+          so it suffices to check that the topology does not change when we start with a sequential space.
+          This follows from the fact that a map between sequential topological spaces is continuous if and only if it is sequentially continuous.
+        </p>
+      </proof>
+    </proposition>
+    <proposition xml:id="prop-sequential-limits-of-surjections">
+      <statement>
+        Given a sequential inverse system <m>\varprojlim_{n \in \NN} X_n</m> in <m>\CSet</m> with limit <m>X</m> whose transition maps are epimorphisms,
+        and a compatible family of epimorphisms <m>X_n \to Y</m>, the induced map <m>X \to Y</m> is an epimorphism.
+      </statement>
+      <proof>
+        <p>
+          As per <xref ref="rem-surjection-of-sheaves"/>, we need to know that for any <m>S\in \Prof</m> and any <m>y \in Y(S)</m>,
+          we can find a surjection <m>T \to S</m> in <m>\Prof</m> such that <m>y</m> lifts to some <m>x \in Y(T)</m>.
+          To begin with, <m>X_1 \to Y</m> is an epimorphism and so we can find a surjection <m>T_1 \to S</m> in <m>\Prof</m> such that <m>y</m>
+          lifts to some <m>x_1 \in X_1(T_1)</m>. We can then find a surjection <m>T_2 \to T_2</m> such that <m>x_1</m> lifts to some <m>x_2 \in X_2(T_2)</m>.
+          Repeating, we obtain an inverse system <m>\varprojlim_{n \in \NN} T_n</m> in <m>\Prof</m>
+          such that <m>y</m> admits a compatible sequence of lifts to <m>X_n(T_n)</m> for each <m>n</m>. 
+          This inverse system formally admits a limit <m>T \in \Prof</m> such that <m>y</m> lifts to some <m>x \in X(T)</m>.
+        </p>
+      </proof>
+    </proposition>
+    <corollary>
+      <statement>
+        For <m>n \in \NN</m>, let <m>X_n \to Y_n</m> be an epimorphism in <m>\CSet</m>.
+        Then <m>\prod_{n \in \NN} X_n \to \prod_{n \in \NN} Y_n</m> is also an epimorphism.
+      </statement>
+      <proof>
+        Apply <xref ref="prop-sequential-limits-of-surjections"/> to the inverse system
+        <me>
+          \prod_{n' \lt n+1} X_{n'} \times \prod_{n' \geq n+1} Y_{n'} \to \prod_{n' \lt n} X_{n'} \times \prod_{n' \geq n} Y_{n'}
+          \qquad (n=1,2,\dots)
+        </me>
+        and the identity map out of the last term.
+      </proof>
+    </corollary>
+    <remark>
+      <p>
+        <xref ref="prop-sequential-limits-of-surjections"/> cannot be weakened to omit the condition that the transition maps are epimorphisms.
+        This can be seen using an example based on discrete sets; for instance, 
+        let <m>Y</m> be a singleton set; set <m>X_n = \{n, n+1, \dots\}</m>;
+        and form the inverse system <m>\varprojlim_{n \in \NN} X_n</m> using the inclusions <m>X_{n+1} \to X_n</m>
+        (which has empty inverse limit). 
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>Condensed abelian groups</title>
+    <p>
+      Since we are now talking about sheaves on a Grothendieck topology, we must distinguish between sheaves and presheaves.
+    </p>
+    <definition>
+      <p>
+        The forgetful functor from <m>\CSet</m> to <m>\Fun(\Prof^{\op}, \Set)</m> (i.e., presheaves in sets on <m>\Prof</m>)
+        has a left adjoint called <term>sheafification</term>. Concretely, given <m>F \in \Fun(\Prof^{\op}, \Set)</m>, its
+        sheafification evaluates on <m>S</m> to the colimit of <m>\prod_i F(T_i)</m> over all finite partitions <m>S = \bigsqcup_i T_i</m>
+        of profinite sets.
+      </p>
+    </definition>
+    <definition>
+      <p>
+        We define the category <m>\CAb</m> of <term>condensed abelian groups</term> as the category of abelian group objects in <m>\CSet</m>.
+        This is equivalent to considering the intersection of <m>\CSet</m> with <m>\Fun(\Prof^{\op}, \Ab)</m> inside <m>\Fun(\Prof^{\op}, \Set)</m>.
+      </p>
+      <p>
+        The category <m>\CAb</m> is abelian, but the cokernels are obtained by taking the presheaf cokernel (i.e., point by point)
+        and then sheafifying.
+      </p>
+      <p>
+        The category <m>\CAb</m> contains the sequentially topologized abelian groups as a full subcategory.
+        In particular it contains the discrete abelian groups as a full subcategory.
+      </p>
+    </definition>
+    <example>
+      <p>
+        There is a natural homomorphism <m>\RR_{\disc} \to \RR</m> of topological abelian groups.
+        Applying the functor <m>\Top \to \CSet</m>, we obtain a homomorphism in <m>\CAb</m>, which therefore has a cokernel <m>\underline{\RR}/\underline{\RR}_{\disc}</m>.
+        Explicitly, for <m>S \in \Prof</m>, <m>\underline{\RR}(S)</m> consists of continuous maps <m>S \to \RR</m> while <m>\underline{\RR}_{\disc}(S)</m> consists of locally constant functions <m>S \to \RR</m>.
+        In this case, we showed in <xref ref="exa-quotient-of-r-by-discrete"/> that there is no sheafification required: <m>(\underline{\RR}/\underline{\RR}_{\disc})(S) = \underline{\RR}(S)/\underline{\RR}_{\disc}(S)</m>.
+      </p>
+    </example>
+    <definition xml:id="def-free-condensed-ab">
+      <p>
+        There is an obvious forgetful functor <m>\CAb \to \CSet</m>.
+        This has a left adjoint <m>X \mapsto \ZZ[X]</m> given by sheafifying the presheaf <m>S \mapsto \ZZ[X(S)]</m>,
+        where <m>\ZZ[X(S)]</m> denotes the free <m>\ZZ</m>-module on the set <m>X(S)</m>.
+        (The sheafification is already needed for trivial reasons: the empty set needs to go to 0 rather than to <m>\ZZ[X(\emptyset)] \cong \ZZ</m>.)
+      </p>
+      <p>
+        It would be a bit more consistent to denote <m>\ZZ[X]</m> by <m>\underline{\ZZ}[X]</m>, but we will not bother doing this.
+      </p>
+    </definition>
+    <example xml:id="exa-module-ring-topological-space">
+      <p>
+        For <m>X \in \Top</m> locally compact, the object <m>\ZZ[\underline{X}] \in \CSet</m> can be represented by a locally compact topological group
+        with underlying set <m>\ZZ[X]</m>. Concretely, take the colimit,
+        indexed over compact subspaces <m>I</m> and nonnegative integers <m>n</m>, 
+        of the set of functions <m>f \colon I \to \ZZ</m> with <m>\sum_{x \in I} |f(x)| \leq n</m>
+        viewed as a closed subspace of <m>I^{\{-n,\dots,n\}}</m> for the product topology.
+        (One must still check that this represents the correct functor on <m>\Prof</m>, but we leave this to the reader.)
+      </p>
+      <p>
+        When <m>X</m> is discrete, this just reduces to saying that <m>\ZZ[\underline{X}]</m> represents the discrete space <m>\ZZ[X]</m>.
+        When <m>X = \varprojlim_{i \in \NN} X_i \in \Prof</m>, this is <em>not</em> saying that <mm>\ZZ[\underline{X}] = \varprojlim_i \ZZ[X_i]</mm>;
+        in fact, the underlying topological space of <m>\ZZ[\underline{X}]</m> is not profinite but rather a colimit of profinite sets.
+      </p>
+    </example>
+    <example xml:id="exa-projective-in-cab">
+      <p>
+        Any <m>X \in \Set</m> is projective as an object of <m>\CSet</m>;
+        by adjunction, <m>\ZZ[\underline{X}]</m> is projective in <m>\CAb</m>.
+      </p>
+      <p>
+        By contrast, for <m>X \in \Prof</m>, the objects <m>\ZZ[\underline{X}]</m> in <m>\CAb</m> form a collection of compact generators,
+        but they are in general not projective.
+        (In fact, projective objects in <m>\CAb</m> are somehat hard to come by.)
+        See however <xref ref="prop-internally-projective"/> for a key exception.
+      </p>
+    </example>
+    <definition>
+      <p>
+        We obtain a symmetric monoidal tensor product <m>\otimes</m> with unit <m>\ZZ[*]</m> by sheafifying the pointwise tensor product.
+        We have a natural identification
+        <me>
+          \ZZ[X] \otimes \ZZ[Y] \cong \ZZ[X \times Y].
+        </me>
+        Using the tensor product, we may define the internal Hom functor <m>\iHom_{\CAb}</m> so as to satisfy Hom-tensor adjunction:
+        <me>
+          \Hom_{\CAb}(P, \iHom_{\CAb}(M, N)) \cong \Hom_{\CAb}(P \otimes M, N).
+        </me>
+        In particular, for <m>S \in \Prof</m>,
+        <men xml:id="eq-expression-of-internal-hom-sections">
+          \iHom_{\CAb}(M,N)(S) = \Hom_{\CAb}(M \otimes \ZZ[\underline{S}], N).
+        </men>
+      </p>
+    </definition>
+    <definition xml:id="def-internal-ext-in-cab">
+      <p>
+        By the general argument of Grothendieck, <m>\CAb</m> contains enough injective objects.
+        Since the functor <m>\Hom_{\CAb}(M, \bullet)</m> is left exact, 
+        we may define right derived functors <m>\Ext^i_{\CAb}(M, \bullet)</m> and even the full derived functor
+        on the bounded derived category.
+        We define the internal Ext <m>\iExt^i_{\CAb}(M, N)</m> by sheafifying the presheaf 
+        <m>S \mapsto \Ext^i_{\CAb}(M \otimes \ZZ[\underline{S}], N)</m>.
+      </p>
+    </definition>
+  </subsection>
+  <subsection>
+    <title>A special object</title>
+    <p>
+      The definition of a condensed abelian group makes it quite hard to work with any examples.
+      We next introduce an object that will be key to a further elucidation of the category.
+    </p>
+    <definition xml:id="def-internally-projective">
+      <p>
+        An object <m>M \in \CAb</m> is <term>internally projective</term> if 
+        the functor <m>\iHom_{\CAb}(M, \bullet)</m> on <m>\CAb</m> is exact.
+        In particular, any such object is projective.
+      </p>
+      <p>
+        For example, for any singleton set <m>*</m>, <m>\ZZ[\underline{*}]</m> is internally projective
+        because the functor <m>\iHom_{\CAb}(\ZZ[\underline{*}], \bullet)</m> is the identity.
+      </p>
+    </definition>
+    <definition xml:id="def-internally-projective-object">
+      <p>
+        Define the object <m>P := \ZZ[\underline{\NN_\infty}]/\ZZ[\underline{\infty}]</m> in <m>\CAb</m>.
+        Since the inclusion <m>\ZZ[\underline{\infty}] \to \ZZ[\underline{\NN_\infty}]</m> is split by the map corresponding to the unique projection
+        <m>\NN_\infty \to \infty</m>, we have an isomorphism <m>\ZZ[\underline{\NN_\infty}] \cong \ZZ[\underline{\infty}] \oplus P</m> in <m>\CAb</m>.
+      </p>
+      <p>
+        Recall from <xref ref="rem-interpret-sequential-limits"/> that for <m>X</m> a Hausdorff topological space, 
+        <m>\Hom_{\CAb}(\ZZ[\underline{\NN_\infty}], \underline{X})</m> can be interpreted as the space of convergent sequences in <m>X</m>.
+        By the same token, <m>\Hom_{\CAb}(P, \underline{X})</m> can be interpreted as the space of <term>null sequences</term> in <m>X</m>.
+      </p>
+      <p>
+        In particular this applies when <m>X \in \Prof</m>, but note that this is the <q>wrong way around</q>:
+        an object of <m>\CSet</m> is characterized by its maps <em>out of</em> profinite sets, not into them.
+        Nonetheless it is critical to keep this interpretation of <m>P</m> in mind going forward,
+        in order to be able to parse the following arguments.
+      </p>
+    </definition>
+    <proposition xml:id="prop-internally-projective">
+      <statement>
+        <p>
+          The object <m>P \in \CAb</m> is internally projective in <m>\CAb</m>.
+          By <xref ref="def-internally-projective-object"/>, the same is then true of <m>\ZZ[\underline{\NN_\infty}]</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          It will suffice to check a sheafified version of the usual arrow-theoretic definition of projectivity:
+          for any <m>T \in \Prof</m>,
+          given an epimorphism <m>N' \to N</m> in <m>\CAb</m>, any morphism <m>P \otimes \ZZ[\underline{T}] \to N</m> can be factored through <m>N'</m>
+          after possibly replacing <m>T</m> with some covering in <m>\Prof</m> (depending on the original morphism).
+        </p>
+        <p>
+          By contrast, initially we are only guaranteed a surjection <m>S \to \NN_\infty \times T</m> in <m>\Prof</m> such that the element of
+          <m>N(\NN_\infty \times T) = \Hom_{\CSet}(\underline{\NN_\infty \times T}, N)</m> corresponding to 
+          <m>\ZZ[\underline{\NN_\infty \times T}] \to P \otimes \ZZ[\underline{T}] \to N</m> via adjunction lifts to <m>N'(S)</m>.
+          What we need instead is a lift to <m>N'(\NN_\infty \times T')</m> for some covering <m>T' \to T</m>.
+        </p>
+        <p>
+          For <m>n \in \NN_\infty</m>, let <m>S_n</m> denote the fiber of <m>S \to \NN_\infty</m> over <m>n</m>.
+          By replacing <m>T</m> with a suitable covering (e.g., <m>T \times \prod_{n \in \NN} S_n</m>),
+          we can ensure that the surjections <m>S_n \to T</m> admit splittings for all <m>n \in \NN</m>.
+          We will now prove the claim with <m>T' = T</m>.
+        </p>
+        <p>
+          Let <m>S'</m> be the closed subset of <m>S</m> consisting of <m>S_\infty</m> together with the image of one splitting of <m>S_n \to T</m> for each <m>n \in \NN</m>.
+          Then <m>S' \to S \to \NN_\infty \times T</m> is a surjection which restricts to a bijection over <m>\NN \times T</m>.
+          The following diagram is therefore a pushout in <m>\Prof</m>:
+          <figure>
+            <image>
+              <latex-image>
+              \xymatrix{
+                S_\infty \ar[r] \ar[d] &amp; \{\infty\} \times T \ar[d] \\
+                S \ar[r] &amp; \NN_\infty \times T
+              }
+              </latex-image>
+            </image>
+          </figure>
+          We apply this to the diagram
+          <figure>
+            <image>
+              <latex-image>
+              \xymatrix{
+                \underline{S_\infty} \ar[r] \ar[d] &amp; 0 \ar[d] \\
+                \underline{S} \ar[r] &amp; N'
+              }
+              </latex-image>
+            </image>
+          </figure>
+          in which the columns are the obvious inclusions and the bottom row is the map corresponding to the chosen element of <m>N'(S)</m>
+          minus its precomposition with going around the retraction <m>S \to S_\infty \to S</m>.
+          (Note: here we are crucially using the fact that we are working in <m>\CAb</m> rather than <m>\CSet</m> in order to take this difference;
+          see <xref ref="rem-internally-projective-cset"/>.)
+          We thus interpose a map <m>\underline{\NN_\infty \times T} \to N'</m> which then corresponds to a map <m>P \otimes \ZZ[\underline{T}] \to N'</m> in <m>\CAb</m> of the desired form.
+          We deduce that <m>P</m> is internally projective.
+        </p>
+      </proof>
+    </proposition>
+    <remark xml:id="rem-internally-projective-cset">
+      <p>
+        Curiously, although most of the proof of <xref ref="prop-internally-projective"/> operates at the level of condensed sets,
+        the final conclusion does <em>not</em> come from a corresponding statement at the level of condensed sets:
+        the object <m>\underline{\NN_\infty}</m> is not projective in <m>\CSet</m>,
+        e.g., because in <m>\Prof</m> the covering of <m>\NN_\infty</m> by <m>(2\NN) \cup \{\infty\}</m> and <m>(2\NN+1) \cup \{\infty\}</m> does not split.
+        Rather, it is critical in the last step to take the difference between the map <m>\underline{S} \to N'</m> and its retraction.
+      </p>
+    </remark>
+    <p>
+      We next introduce another important structure of the object <m>P</m>, which will drive our treatment of solid condensed abelian groups in <xref ref="sec_solid2"/>.
+    </p>
+    <definition xml:id="def-finite-difference">
+      <p>
+        Consider the map <m>n \mapsto n+1</m> on <m>\NN_\infty</m> (fixing <m>\infty</m>).
+        It is continuous and therefore by adjunction induces a map <m>\ZZ[\underline{\NN_\infty}]</m>;
+        the latter map preserves <m>\ZZ[\underline{\infty}]</m> and thus induces an endomorphism <m>\sigma \colon P \to P</m>, which we call the <term>left shift</term>
+        (see below for why <q>left</q> instead of <q>right</q>).
+      </p>
+      <p>
+        Define the <q>finite difference</q> map <m>\Delta \colon P \to P</m> by <m>\Delta := \id_P - \sigma</m>.
+        For any topological abelian group <m>M</m>, <m>\Hom_{\CAb}(P, \underline{M})</m> consists of null sequences and <m>\Delta^*</m> acts on these via
+        <me>
+          (m_1, m_2, \dots) \mapsto (m_1-m_2, m_2-m_3, \dots).
+        </me>
+      </p>
+    </definition>
+    <remark xml:id="rem-infinite-series">
+      <p>
+        In the notation of <xref ref="def-finite-difference"/>, when a sequence <m>(t_n)</m> has the form <m>\Delta^*(s_n)</m>, the sequence <m>t_n</m> is summable
+        to the limit <m>s_1</m>. The fact that <m>\Delta</m> is a homomorphism in <m>\CAb</m> reflects the fact that if two sequences are summable, their pointwise sum
+        is summable and its limit is the sum of the limits of the original sequences.
+      </p>
+      <p>
+        One can similarly translate other properties of summation of infinite sequences into algebraic statements about <m>P</m>, such as the following.
+        (We leave the formulation of the algebraic statements as exercises for the reader.)
+      </p>
+      <ul>
+        <li>
+          Every singleton sequence is summable with the singleton value as sum.
+        </li>
+        <li>
+          If a sequence begins with 0, then neither its summability nor its sum is affected by left shift.
+        </li>
+        <li>
+          If <m>(m_1, m_2, \dots)</m> is summable, then so is <m>(m_1+m_2, m_3+m_4, \dots)</m> with the same sum.
+        </li>
+      </ul>
+      <p>
+        We can thus use the object <m>P</m> to formulate and study an analogue of the property (of a topological abelian group)
+        that every null sequence is uniquely summable. We pick up this thread in <xref ref="sec_solid2"/>.
+      </p>
+    </remark>
+  </subsection>
+</section>
