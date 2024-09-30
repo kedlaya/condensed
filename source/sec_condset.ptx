@@ -3,7 +3,9 @@
   <introduction>
     <p>
       We describe the category of condensed sets.
-      This is formally similar to the construction of solid modules, but with a rather different set of test objects.
+      This is formally similar to the construction of solid modules, but with a rather richer set of test objects.
+      As a result, it is able to absorb both the theory of solid moduleS (see <xref ref="sec_solid_to_condensed"/>) and some nontrivial amount of topology (see
+      <xref ref="sec_cohomology"/>).
     </p>
     <p>
       As in <xref ref="sec_solid1"/>, we fix an infinite cardinal <m>\kappa</m>.
@@ -13,6 +15,11 @@
     <p>
       Note: by convention, whenever we write <m>\RR</m> we mean the corresponding object in <m>\Top</m> with the usual archimedean topology.
       In case we mean the underlying set with the discrete topology, we instead write <m>\RR_{\disc}</m>.
+    </p>
+    <p>
+      Another convention: I will take <m>\NN</m> (natural numbers) to be the <em>nonnegative</em> integers.
+      If I really mean the positive integers (probably because I want to use the multiplicative structure) I will write <m>\NN^\times</m> instead.
+      See <xref ref="rem-P-from-any-compactification"/> for the reason I chose this convention.
     </p>
     <paragraphs>
       <title>Reference</title>
@@ -121,10 +128,12 @@
     </example>
     <example xml:id="exa-one-point-compactification-of-N">
       <p>
-        Let <m>\NN_\infty</m> be the object of <m>\Prof</m> indexed by <m>\NN</m>, where <m>n</m> corresponds to <m>\{1,\dots,n,\infty\}</m>
-        and the projection <m>\{1,\dots,n+1,\infty\} \to \{1,\dots,n,\infty\}</m>.
+        Let <m>\NN_\infty</m> be the object of <m>\Prof</m> indexed by <m>\NN</m>, where <m>n</m> corresponds to <m>\{0,\dots,n,\infty\}</m>
+        and the projection <m>\{0,\dots,n+1,\infty\} \to \{0,\dots,n,\infty\}</m>.
         This example plays an important role in the relationship between topological spaces and condensed sets;
         see <xref ref="rem-interpret-sequential-limits"/>.
+      </p>
+      <p>
       </p>
     </example>
     <p>
@@ -258,6 +267,13 @@
         for every <m>S \in \Prof</m>
         and every <m>x \in X(S)</m>, we can find a surjection <m>T \to S</m> in <m>\Prof</m> such that
         <m>x</m> lifts to some <m>y \in Y(T)</m>, which need not equalize the maps <m>Y(T) \rightrightarrows Y(T \times_S T)</m>.
+        In particular, while the objects of <m>\Prof</m> do formally form a set of compact generators of <m>\CSet</m>,
+        they are <em>not projective</em> objects of <m>\CSet</m>.
+        (Compare this to <xref ref="prop-formal-compact-generators"/>, where there is no sheafification involved.)
+      </p>
+      <p>
+        That said, at some point I will start referring to monomorphisms and epimorphisms in <m>\CSet</m>
+        as <q>injections</q> and <q>surjections</q>. Do not read too much into this!
       </p>
     </remark>
     <remark xml:id="rem-evaluate-condensed-at-singleton">
@@ -273,6 +289,7 @@
       <p>
         The functor <m>\Prof \to \CSet</m> does not preserve colimits.
         For example, any object of <m>\Prof</m> can be viewed as a colimit over its closed subspaces of cardinality <m>\leq \kappa</m>,
+        and this remains valid in <m>\Top</m>,
         but this description no longer applies in <m>\CSet</m>.
       </p>
     </remark>
@@ -433,6 +450,16 @@
         That is, this construction completes the identification of <m>\Prof</m> with the full subcategory of totally disconnected objects of <m>\CHaus</m>.
       </p>
     </remark>
+    <example>
+      <p>
+        Using binary representations we get a surjection from the abstract Cantor set <m>S_1 := \{0,1\}^n</m> to the closed interval <m>S := [0,1]</m>.
+        Explicitly, this is the map <m>(s_1,s_2,\dots) \mapsto \sum_{n=1}^\infty s_n 2^{-n}</m>.
+        This map is bijective over all points except dyadic rationals in <m>(0,1)</m>, whose fibers consist of two points.
+        We can thus write <m>S_1 \times_S S_1</m> as a copy of the diagonal <m>S_1</m> plus two copies of <m>(0,1) \cap \ZZ[\tfrac{1}{2}]</m>,
+        topologized in a certain way that makes the whole thing compact. The result can in turn be covered by one copy of <m>S_1</m> (to cover the diagonal)
+        and two copies of <m>[0,1]</m> (to cover the remaining points together with their accumulation points on the diagonal), or in turn by three copies of <m>S_1</m>.
+      </p>
+    </example>
     <proposition xml:id="prop-compact-hausdorff-in-condensed">
       <statement>
         The functor <m>\CHaus \to \CSet</m> is fully faithful.
@@ -489,8 +516,13 @@
       </p>
       <p>
         For <m>X \in \Prof</m> we formally recover the correct topology on the underlying set.
-        Using <xref ref="rem-construct-profinite-cover"/> we may upgrade this conclusion to cover <m>X \in \CHaus</m>;
-        we will upgrade this further later (<xref ref="prop-sequential"/>).
+        Using <xref ref="rem-construct-profinite-cover"/> we may upgrade this conclusion to cover <m>X \in \CHaus</m>.
+      </p>
+      <p>
+        It is not the case that <m>\Top \to \CSet</m> is fully faithful, but we will see later that it becomes fully faithful if we restrict
+        to a suitable subcategory that still contains most examples of interest
+        (<xref ref="prop-sequential"/>). Among other things, this will provide a mechanism by which condensed sets
+        detect some sophisticated invariants of algebraic topology; see <xref ref="sec_cohomology"/>.
       </p>
     </definition>
     <proposition xml:id="prop-cset-to-top-left-adjoint">

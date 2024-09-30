@@ -9,6 +9,20 @@
   <biblio type="raw" xml:id="bib-Clausen-Scholze-youtube">
     D. Clausen and P. Scholze, <articletitle>Analytic Stacks</articletitle>, <url>https://www.youtube.com/watch?v=YxSZ1mTIpaA</url>.
   </biblio>
+  <biblio type="raw" xml:id="bib-Godement">
+    R. Godement, <pubtitle>Topologie algébrique et théorie des faisceaux</pubtitle>, third edition, Hermann, Paris <year>1973</year>.
+  </biblio>
+  <biblio type="raw" xml:id="bib-Hewitt-Ross">
+    E. Hewitt and K.A. Ross, <pubtitle>Abstract Harmonic Analysis, volume I</pubtitle>, second edition, Grundlehren der mathematischen Wissenschaften 115, Springer-Verlag, Berlin
+    <year>1979</year>.
+  </biblio>
+  <biblio type="raw" xml:id="bib-Hoffmann-Spitzweck">
+    N. Hoffmann and M. Spitzweck, <articletitle>Homological algebra with locally compact abelian groups</articletitle>, <journal>Advances in Mathematics</journal>
+    <volume>212</volume> <year>2007</year>, 504<ndash/>524.
+  </biblio>
+  <biblio type="raw" xml:id="bib-prismatic">
+    K.S. Kedlaya, <articletitle>Notes on prismatic cohomology</articletitle>, <url>https://kskedlaya.org/prismatic</url>.
+  </biblio>
   <biblio type="raw" xml:id="bib-Rotman">
     J.J. Rotman, <pubtitle>Advanced Modern Algebra, Part 1</pubtitle>, third edition, Graduate Studies in Mathematics 165, American Mathematical Society <year>2015</year>.
   </biblio>

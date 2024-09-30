@@ -48,7 +48,8 @@
       which does not involve putting any topology on <m>R</m> itself, in such a way that <em>arbitrary</em> products of copies
       of the free module of rank 1 behave as if they were finitely generated.
       Later, we will incorporate similar ideas into the study of the situation
-      where <m>R</m> itself carries a meaningful topology.
+      where <m>R</m> itself carries a meaningful topology; in fact the construction is already primed to accommodate this
+      (see <xref ref="rem-topological-completion"/>).
     </p>
   </subsection>
   <subsection>
@@ -65,7 +66,7 @@
         from <m>\calA</m> to <m>\calB</m>.
       </p>
     </definition>
-    <example>
+    <example xml:id="exa-interpret-module-category">
       <p>
         Any (not necessarily commutative) ring <m>R</m> can be viewed as a one-object preadditive category which we also denote by <m>R</m>,
         in which the unique Hom set is the underlying additive group of <m>R</m> and the composition is multiplication in <m>R</m>.
@@ -74,8 +75,6 @@
         are isomorphisms) and groups (which correspond to one-object groupoids).
         For this reason, preadditive categories are sometimes also called <term>ringoids</term>.
       </p>
-    </example>
-    <example xml:id="exa-interpret-module-category">
       <p>
         For <m>R</m> a (not necessarily commutative) ring,
         an object in <m>\Fun^{\oplus}(R^{\op}, \Ab)</m> consists of an abelian group <m>M</m> (the image of the unique object)
@@ -197,7 +196,7 @@
               Each element of <m>\calA</m> gives rise to a compact projective object of <m>\Mod_{\calA}</m>.
             </li>
             <li>
-              The resulting elements generate <m>\calA</m>.
+              The resulting elements generate <m>\Mod_{\calA}</m>.
             </li>
           </ol>
         </p>
@@ -205,6 +204,11 @@
       <proof>
         <p>
           For the first point, compactness is formal and projectivity follows from the proof of <xref ref="prop-module-category-is-abelian"/>.
+          More concretely, note that for <m>M \in \calA</m>, projectivity is asserting that for any epimorphism <m>N' \to N</m> in <m>\Mod_{\calA}</m>
+          the map <m>\Hom_{\Mod_{\calA}}(M, N') \to \Hom_{\Mod_{\calA}}(M, N)</m> is surjective; but this just translates into the map
+          <m>N'(M) \to N(M)</m> and <xref ref="prop-module-category-is-abelian"/> tells us that epimorphisms in <m>\Mod_{\calA}</m> are just pointwise epimorphisms.
+        </p>
+        <p>
           For the second point, the key fact is that any functor <m>F</m> can be written as the colimit of representable functors <m>h_M</m> (the <q>co-Yoneda lemma</q>),
           and the maps <m>h_M \to F</m> collate to an endomorphism <m>\bigoplus_M h_M \to F</m>.
         </p>
@@ -253,7 +257,7 @@
           sides of the claimed bijection are compatible with colimits in <m>N</m>. We may thus reduce to the case where 
           also <m>N \in \calB</m>, in which case we are simply writing
           <me>
-            \Hom_{\Mod(\calA)}(h_M, h_N \circ F^{\op}) \cong \Hom_{\Mod(\calB)}(h_{F(M)}, N).
+            \Hom_{\Mod(\calA)}(h_M, h_N \circ F^{\op}) \cong \Hom_{\Mod(\calB)}(h_{F(M)}, h_N).
           </me>
           By Yoneda the right side is just <me>\Hom_{\calB}(F(M), N)</me>. Meanwhile, the left side consists of natural
           transformations from the functor <m>\Hom_{\calA}(\bullet, M)</m> to the functor <m>\Hom_{\calB}(F(\bullet), N)</m>.
@@ -270,18 +274,18 @@
       We now define solid modules by imposing <q>wishful thinking</q> on infinite products: namely, we specify that
       morphisms of free modules of arbitrary rank behave the same way as if the modules were finitely generated.
      </p>
-     <definition>
+     <definition xml:id="def-solid-module-category">
       <p>
         For any cardinal <m>\kappa</m>, let <m>R^{\leq \kappa}_\solid</m> be the preadditive category whose objects
         are sets <m>I</m> of cardinality <m>\leq \kappa</m>, formally notated as <m>\prod_I R_\solid</m>, with morphisms
         <men xml:id="eq-formula-for-solid-module">
           \Hom_{R^{\leq \kappa}_\solid} \left(\prod_I R_\solid, \prod_J R_\solid \right) = \prod_J \bigoplus_I R
         </men>
-        where the space on the right should be thought of as <m>I \times J</m> matrices over <m>R</m>
-        in which column vectors have finite support but row vectors are unrestricted.
+        where the space on the right should be thought of as <m>J \times I</m> matrices over <m>R</m>
+        in which row vectors have finite support but column vectors are unrestricted.
         Composition of morphisms is given by matrix multiplication:
         <me>
-          \prod_K \bigoplus_J R \times \prod_J \bigoplus_I R \to \prod_K \bigoplus_I R.
+          \prod_K \bigoplus_J R \times \prod_J \bigoplus_I R \to \prod_K \bigoplus_I R;
         </me>
       </p>
       <p>
@@ -292,8 +296,22 @@
       <p>
         In what follows, we will regard <m>\kappa</m> as fixed and abbreviate <m>R^{\leq \kappa}_{\solid}</m> to <m>R_{\solid}</m>.
         We will then refer to the objects of <m>\Mod_{R_\solid}</m> as <term>solid <m>R</m>-modules</term>.
+        We also write <m>\Hom_{R_\solid}(\bullet,\bullet)</m> instead of  <m>\Hom_{\Mod_{R_\solid}}(\bullet,\bullet)</m> 
+        to denote Hom sets in <m>\Mod_{R_solid}</m>; note that this does not create any confusion with the category <m>R_\solid</m>
+        because when the two inputs are actually in <m>R_\solid</m>, the Hom set in <m>\Mod_{R_\solid}</m>is by fiat the same as in <m>R_\solid</m>.
       </p>
     </definition>
+    <remark>
+      <p>
+        The finiteness condition on the matrices in <xref ref="def-solid-module-category"/> is precisely the one that makes it possible to multiply
+        the matrix on the right by an arbitrary column vector of length <m>I</m> to get a column vector of length <m>J</m>.
+        We thus have a natural morphism
+        <me>
+          \Hom_{R_\solid}\left(\prod_I R_\solid, \prod_J R_\solid\right) \to \Hom_R\left(\prod_I R, \prod_J R\right)
+        </me>
+        which is injective but not surjective in general.
+      </p>
+    </remark>
     <remark>
       <p>
         When <m>\kappa</m> is a nonzero <em>finite</em> cardinal, 
@@ -301,6 +319,11 @@
         (via a restriction of scalars as in <xref ref="def-solidification"/>).
         Similarly, if we had defined the category <m>\Mod_{R^{\lt \kappa}_\solid}</m> by restricting to index sets of cardinality
         <m>\lt \kappa</m>, then for <m>\kappa = \aleph_0</m> we would recover the category <m>\Mod_R</m>.
+      </p>
+      <p>
+        By contrast, when <m>\kappa</m> is infinite,
+        <m>\Mod_{R_{\solid}}</m> is not the module category over the preadditive category of finite free <m>R</m>-modules
+        of rank <m>\leq \kappa</m>: the latter is just <m>\Mod_R</m> again.
       </p>
     </remark>
     <example xml:id="exa-solid-unit">
@@ -331,14 +354,14 @@
       <p>
         One alternative would be to take <m>\kappa</m> to be <q>impossibly large</q>, 
         more precisely a <term>strongly inaccessible cardinal</term>.
-        This would ensure that we cannot <q>accidentally</q> construct index sets of cardinality larger than <m>\kappa</m>,
+        This would ensure that we cannot <q>accidentally</q> construct index sets of cardinality as large as <m>\kappa</m>,
         at the expense of working in a somewhat nonstandard axiomatic framework (the existence of strongly inaccessible cardinals
         is logically independent of ZFC and so must be added as a separate axiom).
       </p>
       <p>
         Later in the course, we will take a drastically different course: we will assume <m>\kappa = \aleph_0</m>.
-        This makes sense both for reasons both pedagogical (this case already exhibits all of the interesting features of the
-        general case) and practical (this case is sufficient for most applications).
+        This makes sense for reasons both pedagogical (this case already exhibits all of the interesting features of the
+        general case while also yielding some drastic technical simplifications) and practical (this case is sufficient for most applications).
       </p>
     </remark>
   </subsection>
@@ -432,13 +455,21 @@
           \bullet \otimes_{R_\solid} \bullet \colon \Mod_{R_\solid} \times \Mod_{R_\solid} \to \Mod_{R_\solid}
         </me>
         which preserves colimits in each variable and satisfies
-        <me>
-          \prod_I R_\solid \otimes_{R_\solid} \prod_J R_{\solid} = \prod_{I \times J} R
-        </me>
+        <men xml:id="eq-solid-product-on-free">
+          \left(\prod_I R_\solid \right) \otimes_{R_\solid} \left( \prod_J R_{\solid} \right) = \prod_{I \times J} R
+        </men>
         when <m>|I|, |J| \leq \kappa</m>.
         This gives <m>\Mod_{R_\solid}</m> the structure of a symmetric monoidal category with unit <m>R_\solid</m>.
       </p>
       <p>
+        More generally, for any <m>M_i, N_j \in \Mod_{R_\solid}</m>,
+        <men xml:id="eq-solid-product-on-one-free">
+          \left(\prod_{i \in I} M_i\right) \otimes_{R_\solid} \left(\prod_{j \in I} M_j\right) = \prod_{i \in I, j \in J} (M_i \otimes_{R_\solid} N_j);
+        </men>
+        namely, this holds for <m>M_i = N_j = R_\solid</m> by <xref ref="eq-solid-product-on-one-free"/> and then follows in general by taking colimits.
+      </p>
+      <p>
+        This is very convenient and not at all how tensor products work for ordinary modules!
         By contrast, in <m>\Mod_R</m>, there is a canonical morphism
         <me>
           \prod_I R \otimes_R \prod_J R \to \prod_{I \times J} R
@@ -446,12 +477,19 @@
         but this is not an isomorphism when both index sets are infinite.
       </p>
     </definition>
+    <definition>
+      <p>
+        We say that <m>M \in \Mod_{R_\solid}</m> is <term>flat</term> if <m>M \otimes_{R_\solid} \bullet</m> is an exact functor on <m>\Mod_{R_\solid}</m>.
+        By <xref ref="eq-solid-product-on-one-free"/>, any product <m>\prod_I M_i</m> of flat solid modules is again flat.
+        By contrast, for ordinary modules this holds if and only if the base ring is coherent (<xref ref="bib-Stacks"/>, tag 05CZ).
+      </p>
+    </definition>
     <proposition xml:id="prop-solid-internal-hom">
       <statement>
         <p>
           The category <m>\Mod_{R_\solid}</m> is closed symmetric monoidal, and its internal Hom satisfies
           <men xml:id="eq-solid-internal-hom">
-            \iHom_{R_\solid}\left(\prod_I R_\solid, \prod_J R_\solid\right) \cong \bigoplus_{I \times J} R_{\solid}
+            \iHom_{R_\solid}\left(\prod_I R_\solid, \prod_J R_\solid\right) \cong \prod_J \bigoplus_I R_{\solid}
           </men>
           when <m>|I|, |J| \leq \kappa</m>. In particular, the dual functor <m>D \colon \Mod_{R_{\solid}} \to \Mod_{R_{\solid}}</m>
           defined by <m>M \mapsto \iHom_{R_\solid}(M, R_{\solid})</m> satisfies
@@ -533,55 +571,14 @@
         </men>
       </p>
     </remark>
-    <remark>
-      <p>
-        The <term>Whitehead problem</term> asks whether every abelian group <m>A</m> with <m>\Ext^1_{\ZZ}(A, \ZZ) = 0</m> is free.
-        It was shown by Shelah that this statement is in fact independent of the axioms of set theory (ZFC, or even ZFC plus the 
-        continuum hypothesis).
-      </p>
-      <p>
-        One interesting side effect of the fact that the passage to solid modules gives us a meaningful duality between infinite
-        products and coproducts is that the analogue of Whitehead's problem is easily resolved! 
-      </p>
-    </remark>
-    <proposition>
-      <title>Whitehead's problem for solid modules</title>
-      <statement>
-        Let <m>A</m> be a <m>\ZZ</m>-module of cardinality <m>\leq \kappa</m>
-        such that <m>\iExt^1_{\ZZ_\solid}(A \otimes_\ZZ \ZZ_{\solid}, \ZZ_\solid)</m> = 0.
-        Then <m>A</m> is a free module.
-      </statement>
-      <proof>
-        <p>
-          Since <m>\ZZ</m> is a principal ideal domain, we may construct a free resolution of <m>A</m> of length 1:
-          <me>
-            0 \to \bigoplus_I \ZZ \to \bigoplus_J \ZZ \to A \to 0.
-          </me>
-          We may further ensure that <m>|I|, |J| \leq \kappa</m>.
-          By <xref ref="prop-solidification-is-exact"/>, this remains exact under solidification:
-          <me>
-            0 \to \bigoplus_I \ZZ_\solid \to \bigoplus_J \ZZ_\solid\to A  \otimes_\ZZ \ZZ_{\solid} \to 0.
-          </me>
-          Applying <m>\iHom_{\ZZ_\solid}(\bullet, \ZZ_\solid)</m> and using our hypothesis, we obtain
-          <me>
-            0 \to \iHom_{\ZZ_\solid}(A \otimes_\ZZ \ZZ_{\solid}, \ZZ_{\solid}) \to \prod_J \ZZ_{\solid} \to \prod_I \ZZ_{\solid} \to \iExt^1_{\ZZ_\solid}(A \otimes_\ZZ \ZZ_{\solid}, \ZZ_{\solid}) = 0.
-          </me>
-          This splits because <m>\prod_I \ZZ_{\solid}</m> is projective (here we diverge from the classical setting).
-          Consequently, applying <m>\iHom_{\ZZ_\solid}(\bullet, \ZZ_\solid)</m> again yields another split exact sequence:
-          <me>
-            0 \to \bigoplus_I \ZZ_{\solid} \to \bigoplus_J \ZZ_{\solid} \to A \otimes_{\ZZ} \ZZ_{\solid} \to 0.
-          </me>
-          Since solidification is fully faithful, this implies that our free resolution is itself split. 
-          Hence <m>A</m> is projective, and thus free again because <m>\ZZ</m> is a principal ideal domain.
-        </p>
-      </proof>
-    </proposition>
   </subsection>
   <subsection>
     <title>Base extension</title>
     <p>
       While we formally have a notion of base extension of solid modules along a ring homomorphism,
       some of our intuition from classical module theory does not carry over.
+      This is related to the fact that although we did not explicitly include any topology in the construction of the category of solid modules,
+      the construction nonetheless is capturing a subtlety of nonarchimedean topologies (<xref ref="rem-topological-completion"/>).
     </p>
     <definition>
       <p>
@@ -607,7 +604,6 @@
         <men xml:id="eq-base-extension-on-product">
           \left(\prod_I R_\solid \right) \otimes_{R_{\solid}} S_{\solid} = \prod_I S_\solid.
         </men>
-        This is very convenient and not at all how base extension works for ordinary modules!
         More generally, for any <m>M_i \in \Mod_{R_\solid}</m>, by writing <m>M_i</m> as a colimit over 
         objects of the form <m>\prod_J R_{\solid}</m> and using <xref ref="eq-base-extension-on-product"/>,
         <men>
@@ -645,6 +641,30 @@
         </p>
       </proof>
     </proposition>
+    <remark xml:id="rem-solid-R-modules-as-solid-Z-modules">
+      <p>
+        Just as in ordinary module theory, there is an overuse of the notation <m>\otimes_{R_\solid}</m> to indicate both tensor product in <m>R_\solid</m>
+        and base extension to <m>S_\solid</m>, but it is justified by the following consideration: performing base extension followed by restriction of scalars
+        is the same as viewing <m>S_\solid</m> as an object of <m>\Mod_{R_{\solid}}</m> via restriction of scalars and then tensoring with it.
+      </p>
+      <p>
+        A closely related observation is that <m>\Mod_{S_\solid}</m> is equivalent to the category of <m>S</m>-module objects in <m>\Mod_{R_\solid}</m>
+        (where the action of <m>R</m> via <m>R \to S</m> agrees with the action via <m>R \to R_\solid</m>). 
+        If we denote the latter category by <m>\Mod_S(\Mod_{R_\solid})</m>, this reduces to checking that
+        <me>
+          \Hom_{\Mod_S(\Mod_{R_\solid})} \left(\prod_I S_\solid, \prod_J S_\solid \right) = \Hom_{S_\solid} \left(\prod_I S_\solid, \prod_J S_\solid \right) = \prod_J \bigoplus_I S;
+        </me>
+        this reduces to the case where <m>J</m> is a singleton (by <xref ref="eq-base-extension-on-product"/> the restriction of scalars of <m>\prod_J S_\solid</m>
+        is still a categorical product in <m>\Mod_{R_\solid}</m> and hence in <m>\Mod_S(\Mod_{R_\solid})</m>), and then it just follows from the fact that
+        in <m>\Mod_R</m> we have <m>\left(\bigoplus_I R \right) \otimes_R S = \bigoplus_I S</m>.
+      </p>
+      <p>
+        In particular, solid <m>R</m>-modules are the same
+        thing as <m>R</m>-module objects in the category of solid <m>\ZZ</m>-modules; that is, the <q>solidness</q> is already fully manifest at the level of the underlying
+        abelian group. In particular, it is legitimate to write <m>M_\solid</m> instead of <m>M \otimes_R R_\solid</m>, since it is not critical to remember what the base ring 
+        is when performing solidification.
+      </p>
+    </remark>
     <example xml:id="exa-base-extension-not-flat">
       <p>
         Take <m>R = \ZZ</m>, fix a prime <m>p</m>, set <m>S = \ZZ[1/p]</m>, and set
@@ -696,11 +716,11 @@
       <p>
         Putting the two facts together, we see that <m>\ZZ_{\solid} \to M</m> is a monomorphism, but its base extension
         <m>\ZZ[1/p]_{\solid} \to M \otimes_{\ZZ_{\solid}} \ZZ[1/p]_{\solid}</m> has zero target and so is definitely not a monomorphism!
-        That is, the base extension functor is not exact, which is to say that <m>R_{\solid} \to S_{\solid}</m> is not <q>flat</q> in any reasonable sense.
+        That is, the base extension functor is not exact, which is to say that <m>S_{\solid}</m> is not a flat <m>R_{\solid}</m>-module.
         (The same logic applies to <m>R \to R[1/f]</m> whenever <m>f \in R</m> is not a zero divisor.)
       </p>
     </example>
-    <remark>
+    <remark xml:id="rem-topological-completion">
       <p>
         This failure of flatness for localizations echoes similar failures elsewhere in formal/analytic geometry.
         For instance, the completion of a non-noetherian ring with respect to a finitely generated ideal need not be flat
@@ -712,12 +732,12 @@
       <p>
         As a preview for how these topics will be linked, let us make an observation about the ring <m>\ZZ_p</m> of <term><m>p</m>-adic integers</term>.
         It is classically defined as the completion of the ring <m>\ZZ</m> with respect to the ideal <m>(p)</m>.
-        In symbols, we can write <m>\ZZ_p</m> as the submodule of the product <m>\prod_{n \in \NN} \ZZ/p^n \ZZ</m> which is the joint kernel of the maps
+        In symbols, we can write <m>\ZZ_p</m> as the kernel of the map
         <me>
-          \prod_{n \in \NN} \ZZ/p^n \ZZ \to \ZZ/p^m \ZZ, \quad (a_n)_{n \in \NN} \mapsto a_m - a_{m+1} \pmod{p^m} \qquad (m \in \NN).
+          \prod_{n \in \NN} \ZZ/p^n \ZZ \to \prod_{n \in \NN} \ZZ/p^n \ZZ, \quad (a_n)_{n \in \NN} \mapsto (a_n - a_{n+1} \pmod{p^n})_{n \in \NN}.
         </me>
         In the notation of <xref ref="exa-base-extension-not-flat"/>, it is natural to define a solid analogue <m>\ZZ_{p \solid}</m> by taking the corresponding 
-        joint kernel out of <m>M</m> (i.e., the <q>solid completion</q> of <m>\ZZ</m> along <m>(p)</m>). 
+        kernel out of <m>M</m> (i.e., the <q>solid completion</q> of <m>\ZZ</m> along <m>(p)</m>). 
         This can be viewed as a ring object in the category of solid <m>\ZZ</m>-modules; we can then define the module category
         <m>\Mod_{\ZZ_{p \solid}}</m> by taking solid <m>\ZZ</m>-modules <m>M</m> equipped with a ring homomorphism <m>\ZZ_{p \solid} \to \iHom_{\ZZ_{\solid}}(M,M)</m>.
         This is <em>not</em> the same thing as <m>\Mod_{{\ZZ_p}_\solid}</m>, the category of solid <m>R</m>-modules for <m>R = \ZZ_p</m>, which treats <m>\ZZ_p</m> as a discrete ring;
