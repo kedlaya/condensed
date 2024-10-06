@@ -2,71 +2,75 @@
 <pretext xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en-US">
   <docinfo>
     <macros>
-    \usepackage{mathrsfs}
-    \def\AA{\mathbb{A}}
-    \def\CC{\mathbb{C}}
-    \def\FF{\mathbb{F}}
-    \def\NN{\mathbb{N}}
-    \def\PP{\mathbb{P}}
-    \def\QQ{\mathbb{Q}}
-    \def\RR{\mathbb{R}}
-    \def\TT{\mathbb{T}}
-    \def\ZZ{\mathbb{Z}}
+      \usepackage{mathrsfs,wasysym}
+      \def\AA{\mathbb{A}}
+      \def\CC{\mathbb{C}}
+      \def\FF{\mathbb{F}}
+      \def\NN{\mathbb{N}}
+      \def\PP{\mathbb{P}}
+      \def\QQ{\mathbb{Q}}
+      \def\RR{\mathbb{R}}
+      \def\TT{\mathbb{T}}
+      \def\ZZ{\mathbb{Z}}
 
-    \def\gotha{\mathfrak{a}}
-    \def\gothb{\mathfrak{b}}
-    \def\gothm{\mathfrak{m}}
-    \def\gotho{\mathfrak{o}}
-    \def\gothp{\mathfrak{p}}
-    \def\gothq{\mathfrak{q}}
-    \def\gothr{\mathfrak{r}}
-    
-    \def\calA{\mathscr{A}}
-    \def\calB{\mathscr{B}}
-    \def\calC{\mathscr{C}}
-    \def\calF{\mathscr{F}}
+      \def\gotha{\mathfrak{a}}
+      \def\gothb{\mathfrak{b}}
+      \def\gothm{\mathfrak{m}}
+      \def\gotho{\mathfrak{o}}
+      \def\gothp{\mathfrak{p}}
+      \def\gothq{\mathfrak{q}}
+      \def\gothr{\mathfrak{r}}
+      
+      \def\calA{\mathscr{A}}
+      \def\calB{\mathscr{B}}
+      \def\calC{\mathscr{C}}
+      \def\calF{\mathscr{F}}
 
-    \def\llbracket{[\![}
-    \def\rrbracket{]\!]}
+      \def\llbracket{[\![}
+      \def\rrbracket{]\!]}
 
-    \def\solid{\blacksquare}
+      \def\solid{\blacksquare}
+      \def\liquid{\approx}
+      \def\gas{\sun}
 
-    \DeclareMathOperator{\bd}{bd}
-    \DeclareMathOperator{\coker}{coker}
-    \DeclareMathOperator{\colim}{colim}
-    \DeclareMathOperator{\cond}{cond}
-    \DeclareMathOperator{\Cts}{Cts}
-    \DeclareMathOperator{\disc}{disc}
-    \DeclareMathOperator{\End}{End}
-    \DeclareMathOperator{\Ext}{Ext}
-    \DeclareMathOperator{\fin}{fin}
-    \DeclareMathOperator{\Hom}{Hom}
-    \DeclareMathOperator{\id}{id}
-    \DeclareMathOperator{\ima}{image}
-    \DeclareMathOperator{\MaxSpec}{MaxSpec}
-    \DeclareMathOperator{\op}{op}
-    \DeclareMathOperator{\seq}{seq}
-    \DeclareMathOperator{\sheaf}{sheaf}
-    \DeclareMathOperator{\sing}{sing}
-    \DeclareMathOperator{\Spec}{Spec}
+      \DeclareMathOperator{\bd}{bd}
+      \DeclareMathOperator{\cof}{cof}
+      \DeclareMathOperator{\coker}{coker}
+      \DeclareMathOperator{\colim}{colim}
+      \DeclareMathOperator{\cond}{cond}
+      \DeclareMathOperator{\Cts}{Cts}
+      \DeclareMathOperator{\disc}{disc}
+      \DeclareMathOperator{\End}{End}
+      \DeclareMathOperator{\Ext}{Ext}
+      \DeclareMathOperator{\fin}{fin}
+      \DeclareMathOperator{\Hom}{Hom}
+      \DeclareMathOperator{\id}{id}
+      \DeclareMathOperator{\ima}{image}
+      \DeclareMathOperator{\MaxSpec}{MaxSpec}
+      \DeclareMathOperator{\op}{op}
+      \DeclareMathOperator{\seq}{seq}
+      \DeclareMathOperator{\sheaf}{sheaf}
+      \DeclareMathOperator{\sing}{sing}
+      \DeclareMathOperator{\Spec}{Spec}
 
-    \DeclareMathOperator{\Ab}{\mathbf{Ab}}
-    \DeclareMathOperator{\CAb}{\mathbf{CAb}}
-    \DeclareMathOperator{\CHaus}{\mathbf{CHaus}}
-    \DeclareMathOperator{\CSet}{\mathbf{CSet}}
-    \DeclareMathOperator{\iExt}{\underline{Ext}}
-    \DeclareMathOperator{\Fun}{\mathbf{Fun}}
-    \DeclareMathOperator{\iHom}{\underline{Hom}}
-    \DeclareMathOperator{\LCAb}{\mathbf{LCAb}}
-    \DeclareMathOperator{\Mod}{\mathbf{Mod}}
-    \DeclareMathOperator{\Prof}{\mathbf{Prof}}
-    \DeclareMathOperator{\Set}{\mathbf{Set}}
-    \DeclareMathOperator{\Top}{\mathbf{Top}}
-    \DeclareMathOperator{\TopAb}{\mathbf{TopAb}}
-  </macros>
-  <latex-image-preamble>
-    \usepackage[all]{xy}
-  </latex-image-preamble>
+      \DeclareMathOperator{\Ab}{\mathbf{Ab}}
+      \DeclareMathOperator{\CAb}{\mathbf{CAb}}
+      \DeclareMathOperator{\CHaus}{\mathbf{CHaus}}
+      \DeclareMathOperator{\CSet}{\mathbf{CSet}}
+      \DeclareMathOperator{\iExt}{\underline{Ext}}
+      \DeclareMathOperator{\Fun}{\mathbf{Fun}}
+      \DeclareMathOperator{\iHom}{\underline{Hom}}
+      \DeclareMathOperator{\LCAb}{\mathbf{LCAb}}
+      \DeclareMathOperator{\Mod}{\mathbf{Mod}}
+      \DeclareMathOperator{\Prof}{\mathbf{Prof}}
+      \DeclareMathOperator{\Set}{\mathbf{Set}}
+      \DeclareMathOperator{\Top}{\mathbf{Top}}
+      \DeclareMathOperator{\TopAb}{\mathbf{TopAb}}
+    </macros>
+    <latex-image-preamble>
+      \usepackage{graphicx}
+      \usepackage[all]{xy}
+    </latex-image-preamble>
   </docinfo>
   <article xml:id="condensed">
     <title>Notes on condensed mathematics</title>
@@ -103,17 +107,24 @@
           and explaining some concepts that are not specific to condensed mathematics but are crucial for understanding what is going on.
         </p>
         <p>
+          Thanks to everyone participating in the course for their feedback. 
+          More detailed acknowledgments will be added after the course is complete.
+        </p>
+        <p>
           Source code available from <url visual="github.com/kedlaya/condensed" href="https://github.com/kedlaya/condensed">this GitHub repository</url>.
         </p>
       </abstract>
     </frontmatter>
     <xi:include href="./sec_solid1.ptx"/>
     <xi:include href="./sec_solid2.ptx"/>
+    <xi:include href="./sec_profinite.ptx"/>
     <xi:include href="./sec_condset.ptx"/>
     <xi:include href="./sec_condab.ptx"/>
+    <xi:include href="./sec_cond_solid.ptx"/>
     <xi:include href="./sec_solid_to_condensed.ptx"/>
     <xi:include href="./sec_cohomology.ptx"/>
-    <xi:include href="./sec_solid_affine.ptx"/>
+    <xi:include href="./sec_solid_completion.ptx"/>
+    <xi:include href="./sec_analytic.ptx"/>
     <backmatter>
       <xi:include href="./bibliography.ptx"/>
     </backmatter>

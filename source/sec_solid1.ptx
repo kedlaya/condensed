@@ -210,7 +210,7 @@
         </p>
         <p>
           For the second point, the key fact is that any functor <m>F</m> can be written as the colimit of representable functors <m>h_M</m> (the <q>co-Yoneda lemma</q>),
-          and the maps <m>h_M \to F</m> collate to an endomorphism <m>\bigoplus_M h_M \to F</m>.
+          and the maps <m>h_M \to F</m> collate to an epimorphism <m>\bigoplus_M h_M \to F</m>.
         </p>
       </proof>
     </proposition>
@@ -297,8 +297,8 @@
         In what follows, we will regard <m>\kappa</m> as fixed and abbreviate <m>R^{\leq \kappa}_{\solid}</m> to <m>R_{\solid}</m>.
         We will then refer to the objects of <m>\Mod_{R_\solid}</m> as <term>solid <m>R</m>-modules</term>.
         We also write <m>\Hom_{R_\solid}(\bullet,\bullet)</m> instead of  <m>\Hom_{\Mod_{R_\solid}}(\bullet,\bullet)</m> 
-        to denote Hom sets in <m>\Mod_{R_solid}</m>; note that this does not create any confusion with the category <m>R_\solid</m>
-        because when the two inputs are actually in <m>R_\solid</m>, the Hom set in <m>\Mod_{R_\solid}</m>is by fiat the same as in <m>R_\solid</m>.
+        to denote Hom sets in <m>\Mod_{R_\solid}</m>; note that this does not create any confusion with the category <m>R_\solid</m>
+        because when the two inputs are actually in <m>R_\solid</m>, the Hom set in <m>\Mod_{R_\solid}</m> is by fiat the same as in <m>R_\solid</m>.
       </p>
     </definition>
     <remark>
@@ -395,7 +395,7 @@
         solid modules are in some sense <q>topological</q> and the discrete ones are the ones <q>without topology</q>.
       </p>
     </definition>
-    <remark>
+    <remark xml:id="rem-solidification-vs-infinite-products">
       <p>
         The solidification functor is not compatible with infinite products. 
         For example, for <m>I</m> infinite with <m>|I| \leq\kappa</m>, 
@@ -414,7 +414,7 @@
         <me>
           \prod_J R_\solid \mapsto \left( \prod_I \bigoplus_J R \right) /  \left( \bigoplus_J \prod_I R \right)
         </me>
-        which is quite interesting: it is an object of <m>R_{\solid}</m> which is nonzero, but whose restriction of scalars is zero.
+        which is quite interesting: it is an object of <m>\Mod_{R_{\solid}}</m> which is nonzero, but whose restriction of scalars is zero.
         This shows that restriction of scalars from <m>R_{\solid}</m> to <m>R</m> is not a faithful functor,
         so one cannot reconstruct the theory of solid modules within ordinary module theory.
       </p>
@@ -532,7 +532,7 @@
             \Hom_{R_\solid}\left(\bullet, \bigoplus_I R_\solid\right) \to \Hom_{R_\solid}\left(\bullet, \iHom_{R_\solid}\left(\prod_I R_\solid, R_\solid\right)\right)
           </me>
           is a natural isomorphism. This we can test at the level of compact projective generators, so we may replace <m>\bullet</m>
-          with <m>\prod_K R_\solid</m>. On one hand, by Hom-tensor adjunction
+          with <m>\prod_K R_\solid</m>. On one hand, by Hom-tensor adjunction,
           <md>
             <mrow>
             \Hom_{R_\solid}\left(\prod_K R_\solid, \iHom_{R_\solid}\left(\prod_I R_\solid, R_\solid\right)\right) 
@@ -570,6 +570,22 @@
           \Hom_{R_\solid}(M, N) = \Hom_{R_\solid}(R_\solid, \iHom_{R_\solid}(M, N)).
         </men>
       </p>
+      <p>
+        A related point is that  for <m>M \in \Mod_{R_\solid}</m>, we have a natural isomorphism
+        <me>
+          \iHom_{R_\solid}(R_\solid, M) \cong M
+        </me>:
+        by Yoneda it is sufficient to compare morphisms into these objects from some general <m>N \in \Mod_{R_{\solid}}</m>.
+        Combining with <xref ref="eq-solid-external-hom-from-internal"/>, we see that indeed
+        <md>
+          <mrow>
+            \Hom_{R_\solid}(N, \iHom_{R_\solid}(R_\solid, M)) &amp;= \Hom_{R_\solid}(N \otimes_{R_\solid} R_\solid, M)
+          </mrow>
+          <mrow>
+            &amp; = \Hom_{R_\solid}(N, M)
+          </mrow>
+        </md>.
+      </p>
     </remark>
   </subsection>
   <subsection>
@@ -596,7 +612,7 @@
           </image>
         </figure>
         of preadditive categories. In particular, by <xref ref="prop-preadditive-extension-of-scalars"/> we have 
-        an extension of scalars functor <m>\bullet \otimes_{R_\solid} M_{\solid}\colon \Mod_{R_\solid} \to \Mod_{S_\solid}</m>
+        an extension of scalars functor <m>\bullet \otimes_{R_\solid} S_{\solid}\colon \Mod_{R_\solid} \to \Mod_{S_\solid}</m>
         and a restriction of scalars functor <m>\Mod_{S_\solid} \to \Mod_{R_\solid}</m> which form an adjoint pair.
       </p>
       <p>

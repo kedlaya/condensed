@@ -43,8 +43,8 @@
         </me>
         and similarly
         <me>
-          \Hom_{\TopAb}\left(\prod_I \ZZ, \prod_J \ZZ\right) = \prod_J \bigoplus_I \ZZ.
-        </me>
+          \Hom_{\TopAb}\left(\prod_I \ZZ, \prod_J \ZZ\right) = \prod_J \bigoplus_I \ZZ
+        </me>.
         This formally implies (by taking colimits) that there is a fully faithful functor <m>\Ab_\solid \to \TopAb</m> taking <m>\prod_I \ZZ_\solid</m> to <m>\prod_I \ZZ</m>.
       </p>
       <p>
@@ -57,6 +57,12 @@
       <p>
         That said, we can and will embed the category <m>\TopAb</m> into the category <m>\CAb</m> of condensed abelian groups, which does admit reasonable operations like <m>\otimes</m>.
         In that context we will exhibit an embedding of <m>\Ab_\solid</m> into <m>\CAb</m> that does respect all operations (<xref ref="prop-solid-vs-presumptively-solid"/>).
+      </p>
+    </remark>
+    <remark xml:id="rem-solid-to-ordinary-is-faithful">
+      <p>
+        One consequence of <xref ref="rem-compare-solid-to-top-ab-group"/> is that the restriction functor <m>\Ab_\solid \to \Ab</m> is faithful:
+        it can be reinterpreted as the functor <m>\Ab_\solid \to \TopAb</m> followed by the forgetful functor.
       </p>
     </remark>
   </subsection>
@@ -73,38 +79,60 @@
         products and coproducts is that the analogue of Whitehead's problem is easily resolved! 
       </p>
     </remark>
-    <proposition>
+    <lemma xml:id="lem-submodule-free-over-PID">
+      <statement>
+        <p>
+          Any submodule of a free module (of arbitrary rank, possibly infinite or even uncountable) over a principal ideal domain is itself free (of the same or smaller rank).
+        </p>
+      </statement>
+      <proof>
+        <p>
+          See <xref ref="bib-Rotman"/>, Theorem B-2.28.
+        </p>
+      </proof>
+    </lemma>
+    <proposition xml:id="prop-Whitehead-for-solid">
       <title>Whitehead's problem for solid modules</title>
       <statement>
         Let <m>A</m> be a <m>\ZZ</m>-module of cardinality <m>\leq \kappa</m>
-        such that <m>\iExt^1_{\ZZ_\solid}(A \otimes_\ZZ \ZZ_{\solid}, \ZZ_\solid)</m> = 0.
+        such that <m>\iExt^1_{\ZZ_\solid}(A_{\solid}, \ZZ_\solid) = 0</m>.
         Then <m>A</m> is a free module.
       </statement>
       <proof>
         <p>
-          Since <m>\ZZ</m> is a principal ideal domain, we may construct a free resolution of <m>A</m> of length 1:
-          <me>
-            0 \to \bigoplus_I \ZZ \to \bigoplus_J \ZZ \to A \to 0.
-          </me>
+          Since <m>\ZZ</m> is a principal ideal domain, using <xref ref="lem-submodule-free-over-PID"/> we may construct a free resolution of <m>A</m> of length 1:
+          <men xml:id="eq-free-res-whitehead">
+            0 \to \bigoplus_I \ZZ \to \bigoplus_J \ZZ \to A \to 0
+          </men>.
           We may further ensure that <m>|I|, |J| \leq \kappa</m>.
+        </p>
+        <p>
           By <xref ref="prop-solidification-is-exact"/>, this remains exact under solidification:
           <me>
-            0 \to \bigoplus_I \ZZ_\solid \to \bigoplus_J \ZZ_\solid\to A  \otimes_\ZZ \ZZ_{\solid} \to 0.
-          </me>
+            0 \to \bigoplus_I \ZZ_\solid \to \bigoplus_J \ZZ_\solid\to A_{\solid} \to 0
+          </me>.
           Applying <m>\iHom_{\ZZ_\solid}(\bullet, \ZZ_\solid)</m> and using our hypothesis, we obtain
           <me>
-            0 \to \iHom_{\ZZ_\solid}(A \otimes_\ZZ \ZZ_{\solid}, \ZZ_{\solid}) \to \prod_J \ZZ_{\solid} \to \prod_I \ZZ_{\solid} \to \iExt^1_{\ZZ_\solid}(A \otimes_\ZZ \ZZ_{\solid}, \ZZ_{\solid}) = 0.
-          </me>
+            0 \to \iHom_{\ZZ_\solid}(A_{\solid}, \ZZ_{\solid}) \to \prod_J \ZZ_{\solid} \to \prod_I \ZZ_{\solid} \to \iExt^1_{\ZZ_\solid}(A_{\solid}, \ZZ_{\solid}) = 0
+          </me>.
           This splits because <m>\prod_I \ZZ_{\solid}</m> is projective (here we diverge from the classical setting).
           Consequently, applying <m>\iHom_{\ZZ_\solid}(\bullet, \ZZ_\solid)</m> again yields another split exact sequence:
           <me>
-            0 \to \bigoplus_I \ZZ_{\solid} \to \bigoplus_J \ZZ_{\solid} \to A \otimes_{\ZZ} \ZZ_{\solid} \to 0.
-          </me>
-          Since solidification is fully faithful, this implies that our free resolution is itself split. 
-          Hence <m>A</m> is projective, and thus free again because <m>\ZZ</m> is a principal ideal domain.
+            0 \to \bigoplus_I \ZZ_{\solid} \to \bigoplus_J \ZZ_{\solid} \to A_{\solid} \to 0
+          </me>.
+          Since solidification is fully faithful, this implies that our free resolution <xref ref="eq-free-res-whitehead"/> is itself split. 
+          Hence <m>A</m> is a submodule of a free module, and hence free by <xref ref="lem-submodule-free-over-PID"/> again.
         </p>
       </proof>
-    </proposition>  
+    </proposition>
+    <remark>
+      <p>
+        By writing <m>\Ext^1_{\ZZ_\solid}(A_{\solid},\ZZ_{\solid})</m> as <m>\Hom_{\ZZ_\solid}(\ZZ_\solid, \iExt^1_{\ZZ_\solid}(A_\solid, \ZZ_\solid))</m>
+        and then invoking <xref ref="rem-solid-to-ordinary-is-faithful"/>, we may see that 
+        <m>\Ext^1_{\ZZ_\solid}(A_{\solid},\ZZ_{\solid}) = 0</m> if and only if <m>\iExt^1_{\ZZ_\solid}(A_\solid, \ZZ_\solid) = 0</m>.
+        That is, we may state <xref ref="prop-Whitehead-for-solid"/> in terms of the vanishing of the external Ext instead of the internal one.
+      </p>
+    </remark>
   </subsection>
   <subsection xml:id="subsec-solid-finiteness">
     <title>Finiteness conditions</title>
@@ -120,23 +148,11 @@
         The object <m>M</m> is <term>finitely presented</term> if it occurs as the cokernel of some morphism <m>\prod_J \ZZ_\solid \to \prod_I \ZZ_\solid</m>.
       </p>
     </definition>
-    <lemma xml:id="lem-submodule-free-over-PID">
-      <statement>
-        <p>
-          Any submodule of a free module (of arbitrary rank, possibly infinite or even uncountable) over a principal ideal domain is itself free (of the same or smaller rank).
-        </p>
-      </statement>
-      <proof>
-        <p>
-          See <xref ref="bib-Rotman"/>, Theorem B-2.28.
-        </p>
-      </proof>
-    </lemma>
     <lemma xml:id="lem-hom-from-torsion-vanishes">
       <statement>
         <p>
           Let <m>Q</m> be a torsion <m>\ZZ</m>-module.
-          Then <m>\iHom_{\ZZ_\solid}(Q \otimes_\ZZ \ZZ_\solid, \ZZ_\solid) = 0</m>.
+          Then <m>\iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) = 0</m>.
         </p>
       </statement>
       <proof>
@@ -145,17 +161,17 @@
           using Hom-tensor adjunction plus <xref ref="eq-solid-internal-hom"/>, we obtain
           <md>
             <mrow>
-              \iHom_{\ZZ_\solid}(Q \otimes_\ZZ \ZZ_\solid, \ZZ_\solid)\left( \prod_I \ZZ_\solid \right) &amp;= 
-              \Hom_{\ZZ_\solid}\left(\prod_I \ZZ_\solid, \iHom_{\ZZ_\solid}(Q \otimes_\ZZ \ZZ_\solid, \ZZ_\solid)\right)
+              \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)\left( \prod_I \ZZ_\solid \right) &amp;= 
+              \Hom_{\ZZ_\solid}\left(\prod_I \ZZ_\solid, \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)\right)
             </mrow>
             <mrow>
-            &amp; =  \Hom_{\ZZ_\solid}\left(\prod_I \ZZ_\solid \otimes_{\ZZ_\solid} (Q \otimes_\ZZ \ZZ_\solid), \ZZ_\solid\right)
+            &amp; =  \Hom_{\ZZ_\solid}\left(\prod_I \ZZ_\solid \otimes_{\ZZ_\solid} (Q_\solid), \ZZ_\solid\right)
             </mrow>
             <mrow>
-            &amp; = \Hom_{\ZZ_{\solid}}(Q \otimes_\ZZ \ZZ_\solid, \iHom_{\ZZ_\solid}\left(\prod_I \ZZ_\solid, \ZZ_\solid\right))
+            &amp; = \Hom_{\ZZ_{\solid}}(Q_\solid, \iHom_{\ZZ_\solid}\left(\prod_I \ZZ_\solid, \ZZ_\solid\right))
             </mrow>
             <mrow>
-            &amp; = \Hom_{\ZZ_{\solid}}\left(Q \otimes_\ZZ \ZZ_\solid, \bigoplus_I \ZZ_\solid\right)
+            &amp; = \Hom_{\ZZ_{\solid}}\left(Q_\solid, \bigoplus_I \ZZ_\solid\right)
             </mrow>
             <mrow>
              &amp; = \Hom_{\ZZ}\left(Q, \bigoplus_I \ZZ\right) = 0
@@ -200,7 +216,7 @@
           so the target <m>\bigoplus_J \ZZ</m> admits a splitting with <m>\overline{Q}</m> as a direct summand.
           This now transposes to a decomposition of the source <m>\prod_J \ZZ_\solid</m> as a product into two factors,
           each itself a product of copies of <m>\ZZ_\solid</m>, and we can replace the source with one of these factors
-          (discarding the dual of <m>\overline{Q}</m>m>) in such a way that we now have a new sequence as in <xref ref="eq-sandwich-free-module"/>, but
+          (discarding the dual of <m>\overline{Q}</m>) in such a way that we now have a new sequence as in <xref ref="eq-sandwich-free-module"/>, but
           now <m>Q</m> is a torsion <m>\ZZ</m>-module.
         </p>
         <p>
@@ -210,10 +226,10 @@
           </men>
           and invoking <xref ref="lem-hom-from-torsion-vanishes"/> yields
           <men xml:id="eq-hom-from-torsion-sequence">
-            0 = \iHom_{\ZZ_\solid}(Q \otimes_\ZZ \ZZ_\solid, \ZZ_\solid) \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid.
-          </men>
+            0 = \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid
+          </men>.
           At this point, we know that in <xref ref="eq-sandwich-free-module"/>, the first map is surjective, the second map is injective,
-          and the composition is also injective. Consequently the first map <m>\prod_IJ\ZZ_\solid \to M</m> is an isomorphism, proving the claim.
+          and the composition is also injective. Consequently the first map <m>\prod_I \ZZ_\solid \to M</m> is an isomorphism, proving the claim.
         </p>
       </proof>
     </proposition>
@@ -233,17 +249,28 @@
     <corollary>
       <statement>
         <p>
-          Any finitely presented solid <m>\ZZ</m>-module is an extension of <m>\iExt^1_{\ZZ_\solid}(Q \otimes_\ZZ \ZZ_\solid, \ZZ_\solid)</m> for some torsion <m>\ZZ</m>-module <m>Q</m>
-          by some product of some copies of <m>\ZZ_\solid</m>.
+          Any finitely presented solid <m>\ZZ</m>-module is a product of some copies of <m>\ZZ_\solid</m> by
+          <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> for some torsion <m>\ZZ</m>-module <m>Q</m>.
         </p>
       </statement>
       <proof>
         <p>
-          This follows from the proof of <xref ref="lem-subobject-of-finitely-generated"/>: the sequence <xref ref="eq-hom-from-torsion-sequence"/> continues
+          Consider an exact sequence of the form
           <me>
-            0 \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid \to \iExt^1_{\ZZ_\solid}(Q \otimes_\ZZ \ZZ_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}(\prod_J \ZZ_\solid, \ZZ_\solid) = 0
+            \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid \to M \to 0
+          </me>.
+          In the first step of the proof of <xref ref="lem-subobject-of-finitely-generated"/>, 
+          we split <m>\prod_I \ZZ_\solid</m> and discard a factor to which <m>\prod_J \ZZ_\solid</m> maps as zero.
+          This factor projects injectively to <m>M</m>, so we end up splitting off a direct summand of <m>M</m> which is a product of copies of <m>\ZZ_\solid</m>.
+        </p>
+        <p>
+          We then split <m>\prod_J \ZZ_\solid</m> to ensure that the transpose of the map <m>g</m> has torsion cokernel <m>Q</m>.
+          At this point, the sequence <xref ref="eq-hom-from-torsion-sequence"/> continues
+          <me>
+            0 \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid \to \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}(\prod_J \ZZ_\solid, \ZZ_\solid) = 0
           </me>
           where the last term vanishes because <m>\prod_I \ZZ_\solid</m> is projective in <m>\Mod_{\ZZ_\solid}</m>.
+          We conclude that our original <m>M</m> splits as a product of copies of <m>\ZZ_\solid</m> plus <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>, as claimed.
         </p>
       </proof>
     </corollary>
