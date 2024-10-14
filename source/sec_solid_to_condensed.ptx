@@ -1,0 +1,502 @@
+﻿<section xml:id="sec_solid_to_condensed">
+  <title>Explicit solidifications</title>
+  <introduction>
+    <p>
+      In this section, we show that the functor defined in <xref ref="thm-solid-to-condensed"/> from solid abelian groups as defined in <xref ref="sec_solid1"/>.
+      to solid condensed abelian groups is an equivalence of categories.
+      This will allow us to employ the language of solid <m>R</m>-modules while still drawing conclusions about condensed abelian groups.
+    </p>
+    <p>
+      In the process, we will also identify the solidifications of the sequence space <m>P</m> and of the groups <m>\ZZ[\underline{S}]</m> for <m>S \in \Prof</m>.
+      Even if one is content to work solely with solid objects in the language of condensed abelian groups, these identifications are crucial to have any control
+      over the solid objects.
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This section is loosely based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 5,
+        but with some changes to accommodate the discussion of solid modules in <xref ref="sec_solid1"/>.
+        See also <xref ref="bib-Clausen-Scholze-notes"/>, Lecture 5.
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>Setting up a comparison of solidifications</title>
+    <p>
+      Our first goal is to show that the coordinate map <m>c \colon P \to \prod_\NN \underline{\ZZ}</m> induces an isomorphism <m>P_\solid \cong \prod_\NN \underline{\ZZ}</m>,
+      including at the derived level (<xref ref="cor-solidification-of-P"/>).
+      Since both <m>P</m> and <m>\prod_\NN \underline{\ZZ}</m> are sequential topological abelian groups, we can interpret <m>c</m> as a map in that category.
+      However, to overcome a subtle topological issue (<xref ref="rem-map-does-not-extend-to-unbounded"/>) we need to refactor this map as follows.
+    </p>
+    <definition xml:id="def-strict-factorization">
+      <p>
+        Note that <m>\prod_\NN \underline{\ZZ}</m> admits the subobject
+        <me>
+          \prod_\NN^{\bd} \underline{\ZZ} := \colim_{n \in \NN} \prod_\NN \underline{\{-n,\dots,n\}}
+        </me>.
+        In terms of evaluations at <m>S \in \Prof</m>, <m>\left(\prod_\NN \underline{\ZZ}\right)(S)</m> consists of continuous maps <m>S \to \prod_\NN \ZZ</m>,
+        or equivalently families of continuous maps <m>S \to \ZZ</m> indexed by <m>\NN</m>. Each of these maps has bounded image, but
+        <m>\left( \prod_\NN^{\bd} \underline{\ZZ} \right)(S)</m> picks out the families with <em>uniformly</em> bounded image.
+      </p>
+      <p>
+        From the explicit description of <m>\ZZ[\NN_\infty]</m> (<xref ref="exa-module-ring-topological-space"/>),
+        we can factor <m>c\colon P \to \prod_\NN \underline{\ZZ}</m> through <m>\prod_\NN^{\bd} \underline{\ZZ}</m> to yield a sequence of inclusions
+        <men xml:id="eq-p-to-product">
+          P \stackrel{c}{\to} \prod_\NN^{\bd} \underline{\ZZ} \to \prod_\NN \underline{\ZZ}
+        </men>.
+        Namely, <m>\Hom_{\CAb}(P, \prod_\NN \underline{\ZZ}) = \prod_\NN \Hom_{\CAb}(P, \underline{\ZZ})</m> consists of infinite families of null sequences in <m>\ZZ</m>,
+        while <m>\Hom_{\CAb}(P, \prod_\NN^{\bd} \underline{\ZZ})</m> picks out those families whose images are uniformly bounded.
+        The sequences corresponding to the factors of the map <m>c</m> only take values in <m>\{0,1\}</m>, so they form a family of the latter form.
+      </p>
+    </definition>
+    <p>
+      Fortunately, it is easy to compare the solidifications of <m>\prod_\NN^{\bd} \underline{\ZZ}</m> and <m>\prod_\NN \underline{\ZZ}</m>,
+      even at the derived level.
+    </p>
+    <lemma xml:id="cor-replace-prod-with-bounded-solid">
+      <statement>
+        <p>
+          The map <m>\left( \prod_\NN^{\bd} \underline{\ZZ} \right)_\solid \to \left( \prod_\NN \underline{\ZZ} \right)_\solid</m> is an isomorphism.
+          Moreover, for each <m>i \gt 0</m>, the morphism <m>\iExt^i_{\CAb}\left(\prod_\NN \underline{\ZZ}, N\right) \to \iExt^i_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right)</m>
+          is an isomorphism for all <m>N \in \CAb_{\solid}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By analogy with the construction of <m>\prod_\NN^{\bd} \underline{\ZZ}</m>, we define
+          <me>
+            \prod_\NN^{\bd} \underline{\RR} := \colim_{n \in \NN} \prod_\NN \underline{[-n,n]}
+          </me>;
+          we will construct an isomorphism (at the level of topological abelian groups)
+          <me>
+            \left( \prod_\NN \underline{\ZZ}\right) / \left( \prod_\NN^{\bd} \underline{\ZZ} \right) \cong \left( \prod_\NN \underline{\RR} \right) / \left( \prod_\NN^{\bd} \underline{\RR} \right)
+          </me>.
+          Since the right-hand side carries an evident <m>\underline{\RR}</m>-module structure, so does the left-hand side. 
+          By <xref ref="cor-solid-R-module-is-zero-monomorphism"/>, this will yield the claim.
+        </p>
+        <p>
+          The proposed isomorphism is formally equivalent to the claim that
+          <me>
+            \left( \prod_\NN^{\bd} \underline{\RR} \right) / \left( \prod_\NN^{\bd} \underline{\ZZ} \right) \cong \left( \prod_\NN \underline{\RR} \right) / \left( \prod_\NN \underline{\ZZ} \right)
+          </me>;
+          we get this isomorphism of abelian groups because <m>\RR/\ZZ</m> is compact.
+        </p>
+      </proof>
+    </lemma>
+  </subsection>
+  <subsection>
+    <title>A comparison of solidifications</title>
+    <p>
+      We now finish comparing the effect of solidification across the terms of <xref ref="eq-p-to-product"/>.
+      The strategy is to build a diagram that allows us to exploit the fact that <m>\Delta\colon P \to P</m>
+      becomes an isomorphism after solidification.
+    </p>
+    <definition xml:id="def-diagram-for-Delta">
+      <p>
+        Let <m>\Delta\colon \ZZ[\NN] \to \ZZ[\NN]</m> denote the map <m>[n] \mapsto [n]-[n+1]</m>.
+        We then obtain a commutative diagram
+        <figure>
+          <image>
+            <latex-image>
+              \xymatrix{
+               \ZZ[\NN] \otimes \ZZ[\NN] \ar[r] \ar^{\Delta \otimes \id}[d]  &amp;\ZZ[\NN] \ar@{=}[d] \\
+               \ZZ[\NN] \otimes \ZZ[\NN] \ar[r] &amp; \ZZ[\NN]
+              }
+            </latex-image>
+          </image>
+        </figure>
+      of discrete abelian groups in which the top row maps <m>[m] \otimes [n]</m> to <m>[n]</m> if <m>m = n</m> and 0 otherwise,
+      and the bottom row maps <m>[m] \otimes [n]</m> to <m>[n]</m> if <m>m \leq n</m> and 0 otherwise.
+      Note that the two rows are equalized by <m>\ZZ[\NN] \to \ZZ[\NN] \otimes \ZZ[\NN]</m> via <m>[n] \mapsto [n] \otimes [n]</m>.
+    </p>
+    <p>
+      By encoding the various maps in terms of maps of profinite sets via the isomorphism
+      <m>\ZZ[\underline{\NN_\infty \times \NN_\infty}] \cong \ZZ[\underline{\NN_\infty}] \otimes \ZZ[\underline{\NN_\infty}]</m>,
+      we promote the previous diagram to a new diagram:
+        <figure>
+          <image>
+            <latex-image>
+              \xymatrix{
+                P \otimes P \ar[r] \ar^{\Delta \otimes \id}[d] &amp; P \ar@{=}[d] \\
+                P \otimes P \ar[r] &amp; P
+              }
+            </latex-image>
+          </image>
+        </figure>
+        where again the rows are equalized by a map <m>P \to P \otimes P</m> acting via <m>[n] \mapsto [n] \otimes [n]</m>.
+      </p>
+    </definition>
+    <lemma xml:id="lem-diagram-p-to-bd">
+      <statement>
+        <p>
+          There exists a commutative diagram in <m>\CAb</m> of the form
+          <figure>
+            <image>
+              <latex-image>
+                \xymatrix{
+                  P \otimes \prod_\NN^{\bd} \underline{\ZZ} \ar[r] \ar^{\Delta \otimes \id}[d] &amp; P \ar^{c}[d] \\
+                  P \otimes \prod_\NN^{\bd} \underline{\ZZ} \ar[r] &amp; \prod_\NN^{\bd} \underline{\ZZ}
+                }
+              </latex-image>
+            </image>
+          </figure>
+          in which both rows are split surjections.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By imitating the construction of the diagram from <xref ref="def-diagram-for-Delta"/>, we obtain a diagram of the form
+          <figure>
+            <image>
+              <latex-image>
+                \xymatrix{
+                  P \otimes \prod_\NN^{\bd} \underline{\ZZ} \ar[r] \ar^{\Delta \otimes \id}[d] &amp; \prod_\NN^{\bd}  \underline{\ZZ} \ar@{=}[d] \\
+                  P \otimes \prod_\NN^{\bd} \underline{\ZZ} \ar[r] &amp; \prod_\NN^{\bd}  \underline{\ZZ}
+                }
+              </latex-image>
+            </image>
+          </figure>
+          where now the top row is <m>[m] \otimes (c_0,c_1,\dots) \mapsto (0,\dots,0,c_m,0,\dots)</m>
+          the bottom row is <m>[m] \otimes (c_0,c_1,\dots) \mapsto (0,\dots,0,c_m,c_{m+1},\dots)</m>,
+          and the two rows are equalized by a map <m>P \to P \otimes \prod_\NN^{\bd} \underline{\ZZ}</m> acting via <m>[n] \mapsto [n] \otimes c([n])</m>.
+          The bottom row is split by a map of the form <m>s \mapsto [0] \otimes s</m>.
+        </p>
+        <p>
+          To get what we need, we must verify that the top row
+          <men xml:id="eq-Delta-top-row">
+            P \otimes \prod_\NN^{\bd} \underline{\ZZ} \to \prod_\NN^{\bd} \underline{\ZZ}
+          </men>
+          factors through <m>c</m>. The splitting of the resulting top row will be guaranteed by the fact that since <m>c</m> is injective,  
+           the composition <m>P \to P \otimes \prod_\NN^{\bd} \underline{\ZZ} \to P</m> will again be the identity.
+        </p>
+        <p> 
+          More precisely, we will show that that the formula
+          <men xml:id="eq-bilinear-map-from-P">
+            \left( \sum_n c_n [n], (d_n)_n \right) \mapsto \sum_n c_n d_n [n]
+          </men>
+          defines a continuous bilinear map <m>P \times\prod_\NN^{\bd} \underline{\ZZ} \to P </m>
+          at the level of topological abelian groups. 
+          Composing <xref ref="eq-bilinear-map-from-P"/> with <m>c</m> will then yield the map <xref ref="eq-Delta-top-row"/>
+        </p>
+        <p>
+          To check continuity of <xref ref="eq-bilinear-map-from-P"/>,
+          it will suffice to check that every null sequence is mapped to a null sequence.
+          For this, note first that a sequence of sums <m>\sum_n a_n [n] \in P</m> is a null sequence
+          iff <m>\sum_n |a_n|</m> is uniformly bounded (say by <m>n_1</m>) and for each fixed <m>n</m>, <m>a_n</m> is eventually zero.
+          Meanwhile, a sequence of sequences <m>(b_n)_n \in\prod_\NN^{\bd} \underline{\ZZ}</m> is a null sequence if and only if
+          <m>\sup_n \{|b_n|\}</m> is uniformly bounded (say by <m>n_2</m>) and for each fixed <m>n</m>, <m>b_n</m> is eventually zero.
+          From this, we see that <m>\sum_n |a_nb_n|</m> is uniformly bounded by <m>n_1n_2</m> and for each fixed <m>n</m>, <m>a_nb_n</m> is eventually zero;
+          that is, <m>\sum_n a_n b_n[n]</m> is a null sequence in <m>P</m>, proving the claim.
+        </p>
+        <p>
+        </p>
+      </proof>
+    </lemma>
+    <remark xml:id="rem-map-does-not-extend-to-unbounded">
+      <p>
+        The continuous bilinear map <xref ref="eq-bilinear-map-from-P"/>
+        does not extend continuously to <m>P \times \prod_\NN \underline{\ZZ}</m>: the sequence <m>[n] \otimes nc([n])</m> is a null sequence but its image in <m>P</m>
+        is the sequence <m>n[n]</m> which is not a null sequence. This explains why the insertion of <m>\prod_\NN^{\bd} \underline{\ZZ}</m> in
+        <xref ref="def-strict-factorization"/> was necessary.
+      </p>
+    </remark>
+    <lemma xml:id="lem-replace-bounded-with-P-solid">
+      <statement>
+        <p>
+          The map <m>c_\solid\colon P_\solid \to \left(\prod_\NN^{\bd} \underline{\ZZ} \right)_\solid</m> is an isomorphism in <m>\CAb</m>.
+          Moreover, for each <m>i \gt 0</m>, <m>\iExt^i_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right) = 0</m> for all <m>N \in \CAb_{\solid}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We check the second assertion first.
+          For the second assertion, we apply <m>\iExt^i(\bullet, N)</m> to the diagram in <xref ref="lem-diagram-p-to-bd"/> to obtain
+          <figure>
+            <image>
+              <latex-image>
+                \xymatrix{
+                  \iExt^i_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right) \ar[r] \ar^{c^*}[d] &amp; \iExt^i_{\CAb}\left( P \otimes \prod_\NN^{\bd} \underline{\ZZ}, N\right) \ar^{\Delta^* \otimes \id}[d] \\
+                  \iExt^i_{\CAb}\left(P, N\right) \ar[r] &amp; \iExt^i_{\CAb}\left( P \otimes \prod_\NN^{\bd} \underline{\ZZ}, N\right) 
+                }
+              </latex-image>
+            </image>
+          </figure>
+          where now both rows are split injections.
+          By applying Hom-tensor adjunction to write
+          <me>
+            \iExt_{\CAb}^i\left( P \otimes \prod_\NN^{\bd} \underline{\ZZ}, N\right) = \iExt^i_{\CAb}\left( P, \iHom_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right)\right)
+          </me>
+          and invoking <xref ref="prop-solid-category"/> to see that <m>\iHom_{\CAb}(\prod_\NN^{\bd} \underline{\ZZ}, N)</m> is solid, we deduce that the
+          right column is an isomorphism.
+          Consequently, the upper composition is an injection, so we have an injection
+          <me>
+            \iExt^i_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right) \stackrel{c^*}{\to} \iExt^i_{\CAb}\left(P, N\right) = 0
+          </me>
+          where the right equality follows from <xref ref="prop-internally-projective"/>.
+        </p>
+        <p>
+          For the first assertion, we solidify the diagram in <xref ref="lem-diagram-p-to-bd"/> to obtain
+          <figure>
+            <image>
+              <latex-image>
+                \xymatrix{
+                  \left(P \otimes \prod_\NN^{\bd} \underline{\ZZ}\right)_\solid \ar[r] \ar^{\Delta \otimes \id}[d] &amp; P_\solid \ar^{c}[d] \\
+                  \left(P \otimes \prod_\NN^{\bd} \underline{\ZZ}\right)_\solid \ar[r] &amp; \left( \prod_\NN^{\bd} \underline{\ZZ} \right)_\solid
+                }
+              </latex-image>
+            </image>
+          </figure>
+          where now both rows are split surjections. By considering the previous diagram with <m>i=0</m>, we see that the left column
+          induces an isomorphism of representable functors and hence is an isomorphism by Yoneda's lemma.
+          At this point we conclude that <m>c_\solid</m> is a split surjection; however, since the top row is also surjective,
+          tracing clockwise from <m>\left( \prod_\NN^{\bd} \underline{\ZZ} \right)_\solid</m> back to <m>P_\solid</m> yields a surjection whose postcomposition
+          with <m>c_\solid</m> is the identity map. That surjection must therefore be an isomorphism, which proves that <m>c_\solid</m> is also injective.
+        </p>
+      </proof>
+    </lemma>
+    <proposition xml:id="cor-solidification-of-P">
+      <statement>
+        <p>
+          The map <m>c_\solid \colon P_\solid \to \prod_{\NN} \underline{\ZZ}</m> is an isomorphism.
+          (Note that the target is solid by <xref ref="lem-delta-pullback-on-Rhom"/> and <xref ref="prop-solid-category"/>.)
+          Moreover, for each <m>i \gt 0</m>, <m>\iExt^i_{\CAb}\left(\prod_\NN \underline{\ZZ}, N\right) = 0</m> for all <m>N \in \CAb_{\solid}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          This follows by combining <xref ref="lem-replace-bounded-with-P-solid"/> and <xref ref="cor-replace-prod-with-bounded-solid"/>.
+        </p>
+      </proof>
+    </proposition>
+    <corollary xml:id="cor-prod-internally-projective">
+      <statement>
+        <p>
+          For any at most countable index set <m>I</m>, the object <m>\prod_I \underline{\ZZ} \in \CAb_\solid</m> is internally projective.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          This is straightforward if <m>I</m> is finite, and follows from  <xref ref="prop-internally-projective"/> with <xref ref="cor-solidification-of-P"/> if <m>I</m> is countable.
+        </p>
+      </proof>
+    </corollary>
+    <corollary xml:id="cor-solid-embedding-exact"> 
+      <statement>
+        <p>
+          The functor <m>\Ab_\solid \to \CAb_\solid</m> is fully faithful and exact, and compatible with <m>\Ext^i</m> and <m>\iExt^i</m> for all <m>i \gt 0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          This is a consequence of <xref ref="cor-prod-internally-projective"/>:
+          we have an exact functor <m>\CAb_\solid \to \Ab_\solid</m> taking <m>X</m> to the functor 
+          <me>
+            \prod_I \ZZ_\solid \mapsto \Hom_{\CAb_\solid}\left(\prod_I \underline{\ZZ}, X\right)
+          </me>
+          and the composition <m>\Ab_\solid \to \CAb_\solid \to \Ab_\solid</m> is an equivalence.
+        </p>
+      </proof>
+    </corollary>
+    <remark>
+      <p>
+        In principle one could use the explicit description of <m>\ZZ[\underline{\NN}_\infty]</m> from <xref ref="exa-module-ring-topological-space"/>
+        to recover the isomorphism <m>P_\solid \cong \prod_{\NN} \underline{\ZZ}</m>; however, it is less clear how to upgrade this to make the comparison
+        at the derived level (i.e., to get the second assertion of <xref ref="cor-solidification-of-P"/>) which will also be important later.
+        Similar considerations will apply when we use similar techniques to identify other solidifications (<xref ref="lem-identify-solidification-of-free"/>).
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>More comparisons of solidifications</title>
+    <p>
+      It still remains to confirm that every solid condensed abelian group arises from a solid abelian group. For this,
+      we calculate some more solidifications using a process similar to the computation of <m>P_\solid</m>;
+      however, now we may take a shortcut and compare things to <m>P_\solid</m> rather than directly to <m>\prod_\NN \underline{\ZZ}</m>.
+    </p>
+    <definition xml:id="def-construct-map-P-to-monoid">
+      <p>
+        For <m>S \in \Prof</m> infinite, we construct a morphism <m>g\colon P \to \ZZ[\underline{S}]</m> as follows.
+        Per <xref ref="rem-change-pro-system-to-sequential"/>, we may write <m>S</m> as a sequential inverse limit of finite sets with surjective transition maps:
+        <m>S = \varprojlim_{n \in \NN} S_n</m>. Let <m>\pi_n\colon S \to S_n</m> denote the projection map.
+      </p>
+      <p>
+        We first inductively choose subsets <m>T_n \subset S_n</m> and maps <m>i_n\colon T_n \to S</m> subject to the following conditions:
+        <ul>
+          <li>
+            Each composition <m>\pi_n \circ i_n \colon T_n \to S \to S_n</m> coincides with the inclusion <m>T_n \subseteq S_n</m>.
+          </li>
+          <li>
+            Each <m>T_n</m> is the complement of the images of the maps <m>\pi_n \circ i_m\colon T_m \to S \to S_n</m> for all <m>m \lt n</m>.
+            In particular, <m>T_1 = S_1</m>.
+          </li>
+        </ul>
+        Let <m>j_n\colon S_n \to S</m> be the map obtained by collating the maps <m>i_m</m> for <m>m \leq n</m>.
+        That is, each element of <m>S_{n}</m> projects to <m>T_m</m> for a unique choice of <m>m</m>,
+        and then we apply <m>i_m</m> for that choice of <m>m</m>.
+      </p>
+      <p>
+        Define <m>T = T_1 \sqcup T_2 \sqcup \cdots</m> and fix a bijection <m>\NN \cong T</m>.
+        We then define the map 
+        <me>
+          g\colon P \cong \ZZ[\underline{T_\infty}]/\ZZ[\underline{\infty}] \to \ZZ[\underline{S}]
+        </me>
+        to act on <m>T_0</m> via <m>i_0</m>,
+        and on <m>T_n</m> for <m>n \gt 0</m> via the difference between <m>T_n \stackrel{i_n}{\to} S</m>
+        and <m>T_n \to S_{n-1} \stackrel{j_{n-1}}{\to} S</m>, or equivalently via <m>(j_n \circ \pi_n - j_{n-1} \circ \pi_{n-1}) \circ i_n</m>.
+      </p>
+    </definition>
+    <remark>
+      <p>
+        Running the construction in <xref ref="def-construct-map-P-to-monoid"/> with <m>S = \NN_\infty</m>, all of the choices are forced: we must take <m>T_n = \{n\}</m>
+        and <m>i_n</m> to be the map <m>n \mapsto n</m>. In this case <m>j_{n-1} \circ \pi_{n-1} \circ i_n = 0</m>, so we recover precisely the map <m>P \to \ZZ[\underline{\NN_\infty}]</m>
+        splitting the projection.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        From the construction in <xref ref="def-construct-map-P-to-monoid"/>, we see that <m>g</m> induces a bijection between <m>\ZZ</m>-valued measures on <m>S</m> and functions <m>\NN \to \ZZ</m>:
+        the value of the resulting function at <m>x \in T_n</m> computes the measure of the preimage of <m>x</m> via <m>S \to S_n</m>.
+        In this context, we will not need an analogue of replacing <m>\prod_\NN \underline{\ZZ}</m> with <m>\prod_\NN^{\bd} \underline{\ZZ}</m>,
+        ultimately because <m>\ZZ[\underline{S}]</m> is itself locally compact (<xref ref="exa-module-ring-topological-space"/>).
+      </p>
+    </remark>
+    <p>
+      We next follow the strategy of <xref ref="lem-diagram-p-to-bd"/>.
+    </p>
+    <lemma xml:id="lem-diagram-p-to-bd-S">
+      <statement>
+        <p>
+          There exists a commutative diagram in <m>\CAb</m> of the form
+          <figure>
+            <image>
+              <latex-image>
+                \xymatrix{
+                  P \otimes \ZZ[\underline{S}] \ar[r] \ar^{\Delta \otimes \id}[d] &amp; P \ar^{g}[d] \\
+                  P \otimes \ZZ[\underline{S}] \ar[r] &amp; \ZZ[\underline{S}]
+                }
+              </latex-image>
+            </image>
+          </figure>
+          in which both rows are split surjections.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We first construct a diagram
+          <figure>
+            <image>
+              <latex-image>
+                \xymatrix{
+                  P \otimes \ZZ[\underline{S}] \ar[r] \ar^{\Delta \otimes \id}[d] &amp; \ZZ[\underline{S}] \ar@{=}[d] \\
+                  P \otimes \ZZ[\underline{S}] \ar[r] &amp; \ZZ[\underline{S}]
+                }
+              </latex-image>
+            </image>
+          </figure>
+          in which the top row maps <m>[n] \otimes [s]</m> to <m>(j_0 \circ \pi_0)([s])</m> if <m>n=0</m> and <m>(j_n \circ \pi_n - j_{n-1} \circ \pi_{n-1})([s])</m> otherwise,
+          while the bottom row maps <m>[n] \otimes [s]</m> to <m>[s]</m> if <m>n=0</m> and <m>(\id - j_{n-1} \circ \pi_{n-1})([s])</m> otherwise.
+          The bottom row is split by the map <m>x \mapsto [0] \otimes x</m>.
+        </p>
+        <p>
+          We next observe that the top row factors through <m>g</m>
+          via the map <m>P \otimes \ZZ[\underline{S}] \to P</m>
+          carrying <m>[n] \otimes [s]</m> to <m>\pi_n([s])</m> if <m>s</m> projects to <m>T_n</m> and <m>0</m> otherwise.
+          This will then be split by the map <m>P \cong \ZZ[\underline{T_\infty}]/\ZZ[\underline{\infty}] \to P \otimes \ZZ[\underline{S}]</m> 
+          carrying <m>[t]</m> to <m>[n] \otimes [t]</m> for <m>t \in T_n</m>.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-identify-solidification-of-free">
+      <statement>
+        <p>
+          For any infinite <m>S \in \Prof</m> and any morphism <m>g\colon P \to \ZZ[\underline{S}]</m>
+          constructed as in <xref ref="def-construct-map-P-to-monoid"/>, the induced map <m>g_\solid\colon P_\solid \cong \ZZ[\underline{S}]_\solid</m> is an isomorphism;
+          consequently, by <xref ref="cor-solidification-of-P"/> we obtain an isomorphism <m>\ZZ[\underline{S}]_\solid \cong \prod_\NN \underline{\ZZ}</m>.
+          Moreover, for each <m>i \gt 0</m>, <m>\iExt^i_{\CAb}\left(\ZZ[\underline{S}], N\right) = 0</m> for all <m>N \in \CAb_{\solid}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Using <xref ref="lem-diagram-p-to-bd-S"/> in place of <xref ref="lem-diagram-p-to-bd"/>, 
+          we argue in <xref ref="lem-replace-bounded-with-P-solid"/> to see first that <m>\iExt^i_{\CAb}\left(\ZZ[\underline{S}], N\right) = 0</m> for all <m>N \in \CAb_{\solid}</m>,
+          and then that <m>g_\solid</m> is an isomorphism.
+        </p>
+      </proof>
+    </lemma>
+    <remark>
+      <p>
+        <xref ref="lem-identify-solidification-of-free"/> has the consequence that for any exact sequence
+        <me>
+          0 \to M_1 \to M \to M_2 \to 0
+        </me>
+        in <m>\CAb</m> with <m>M_1</m> solid and any <m>S \in \Prof</m>,
+        we have an exact sequence
+        <me>
+          0 \to M_1(S) \to M(S) \to M_2(S) \to \Ext^1_{\CAb}(\ZZ[\underline{S}], M_1) = 0.
+        </me>
+        is exact.
+      </p>
+      <p>
+        This argument can be used to explain the empirical observations that in many natural examples, formation of cokernels of morphisms in <m>\CAb</m>,
+        which nominally happens in the category of sheaves of abelian groups on <m>\Prof</m>, can actually be computed in the category of presheaves on <m>\Prof</m>.
+        For instance, in the sequence
+        <me>
+          0 \to \RR_{\disc} \to \RR \to \RR/\RR_{\disc} \to 0
+        </me>
+        the term <m>\RR_{\disc}</m> is solid, so <m>\RR(S) \to (\RR/\RR_{\disc})(S)</m> is surjective for <m>S \in \Prof</m>;
+        we previously established this by a direct argument (<xref ref="exa-quotient-of-r-by-discrete"/>).
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>A characterization of solid condensed abelian groups</title>
+    <p>
+      We conclude by asserting that every solid condensed abelian group <q>is</q> (better, is represented by) a solid abelian group.
+    </p>
+    <theorem xml:id="prop-solid-vs-presumptively-solid">
+      <statement>
+        <p>
+          The functor <m>\Ab_\solid \to \CAb_\solid</m> from <xref ref="thm-solid-to-condensed"/> is an exact equivalence compatible with limits and colimits,
+          <m>\Hom</m> and <m>\iHom</m>, <m>\Ext^i</m> and <m>\iExt^i</m> for all <m>i \gt 0</m>, and <m>\otimes</m>.
+          Moreover, it extends to a corresponding equivalence of derived categories.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The category <m>\CAb</m> admits the objects <m>\ZZ[\underline{S}]</m> for <m>S \in \Prof</m> as a family of compact generators.
+          By <xref ref="lem-identify-solidification-of-free"/>,
+          <m>\CAb_\solid</m> admits <m>\prod_\NN \underline{\ZZ}</m> as a single compact generator,
+          so we can identify any object as a colimit of a diagram arising from <m>\Ab_{\solid}</m>; this yield essential surjectivity.
+          Everything else follows from <xref ref="thm-solid-to-condensed"/> and <xref ref="cor-solid-embedding-exact"/>.
+        </p>
+      </proof>
+    </theorem>
+    <remark>
+      <p>
+        <xref ref="prop-solid-vs-presumptively-solid"/> has the effect that we can replace the study of <m>\CAb_\solid</m>
+        with the equivalent but conceptually simpler category <m>\Ab_{\solid}</m>, whose definition contains no topology.
+        One can also go in the opposite direction, as in the following.
+      </p>
+    </remark>
+    <remark xml:id="rem-hom-from-torsion-vanishes-condensed">
+      <p>
+        We give an alternate proof of <xref ref="lem-hom-from-torsion-vanishes"/> in the setting of condensed abelian groups.
+        In this language, the statement is that for <m>Q</m> a torsion abelian group,
+        <m>\iHom_{\CAb}(\underline{Q}, \underline{\ZZ}) = 0</m>. To prove this, evaluate at <m>S \in \Prof</m>:
+        <md>
+          <mrow>
+            \iHom_{\CAb}(\underline{Q}, \underline{\ZZ})(S) &amp;= \Hom_{\CAb}(\underline{Q} \otimes \ZZ[\underline{S}], \underline{\ZZ})
+          </mrow>
+          <mrow>
+            &amp;= \Hom_{\CAb}(\underline{Q}, \iHom_{\CAb}(\ZZ[\underline{S}], \underline{\ZZ}))
+          </mrow>
+          <mrow>
+            &amp; = \Hom_{\TopAb}(Q, \Cts(S, \ZZ))
+          </mrow>
+        </md>
+        using <xref ref="eq-ihom-S-to-X"/> at the last step.
+        But already <m>\Hom_{\Ab}(Q, \Cts(S, \ZZ)) = 0</m> because <m>Q</m> cannot admit a nonzero map to any torsion-free abelian group.
+      </p>
+    </remark>
+  </subsection>
+</section>

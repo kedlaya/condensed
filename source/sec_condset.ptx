@@ -33,6 +33,11 @@
         available in the language of <term>pyknotic sets</term> of Barwick<ndash/>Haine <xref ref="bib-Barwick-Haine"/>.
         Roughly speaking, this amounts to using two separate cardinality cutoffs.
       </p>
+      <p>
+        There is also a form of Stone duality (<xref ref="rem-Stone-duality-part-2"/>) that expresses condensed sets in terms of
+        fpqc sheaves on the category of Boolean algebras of limited cardinality. See <xref ref="bib-Gregoric"/>, Theorem 4.4
+        (and also <xref ref="exa-embed-cset-into-schemes"/> for a closely related construction).
+      </p>
     </paragraphs>
   </introduction>
   <subsection>

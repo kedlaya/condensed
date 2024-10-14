@@ -72,14 +72,32 @@
     </definition>
     <example xml:id="exa-module-ring-topological-space">
       <p>
-        For <m>X = \varprojlim_i X_i \in \Prof</m>, <m>\ZZ[\underline{X}]</m> represents a locally compact topological group <m>G</m> which can be described as follows.
+        For <m>X \in \Prof</m>, we claim that
+        <m>\ZZ[\underline{X}]</m> represents a locally compact topological group <m>G</m> which can be described as follows.
         For each <m>n \in \NN</m>, let <m>G_n</m> be the quotient of <m>X^{n}</m> by the action of the symmetric group <m>S_n</m>.
         We then get a monoid structure on <m>G_+ := \sqcup_{n \in \NN} G_n</m> induced by the maps <m>X^{m} \times X^n \cong X^{m+n}</m>.
         Finally, let <m>G</m> be the group completion of <m>G_+</m>, i.e., the quotient of <m>G_+ \times G_+</m> by the relation that <m>(a,b) \sim (c,d)</m>
-        iff <m>a+d = b+c</m>; this admits a neighborhood basis consisting of sets of the form <m>\{x-y\colon x,y \in G_n\}</m> for <m>n \in \NN</m>.
+        iff <m>a+d = b+c</m>; this is the colimit of the compact subspaces <m>G_n - G_n = \{x-y\colon x,y \in G_n\}</m> for <m>n \in \NN</m>.
       </p>
       <p>
-        The map <m>X_{\disc} \to X</m> induces an injection <m>\ZZ[X] = \ZZ[\underline{X_{\disc}}] \to \ZZ[\underline{X}]</m>
+        To see that this description is correct, 
+        note first that the presheaf <m>S \mapsto \ZZ[X(S)]</m> maps injectively to <m>\underline{G}</m> by mapping each element of <m>X(S)</m>
+        to the corresponding map from <m>S</m> to <m>G_1 \cong X</m>. This induces an injective map <m>\ZZ[\underline{X}] \to \underline{G}</m>.
+        To check that this map is surjective, note that any continuous map <m>S \to G</m> factors through <m>G_n - G_n</m> for some <m>n</m>.
+        We can view <m>G_n</m> as a quotient of <m>X^{2n}</m>; then for some covering <m>S' \to S</m> the composition
+        <m>S' \to S \to G_n</m> factors through <m>X^{2n}</m> (e.g., take <m>S' = S \times_{G_n-G_n} X^{2n}</m>).
+        We can then lift the element of <m>\underline{G}(S)</m> corresponding to the chosen map to an element of <m>\ZZ[\underline{X}](S')</m>, proving the claim.
+      </p>
+      <p>
+        Using <xref ref="rem-construct-profinite-cover"/>, one can upgrade the previous discussion to cover <m>X \in \CHaus</m>.
+        By taking colimits, we can make a similar description for <m>X</m> a locally compact topological space
+        (where now the colimit in the definition of <m>G</m> runs over both <m>n</m> and compact subspaces of <m>X</m>).
+      </p>
+    </example>
+    <remark>
+      <p>
+        In <xref ref="exa-module-ring-topological-space"/>,
+        the map <m>X_{\disc} \to X</m> induces an injection <m>\ZZ[X] = \ZZ[\underline{X_{\disc}}] \to \ZZ[\underline{X}]</m>
         which is a bijection of underlying groups but not a homeomorphism.
         The maps <m>X \to X_i</m> induce a natural map <m>\ZZ[\underline{X}] \to \varprojlim_i \ZZ[X_i]</m> at the level of topological abelian
         groups, but this map is not a bijection even on underlying groups! 
@@ -87,7 +105,7 @@
         and <m>\varprojlim_i \ZZ[X_i]</m> as the full set of <m>\ZZ</m>-valued measures on <m>X</m>;
         the latter will end up being the solidification of <m>\ZZ[\underline{X}]</m> (<xref ref="lem-identify-solidification-of-free"/>).
       </p>
-    </example>
+    </remark>
     <example xml:id="exa-projective-in-cab">
       <p>
         Any <m>X \in \Set</m> is projective as an object of <m>\CSet</m>;
@@ -131,6 +149,33 @@
         the flexibility to sheafify over coverings of and by profinite sets will prove to be indispensable.
       </p>
     </remark>
+    <example>
+      <p>
+        For <m>S \in \Prof</m>, <m>X \in \TopAb</m>, we compute <m>\iHom_{\CAb}(\ZZ[\underline{S}], \underline{X})</m> as a functor:
+        for <m>T \in \Prof</m>,
+        <md>
+          <mrow>
+            \iHom_{\CAb}(\ZZ[\underline{S}], \underline{X})(T) &amp;= \Hom_{\CAb}(\ZZ[\underline{S}] \otimes \ZZ[\underline{T}], \underline{X})
+          </mrow>
+          <mrow>
+             &amp;= \Hom_{\CAb}(\ZZ[\underline{S \times T}], \underline{X})
+          </mrow>
+          <mrow>
+            &amp;= \Hom_{\CSet}(\underline{S \times T}, \underline{X})
+          </mrow>
+          <mrow>
+            &amp;= \Cts(S \times T, X)
+          </mrow>
+          <mrow>
+            &amp;= \Cts(T, \Cts(S, X))
+          </mrow>
+        </md>
+        for the <term>compact-open topology</term> on <m>\Cts(S, X)</m>. In other words,
+        <men xml:id="eq-ihom-S-to-X">
+          \iHom_{\CAb}(\ZZ[\underline{S}], \underline{X}) = \underline{\Cts(S, X)}
+        </men>.
+      </p>
+    </example>
     <remark>
       <p>
         For any <m>X \in \CSet</m>, tensoring with <m>\ZZ[X]</m> has the effect of tensoring with <m>S \mapsto \ZZ[X(S)]</m>
@@ -169,8 +214,7 @@
       <p>
         We see from this that <m>P \in \CAb</m> is represented by a topological abelian group with underlying group <m>\ZZ[\NN]</m> equipped with 
         the subspace topology from <m>\ZZ[\underline{\NN_\infty}]</m>
-        (<xref ref="exa-module-ring-topological-space"/>),
-        which via the identification <m>\ZZ[\NN] \cong \ZZ[x]</m> corresponds to the <m>x</m>-adic topology.
+        (<xref ref="exa-module-ring-topological-space"/>).
         For example, the sequence <m>[0], [1], \dots</m> is a null sequence for this topology.
       </p>
     </definition>

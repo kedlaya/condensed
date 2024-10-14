@@ -96,14 +96,16 @@
         We typically notate this object simply as <m>M</m>.
       </p>
     </definition>
-    <remark>
+    <remark xml:id="rem-preadditive-not-determined-by-modules">
       <p>
-        One can recover a ring <m>R</m> from its module category <m>\Mod_R</m> as the natural endomorphisms of <m>\Mod_R</m>.
+        One can recover a commutative ring <m>R</m> from its module category <m>\Mod_R</m> as the natural endomorphisms of <m>\Mod_R</m>.
         By contrast, a preadditive category <em>cannot</em> be recovered from its module category; see
         <xref ref="exa-solid-finite"/>.
-        This is loosely analogous to the fact that a Grothendieck topology cannot be recovered from its associated topos.
+        This is more comparable to the situation for noncommutative rings, where one has <term>Morita equivalence</term> between certain pairs of rings,
+        (see again <xref ref="exa-solid-finite"/>).
       </p>
       <p>
+        It is also loosely analogous to the fact that a Grothendieck topology cannot be recovered from its associated topos.
         In fact one can take this analogy further by recalling that presheaves on a topological space are just contravariant
         functors out of the associated category (with one object for every open subset and one morphism for each inclusion of opens),
         and likewise presheaves on a Grothendieck topology are contravariant functors out of the underlying category.
@@ -134,7 +136,8 @@
       <p>
         Let <m>\calA</m> be the subcategory of <m>\Mod_R</m> consisting of finite free <m>R</m>-modules.
         Then for any additive functor <m>R \to \calA</m> (i.e., any choice of an object of <m>\calA</m> which is free of rank 1), 
-        the associated restriction functor <m>\Mod_\calA \to \Mod_R</m> is an equivalence. 
+        the associated restriction functor <m>\Mod_\calA \to \Mod_R</m> is an equivalence;
+        this amounts to the statement that <m>R</m> is <term>Morita equivalent</term> to the matrix algebras <m>M_n(R)</m> for all positive integers <m>n</m>.
         The same remark applies if we take <m>\calA</m> to be the subcategory of finite projective <m>R</m>-modules.
       </p>
     </example>

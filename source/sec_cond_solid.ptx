@@ -1,0 +1,461 @@
+﻿<section xml:id="sec_cond_solid">
+  <title>Solid condensed abelian groups</title>
+  <introduction>
+    <p>
+      In this section, we introduce the solid condition on condensed abelian groups,
+      and the concept of <term>solidification</term> which is a sort of universal adic completion.
+      We will later show that the solid condensed abelian groups form a category equivalent to the solid abelian groups (<xref ref="prop-solid-vs-presumptively-solid"/>).
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This section is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 5.
+        See also <xref ref="bib-Clausen-Scholze-notes"/>, Lecture 5.
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>The finite difference operator</title>
+    <p>
+      We next introduce another important structure of the sequence space <m>P</m> which we use to define solid condensed abelian groups.
+    </p>
+    <definition xml:id="def-finite-difference">
+      <p>
+        Define the sequence space <m>P := \ZZ[\underline{\NN_\infty}]/\ZZ[\underline{\infty}]</m> as in <xref ref="def-internally-projective-object"/>.
+        Consider the map <m>n \mapsto n+1</m> on <m>\NN_\infty</m> (fixing <m>\infty</m>).
+        It is continuous and therefore by adjunction induces a map <m>\ZZ[\underline{\NN_\infty}]</m>;
+        the latter map preserves <m>\ZZ[\underline{\infty}]</m> and thus induces an endomorphism <m>\sigma \colon P \to P</m>, which we call the <term>left shift</term>
+        (see below for why <q>left</q> instead of <q>right</q>).
+      </p>
+      <p>
+        Define the <q>finite difference</q> map <m>\Delta \colon P \to P</m> by <m>\Delta := \id_P - \sigma</m>.
+        Via the ring homomorphism <m>\ZZ[x] \to P</m> taking <m>x^n</m> to <m>[n]</m>, this corresponds to multiplication by <m>1-x</m>.
+      </p>
+      <p>
+        For any topological abelian group <m>M</m>, <m>\Hom_{\CAb}(P, \underline{M})</m> consists of null sequences (<xref ref="rem-coord-map"/>)
+        and <m>\Delta^*</m> acts on these via
+        <me>
+          (m_0, m_1, \dots) \mapsto (m_0-m_1, m_1-m_2, \dots)
+        </me>.
+        (Recall that we saw a similar map previously in <xref ref="rem-topological-completion"/>; more on this similarity in <xref ref="sec_solid_completion"/>
+        and <xref ref="sec_analytic"/>.)
+      </p>
+    </definition>
+     <remark xml:id="rem-solid-intuition">
+      <p>
+        If <m>M</m> is an abelian group topologized by some nonarchimedean norm (so in particular the discrete topology is allowed), 
+        then every null sequence is summable and so the action of <m>\Delta^*</m> on <m>\Hom_{\CAb}(P, \underline{M})</m> is inverted by the <q>telescoping</q> map
+        <me>
+          (m_0, m_1, \dots) \mapsto \left(\sum_{n=0}^\infty m_n, \sum_{n=1}^\infty m_n, \dots\right)
+        </me>.
+        In particular, <m>\Delta^*</m> acts isomorphically on <m>\Hom_{\CAb}(P, \underline{M})</m>.
+        We will use this observation as the basis for defining the solid property for condensed abelian groups <xref ref="def-solid-condensed"/>.
+        For the moment, we observe that the property that every null sequence is uniquely summable is preserved under <em>arbitrary</em> products of topological abelian groups,
+        not just countable ones.
+      </p>
+    </remark>
+    <remark xml:id="rem-infinite-series">
+      <p>
+        The fact that <m>\Delta</m> is a homomorphism in <m>\CAb</m> reflects the fact that if two sequences are summable, their pointwise sum
+        is summable and the sum is obtained by adding the sums of the original sequences. 
+        One can similarly translate other properties of summation of infinite sequences into algebraic statements about <m>P</m>, such as the following.
+      </p>
+      <ul>
+        <li>
+          A sequence of the form <m>(m,0,0,\dots)</m> is summable with sum <m>m</m>.
+          This corresponds to the fact that the coefficient of <m>[0]</m> in <m>\Delta([0])</m> is <m>1</m>.
+        </li>
+        <li>
+          The sequence <m>(m_0, m_1, \dots)</m> is summable if and only if <m>(0, m_0, m_1, \dots)</m> is summable, in which case the sums coincide.
+          This corresponds to the fact that <m>f_1 \circ \Delta = \Delta \circ f_2</m> where 
+          <md>
+            <mrow>
+              f_1 \colon P \to P, \qquad [0] \mapsto [0], [n] \mapsto [n-1] \quad (n \gt 0)
+            </mrow>
+            <mrow>
+              f_2 \colon P \to P, \qquad [0] \mapsto [\infty], [n] \mapsto [n-1] \quad (n \gt 0)
+            </mrow>
+          </md>
+          and so <m>f_1([0]) = [0]</m> and 
+          <md>
+            <mrow>
+              f_1^*(m_0,m_1,\dots) &amp;= (m_0, m_0, m_1, \dots)
+            </mrow>
+            <mrow>
+              f_2^*(m_0,m_1,\dots) &amp;= (0, m_0, m_1, \dots)
+            </mrow>
+            <mrow>
+              (f_1 \circ \Delta = \Delta \circ f_2)^*(m_0, m_1, \dots) &amp; = (0, m_0-m_1, m_1-m_2, \dots)
+            </mrow>
+          </md>.
+        </li>
+        <li>
+          The sequence <m>(m_0, m_1, \dots)</m> is summable if and only if <m>(m_0, 0, m_1, 0, \dots)</m> is summable, in which case the sums coincide.
+          This corresponds to the fact that <m>f_1 \circ \Delta = \Delta \circ f_2</m> where 
+          <md>
+            <mrow>
+              f_1 \colon P \to P, \qquad [n] \mapsto [\lceil n/2 \rceil] \quad (n \geq 0)
+            </mrow>
+            <mrow>
+              f_2 \colon P \to P, \qquad [2n] \mapsto [n], [2n+1] \mapsto [\infty] \quad (n \geq 0)
+            </mrow>
+          </md>
+          and so <m>f_1([0]) = [0]</m> and 
+          <md>
+            <mrow>
+              f_1^*(m_0,m_1,\dots) &amp;= (m_0, m_1, m_1, m_2, \dots)
+            </mrow>
+            <mrow>
+              f_2^*(m_0,m_1,\dots) &amp;= (m_0, 0, m_1, 0, \dots)
+            </mrow>
+            <mrow>
+              (f_1 \circ \Delta = \Delta \circ f_2)^*(m_0, m_1, \dots) &amp; = (m_0-m_1, 0, m_1-m_2, 0, \dots)
+            </mrow>
+          </md>.
+        </li>
+      </ul>
+      <p>
+        We can thus use the object <m>P</m> to formulate and study an analogue of the property (of a topological abelian group)
+        that every null sequence is uniquely summable. We pick up this thread in <xref ref="sec_solid_to_condensed"/>.
+      </p>
+    </remark>
+    <remark xml:id="rem-exact-seq-for-P">
+      <p>
+        By analogy with the split exact sequence
+        <me>
+          0 \to \ZZ[x] \stackrel{\times 1-x}{\to} \ZZ[x] \stackrel{Q(x) \mapsto Q(1)}{\longrightarrow} \ZZ \to 0
+        </me>,
+        one might expect that <m>\coker(\Delta) \cong \underline{\ZZ}</m> via the induced map (which sends <m>[n]</m> to <m>1</m> for all <m>n</m>).
+        But this map is not continuous for the discrete topology on <m>\ZZ</m>:
+        the sequence <m>[n] \in P</m> is a null sequence, so it cannot map to a nonzero constant sequence.
+      </p>
+      <p>
+        In fact the cokernel is a sheaf that assigns <m>S \in \Prof</m> to a certain subset of the functions <m>S \to \ZZ</m>:
+        these are functions with bounded image with <em>locally closed</em> level sets.
+        For example, for any closed subset <m>U \subseteq S</m> we get the function mapping <m>U</m> to 1 and <m>S \setminus U</m> to 0.
+        This does not correspond to any topology on <m>\ZZ</m>.
+      </p>
+      <p>
+        We end up with a <em>nonsplit</em> exact sequence in <m>\CAb</m>:
+        <men xml:id="eq-resolve-cofinite-Z">
+          0 \to P \stackrel{\Delta}{\to} P \to \coker(\Delta) \to 0
+        </men>.
+        This in turn induces an exact sequence
+        <men xml:id="eq-resolve-cofinite-mod-Z">
+          0 \to P \stackrel{\Delta}{\to} P/\ZZ \to \coker(\Delta)/\ZZ \to 0
+        </men>
+        which is an internally projective resolution of <m>\coker(\Delta)/\ZZ</m> of length <m>1</m>.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>Solid condensed abelian groups</title>
+    <definition xml:id="def-solid-condensed">
+      <p>
+        An object <m>M \in \CAb</m> is <term>solid</term> if 
+        <men xml:id="eq-def-of-solid">
+          \Delta^*\colon \iHom_{\CAb}(P, M) \to \iHom_{\CAb}(P, M)
+        </men> 
+        is an isomorphism in <m>\CAb</m>. 
+        Let <m>\CAb_\solid</m> denote the full subcategory of <m>\CAb</m> consisting of solid objects.
+      </p>
+      <p>
+        We may also equate <xref ref="eq-def-of-solid"/> with the condition that
+        <men xml:id="eq-def-of-solid-derived-version">
+          \Delta^*\colon R\iHom_{\CAb}(P, M) \to R\iHom_{\CAb}(P, M)
+        </men>
+        is an isomorphism, as by <xref ref="prop-internally-projective"/> all of the higher Ext objects are automatically zero.
+      </p>
+      <p>
+        Recall that we already introduced another notion of <term>solid <m>\ZZ</m>-modules</term> in  <xref ref="sec_solid1"/>.
+        We will reconcile terminology later by exhibiting an equivalence between <m>\CAb_\solid</m> and the category <m>\Ab_\solid</m> of solid abelian groups (<xref ref="prop-solid-vs-presumptively-solid"/>).
+      </p>
+    </definition>
+    <p>
+      Our first order of business is to check that <xref ref="def-solid-condensed"/> is nonempty.
+      This amounts to a mild upgrade of <xref ref="rem-solid-intuition"/> in the simplest case:
+      we must replace the external Hom with an internal Hom.
+    </p>
+    <lemma xml:id="lem-delta-pullback-on-Rhom">
+      <statement>
+        <p>
+          We have <m>\underline{\ZZ} \in \CAb_\solid</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We must check that <m>\Delta^*</m> is an isomorphism on <m>\iHom_{\CAb}(P, \underline{\ZZ})</m>.
+          By <xref ref="eq-expression-of-internal-hom-sections"/> and Hom-tensor adjunction, this sheaf on <m>\Prof</m> can be written as
+          <md>
+            <mrow>
+              S &amp; \mapsto \Hom_{\CAb}(P \otimes \ZZ[\underline{S}], \underline{\ZZ}) 
+            </mrow>
+            <mrow>
+              &amp; = \Hom_{\CAb}(\ZZ[\underline{\NN_\infty \times S}]/\ZZ[\underline{\{\infty\} \times S}], \underline{\ZZ})
+            </mrow>
+          </md>.
+          The latter group consists of the continuous maps <m>f\colon \NN_\infty \times S \to \ZZ</m> which vanish on <m>\{\infty\} \times S</m>.
+          The action of <m>\Delta^*</m> carries <m>f</m> to the map
+          <me>
+            (n,s) \mapsto f(n,s) - f(n+1,s);
+          </me>
+          it is inverted by the map taking <m>f</m> to
+          <me>
+            (n,s) \mapsto f(n,s) + f(n+1,s) + \cdots
+          </me>
+          where again continuity of the map ensures that the sum is finite.
+        </p>
+        <p>
+          Alternatively, <xref ref="eq-ihom-S-to-X"/>, <m>\iHom_{\CAb}(P, \underline{\ZZ})</m>. is represented by the subgroup of the topological group <m>\Cts(\NN_\infty,\ZZ)</m>
+          consisting of continuous functions mapping <m>\infty</m> to <m>0</m>.
+          Then the argument in <xref ref="rem-solid-intuition"/> can be upgraded to show that <m>\Delta^*</m> induces a homeomorphism of this topological group with itself.
+        </p>
+      </proof>
+    </lemma>
+    <remark>
+      <p>
+        By <xref ref="eq-expression-of-internal-hom-sections"/> if <m>M</m> is solid, then <m>\Delta^*\colon \Hom_{\CAb}(P, M) \to \Hom_{\CAb}(P, M)</m>
+        is an isomorphism. The proof of <xref ref="lem-delta-pullback-on-Rhom"/> shows that the converse holds when <m>M \in \TopAb</m>, but it can fail in other cases,
+        e.g., for <xref ref="exa-quotient-by-discrete"/>.
+      </p>
+    </remark>
+    <proposition xml:id="prop-solid-category">
+      <statement>
+        <p>
+          The category <m>\CAb_\solid</m> is an abelian subcategory of <m>\CAb</m> closed under kernels, cokernels,
+          extensions, arbitrary limits (including products) and colimits.
+          Moreover, for any <m>M,N \in \CAb</m>, if <m>N</m> is solid, then so are
+          <m>\iHom_{\CAb}(M,N)</m> and <m>\iExt^i_{\CAb}(M,N)</m> for all <m>i \gt 0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Closure under limits and colimits (including kernels and cokernels) follows from the fact that by <xref ref="prop-internally-projective"/>,
+          the functor <m>\Hom_{\CAb}(P, \bullet)</m> commutes with all limits and colimits.
+          Closure under extensions is immediate from <xref ref="eq-def-of-solid-derived-version"/>.
+          Closure under <m>N \mapsto R\iHom_{\CAb}(\bullet,N)</m> follows from Hom-tensor adjunction
+          (and <xref ref="prop-internally-projective"/> to conflate <m>\iHom_{\CAb}(P, N)</m> with <m>R\iHom_{\CAb}(P, N)</m>):
+          <md>
+            <mrow>
+              \iHom_{\CAb}(P, R\iHom_{\CAb}(\bullet,N)) &amp;\cong R\iHom_{\CAb}(P \otimes \bullet,N)
+            </mrow>
+            <mrow>
+              &amp; \cong R\iHom_{\CAb}(\bullet \otimes P,N)
+            </mrow>
+            <mrow>
+              &amp; \cong \iHom_{\CAb}(P, R\iHom_{\CAb}(\bullet,N))
+            </mrow>
+          </md>.
+        </p>
+      </proof>
+    </proposition>
+    <definition xml:id="def-solidification-condensed">
+      <p>
+        By the adjoint functor theorem, the embedding of <m>\CAb_\solid \to \CAb</m> admits a left adjoint.
+        We denote this by <m>M \mapsto M_\solid</m> and refer to it as <term>solidification</term>.
+      </p>
+      <p>
+        Since <xref ref="prop-solid-category"/> does not include compatibility with tensor products, we instead define the <term>solid tensor product</term>
+        on <m>\CAb_\solid</m> by the formula
+        <me>
+          M \otimes_\solid N := (M \otimes N)_\solid.
+        </me>
+        For example, for <m>M = N = \prod_\NN \underline{\ZZ}</m>, <m>M \otimes_\solid N = \prod_{\NN \times \NN} \underline{\ZZ}</m>
+        but this is not equal to <m>M \otimes N</m>.
+      </p>
+      <p>
+        As usual for a functor defined as an adjoint, the definition does not give much direct control over the behavior of solidification on explicit objects,
+        even if we rephrase it using a nominally explicit formula (<xref ref="rem-express-solidification-using-cof"/>.
+        Instead, we will have to take more indirect steps to evaluate some solidifications.
+      </p>
+    </definition>
+    <remark xml:id="rem-express-solidification-using-cof">
+      <p>
+        Using <xref ref="eq-resolve-cofinite-Z"/>, we can make a number of formal observations about <xref ref="def-solid-condensed"/> and <xref ref="def-solidification-condensed"/>.
+        To begin with, we may rewrite <xref ref="eq-def-of-solid-derived-version"/> as the statement that
+        <me>
+          R\iHom_{\CAb}(\coker(\Delta), M) = 0.
+        </me>
+        By <xref ref="eq-resolve-cofinite-Z"/> and <xref ref="prop-internally-projective"/>, this in turn is equivalent to
+        <me>
+          \iHom_{\CAb}(\coker(\Delta), M) = 0, \qquad \iExt^1_{\CAb}(\coker(\Delta), M) = 0.
+        </me>
+      </p>
+      <p>
+        Turning to solidification, note that <m>\Delta_\solid</m> induces an isomorphism on <m>\Hom_{\CAb_\solid}(P_\solid, M) = \Hom_{\CAb}(P,M)</m>
+        for any <m>M \in \CAb_\solid</m>, so by Yoneda's lemma it is itself an isomorphism. Consequently,
+        <me>
+          \coker(\Delta)_\solid = \coker(\Delta_\solid) = 0
+        </me>;
+        since <m>\Delta_\solid</m> also induces an isomorphism on <m>\Ext^i_{\CAb_\solid}(P_\solid, M) = \Ext^i_{\CAb}(P,M)</m>
+        for any <m>i \gt 0</m>, the derived solidification of <m>\coker(\Delta)</m> also vanishes.
+      </p>
+      <p>
+        Using the exact sequence
+        <me>
+          0 \to \ZZ \to \coker(\Delta) \to \coker(\Delta)/\ZZ \to 0
+        </me>
+        we obtain the example <m>\coker(\Delta)/\ZZ</m> whose solidification is zero, but whose derived solidification consists of <m>\ZZ</m> in degree <m>-1</m>.
+        We can also identify the solidification of a general object <m>M \in \CAb</m> with
+        <me>
+          \iExt^1_{\CAb}(\coker(\Delta)/\ZZ, M)
+        </me>;
+        taking instead
+        <men xml:id="eq-derived-solidification">
+          R\iHom_{\CAb}(\coker(\Delta)/\ZZ, M)[-1]
+        </men>
+        (concentrated in degrees <m>-1</m> and <m>0</m> by <xref ref="eq-resolve-cofinite-mod-Z"/>) 
+        yields the derived solidification (see <xref ref="rem-R-module-derived-solidification"/>).
+      </p>
+    </remark>
+    <remark xml:id="rem-R-module-derived-solidification">
+      <p>
+        We say that an object <m>C</m> in the derived category <m>D(\CAb)</m> is <term>solid</term> if its cohomology groups belong to <m>\CAb_\solid</m>.
+        It is equivalent (thanks to <xref ref="prop-internally-projective"/>) to require that <m>\Delta^*\colon R\iHom_{\CAb}(P, C) \to R\iHom_{\CAb}(P,C)</m> be an isomorphism.
+      </p>
+      <p>
+        Following <xref ref="eq-derived-solidification"/>, we define <term>derived solidification</term> on the derived category as the functor 
+        <m>M \mapsto  R\iHom_{\CAb}(\coker(\Delta)/\ZZ, M)[-1]</m>.
+        If <m>M</m> is concentrated in degrees <m>[a,b]</m>, then by <xref ref="eq-resolve-cofinite-mod-Z"/> 
+        its derived solidification is concentrated in degrees <m>[a-1,b]</m>.
+      </p>
+      <p>
+        Even when we start with a map <m>M \to N</m> in <m>\CAb</m>, there is a difference between saying that this map induces an isomorphism of solidifications
+        versus an isomorphism of derived solidifications; the first is equivalent having the natural isomorphism <m>\iHom_{\CAb}(N, \bullet) \cong \iHom^i_{\CAb}(M, \bullet)</m>
+        of functors on <m>\CAb_\solid</m>, whereas the latter also includes the natural isomorphisms <m>\iExt^i_{\CAb}(N, \bullet) \cong \iExt^i_{\CAb}(M, \bullet)</m>
+        for all <m>i \gt 0</m> (or equivalently for <m>i=1</m> by <xref ref="eq-resolve-cofinite-mod-Z"/>).
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>Solidification and the real numbers</title>
+    <p>
+      As the definition of a solid condensed abelian group is meant to simulate the condition that null sequences are summable,
+      it is perhaps not surprising that it raises havoc in an archimedean context.
+      We record some results both to illustrate the incompatibility between solidification and the topology of the reals,
+      but also to provide a technique that will be used in the course of comparing solid abelian groups with their condensed counterparts
+      (see <xref ref="cor-replace-prod-with-bounded-solid"/>).
+    </p>
+    <proposition xml:id="prop-R-solid-is-zero">
+      <statement>
+        <p>
+          We have <m>\underline{\RR}_\solid = 0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The null sequence <m>n \mapsto 2^{-\lfloor \log_2 n \rfloor}</m>, i.e.,
+          <men xml:id="eq-not-summable-null-sequence">
+            1, \tfrac{1}{2}, \tfrac{1}{2}, \tfrac{1}{4}, \tfrac{1}{4}, \tfrac{1}{4}, \tfrac{1}{4}, \dots
+          </men>
+          defines an element <m>x \in \Hom_{\CAb}(P, \underline{\RR})</m>; we may thus apply the inverse of <m>\Delta^*</m> to get an element
+          <m>y \in \Hom_{\CAb}(P, \underline{\RR}_\solid)</m>. Taking the first coordinate (i.e., restricting along <m>\ZZ \to \ZZ[1] \subset P</m>)
+          yields an element <m>z \in \underline{\RR}_\solid</m>.
+        </p>
+        <p>
+          By formally rearranging <xref ref="eq-not-summable-null-sequence"/> as
+          <me>
+            1 + \left( \tfrac{1}{2} + \tfrac{1}{2} \right) + \left( \tfrac{1}{4} + \tfrac{1}{4} \right) + \left( \tfrac{1}{4} + \tfrac{1}{4} \right) + \cdots
+          </me>
+          and invoking <xref ref="rem-infinite-series"/>, we deduce that <m>z = 1 + z</m>. We deduce that <m>0 = 1</m> in <m>\underline{\RR}_\solid</m>; since
+          <m>\underline{\RR}_\solid</m> is a ring object in <m>\CAb</m> (because <m>\underline{\RR}</m> is), it follows that <m>\underline{\RR}_\solid = 0</m>.
+        </p>
+      </proof>
+    </proposition>
+    <corollary xml:id="cor-solid-R-module-is-zero">
+      <statement>
+        <p>
+          If <m>M \in \CAb</m> admits an <m>\underline{\RR}</m>-module structure, then <m>M_\solid = 0</m>.
+          (This will also hold at the derived level; see <xref ref="cor-solid-R-module-is-zero-monomorphism"/>.)
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The <m>\underline{\RR}</m>-module structure on <m>M</m> formally promotes to an <m>\underline{\RR}_\solid</m>-module structure on <m>M_\solid</m>,
+          but then <xref ref="prop-R-solid-is-zero"/> implies that <m>M_\solid</m> is a module over the zero ring.
+        </p>
+      </proof>
+    </corollary>
+    <corollary xml:id="cor-solid-R-module-is-zero-monomorphism">
+      <statement>
+        <p>
+          Let <m>M \to N</m> be a monomorphism in <m>\CAb</m> such that <m>N/M</m> admits an <m>\underline{\RR}</m>-module structure
+          (e.g., if <m>N</m> itself admits an <m>\underline{\RR}</m>-module structure we may take <m>M=0</m>).
+          Then <m>M_\solid \cong N_\solid</m>; 
+          in addition, for each <m>i \gt 0</m>, the morphism of functors <m>\iExt^i_{\CAb}(N, \bullet) \to \iExt^i_{\CAb}(M, \bullet)</m> on <m>\CAb_\solid</m>
+          is an isomorphism.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          For each <m>i \gt 0</m>, for any <m>Q \in \CAb_\solid</m>, <m>\iExt^i_{\CAb}(N/M, Q)</m> is solid by <xref ref="prop-solid-category"/>
+          and inherits an <m>\underline{\RR}</m>-module structure from <m>N/M</m>, hence is zero.
+          This implies the second assertion, including the case <m>i = 0</m> from which we recover the first assertion using Yoneda's lemma.
+        </p>
+      </proof>
+    </corollary>
+    <remark>
+      <p>
+        <xref ref="prop-R-solid-is-zero"/> and its corollaries also apply with <m>\underline{\RR}</m> replaced by <m>\underline{\QQ}</m> equipped with the archimedean topology.
+        By contrast, for the <m>p</m>-adic topology for some prime <m>p</m>, the solidification of <m>\underline{\QQ}</m> will end up being precisely <m>\underline{\QQ}_p</m>.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        <xref ref="prop-R-solid-is-zero"/> and its corollaries make clear that if we want any hope of doing analytic geometry over <m>\RR</m> or <m>\CC</m>,
+        we cannot stick to solid groups and must instead find a more flexible framework. We will eventually introduce such a framework in the form of
+        <term>analytic rings</term>, where we define a class of <q>complete modules</q> with properties analogous to those of solid abelian groups.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>Solid abelian groups as condensed abelian groups</title>
+    <p>
+      At this point, we can exhibit a functor from solid <m>\ZZ</m>-modules to solid objects in <m>\CAb</m>.
+      We will prove later that this yields an equivalence (<xref ref="prop-solid-vs-presumptively-solid"/>).
+    </p>
+    <lemma xml:id="lem-compare-hom-solid-con">
+      <statement>
+        In <m>\CAb</m>, for any at most countable index sets <m>I,J</m>, we have
+        <me>
+          \Hom_{\CAb}\left(\prod_I \underline{\ZZ}, \prod_J \underline{\ZZ}\right) = \prod_J \bigoplus_I \ZZ
+        </me>.
+      </statement>
+      <proof>
+        <p>
+          Since both objects are represented by sequential topological abelian groups, we may make the computation there,
+          but we have already done this in <xref ref="rem-compare-solid-to-top-ab-group"/>.
+        </p>
+      </proof>
+    </lemma>
+    <proposition xml:id="thm-solid-to-condensed">
+      <statement>
+        <p>
+          There is a functor <m>\Ab_\solid \to \CAb_\solid</m> carrying <m>\ZZ_\solid</m> to <m>\underline{\ZZ}</m> and compatible with
+          all limits (notably countable products), colimits, <m>\Hom</m>, <m>\iHom</m>, and <m>\otimes</m>.
+          (Full faithfulness and compatibility with <m>\Ext</m> and <m>\iExt</m> require an extra step; see <xref ref="cor-solid-embedding-exact"/>.)
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By <xref ref="lem-delta-pullback-on-Rhom"/> and <xref ref="prop-solid-category"/>, we have <m>\prod_I \underline{\ZZ} \in \CAb_\solid</m>
+          whenever <m>I</m> is at most countable.
+          By <xref ref="lem-compare-hom-solid-con"/>, we get a fully faithful functor <m>\ZZ_\solid \to \CAb_\solid</m> carrying <m>\prod_I \ZZ_\solid</m> to <m>\prod_I \underline{\ZZ}</m>.
+          Since <m>\prod_\NN \ZZ_\solid</m> is a compact generator of <m>\Ab_\solid</m>, we get the functor we want by forming a left Kan extension.
+        </p>
+      </proof>
+    </proposition>
+    <remark>
+      <p>
+        We note in passing that <xref ref="thm-solid-to-condensed"/> admits the following compatibility with solidification:
+        applying the solidification functor <m>\Ab \to \Ab_\solid</m> and then passing to <m>\CAb</m> gives the same result as 
+        passing from <m>\Ab</m> to <m>\CAb</m> (i.e., passing to discrete topological groups) and then solidifying in <m>\CAb</m>.
+      </p>
+      <p>
+        Note however that these two functors called <q>solidification</q> have very different behavior:
+        the solidification functor <m>\Ab \to \Ab_\solid</m> is a full embedding, whereas the
+        solidification functor <m>\CAb \to \CAb_\solid</m> projects onto a full subcategory.
+      </p>
+    </remark>
+  </subsection>
+</section>

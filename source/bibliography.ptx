@@ -3,6 +3,9 @@
   <biblio type="raw" xml:id="bib-Barwick-Haine">
     C. Barwick and P. Haine, <articletitle>Pyknotic objects, I. Basic Notions</articletitle>, <url href="https://arxiv.org/abs/1904.09966">arXiv:1904.09966v2</url> <year>2019</year>.
   </biblio>
+  <biblio type="raw" xml:id="bib-Berkovich">
+    V. Berkovich, <pubtitle>Spectral Theory and Analytic Geometry over Non-Archimedean Fields</pubtitle>, Mathematical Surveys and Monographs 33, American Mathematical Society, Providence, 1990.
+  </biblio>
   <biblio type="raw" xml:id="bib-Clausen-Scholze-notes">
     D. Clausen and P. Scholze, <articletitle>Lectures on condensed mathematics</articletitle>, <url href="https://www.math.uni-bonn.de/people/scholze/Condensed.pdf">https://www.math.uni-bonn.de/people/scholze/Condensed.pdf</url>.
   </biblio>
@@ -12,6 +15,12 @@
   <biblio type="raw" xml:id="bib-Godement">
     R. Godement, <pubtitle>Topologie algébrique et théorie des faisceaux</pubtitle>, third edition, Hermann, Paris <year>1973</year>.
   </biblio>
+  <biblio type="raw" xml:id="bib-Gregoric">
+    R. Gregoric, <articletitle>Stone duality between condensed mathematics and algebraic geometry</articletitle>, <url href="https://arxiv.org/abs/2401.05268">arXiv:2401.05268v1</url> <year>2024</year>.
+  </biblio>
+  <biblio type="raw" xml:id="bib-Hansen-Kedlaya">
+    D. Hansen and K.S. Kedlaya, <articletitle>Sheafiness criteria for Huber rings</articletitle>, <url href="https://kskedlaya.org/papers/criteria.pdf">https://kskedlaya.org/papers/criteria.pdf</url>.
+  </biblio>
   <biblio type="raw" xml:id="bib-Hewitt-Ross">
     E. Hewitt and K.A. Ross, <pubtitle>Abstract Harmonic Analysis, volume I</pubtitle>, second edition, Grundlehren der mathematischen Wissenschaften 115, Springer-Verlag, Berlin
     <year>1979</year>.
@@ -19,6 +28,12 @@
   <biblio type="raw" xml:id="bib-Hoffmann-Spitzweck">
     N. Hoffmann and M. Spitzweck, <articletitle>Homological algebra with locally compact abelian groups</articletitle>, <journal>Advances in Mathematics</journal>
     <volume>212</volume> <year>2007</year>, 504<ndash/>524.
+  </biblio>
+  <biblio type="raw" xml:id="bib-Huber1">
+    R. Huber, <pubtitle>Continuous valuations</pubtitle>, <journal>Mathematische Zeitschrift</journal> <volume>212</volume> <year>1993</year>, 455<ndash/>477.
+  </biblio>
+  <biblio type="raw" xml:id="bib-Kedlaya-Banach">
+    K.S. Kedlaya, <articletitle>On commutatative nonarchimedean Banach fields</articletitle>, <journal>Documenta Mathematica</journal> <volume>23</volume> <year>2018</year>, 171<ndash/>188.
   </biblio>
   <biblio type="raw" xml:id="bib-prismatic">
     K.S. Kedlaya, <articletitle>Notes on prismatic cohomology</articletitle>, <url href="https://kskedlaya.org/prismatic">https://kskedlaya.org/prismatic</url>.

@@ -45,26 +45,23 @@
         <me>
           \Hom_{\TopAb}\left(\prod_I \ZZ, \prod_J \ZZ\right) = \prod_J \bigoplus_I \ZZ
         </me>.
-        This formally implies (by taking colimits) that there is a fully faithful functor <m>\Ab_\solid \to \TopAb</m> taking <m>\prod_I \ZZ_\solid</m> to <m>\prod_I \ZZ</m>.
+        This formally implies (by taking colimits) that there is a functor <m>\Ab_\solid \to \TopAb</m> taking <m>\prod_I \ZZ_\solid</m> to <m>\prod_I \ZZ</m>.
       </p>
       <p>
-        One question this raises is how to identify the essential image of this functor more concretely. We will answer this question by resolving the stronger question
-        in the category of condensed abelian groups <xref ref="prop-solid-vs-presumptively-solid"/>.
-        The reason to work there instead of in <m>\TopAb</m> is that the latter category does not have ideal structural properties from an algebraic point of view,
-        for instance, it does not admit a tensor product satisfying the usual rules (symmetric monoidal plus Hom-tensor adjunction).
-        By contrast, for solid <m>R</m>-modules one can set up a whole six functors formalism.
-      </p>
-      <p>
-        That said, we can and will embed the category <m>\TopAb</m> into the category <m>\CAb</m> of condensed abelian groups, which does admit reasonable operations like <m>\otimes</m>.
-        In that context we will exhibit an embedding of <m>\Ab_\solid</m> into <m>\CAb</m> that does respect all operations (<xref ref="prop-solid-vs-presumptively-solid"/>).
+        However, this functor is not <em>fully</em> faithful because of the deleterious effect of taking colimits on underlying topological spaces
+        (e.g., see <xref ref="exa-solid-modules-with-underlying-zero"/>).
+        This can be corrected by replacing the category of topological abelian groups with the category of condensed abelian groups <xref ref="prop-solid-vs-presumptively-solid"/>,
+        in which cokernels behave more like in <m>\Ab_\solid</m>. This also will make the construct compatible with tensor products, which do not make sense in <m>\TopAb</m>.
       </p>
     </remark>
-    <remark xml:id="rem-solid-to-ordinary-is-faithful">
+    <example xml:id="exa-solid-modules-with-underlying-zero">
       <p>
-        One consequence of <xref ref="rem-compare-solid-to-top-ab-group"/> is that the restriction functor <m>\Ab_\solid \to \Ab</m> is faithful:
-        it can be reinterpreted as the functor <m>\Ab_\solid \to \TopAb</m> followed by the forgetful functor.
+        In <m>\Ab_\solid</m>, the object <m>\ZZ_\solid[T]</m> is the functor <m>\prod_I \ZZ_\solid \mapsto \left( \prod_I \ZZ \right)[T]</m>.
+        We also have an object <m>\ZZ_\solid \langle T \rangle</m> which is the functor <m>\prod_I \ZZ_\solid \mapsto \prod_I \ZZ[T]</m>.
+        The cokernel of the obvious map <m>\ZZ_\solid[T] \to \ZZ_\solid \langle T \rangle</m> is an object of <m>\Ab_solid</m>
+        whose restriction to <m>\Ab</m> is zero, but which is not the zero object.
       </p>
-    </remark>
+    </example>
   </subsection>
   <subsection xml:id="subsec-whitehead">
     <title>Whitehead's problem for solid abelian groups</title>
@@ -125,14 +122,6 @@
         </p>
       </proof>
     </proposition>
-    <remark>
-      <p>
-        By writing <m>\Ext^1_{\ZZ_\solid}(A_{\solid},\ZZ_{\solid})</m> as <m>\Hom_{\ZZ_\solid}(\ZZ_\solid, \iExt^1_{\ZZ_\solid}(A_\solid, \ZZ_\solid))</m>
-        and then invoking <xref ref="rem-solid-to-ordinary-is-faithful"/>, we may see that 
-        <m>\Ext^1_{\ZZ_\solid}(A_{\solid},\ZZ_{\solid}) = 0</m> if and only if <m>\iExt^1_{\ZZ_\solid}(A_\solid, \ZZ_\solid) = 0</m>.
-        That is, we may state <xref ref="prop-Whitehead-for-solid"/> in terms of the vanishing of the external Ext instead of the internal one.
-      </p>
-    </remark>
   </subsection>
   <subsection xml:id="subsec-solid-finiteness">
     <title>Finiteness conditions</title>
@@ -193,7 +182,7 @@
         <p>
           Let <m>M</m> be a finitely generated subobject of <m>\prod_I \ZZ_\solid</m>. By definition, it sits in a sequence
           <men xml:id="eq-sandwich-free-module">
-            \prod_J \ZZ_\solid \to M \to \prod_J \ZZ_\solid
+            \prod_J \ZZ_\solid \to M \to \prod_I \ZZ_\solid
           </men>
           where the first map is surjective and the second map is injective.
         </p>

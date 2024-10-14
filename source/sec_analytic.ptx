@@ -1,0 +1,631 @@
+﻿<section xml:id="sec_analytic">
+  <title>Analytic rings</title>
+  <introduction>
+    <p>
+      In this section, we introduce the concept of a <term>analytic ring</term>, which is in some sense the precise category of base rings over
+      which one can do analytic geometry. This will correspond roughly to specifying an underlying condensed commutative ring and a category of <q>complete modules</q> over this ring.
+      We have seen a few examples already coming from solid abelian groups, but using an analogue of solidification we will generate many more,
+      including a key example associated to the real numbers.
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This section is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lectures 13 and 14.
+        <xref ref="exa-solid-affine-line"/> is taken from <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 7.
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>Analytic rings</title>
+    <definition>
+      <p>
+        For <m>R</m> a condensed commutative ring (meaning a commutative ring object in <m>\CAb</m>),
+        write <m>\Mod_R</m> for the category of <m>R</m>-module objects in <m>\CAb</m> (i.e., <m>\Mod_R(\CAb)</m>).
+        Note that this creates some potential for confusion; for instance, for <m>R</m> discrete there is a natural full embedding <m>\Mod_R \to \Mod_{\underline{R}}</m>
+        but it is not an equivalence; its essential image consists of the discrete <m>R</m>-modules.
+      </p>
+    </definition>
+    <p>
+      To define an analytic ring, we specify a base ring and a category of <q>complete</q> modules over this base ring.
+    </p>
+    <definition xml:id="def-analytic-ring">
+      <p>
+        A <term>pre-analytic ring</term> is a pair <m>R = (R^{\triangleright}, \Mod_R)</m> where <m>R^\triangleright</m> 
+        is a commutative ring object in <m>\CAb</m> and <m>\Mod_R</m> is a full subcategory of <m>\Mod_{R^{\triangleright}}</m>
+        closed under limits, colimits, and extensions, and satisfying
+        <m>\iExt^i_{R^\triangleright}(M, N) \in \Mod_R</m> for all <m>i \geq 0</m>
+        whenever <m>M \in \Mod_{R^{\triangleright}}, N \in \Mod_R</m>.
+        A morphism of pre-analytic rings <m>R \to S</m> is a morphism <m>R^{\triangleright} \to S^{\triangleright}</m> of commutative ring objects in <m>\CAb</m>
+        such that for any <m>M \in \Mod_R</m>, the pullback of <m>M</m> from <m>\Mod_{S^{\triangleright}}</m> to <m>\Mod_{R^{\triangleright}}</m> belongs to <m>\Mod_R</m>.
+      </p>
+      <p>
+        An <term>analytic ring</term> is a pre-analytic ring 
+        in which in addition <m>R^{\triangleright} \in \Mod_R</m>.
+        We then have a symmetric monoidal structure on <m>\Mod_R</m> with unit <m>R^{\triangleright}</m> (see <xref ref="rem-pre-analytic-to-analytic"/>).
+        A morphism of analytic rings is a morphism of the underlying pre-analytic rings.
+        Let <m>\AnRing</m> denote the category of analytic rings.
+      </p>
+      <p>
+        When all underlying objects of <m>\Mod_R</m> belong to <m>\CAb_\solid</m>, we refer to the result as a <term>solid analytic ring</term>.
+        In that case, we are free to use the interpretation in terms of solid abelian groups (<xref ref="prop-solid-vs-presumptively-solid"/>).
+        Let <m>\AnRing_\solid</m> denote the full subcategory of <m>\AnRing</m> consisting of solid analytic rings.
+      </p>
+    </definition>
+    <definition>
+      <p>
+        Given a pre-analytic ring, the embedding functor <m>\Mod_R \to \Mod_{R^{\triangleright}}</m> admits a left adjoint
+        which we will call <em>analytification</em>.
+        Analytifying <m>R^{\triangleright} \otimes \ZZ[\underline{S}]</m> for <m>S \in \Prof</m> yields a set
+        of compact (but not necessarily projective) generators of the category <m>\Mod_R</m>.
+      </p>
+      <p>
+        We define a tensor product <m>\otimes</m> on <m>\Mod_R</m> by taking the tensor product in <m>\Mod_{R^{\triangleright}}</m>
+        and then applying analytification to get back to <m>\Mod_R</m>.
+      </p>
+    </definition>
+    <remark xml:id="rem-pre-analytic-to-analytic">
+      <p>
+        The embedding functor from pre-analytic rings to analytic rings also admits a left adjoint,
+        obtained by replacing <m>R^{\triangleright}</m> with its analytification <m>\hat{R}^{\triangleright}</m> and leaving <m>\Mod_R</m> unchanged.
+        The point is that the functor <m>\Mod_R \to \Mod_{R^{\triangleright}}</m> factors through <m>\Mod_{\hat{R}^{\triangleright}}</m>:
+        for <m>M,N \in \Mod_R</m> we have 
+        <md>
+          <mrow>
+             \Hom_{R^{\triangleright}}(M,N) &amp;= \Hom_{\hat{R}^{\triangleright}}(\hat{R}^{\triangleright} \otimes_{R^{\triangleright}} M,N)
+          </mrow>
+          <mrow>
+            &amp;= \Hom_{\hat{R}^{\triangleright}}(\widehat{\hat{R}^{\triangleright} \otimes_{R^{\triangleright}} M}, N)
+          </mrow>
+          <mrow>
+            &amp; = \Hom_{\hat{R}^{\triangleright}}(M,N)
+          </mrow>
+        </md>.
+        By the same logic with <m>M</m> replaced by <m>M \otimes \ZZ[\underline{S}]</m> for <m>S \in \Prof</m>,
+        we see that also <m>\iHom_{R^{\triangleright}}(M,N) \cong \iHom_{R^{\triangleright}}(M,N)</m>.
+      </p>
+      <p>
+        However, note that it is not automatic that
+        <m>
+          \Ext^i_{R^{\triangleright}}(M,N) \cong \Ext^i_{R^{\triangleright}}(M,N)
+        </m>
+        for <m>i \gt 0</m> (or the corresponding statement for internal Ext) <em>unless</em> we know that <m>\hat{R}^{\triangleright}</m> coincides with the <em>derived</em>
+        analytification of <m>R^{\triangleright}</m>. Fortunately, this will be true in many circumstances (<xref ref="rem-liquefaction-kills-ext1"/>).
+      </p>
+    </remark>
+    <remark>
+      <p>
+        The notation <m>R = (R^{\triangleright}, \Mod_R)</m> is meant to simulate the notation used by Huber in his development of the theory of <term>adic spaces</term>.
+        We will integrate this theory into our work later, by showing that Huber pairs can be viewed as a full subcategory of solid analytic rings (<xref ref="prop-Huber-pair-to-solid-analytic"/>).
+      </p>
+    </remark>
+    <remark>
+      <p>
+        For some applications, it is useful to extend the notion of an analytic ring to the case where the base is no longer a commutative ring object in <m>\CAb</m>,
+        but a more homotopical object such as a <term>animated ring</term>, a <term>simplicial ring</term>, or an <term><m>E_\infty</m>-commutative ring</term>.
+        We will not touch on these topics in these notes.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>Examples of analytic rings</title>
+    <example xml:id="exa-discrete-analytic-ring">
+      <p>
+        For every commutative ring <m>A</m>, the pair <m>(\underline{A}, \Mod_{\underline{A}})</m> is an analytic ring.
+        An analytic ring of this form will be said to be <term>discrete</term>.
+      </p>
+    </example>
+    <remark>
+      <p>
+        Beware that while discrete abelian groups are solid, discrete analytic rings are not solid analytic rings
+        because the module category includes non-solid objects.
+      </p>
+      <p>
+        Note also that the pair <m>(\underline{A}, \Mod_A)</m> (i.e., taking the discrete modules) is not an analytic ring: 
+        it fails the condition that <m>\iHom_{\underline{A}}(M, N) \in \Mod_A</m> for <m>M \in \Mod_{\underline{A}}, N \in \Mod_A</m>.
+        For example, take <m>R = \ZZ, M = \bigoplus_\NN \underline{\ZZ}, N = \underline{\ZZ}</m>;
+        we then have <m>\iHom_{\underline{\ZZ}}(M, N) = \prod_\NN \underline{\ZZ}</m> which is not a discrete <m>\ZZ</m>-module.
+        This is corrected for using solid modules instead (<xref ref="exa-solid-analytic-ring"/>).
+      </p>
+    </remark>
+    <example xml:id="exa-solid-analytic-ring">
+      <p>
+        For <m>R</m> a condensed commutative ring,
+        define the category of <term>solid <m>R</m>-modules</term> by
+        <me>
+          \Mod_{R\solid} := \Mod_R(\CAb_\solid) = \Mod_R \times_{\CAb} \CAb_\solid.
+        </me>
+        By <xref ref="prop-solid-category"/>, <m>(R, \Mod_{R \solid})</m> is a pre-analytic ring.
+      </p>
+      <p>
+        If <m>R</m> is itself solid as a condensed abelian group, then <m>(R, \Mod_{R \solid})</m> is an analytic ring.
+        By <xref ref="lem-delta-pullback-on-Rhom"/>, this applies if <m>R</m> is discrete;
+        comparing with <xref ref="exa-discrete-analytic-ring"/> gives us examples of analytic rings where the underlying ring is the same but the module category is different.
+      </p>
+    </example>
+    <example>
+      <p>
+        For <m>R</m> a commutative ring and <m>f \in R</m> not a zero-divisor, 
+        let <m>\hat{R}_{\solid}</m> denote the classical <m>f</m>-completion of <m>R</m> in <m>\Ab_\solid</m>
+        (i.e., the usual <m>f</m>-adic completion carrying the <m>f</m>-adic topology). 
+        The pair consisting of <m>\hat{R}_\solid</m> and the category of derived <m>f</m>-complete objects in <m>\Mod_{R \solid}</m> is a solid analytic ring.
+      </p>
+      <p>
+        Similarly, the pair consisting of <m>\hat{R}_\solid[1/f]</m> and the category of derived <m>f</m>-complete objects
+        in <m>\Mod_{R \solid}</m> on which <m>f</m> is invertible is a solid analytic ring.
+      </p>
+    </example>
+  </subsection>
+  <subsection>
+    <title>Liquefaction</title>
+    <p>
+      We define a new process for constructing pre-analytic rings.
+      We start with a bit of motivation.
+    </p>
+    <remark>
+      <p>
+        For <m>R</m> a commutative topological ring, <m>f \in R</m> an element, <m>M</m> a Hausdorff topological <m>R</m>-module, and <m>(a_n)</m> a sequence in <m>M</m>,
+        we say that <m>(a_n)</m> is <term>summable against <m>f</m></term> if the series <m>\sum_n a_n f^n</m> converges in <m>M</m>.
+        In this language, <m>M</m> is classically <m>f</m>-complete if and only every series is summable against <m>f</m>.
+      </p>
+      <p>
+        By contrast, <m>M</m> is solid if and only if every null sequence is summable against <m>f=1</m>.
+        This suggests that we might find it productive to also enforce summability of null sequences against other <m>f</m>.
+        For example, in <m>\RR</m> every null sequence is summable against any <m>f</m> with <m>|f| \lt 1</m>, but not in general against <m>f=1</m>.
+      </p>
+    </remark>
+    <p>
+      We now turn to a formal definition.
+    </p>
+    <definition xml:id="def-relative-solidification">
+      <p>
+        For any commutative ring object <m>R</m> in <m>\CAb</m>,
+        we have a natural base extension functor <m>\bullet \otimes R\colon \CAb \to \Mod_R</m>
+        which is left adjoint to the forgetful functor <m>\Mod_R \to \CAb</m>.
+        By the adjunction plus <xref ref="prop-internally-projective"/>,
+        the object <m>P \otimes R \in \Mod_R</m> (the <term>relative sequence space</term> over <m>R</m>) is internally projective.
+      </p>
+      <p>
+        For <m>f \in R(*)</m>, let <m>\Delta_f\colon P \otimes R \to P \otimes R</m> be the map <m>1 - f \sigma</m>.
+        An object <m>M \in \Mod_R</m> is <term><m>f</m>-liquid</term> if <m>\Delta^*</m> induces an isomorphism on <m>\iHom_{\CAb}(P, M) = \iHom_R(P \otimes R, M)</m>.
+        It is again equivalent to consider <m>R\iHom_R(P \otimes R, M)</m> as by <xref ref="prop-internally-projective"/>, 
+        we have <m>\iExt_R^i(P \otimes R, M) = 0</m> for <m>i \gt 0</m>.
+        Let <m>\Mod_{R \liquid f}</m> denote the full subcategory of <m>f</m>-liquid objects of <m>\Mod_R</m>;
+        we write <m>*_{R \liquid f}</m> instead of <m>*_{\Mod_{R \liquid f}}</m> for <m>* \in \{\Hom, \Ext^i, \iHom, \iExt^i\}</m>.
+      </p>
+      <p>
+        We say that an object of the derived category <m>D(\Mod_R)</m> is <term><m>f</m>-liquid</term> if its cohomology groups are <m>f</m>-liquid.
+        Let <m>D(\Mod_R)_{\liquid f}</m> be the subcategory of <m>f</m>-liquid objects.
+      </p>
+    </definition>
+    <proposition xml:id="prop-liquefaction">
+      <statement>
+        <p>
+          With notation as in <xref ref="def-relative-solidification"/>,
+          the category <m>\Mod_{R \liquid f}</m> is an abelian subcategory of <m>\Mod_R</m> closed under kernels, cokernels,
+          extensions, arbitrary limits (including products) and colimits.
+          Moreover, for any <m>M,N \in \Mod_R</m>, if <m>N</m> is <m>f</m>-liquid, then so are
+          <m>\iHom_{R}(M,N)</m> and <m>\iExt^i_{R}(M,N)</m> for all <m>i \gt 0</m>.
+          Consequently, <m>(R, \Mod_{R \liquid f})</m> is a pre-analytic ring.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          As in <xref ref="prop-solid-category"/>, this follows formally from the definition.
+        </p>
+      </proof>
+    </proposition>
+    <proposition>
+      <statement>
+        <p>
+          The embedding functor <m>\Mod_{R \liquid f} \to \Mod_R</m> admits a left adjoint called <term><m>f</m>-liquefaction</term> and computed by
+          <me>
+            M \mapsto M_{\liquid f} := \iExt^1_R(\coker(\Delta_f)/R, M)
+          </me>.
+          Similarly, the embedding functor <m>D(\Mod_R) \to D(\Mod_R)_{\liquid f}</m> admits a left adjoint called <term>derived <m>f</m>-liquefaction</term> and computed by
+          <me>
+            M \mapsto M_{\liquid f} := R\iHom^1_R(\coker(\Delta_f)/R, M)[-1]
+          </me>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Left to the reader.
+        </p>
+      </proof>
+    </proposition>
+    <remark xml:id="rem-liquefaction-kills-ext1">
+      <p>
+        As in <xref ref="eq-resolve-cofinite-mod-Z"/>, we have an internally projective resolution of <m>\coker(\Delta_f)/R</m> of length 1:
+        <men xml:id="eq-resolve-coker-mod-R-liquefaction">
+          0 \to P \otimes R \to (P/\ZZ) \otimes R \to \coker(\Delta_f)/R \to 0
+        </men>
+        which means that if <m>M</m> is concentrated in degrees <m>[a,b]</m>, then its derived <m>f</m>-liquefaction is concentrated in degrees <m>[a-1,b]</m>.
+        In particular, for <m>M \in \Mod_R</m> the derived <m>f</m>-liquefaction is concentrated in degrees <m>-1</m> and <m>0</m>.
+      </p>
+      <p>
+        This has the following important consequence for the construction of analytic rings.
+        Let <m>R_0 = (R_0^{\triangleright}, \Mod_{R_0})</m> be an analytic ring,
+        choose <m>f \in R_0(*)</m>, and let <m>\Mod_{R_1}</m> be the full subcategory of <m>f</m>-liquid objects in <m>\Mod_{R_1}</m>.
+        Then the underived <m>f</m>-liquefaction <m>R_1^{\triangleright}</m> of <m>R_0^{\triangleright}</m> has the property that for any <m>M \in \Mod_{R_1}</m>,
+        <m>\iExt^1_{R_0^{\triangleright}}(R_1^\triangleright, M) = 0</m>: for any exact sequence in <m>\Mod_R</m> of the form
+        <me>
+          0 \to M \to M' \to R_1^{\triangleright} \to 0
+        </me>
+        we have <m>M' \in \Mod_{R_1}</m> by <xref ref="prop-liquefaction"/>, so any splitting of the pullback sequence
+        <me>
+          0 \to M \to M_0 \to R_0^{\triangleright} \to 0
+        </me>
+        extends by adjunction to a splitting of the original sequence.
+      </p>
+      <p>
+        From this, we see that <m>R_1^{\triangleright}</m> is also the derived <m>f</m>-liquefaction of <m>R_0^{\triangleright}</m>,
+        and hence <m>R_1 = (R_1^{\triangleright}, \Mod_{R_1})</m> is again an analytic ring. That is, the issue
+        raised in <xref ref="rem-pre-analytic-to-analytic"/> does not arise in this context.
+      </p>
+    </remark>
+    <p>
+      The operation of <m>f</m>-liquefaction bears a strong formal resemblance to derived <m>f</m>-completion.
+      This drives the next few remarks.
+    </p>
+    <remark>
+      <p>
+        If <m>S \to R</m> is a homomorphism of commutative ring objects in <m>\CAb</m>, then for any <m>f \in S</m>
+        we have 
+        <me>
+          \Mod_{R \liquid f} = \Mod_{S \liquid f} \times_{\Mod_S} \Mod_R
+        </me>.
+        This applies in particular when <m>f = 1</m>, in which case we may take <m>S = \ZZ</m> to obtain
+        <me>
+          \Mod_{R \liquid 1} = \Mod_{R\solid}
+        </me>.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        For <m>f,g \in R</m>, (derived) <m>f</m>-liquefaction commutes with (derived) <m>g</m>-liquefaction because the composition in either order can be written
+        in a symmetric form using the Koszul complex associated to <m>\Delta_f</m> and <m>\Delta_g</m>. 
+        In particular, (derived) <m>f</m>-liquefaction acts on the (derived) category of <m>g</m>-liquid modules.
+      </p>
+      <p>
+        Consequently, for any subset <m>S \subset R</m>, taking <m>R</m> together with the full subcategory 
+        <m>\Mod_{R \liquid S} := \bigcap_{f \in S} \Mod_{R \liquid f}</m> forms a pre-analytic ring.
+        An important special case is when <m>1 \in S</m>; in this case we can work in terms of solid abelian groups.
+      </p>
+    </remark>
+    <example xml:id="exa-solid-affine-line">
+      <p>
+        Take <m>R = \underline{\ZZ}[T]</m>, <m>S = \{1,T\}</m> and consider the category <m>\Mod_{R \liquid S}</m>.
+        To compute the <m>S</m>-liquefaction of <m>R</m>, we first note that <m>R</m> is already solid, 
+        so we need only worry about the <m>T</m>-liquefaction
+        and we may compute it in <m>\Ab_\solid</m>: it is the functor <m>\ZZ\langle T \rangle</m> given by
+        <me>
+          \prod_I \ZZ_\solid \mapsto \prod_I \ZZ_\solid[T],
+        </me>
+        whereas by contrast <m>\ZZ_\solid[T]</m> is the functor <m>\prod_I \ZZ_\solid \mapsto \left( \prod_I \ZZ_\solid \right)[T]</m>.
+      </p>
+      <p>
+        To see better what is going on here, look what happens when we tensor with <m>\ZZ_{p \solid}</m>;
+        in <m>\CAb_\solid</m> we get the topological ring <m>\underline{\ZZ_p \langle T \rangle}</m>
+        corresponding to the Tate algebra in one variable (i.e., the <m>p</m>-adic completion of <m>\ZZ[T]</m>),
+        which is larger than the polynomial ring <m>\underline{\ZZ_p[T]}</m>.
+        This corresponds to the general fact that derived <m>f</m>-completion commutes with <m>g</m>-liquefaction.
+      </p>
+    </example>
+    <remark xml:id="rem-liquid-by-polynomial">
+      <p>
+        If <m>R</m> is a solid condensed ring, then for any <m>f_1,\dots,f_n \in R</m> and any <m>P \in \ZZ[x_1,\dots,x_n]</m>,
+        <me>
+          \Mod_{R \liquid \{f_1,\dots,f_n\}} \subseteq \Mod_{R \liquid P(f_1,\dots,f_n)\}
+        </me>.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>The liquid real numbers</title>
+    <p>
+      We next introduce a key example that does not factor through solidification.
+      For this, we need some preparatory lemmas which are again reminiscent of familiar properties of adic completion.
+    </p>
+    <lemma xml:id="lem-f-solidification-versus-fn">
+      <statement>
+        <p>
+          For any positive integer <m>n</m>, <m>\Mod_{R \liquid f} = \Mod_{R \liquid f^n}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We pick up the thread from <xref ref="rem-infinite-series"/>.
+          To see that <m>\Mod_{R \liquid f} \subseteq \Mod_{R \liquid f^n}</m>,
+          we algebraize the statement that a null sequence <m>(m_0, m_1, \dots)</m> is summable against <m>f^n</m>
+          if and only if its <m>n</m>-fold expansion <m>(m_0,\dots,0,m_1, 0,\dots,0,m_2,\dots)</m> is summable against <m>f</m>, in which case the sums coincide.
+          This corresponds to the fact that <m>g_1 \circ \Delta_{f} = \Delta_{f^n} \circ g_2</m> where 
+          <md>
+            <mrow>
+              g_1 \colon P \otimes R \to P \otimes R, \qquad [mn-i] \mapsto f^i [m] \quad (m \gt 0; i=0,\dots,n-1)
+            </mrow>
+            <mrow>
+              g_2 \colon P \otimes R \to P \otimes R, \qquad [mn] \mapsto [m], [mn+i] \mapsto [\infty] \quad (m \gt 0; i=1,\dots,n-1)
+            </mrow>
+          </md>
+          and so
+          <md>
+            <mrow>
+              g_1^*(m_0,m_1,\dots) &amp;= (m_0, f^{n-1} m_1, \dots, f m_1, m_1, f^{n-1} m_2, \dots)
+            </mrow>
+            <mrow>
+              g_2^*(m_0,m_1,\dots) &amp;= (m_0,\dots,0,m_1, 0,\dots,0,m_2,\dots)
+            </mrow>
+            <mrow>
+              (g_1 \circ \Delta_{f} = \Delta_{f^n} \circ g_2)^*(m_0, m_1, \dots) &amp; = (m_0-f^n m_1, 0,\dots,0, m_1-f^n m_2, \dots)
+            </mrow>
+          </md>.
+          The maps <m>g_1</m> and <m>g_2</m> are split surjections, so <m>g_1^*</m> and <m>g_2^*</m> is a split injection.
+          For any <m>M \in \Mod_{R \liquid f}</m>,
+          since <m>\Delta_f^*</m> is an isomorphism on <m>\iHom_{\CAb}(P, M)</m>,
+          tracing around the square as in <xref ref="lem-replace-bounded-with-P-solid"/>
+          shows that <m>\Delta_{f^n}^*</m> is also an isomorphism.
+        </p>
+        <p>
+          To see that <m>\Mod_{R \liquid f^n} \subseteq \Mod_{R \liquid f}</m>,
+          we algebraize the statement that a null sequence <m>(m_0, m_1, \dots)</m> is summable against <m>f</m>
+          if and only if the decimated sequences <m>(m_i, m_{i+n}, \dots)</m> for <m>i=0,\dots,n-1</m> are summable against <m>f^n</m>, in which case the original sum
+          coincides with the sum of <m>f^i</m> times the sum of the <m>i</m>-th decimated sequence for <m>i=1,\dots,n-1</m>.
+          This corresponds to the fact that <m>\tilde{\Delta}_{f^n} = \Delta_{f} \circ g = g \circ \Delta_{f}</m> where 
+          <md>
+            <mrow>
+              \tilde{\Delta}_{f^n} \colon P \otimes R \to P \otimes R, \qquad [m] \mapsto [m] - f^n [m+n]
+            </mrow>
+            <mrow>
+              g \colon P \otimes R \to P \otimes R, \qquad [m] \mapsto [m] + f [m+1] + \cdots + f^{n-1} [m+n-1]
+            </mrow>
+          </md>;
+          via the identification <m>P \cong \underline{\ZZ[x]}</m> (for the <m>x</m>-adic topology on the latter)
+          this corresponds to the factorization
+          <me>
+            1-f^n x^n = (1-fx)(1+fx + \cdots + f^{n-1}x^{n-1}) = (1+fx + \cdots + f^{n-1}x^{n-1})(1-fx)
+          </me>.
+          For any <m>M \in \Mod_{R \liquid f^n}</m>, <m>\Delta_{f^n}^*</m> is an isomorphism on <m>\iHom_{\CAb}(P, M)^{\oplus n}</m>
+          and so <m>\tilde{\Delta}_{f^n}^*</m> is an isomorphism on <m>\iHom_{\CAb}(P, M)</m>.
+          Since  <m>\tilde{\Delta}_{f^n}^*</m> factors through <m>\Delta_f^*</m> both ways, 
+          this implies that <m>\Delta_f^*</m> is both injective and surjective.
+        </p>
+      </proof>
+    </lemma>
+    <definition xml:id="def-R-topologically-nilpotent">
+      <p>
+        We say that <m>g \in R(*)</m> is <term>topologically nilpotent</term> if there is an element of <m>\Hom_{\CAb}(P, R)</m> taking <m>[n]</m> to <m>g^n</m>
+        for all <m>n \in \NN</m>. If <m>R</m> is a topological ring, this says that the powers of <m>g</m> form a null sequence.
+      </p>
+    </definition>
+    <lemma xml:id="rem-f-solidification-versus-fg">
+      <statement>
+        <p>
+          Suppose that <m>g \in R</m> is topologically nilpotent. We then have an inclusion <m>\Mod_{R \liquid f} \subseteq \Mod_{R \liquid fg}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We algebraize the statement that a null sequence <m>(m_0, m_1, \dots)</m> is summable against <m>fg</m>
+          if and only if the sequence <m>(m_0, g m_1, g^2 m_2, \dots)</m> (which is a null sequence because <m>g</m> is topologically nilpotent)
+          is summable against <m>f</m>.
+          This corresponds to the fact that <m>h_g \circ \Delta_{f} = \Delta_{fg} \circ h_g</m> where 
+          <m>h_g\colon P \otimes R \to P \otimes R</m> is the map <m>[n] \mapsto g^n [n]</m>.
+          While <m>h_g</m> is not surjective, we can fix this by replacing it with <m>h_g \oplus \lambda\colon P \oplus P \to P</m>
+          for
+          <me>
+            \lambda\colon P \to P, \qquad [0] \to [\infty], [n+1] \mapsto [n]
+          </me>.
+          We then have <m>(h_g \oplus \lambda) \circ (\Delta_{f} \oplus \Delta_f) = \Delta_{fg} \circ (h_g \oplus \lambda)</m>.
+          Since <m>(\Delta^f \oplus \Delta_f)^*</m> is an isomorphism on <m>\iHom_{\CAb}(P \oplus P, M)</m> and <m>h_g \oplus \lambda</m>
+          is a strict surjection, 
+          tracing around the square as in <xref ref="lem-replace-bounded-with-P-solid"/>
+          shows that <m>\Delta_{fg}^*</m> is also an isomorphism.
+        </p>
+      </proof>
+    </lemma>
+    <definition>
+      <p>
+        By <xref ref="rem-f-solidification-versus-fg"/> and <xref ref="lem-f-solidification-versus-fn"/>,
+        the category <m>\Mod_{\underline{\RR} \liquid f}</m> is the same for any two choices of <m>f \in (0,1)</m>:
+        if <m>f_1, f_2</m> are two such choices, then there exist integers <m>n_1, n_2</m> such that <m>f_1^{n_1}/f_2</m> and <m>f_2^{n_2}/f_1</m> belong to <m>(0,1)</m>.
+        We denote it also as <m>\Mod_{\underline{\RR} \liquid}</m>.
+      </p>
+      <p>
+        We now check that <m>\underline{\RR} \in \Mod_{\underline{\RR} \liquid}</m> and so 
+        <m>(\underline{\RR}, \Mod_{\underline{\RR} \liquid})</m> is an analytic ring.
+        For <m>S \in \Prof</m>, we must check that <m>\Delta^*</m> acts isomorphically on
+        <me>
+          \Hom_{\CAb}(P \otimes \ZZ[\underline{S}], \underline{\RR})= \Hom_{\CAb}(P, \iHom_{\CAb}(\ZZ[\underline{S}], \underline{\RR}))
+        </me>.
+        Using <xref ref="eq-ihom-S-to-X"/> this becomes
+        <me>
+           \Hom_{\CAb}(P, \underline{\Cts(S, \RR)})
+        </me>.
+        Since the compact-open topology on <m>\Cts(S, \RR)</m> is induced by the supremum norm,
+        we are reduced to checking that for any null sequence of functions <m>g_n\colon S \to \RR</m> for the supremum norm and any <m>f \in (0,1)</m>,
+        the sequence <m>f^n g_n</m> is summable in <m>\Cts(S, \RR)</m>. This follows by observing that the supremum norms <m>c_n</m> of <m>g_n</m> form a null sequence in <m>\RR</m>
+        and <m>f^n c_n</m> is summable, so <m>f^n g_n</m> is absolutely convergent.
+      </p>
+      <p>
+        However, in order to work with the category <m>\Mod_{\underline{\RR}\liquid}</m>,
+        we really need to compute the liquefaction of <m>\RR[\underline{S}]</m> for <m>S \in \Prof</m>.
+        Possibly the easiest way to do this is to compute the analogue in a certain universal setting;
+        see <xref ref="prop-initial-analytic"/> for the analogue and <xref ref="prop-liquefaction-of-basic-over-R"/> for the result over <m>\RR</m>.
+      </p>
+    </definition>
+  </subsection>
+  <subsection>
+    <title>The initial analytic ring</title>
+    <p>
+      For some calculations, it is helpful to describe a <q>universal</q> version of liquefaction.
+    </p>
+    <definition>
+      <p>
+        Let <m>\ZZ[\hat{q}]</m> be a copy of <m>P := \ZZ[\underline{\NN_\infty}]/\ZZ[\underline{\infty}]</m> viewed as an algebra over <m>\ZZ[q]</m> via <m>q^n \mapsto [n]</m>.
+        Then set <m>A_0^{\triangleright} := \ZZ[\hat{q}][q^{-1}]</m>; this condensed ring is represented by the topological ring with underlying ring <m>\ZZ[q^{\pm}]</m>.
+        By <xref ref="prop-liquefaction"/>, the pair <m>(A_0^{\triangleright}, \Mod_{A_0^{\triangleright} \liquid q})</m> is a pre-analytic ring.
+      </p>
+    </definition>
+    <p>
+      The ring <m>A_0^{\triangleright}</m> is not itself <m>q</m>-liquid because we cannot take any infinite sums over <m>q</m>.
+      To remedy this, we allow certain controlled infinite sums.
+    </p>
+    <definition>
+      <p>
+        For <m>k=1,2,\dots</m>, define the topological ring
+        <men xml:id="eq-universal-liquefaction-filtered">
+          A_k^{\triangleright} := \bigcup_{c, n \gt 0} \prod_{m \geq -n} \left(\ZZ \cap [-c(m+n)^{k-1}, c(m+n)^{k-1}] \right) q^m.
+        </men>
+        and set <m>A^{\triangleright} = \bigcup_k A_k^{\triangleright}</m>.
+        That is, <m>A^{\triangleright}</m> consists of Laurent series whose coefficients grow polynomially in the exponent.
+        (The shift in the index <m>k</m> is to avoid overriding the definition of <m>A_0^{\triangleright}</m>.)
+      </p>
+      <p>
+        For <m>S = \varprojlim_i S_i \in \Prof</m>, we similarly have
+        <men xml:id="eq-universal-liquefaction-filtered-with-S">
+          A_k^{\triangleright}\otimes \ZZ[\underline{S}] := \bigcup_{c, n \gt 0} \varprojlim_i \bigoplus_{s \in S_i} \prod_{m \geq -n} \left(\ZZ \cap [-c(m+n)^{k-1}, c(m+n)^{k-1}] \right)[s] q^m.
+        </men>
+      </p>
+    </definition>
+    <lemma xml:id="lem-filtration-on-universal-liquefaction">
+      <statement>
+        <p>
+          For <m>k=1,2,\dots</m> and <m>S \in \Prof</m> a power series in <m>\ZZ((q)) \otimes \ZZ[\underline{S}]</m> belongs to <m>A_k^{\triangleright} \otimes \ZZ[\underline{S}]</m> if and only if
+          it can written as <m>\sum_{i=0}^\infty s_i q^i</m> where <m>(s_i)_i</m> is a null sequence in <m>A_{k-1}^{\triangleright} \otimes \ZZ[\underline{S}]</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We treat the case <m>S = \{*\}</m> in detail, the general case being similar but with more notation.
+          Given a null sequence <m>(s_i)_i</m> in <m>A_{k-1}^{\triangleright}</m>,
+          for some fixed <m>n,c</m> we have <m>s_i = \sum_{m \geq -n} s_{i,m} q^m</m> where we have
+          <m>|s_{i,m}| \leq c(m+n)^{k-2}</m> for all <m>i,m</m> if <m>k \gt 1</m>,
+          and for <m>k =1</m> we instead have that only finitely many of the <m>s_{i,m}</m> are nonzero.
+          Now write
+          <md>
+            <mrow>
+              \sum_{i=0}^\infty s_i q^i &amp;= \sum_{i=0}^\infty \sum_{m \geq -n} s_{i,m} q^{m+i}
+            </mrow>
+            <mrow>
+              &amp;= \sum_{j \geq -n} \left( \sum_{i=0}^{j+n} s_{i,j-i} \right) q^j
+            </mrow>
+          </md>.
+          If <m>k=1</m> it is obvious that the resulting series has bounded coefficients and so belongs to <m>A_0^{\triangleright}</m>. Otherwise,
+          since <m>|s_{i,j-i}| \leq c(j+n-i)^k</m> for all <m>i,j</m>, we have 
+          <me>
+            \left| \sum_{i=0}^{j+n} s_{i,j-i} \right| \leq c(j+n+1)^{k-1} 
+          </me>
+          from which we infer that <m>\sum_{i=0}^\infty s_i q^i \in A_{k}^{\triangleright}</m>.
+        </p>
+        <p>
+          To prove the converse, we employ a trick introduced in <xref ref="rem-sum-null-against-f"/>.
+          Without loss of generality we may consider an element <m>t = \sum_{m=0}^\infty t_m q^m \in A_k^{\triangleright}</m>
+          such that for some <m>c\gt  0</m>, we have <m>|t_m|leq c(m+1)^{k-1}</m> for all <m>n</m>. If <m>k=1</m>, we write
+          <me>
+            t = \sum_{m=0}^\infty (t_{2m} q^m + t_{2m+1}q^{m+1}) q^m
+          </me>
+          and the quantities <m>t_{2m} q^m + t_{2m+1}q^{m+1}</m> form a null sequence in <m>A_0^{\triangleright}</m>.
+          If <m>k \gt 1</m>, set
+          <me>
+            s_{i,j} := \left \lfloor \frac{t_{i+j} + j}{i+j+1} \right\rfloor,
+          </me>
+          so that <m>|s_{i,j}| \leq c(i+j+1)^{k-1}</m> and <m>t_m = \sum_{i=0}^m t_{i,m-i}</m>.
+          Set <m>s_i := \sum_{j=0}^\infty s_{i,j} q^j</m>, so that
+          <me>
+            t = \sum_{i=0}^\infty s_i q^i = \sum_{i=0}^\infty (s_{2i} q^i + s_{2i+1}q^{i+1}) q^i
+          </me>
+          and the quantities <m>t_{2i} q^i + t_{2i+1}q^{i+1}</m> form a null sequence in <m>A_{k-1}^{\triangleright}</m>.
+        </p>
+      </proof>
+    </lemma>
+    <corollary>
+      <statement>
+        <p>
+          We have <m>A^{\triangleright} \in \Mod_{A_0^{\triangleright} \liquid q}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          For <m>S = \varprojlim_i S_i \in \Prof</m>, we may apply 
+          <xref ref="lem-filtration-on-universal-liquefaction"/> to see that the action of <m>\Delta^*</m> on 
+          <me>
+            \Hom_{\CAb}(P \otimes \ZZ[\underline{S}], A^{\triangleright}) = \Hom_{\CAb}(P, \iHom_{\CAb}(\ZZ[\underline{S}], A^{\triangleright}))
+          </me>
+          is an isomorphism. This implies that the action on <m>\iHom_{\CAb}(P, A^{\triangleright})</m> is an isomorphism,
+          and hence the desired result.
+        </p>
+      </proof>
+    </corollary>
+    <lemma xml:id="lem-compare-maps-from-universal-liquefaction">
+      <statement>
+        <p>
+          For any <m>S \in \Prof</m> and any <m>M \in \Mod_{A_0^{\triangleright} \liquid q}</m>,
+          <men xml:id="eq-compare-homs-from-universal-liquefaction">
+            \Hom_{A_0^{\triangleright}}(A^{\triangleright} \otimes \ZZ[\underline{S}], M) \cong
+            \Hom_{A_0^{\triangleright}}(A_0^{\triangleright} \otimes \ZZ[\underline{S}], M).
+          </men>
+          Consequently, we have <m>\iHom_{A_0^{\triangleright}}(A^{\triangleright}, M) \cong \iHom_{A_0^{\triangleright}}(A_0^{\triangleright}, M)</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By replacing <m>M</m> with <m>\iHom_{\CAb}(\ZZ[\underline{S}], M)</m> and applying Hom-tensor adjunction, we reduce to the case <m>S = \{*\}</m>. 
+          From <xref ref="lem-filtration-on-universal-liquefaction"/>, we see that for <m>k \geq 0</m>,
+          <men xml:id="eq-compare-level-of-universal-liquefaction">
+            \Hom_{A_0^{\triangleright}}(A_{k+1}^{\triangleright}, M) \cong
+            \Hom_{A_0^{\triangleright}}(A_k^{\triangleright}, M)
+          </men>.
+          In particular, for <m>k \geq 0</m>,
+          <me>
+            \Hom_{A_0^{\triangleright}}(A_k^{\triangleright}, M) \cong
+            \Hom_{A_0^{\triangleright}}(A_0^{\triangleright}, M)
+          </me>
+          and taking a colimit over <m>k</m> yields the claim.
+        </p>
+      </proof>
+    </lemma>
+    <proposition xml:id="prop-initial-analytic">
+      <statement>
+        <p>
+          The (derived) <m>q</m>-liquefaction of <m>A_0^{\triangleright}</m> equals <m>A^{\triangleright}</m>.
+          That is, the pair <m>(A^{\triangleright},  \Mod_{A_0^{\triangleright} \liquid q})</m> is an analytic ring.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          For the underived liquefaction, this follows directly from <xref ref="lem-compare-maps-from-universal-liquefaction"/>;
+          the promotion to the derived liquefaction follows from <xref ref="rem-liquefaction-kills-ext1"/>.
+          Alternatively, see <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 14, timestamp 17:00.
+        </p>
+      </proof>
+    </proposition>
+    <p>
+      As promised, we may apply this to compute the liquefaction of <m>\RR[\underline{S}] := \RR \otimes \ZZ[\underline{S}]</m>.
+    </p>
+    <proposition xml:id="prop-liquefaction-of-basic-over-R">
+      <statement>
+        <p>
+          For <m>S = \varprojlim_i S_i \in \Prof</m>, for any <m>q \in (0,1) \subset \RR</m>, the (derived) <m>q</m>-liquefaction of <m>\RR[\underline{S}]</m> equals
+          <me>
+            \bigcup_{k,c \gt 0} \varprojlim_i \left\{ \sum_{s \in s_i} x_s[s] \in \RR[S_i] \colon \sum_{s \in S_i} f_k(|x_s|) \lt c \right \}
+          </me>
+          where <m>f_k\colon \RR_{\geq 0} \to \RR_{\geq 0}</m> is an increasing concave function
+          such that <m>f_k(x) = \left| \log x \right|^{-k}</m> for <m>x</m> sufficiently small.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          This follows by applying <xref ref="prop-initial-analytic"/> and tensoring along the map <m>A_0^{\triangleright} \to \RR</m>
+          sending <m>q</m> to any value in <m>(0,1)</m>.
+          For more details, see <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 14, timestamp 1:15:00.
+        </p>
+      </proof>
+    </proposition>
+    <remark>
+      <p>
+        Just as with solid modules, we can take this further and liquefy with respect to other parameters.
+        For instance, we can start with <m>\RR[T]</m> and liquefy with respect to some <m>q \in (0,1)</m> and <m>T</m>.
+      </p>
+    </remark>
+  </subsection>
+</section>

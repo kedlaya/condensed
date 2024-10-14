@@ -1,0 +1,247 @@
+﻿<section xml:id="sec_cohomology">
+  <title>Condensed cohomology</title>
+  <introduction>
+    <p>
+      In this section, we explain some links between condensed abelian groups and classical notions of algebraic topology,
+      e.g., the singular cohomology of CW complexes.
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This section is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 4,
+        except that we take advantage of the material from <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 5
+        to reverse the flow of some information.
+        See also <xref ref="bib-Clausen-Scholze-notes"/>, Lecture 4 (with the same proviso).
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>Condensed cohomology on compact spaces</title>
+    <definition>
+      <p>
+        For <m>X \in \CSet</m> and <m>M</m> a topological abelian group, we define the <term>condensed cohomology</term> groups of <m>X</m> with values in <m>M</m>
+        to be 
+        <me>
+          H^i(X, M) := \Ext^i_{\CAb}(\ZZ[X], \underline{M}).
+        </me>
+        When <m>X \in \Top</m> we may also write <m>H^i_{\cond}(X, M)</m> to mean <m>H^i(\underline{X}, \underline{M})</m>.
+      </p>
+    </definition>
+    <lemma xml:id="lem-cohomology-of-profinite-in-solid">
+      <statement>
+        <p>
+          For <m>X \in \Prof</m> and <m>M \in \TopAb_\solid</m>, <m>\Ext^i_{\CAb}(\ZZ[\underline{X}], \underline{M}) = 0</m> for all <m>i \gt 0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          This is included in <xref ref="lem-identify-solidification-of-free"/>: we have <m>\ZZ[\underline{X}] \cong \prod_i \underline{\ZZ} \cong P_\solid</m>
+          and the latter is internally projective in <m>\CAb_\solid</m> by <xref ref="prop-internally-projective"/>.
+        </p>
+      </proof>
+    </lemma>
+    <corollary xml:id="lem-condensed-cohomology-of-profinite">
+      <statement>
+        <p>
+          For <m>X \in \Prof</m> and <m>M \in \Ab</m>, <m>H^i_{\cond}(X, M) = 0</m> for all <m>i \gt 0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          This follows from <xref ref="lem-cohomology-of-profinite-in-solid"/> because discrete abelian groups are solid.
+        </p>
+      </proof>
+    </corollary>
+    <theorem xml:id="thm-sheaf-to-cond-on-compact-with-discrete-coeffs">
+      <statement>
+        For <m>X \in \CHaus</m> and <m>M \in \Ab</m>, there are natural (in <m>X</m>) isomorphisms
+        <me>
+          H^i_{\sheaf}(X, M) \cong H^i_{\cond}(X, M)
+        </me>
+        where <m>H^i_{\sheaf}(X, \bullet)</m> denotes the usual right derived functors of the global sections functor.
+      </statement>
+      <proof>
+        <p>
+          We loosely follow <xref ref="bib-Clausen-Scholze-notes"/>, Theorem 3.2.
+          Using <xref ref="rem-construct-profinite-cover"/>, we may construct a simplicial hypercovering <m>X_\bullet \to X</m> by objects of <m>\Prof</m>.
+          By <xref ref="lem-condensed-cohomology-of-profinite"/>, the terms of this hypercovering are acyclic and so we may compute <m>R\Gamma_{\cond}(X, M)</m> by the Čech complex
+          <me>
+            0 \to \Gamma(X_0, M) \to \Gamma(X_1, M) \to \cdots.
+          </me>
+          Since continuous functions from any <m>X_n</m> to the discrete group <m>M</m> are locally constant, the augmented version of this complex is itself a colimit of complexes associated to simplicial hypercoverings of finite sets,
+          which are acyclic by <xref ref="lem-condensed-cohomology-of-profinite"/> again. 
+        </p>
+      </proof>
+    </theorem>
+    <remark>
+      <p>
+        For <m>X \in \CHaus</m>, we can also interpret <m>H^i_{\sheaf}(X,S)</m> as Čech cohomology  (<xref ref="bib-Godement"/>, Théorème 5.10.1).
+        In some cases we can also interpret it as singular cohomology, see for example <xref ref="subsec-cohom-CW"/>.
+      </p>
+    </remark>
+    <p>
+      We next consider coefficients in the topological (not discrete) group <m>\RR</m>.
+    </p>
+    <theorem xml:id="thm-cohom-compact-coeffs-in-R">
+      <statement>
+        <p>
+          For <m>X \in \CHaus</m>, <m>H^i_{\cond}(X, \RR) = 0</m> for all <m>i \gt 0</m>. (Note that <m>H^0_{\cond}(X, \RR)</m> is the group of continuous maps <m>S \to \RR</m>.)
+          More precisely, for any simplicial hypercovering <m>X_\bullet \to X</m> by objects of <m>\Prof</m>, the augmented Čech complex
+          <me>
+            0 \to \Cts(X, \RR) \to \Cts(X_0, \RR) \to \Cts(X_1, \RR) \to \cdots
+          </me>
+          has the property that if we interpret each term as a Banach space for the supremum norm, then for every <m>\epsilon \gt 0</m>,
+          every cochain <m>f \in \Cts(X_n, \RR)</m> has the form <m>d(g)</m> for some <m>g \in \Cts(X_{n-1}, \RR)</m> with <m>\left| g \right|_{X_{n-1}} \leq (1+\epsilon) \left| f \right|_{X_n}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Suppose first that <m>X</m> and the <m>X_n</m> are all finite. Then the hypercover splits;
+          this means that the augmented Čech complex
+          admits a chain homotopy which is <q>combinatorial</q> in the sense that every map is given by pullback along a map of underlying sets.
+          (This amounts to a very basic case of the <term>Dold<ndash/>Kan correspondence</term>.)
+          In this case the claim evidently holds even for <m>\epsilon = 0</m>.
+        </p>
+        <p>
+          By the same token, if <m>X</m> and the <m>X_n</m> are all profinite, then we can write the augmented Cech complex as a completed colimit of sequences
+          of the previous form. By some elementary analysis (left to the reader), this implies the claim but now with <m>\epsilon \gt 0</m>.
+        </p>
+        <p>
+          In the general case, given <m>f \in \Cts(X_n, \RR)</m> nonzero with <m>df = 0</m>,
+          for any <m>x \in X</m> we can apply the previous case to the restriction of <m>f</m> to <m>X_n \times_X \{x\}</m>.
+          We may then deduce the general case by spreading the results out using Tietze's extension theorem,
+          invoking compactness to see that the spread out functions cover <m>X</m>,
+          and constructing a suitable partition of unity argument to patch together the local choices.
+          See <xref ref="bib-Clausen-Scholze-notes"/>, Theorem 3.3 for the detailed argument.
+        </p>
+      </proof>
+    </theorem>
+  </subsection>
+  <subsection xml:id="subsec-cohom-CW"> 
+    <title>Cohomology of CW complexes</title>
+    <definition>
+      <p>
+        A <term>CW complex</term> is a topological space obtained as a colimit <m>X_0 \subseteq X_1 \subseteq \cdots</m>
+        in which each <m>X_k</m> is obtained from <m>X_{k-1}</m> by glueing in some copies of the <m>k</m>-dimensional ball, with the boundaries contained in <m>X_{k-1}</m>.
+      </p>
+    </definition>
+    <theorem xml:id="thm-cohom-CW-complex">
+      <statement>
+        <p>
+          For <m>X</m> a sequential CW complex, there is a canonical isomorphism <m>H^i_{\cond}(X, M) \cong H^i_{\sing}(X, M)</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          For a CW complex, we have <m>H^i_{\sing}(X, M) \cong H^i_{\sheaf}(X, M)</m>.
+          We can thus deduce this from <xref ref="thm-sheaf-to-cond-on-compact-with-discrete-coeffs"/>.
+        </p>
+      </proof>
+    </theorem>
+    <remark>
+      <p>
+        <xref ref="thm-cohom-CW-complex"/> can be thought of as a reinterpretation of the <term>Dold<ndash/>Thom theorem</term> in algebraic topology.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>Locally compact abelian groups</title>
+    <p>
+      See <xref ref="bib-Hoffmann-Spitzweck"/> for a much more detailed development of this topic.
+    </p>
+    <theorem xml:id="thm-LCAb-structure">
+      <statement>
+        <p>
+          Let <m>\LCAb</m> denote the category of sequential locally compact abelian groups.
+        </p>
+        <ol>
+          <li>
+            Every <m>A \in \LCAb</m> has the form <m>\RR^n \times A'</m> for some nonnegative integer <m>n</m> and some <m>A' \in \LCAb</m>
+            admitting a compact open subgroup. In particular, <m>A'</m> is an extension of a discrete abelian group by a compact group.
+          </li>
+          <li>
+            Let <m>\TT \cong \RR/\ZZ \in \Top</m> be the circle group.
+            The Pontryagin duality functor 
+            <me>
+              A \mapsto D(A) := \Hom_{\LCAb}(A, \TT)
+            </me>
+            takes values in <m>\LCAb</m> and induces a contravariant autoduality on this category. In particular, there is a functorial isomorphism <m>A \to D(D(A))</m>.
+          </li>
+          <li>
+            The functor <m>D</m> restricts to a duality between discrete abelian groups and compact abelian groups.
+          </li>
+        </ol>
+      </statement>
+      <proof>
+        <p>
+          See <xref ref="bib-Hewitt-Ross"/>, specifically Theorem 24.30 for the first point, Theorem 24.8 for the second, and Theorem 23.17 for the third. 
+        </p>
+      </proof>
+    </theorem>
+    <lemma xml:id="lem-cohom-of-torus">
+      <statement>
+        <p>
+          For any discrete abelian group <m>M</m> and any at most countable index set <m>I</m>, we have
+          <me>
+            R\Hom_{\CAb}(\TT, \underline{M}) = \bigoplus_I M[-1].
+          </me>
+          More precisely, the map from right to left has the form
+          <me>
+            M[-1] = R\Hom_{\CAb}(\underline{\ZZ}[1], M) \cong R\Hom_{\CAb}(\underline{\TT}, M) \to R\Hom_{\CAb}(\prod_I \underline{\TT}, M)
+          </me>
+          where the passage from <m>\ZZ</m> to <m>\TT</m> is the connecting homomorphism from the exact sequence of topological abelian groups:
+          <me>
+            0 \to \ZZ \to \RR \to \TT \to 0
+          </me>
+          and the map <m>\underline{\TT} \to \prod_I \underline{\TT}</m> varies over the insertion maps.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Since <m>\TT</m> is a compact CW complex,
+          this can be deduced from <xref ref="thm-sheaf-to-cond-on-compact-with-discrete-coeffs"/> and <xref ref="thm-cohom-CW-complex"/>;
+          but it can also be seen more directly as follows.
+          Since <m>\underline{M}</m> is solid by <xref ref="prop-solid-vs-presumptively-solid"/>,
+          we have <m>R\Hom_{\CAb}(\prod_I \underline{\RR}, \underline{M})</m> by <xref ref="cor-solid-R-module-is-zero-monomorphism"/>.
+          Meanwhile, via <xref ref="prop-solid-vs-presumptively-solid"/> we have 
+          <me>
+            R\Hom_{\CAb}(\prod_I \underline{\ZZ}, \underline{M}) = R\Hom_{\ZZ_\solid}(\prod_I \ZZ_\solid, M_\solid) = \bigoplus_I M[0]
+          </me>
+          because <m>\prod_I \underline{\ZZ}</m> is projective in <m>\Mod_{\ZZ_\solid}</m>.
+          This yields the claim.
+        </p>
+      </proof>
+    </lemma>
+    <theorem>
+      <statement>
+        <p>
+          The assignment <m>A \mapsto \underline{A}</m> defines a fully faithful functor from the bounded derived category of <m>\LCAb</m> to the derived category of <m>\CAb</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          In light of point 1 of <xref ref="thm-LCAb-structure"/>, it suffices to check that <m>R\Hom_{\LCAb}(A,B) \cong R\Hom_{\CAb}(\underline{A}, \underline{B})</m>
+          when each of <m>A,B</m> is either compact, discrete, or isomorphic to <m>\RR</m>. We break down the argument as follows.
+        </p>
+        <p>
+          Suppose first that <m>A</m> is discrete. Using resolutions and filtered colimits we may reduce to the case <m>A = \ZZ</m>.
+          In this case, <m>A</m> and <m>\underline{A}</m> are projective in their respective categories and the result is clear.
+        </p>
+        <p>
+          Suppose next that <m>A</m> is compact. By taking a resolution of the dual group, we may reduce to the case where <m>A = \prod_I \TT</m> with <m>I</m> at most countable.
+          At this point, when <m>B</m> is discrete we may deduce the desired isomorphism by comparing <xref ref="lem-cohom-of-torus"/> with <xref ref="bib-Hoffmann-Spitzweck"/>, Example 4.11;
+          when <m>B = \RR</m> we may instead compare <xref ref="thm-cohom-compact-coeffs-in-R"/> with <xref ref="bib-Hoffmann-Spitzweck"/>, Proposition 4.15 for the same effect.
+          Combining these and using the exact sequence
+          <men xml:id="eq-exact-seq-for-torus">
+            0 \to \ZZ \to \RR \to \TT \to 0
+          </men>
+          we deduce the claim also when <m>B = \TT</m>, and consequently when <m>B = \prod_I \TT</m>; again we may formally promote this to the general case of <m>B</m> compact.
+        </p>
+        <p>
+          Finally, to resolve the case <m>A = \RR</m> we may use <xref ref="eq-exact-seq-for-torus"/> to reduce to the previously treated cases <m>A = \ZZ</m> (discrete)
+          and <m>A = \TT</m> (compact).
+        </p>
+      </proof>
+    </theorem>
+  </subsection>
+</section>

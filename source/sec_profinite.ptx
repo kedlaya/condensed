@@ -1,0 +1,315 @@
+﻿<section xml:id="sec_profinite_set">
+  <title>Profinite sets</title>
+  <introduction>
+    <p>
+      We describe the category of profinite sets, which will provide the test objects for the definition of condensed sets.
+    </p>
+    <p>
+      As in <xref ref="sec_solid1"/>, we fix an infinite cardinal <m>\kappa</m>.
+      In subsequent sections we will make the blanket assumption <m>\kappa = \aleph_0</m>;
+      this will correspond to restricting attention to <q>light</q> condensed sets in the terminology of <xref ref="bib-Clausen-Scholze-youtube"/>.
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This lecture is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lectures 1 and 2.
+        See also <xref ref="bib-Clausen-Scholze-notes"/>, Lecture 1.
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>Pro-objects in a category</title>
+    <definition>
+      <p>
+        A <term>directed set</term> is a partially ordered set <m>(I, \leq)</m> with the property that for any <m>i,j \in I</m>,
+        the set <m>\{k \in I\colon k \geq i, k \geq j\}</m> is nonempty. We may view a directed set as a category in which there
+        is a single morphism <m>i \to j</m> if <m>i \leq j</m> and none otherwise.
+      </p>
+      <p>
+        Given a category <m>\calC</m>, we define an associated category <m>\varprojlim_\kappa \calC</m> as follows.
+        The objects of <m>\varprojlim_\kappa \calC</m> (also called <term>pro-objects</term> of <m>\calC</m>) 
+        are the <m>\kappa</m>-small inverse systems,
+        i.e., contravariant functors to <m>\calC</m> out of directed sets of cardinality <m> \leq \kappa</m>.
+        The homsets are given by the formula
+        <me>
+          \Hom_{\varprojlim_\kappa \calC}\left(\varprojlim_{i \in I} X_i, \varprojlim_{j \in J} Y_j\right) 
+          = \varprojlim_{j \in J} \left( \varinjlim_{i \in I} \Hom_{\calC}(X_i, Y_j) \right)
+        </me>.
+        Another way to interpret <m>\varprojlim_\kappa \calC</m> is as the subcategory of <m>\Fun(\calC, \Set)^{\op}</m>
+        consisting of cofiltered limits of representable functors.
+      </p>
+      <p>
+        Note that for formal reasons, <m>\varprojlim_\kappa \calC</m> admits <m>\kappa</m>-small limits. Moreover,
+        any functor <m>\calC \to \calC'</m> whose target admits <m>\kappa</m>-small limits
+        induces a canonical <term>inverse limit functor</term> <m>\varprojlim_\kappa \calC \to \calC'</m>.
+        For instance this applies when <m>\calC</m> admits a forgetful functor to <m>\Set</m>.
+      </p>
+    </definition>
+    <example xml:id="exa-maps-between-inverse-systems">
+      <p>
+        In the category <m>\varprojlim_\kappa \Ab</m>,
+        consider the inverse system of <m>\ZZ/p^n \ZZ</m> over all positive integers <m>n</m>, which has inverse limit <m>\ZZ_p</m>.
+        According to the definition, the family of reduction maps <m>\ZZ/p^{2n} \ZZ \to \ZZ/p^n \ZZ</m> constitutes a morphism
+        <m>\varprojlim_\kappa \ZZ/p^n \ZZ \to \varprojlim_\kappa \ZZ/p^n \ZZ</m>. However, this is <em>the same</em> morphism
+        in <m>\varprojlim_\kappa \Ab</m> as the one constituted by the family of identity maps <m>\ZZ/p^{n} \ZZ \to \ZZ/p^n \ZZ</m>,
+        which is consistent with the fact that they both induce the identity map on the inverse limits in <m>\Ab</m>.
+      </p>
+      <p>
+        Another way to say this is that if we take the inverse system of <m>\ZZ/p^{2n}\ZZ</m> over all <em>even</em> positive integers <m>n</m>,
+        the resulting pro-object is isomorphic to the one we started with. More generally, this implies if we start with any index set <m>I</m>
+        and replace it with a <term>cofinal</term> subset <m>I'</m>, meaning one such that for any <m>i \in I</m> there exists <m>i' \in I'</m>
+        with <m>i \leq i'</m>.
+      </p>
+    </example>
+    <remark xml:id="rem-change-pro-system">
+      <p>
+        Building on <xref ref="exa-maps-between-inverse-systems"/>, keep in mind that pro-objects indexed by different partially
+        ordered sets <m>I</m> can nonetheless be isomorphic; that is, the index set is not an intrinsic datum of a pro-object but only
+        an artifact used to give a concrete description.
+      </p>
+      <p>
+        This is closely related (via Stone duality; see <xref ref="rem-Stone-duality"/>) 
+        to the fact that it is useful to describe a topology on a set in terms of a neighborhood basis,
+        but the neighborhood basis is not an intrinsic datum of the resulting topological space.
+      </p>
+      <p>
+        Another side effect is that it can be confusing to think about properties of a morphism of pro-objects such as injectivity or surjectivity.
+        It is better to view these as properties of the corresponding morphisms of topological spaces (again see <xref ref="rem-Stone-duality"/>).
+      </p>
+    </remark>
+    <remark>
+      <p>
+        As an example of <xref ref="rem-change-pro-system"/>,
+        consider the category of pro-systems of abelian groups, for which the inverse limit functor is left exact
+        and hence admits right derived functors. 
+        For <em>sequential</em> pro-objects the derived functors
+        beyond <m>R^1 \varprojlim</m> all vanish (<xref ref="bib-Stacks"/>, tag 07KW);
+        by <xref ref="rem-change-pro-system"/> the same applies to any countable
+        pro-object in abelian groups.
+        By contrast, for a larger pro-object it can happen that <m>R^i \varprojlim</m> is nonzero for <m>i \gt 1</m>.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>The category of profinite sets</title>
+    <definition>
+      <p>
+        The category of <term>profinite sets</term> is defined to be <m>\Prof := \varprojlim_\kappa \Set^{\fin}</m> 
+        where <m>\Set^{\fin}</m> denotes the full subcategory of <m>\Set</m> consisting of finite sets.
+      </p>
+    </definition>
+    <p>
+      We introduce two key examples, one <q>maximal</q> and one <q>minimal</q>.
+    </p>
+    <example>
+      <p>
+        By the <term>(abstract) Cantor set</term>, we will mean the object <m>\{0,1\}^{\NN}</m> of <m>\Prof</m>
+        indexed by <m>\NN</m>, where <m>n</m> corresponds to <m>\{0,1\}^n</m> and the projection <m>\{0,1\}^{n+1} \to \{0,1\}^n</m>
+        is the map that forgets the last coordinate.
+        This example is in a certain sense maximal when <m>\kappa = \aleph_0</m>; see <xref ref="rmk-Cantor-set-surjection"/>.
+      </p>
+    </example>
+    <example xml:id="exa-one-point-compactification-of-N">
+      <p>
+        Let <m>\NN_\infty</m> be the object of <m>\Prof</m> indexed by <m>\NN</m>, where <m>n</m> corresponds to <m>\{0,\dots,n,\infty\}</m>
+        and the projection <m>\{0,\dots,n+1,\infty\} \to \{0,\dots,n,\infty\}</m>.
+        This example plays an important role in the relationship between topological spaces and condensed sets;
+        see <xref ref="rem-interpret-sequential-limits"/>.
+      </p>
+      <p>
+        An interesting example of a morphism <m>S \to \NN_\infty</m> is given by the <m>p-</m>-adic valuation map <m>v_p \colon \ZZ_p \to \NN_\infty</m>.
+      </p>
+    </example>
+    <p>
+      We will freely pass between the given definition of profinite sets and the following alternate interpretation.
+    </p>
+    <remark xml:id="rem-Stone-duality">
+      <title>Stone duality, part 1</title>
+      <p>
+        Since <m>\Set</m> admits limits, we obtain a natural functor <m>\Prof \to \Set</m> taking an inverse system to its inverse limit. 
+        Alternatively, by viewing every finite set as a topological space for the
+        discrete topology, we may factor <m>\Prof \to \Set</m> through the category <m>\Top</m> of topological spaces.
+      </p>
+      <p>
+        Now observe that the inverse limit of a family of Hausdorff topological spaces is a <em>closed</em> subspace of the full product over the same family:
+        the compatibility with morphisms is a collection of conditions involving two factors at a time, and hence a closed condition for the product topology.
+        By Tykhonoff's theorem, any product of compact Hausdorff spaces is compact, so any inverse limit of compact Hausdorff spaces is compact.
+        As a result, the functor <m>\Prof \to \Top</m> factors through the full subcategory <m>\CHaus</m> of <m>\Top</m> 
+        consisting of compact Hausdorff spaces admitting a neighborhood basis of cardinality <m>\leq \kappa</m>.
+        (When <m>\kappa = \aleph_0</m>, Urysohn's theorem says that these are just the <term>metrizable</term> compact Hausdorff spaces.)
+      </p>
+      <p>
+        Conversely, an object of <m>\CHaus</m> belongs to the essential image of <m>\Prof \to \Top</m> if and only if it is
+        <term>totally disconnected</term>, meaning that any two distinct points can be separated by a partition of the
+        space into two closed-open subsets.
+        Namely, we can write down a corresponding inverse system with terms corresponding to the finite closed-open coverings;
+        see <xref ref="rem-construct-profinite-cover"/> for the detailed construction in a more general context.
+        One side effect of the construction is that we can represent any object of <m>\Prof</m> as an inverse system with <em>surjective</em> transition maps,
+        which we will almost always do in practice.
+      </p>
+    </remark>
+    <remark xml:id="rmk-Cantor-set">
+      <p>
+        Note that the cardinality cutoff <m>\kappa</m> applies to a neighborhood basis of a totally disconnected compact Hausdorff space,
+        not to the underlying set of the topological space. For example, for <m>\kappa = \aleph_0</m>, the Cantor set
+        <m>\{0,1\}^{\NN}</m> belongs to <m>\Prof</m> but its underlying set <m>\prod_{n=1}^\infty \{0,1\}</m> has cardinality <m>2^\kappa</m>.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        The object of <m>\CHaus</m> corresponding to <m>\NN_\infty \in \Prof</m> is the <term>one-point compactification</term> of <m>\NN</m>.
+        That is, if we interpret <m>\NN</m> as an object of <m>\Top</m> for the discrete topology, then <m>\NN_\infty</m>
+        corresponds to the topological space with underlying set <m>\NN \cup \{\infty\}</m> 
+        in which an open subset of <m>\NN</m> is either an arbitrary subset of <m>\NN</m> or <m>\infty</m> 
+        plus a <em>cofinite</em> subset of <m>\NN</m>.
+      </p>
+    </remark>
+    <p>
+      In connection with Stone duality, we will make frequent use of the following fact about compact Hausdorff topological spaces,
+      which in a sense makes them quite similar to objects of more algebraic categories.
+    </p>
+    <lemma xml:id="lem-every-surjection-in-CHaus-is-quotient">
+      <statement>
+        Any continuous surjection <m>f\colon Y \to X</m> of compact Hausdorff spaces is a quotient map.
+      </statement>
+      <proof>
+        <p>
+          The quotient map property says that a subset <m>V</m> of <m>X</m> is closed if its preimage <m>f^{-1}(V)</m> is closed
+          (the <q>only if</q> statement being the property that <m>f</m> is continuous). The surjectivity of <m>f</m>
+          means that <m>f(f^{-1}(V)) = V</m>; since any closed subset of <m>Y</m> is again compact, <m>V</m> is the image of a
+          quasicompact topological space and hence is also quasicompact (we can test whether a finite subcollection of a covering is a covering by
+          checking the inverse images). 
+          Since <m>X</m> is Hausdorff, 
+          for any <m>x \in X \setminus V</m>, for each <m>y \in V</m> we can find open subsets separating <m>x</m> and <m>y</m>.
+          We can choose finitely many <m>y</m> so that the opens covering those <m>y</m> cover all of <m>V</m>;
+          intersecting the corresponding opens covering <m>x</m> produces an open neighborhood of <m>x</m> within <m>X \setminus V</m>.
+          Since <m>x \in X \setminus V</m> was arbitrary, we conclude that <m>X \setminus V</m> is open and hence <m>V</m> is closed.
+        </p>
+      </proof>
+    </lemma>
+    <p>
+      We will make occasional use of a third interpretation of profinite sets.
+    </p>
+    <remark xml:id="rem-Stone-duality-part-2">
+      <title>Stone duality, part 2</title>
+      <p>
+        We can also describe <m>\Prof</m> in terms of Boolean algebras:
+        the space <m>X</m> corresponds to <m>\Hom_{\Top}(X, \FF_2)</m>
+        (i.e., the partitions of <m>X</m> into two closed-open subsets labeled <m>0</m> and <m>1</m>). 
+        and we recover <m>X</m> by taking <m>\MaxSpec</m> (the set of maximal ideals with the Zariski topology). 
+        From this point of view, the cardinality cutoff is that <m>|\Hom_{\Top}(X, \FF_2)| \leq \kappa</m>.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>Effects of the cardinality cutoff</title>
+    <p>
+      For the remainder of this section, let us assume that <m>\kappa = \aleph_0</m>.
+      We spell out some effects of this condition,
+      starting with an important special case of <xref ref="rem-change-pro-system"/>.
+    </p>
+    <remark xml:id="rem-change-pro-system-to-sequential">
+      <p>
+        Now that we are assuming <m>\kappa = \aleph_0</m>, 
+        every pro-object is isomorphic to an inverse system on the index set <m>\NN</m>.
+        In <m>\Prof</m>, we can further ensure (by <xref ref="rem-Stone-duality"/>) that the transition maps are surjective.
+      </p>
+      <p>
+        We will use this repeatedly in the following discussion.
+        However, when describing pro-objects in practice it is sometimes more natural to use an alternate index set, 
+        e.g., when forming products the index set <m>\NN \times \NN</m> occurs naturally.
+      </p>
+    </remark>
+    <proposition>
+      <statement>
+        For <m>S \in \Prof</m>, any open subset <m>U</m> of <m>S</m> (as an object of <m>\Top</m>) is an at most
+        <em>countable</em> disjoint union of objects of <m>\Prof</m>.
+      </statement>
+      <proof>
+        <p>
+          Per <xref ref="rem-change-pro-system-to-sequential"/>, we may write <m>S</m> as a sequential inverse limit of finite sets with surjective transition maps:
+          <m>S = \varprojlim_{n \in \NN} S_n</m>. For each <m>n \in \NN, x \in S_n</m>, let <m>U_{n,x}</m>
+          be the preimage of <m>x</m> in <m>S</m>; this is an open (and closed) subset of <m>S</m>,
+          and <m>U</m> is the union of <m>U_{n,x}</m> over all pairs <m>(n,x)</m> such that <m>U_{n,x} \subseteq U</m>.
+        </p>
+        <p>
+           Now consider the set of pairs <m>(n,x)</m> such that <m>U_{n,x} \subseteq U</m> and there is no <m>n' \lt n</m>
+           for which the image <m>x'</m> of <m>x</m> in <m>X_{n'}</m> satisfies <m>U_{n',x'} \subseteq U</m> (that is, this pair
+           is <q>irredundant</q>). For these pairs, the sets <m>U_{n,x}</m> form a countable disjoint union of objects of <m>\Prof</m>
+           with union <m>U</m>.
+        </p>
+      </proof>
+    </proposition>
+    <proposition xml:id="prop-profinite-injective">
+      <statement>
+        <p>
+          Every object of <m>\Prof</m> is injective in the full pro-category of <m>\Set^{\fin}</m> (with no cardinality cutoff).
+          That is, for any <m>S \in \Prof</m> and any injection <m>Y \to Z</m> in the pro-category,
+          any morphism <m>Y \to S</m> can be factored (not necessarily uniquely) through <m>Z</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Per <xref ref="rem-change-pro-system-to-sequential"/>, we may write <m>S</m> as a sequential inverse limit of finite sets with surjective transition maps:
+          <m>S = \varprojlim_{n \in \NN} S_n</m>.
+          We are given a coherent sequence of maps <m>Y \to S_n</m>
+          which we wish to factor through <m>Z</m>. It will suffice to show that 
+          given any maps <m>Y \to S_{n+1}</m>, <m>Z \to S_n</m> which yield the same composition <m>Y \to S_n</m>,
+          we can fill in a map <m>Z \to S_{n+1}</m>; that is, we can fit a dashed arrow into the following diagram.
+          <figure>
+            <image>
+              <latex-image>
+                \xymatrix{
+                  Y \ar[r] \ar[d] &amp; Z \ar[d] \ar@{-->}[dl] \\
+                  S_{n+1} \ar[r] &amp; S_{n}
+                }
+              </latex-image>
+            </image>
+          </figure>
+          By partitioning <m>Z</m> into closed-open subsets, we may reduce to the case where <m>S_n</m> is a singleton
+          (which means we can ignore the bottom right corner of the diagram).
+        </p>
+        <p>
+          At this point, we may choose representations <m>Y = \varprojlim_i Y_i</m>, <m>Z = \varprojlim_i Z_i</m>
+          such that <m>Y \to Z</m> is represented by a sequence of compatible injective morphisms <m>Y_i \to Z_i</m>.
+          (More precisely, start with any representation of <m>Z</m> and let <m>Y_i</m> be the image of <m>Y \to Z \to Z_i</m>;
+          the injectivity of <m>Y \to Z</m> ensures that <m>\varprojlim_i Y_i = Y</m>.)
+          The morphism <m>Y \to S_{n+1}</m> factors through some <m>Y_i</m>; but now it is straightforward to
+          factor <m>Y_i \to S_{n+1}</m> through <m>Z_i</m> since all of the sets involved are finite.
+        </p>
+      </proof>
+    </proposition>
+    <remark xml:id="rem-cover-two-copies-of-NN">
+      <p>
+        By contrast, objects of <m>\Prof</m> are in general not projective unless they are finite.
+        For example, for <m>S = \NN_\infty</m>, we have a covering of <m>S</m> by a disjoint union of two copies of <m>\NN_\infty</m>,
+        one mapping via <m>n \mapsto 2n</m> and the other via <m>n \mapsto 2n+1</m>.
+        This covering cannot be split: there are only two set-theoretic splittings, corresponding to choosing one point in the fiber over <m>\infty</m>,
+        and in both cases we end up with a sequence in <m>\NN_\infty</m> mapping to the wrong limit point.
+      </p>
+    </remark>
+    <p>
+      In a similar vein, we have the following.
+      Again, this is not particularly useful in practice but is convenient for some theoretical considerations;
+      it means we can view an object in <m>\CSet</m> as its value on the Cantor set plus some descent data.
+    </p>
+    <proposition xml:id="rmk-Cantor-set-surjection">
+      <statement>
+        <p>
+          For any <m>S \in \Prof</m>, there exists a surjection of the form <m>\{0,1\}^\NN \to S</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Per <xref ref="rem-change-pro-system"/>, we may write <m>S</m> as a sequential inverse limit of finite sets with finite transition maps:
+          <m>S = \varprojlim_{n \in \NN} S_n</m>. 
+          It will suffice to show that any surjection 
+          <m>\{0,1\}^{n_1} \to S_n</m>
+          for some <m>n_1 \in \NN</m> can be lifted to a surjection <m>\{0,1\}^{n_2} \to S_{n+1}</m> for some <m>n_2 \geq n_1</m>;
+          this is obvious because all of the sets involved are finite.
+        </p>
+      </proof>
+    </proposition>
+  </subsection>
+    
+</section>

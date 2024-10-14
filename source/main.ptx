@@ -3,7 +3,7 @@
   <docinfo>
     <macros>
       \usepackage{mathrsfs,wasysym}
-      \def\AA{\mathbb{A}}
+      \def\AAA{\mathbb{A}}
       \def\CC{\mathbb{C}}
       \def\FF{\mathbb{F}}
       \def\NN{\mathbb{N}}
@@ -13,18 +13,15 @@
       \def\TT{\mathbb{T}}
       \def\ZZ{\mathbb{Z}}
 
-      \def\gotha{\mathfrak{a}}
-      \def\gothb{\mathfrak{b}}
-      \def\gothm{\mathfrak{m}}
-      \def\gotho{\mathfrak{o}}
-      \def\gothp{\mathfrak{p}}
-      \def\gothq{\mathfrak{q}}
-      \def\gothr{\mathfrak{r}}
+      \def\frakm{\mathfrak{m}}
       
       \def\calA{\mathscr{A}}
       \def\calB{\mathscr{B}}
       \def\calC{\mathscr{C}}
       \def\calF{\mathscr{F}}
+      \def\calL{\mathscr{L}}
+      \def\calM{\mathscr{M}}
+      \def\calO{\mathscr{O}}
 
       \def\llbracket{[\![}
       \def\rrbracket{]\!]}
@@ -33,6 +30,9 @@
       \def\liquid{\approx}
       \def\gas{\sun}
 
+      \DeclareMathOperator{\acc}{acc}
+      \DeclareMathOperator{\an}{an}
+      \DeclareMathOperator{\AnSpec}{AnSpec}
       \DeclareMathOperator{\bd}{bd}
       \DeclareMathOperator{\cof}{cof}
       \DeclareMathOperator{\coker}{coker}
@@ -43,17 +43,21 @@
       \DeclareMathOperator{\End}{End}
       \DeclareMathOperator{\Ext}{Ext}
       \DeclareMathOperator{\fin}{fin}
+      \DeclareMathOperator{\fpqc}{fpqc}
       \DeclareMathOperator{\Hom}{Hom}
       \DeclareMathOperator{\id}{id}
       \DeclareMathOperator{\ima}{image}
       \DeclareMathOperator{\MaxSpec}{MaxSpec}
       \DeclareMathOperator{\op}{op}
+      \DeclareMathOperator{\Proj}{Proj}
+      \DeclareMathOperator{\red}{red}
       \DeclareMathOperator{\seq}{seq}
       \DeclareMathOperator{\sheaf}{sheaf}
       \DeclareMathOperator{\sing}{sing}
       \DeclareMathOperator{\Spec}{Spec}
 
       \DeclareMathOperator{\Ab}{\mathbf{Ab}}
+      \DeclareMathOperator{\AnRing}{\mathbf{AnRing}}
       \DeclareMathOperator{\CAb}{\mathbf{CAb}}
       \DeclareMathOperator{\CHaus}{\mathbf{CHaus}}
       \DeclareMathOperator{\CSet}{\mathbf{CSet}}
@@ -63,9 +67,12 @@
       \DeclareMathOperator{\LCAb}{\mathbf{LCAb}}
       \DeclareMathOperator{\Mod}{\mathbf{Mod}}
       \DeclareMathOperator{\Prof}{\mathbf{Prof}}
+      \DeclareMathOperator{\Ring}{\mathbf{Ring}}
       \DeclareMathOperator{\Set}{\mathbf{Set}}
+      \DeclareMathOperator{\Shv}{\mathbf{Shv}}
       \DeclareMathOperator{\Top}{\mathbf{Top}}
       \DeclareMathOperator{\TopAb}{\mathbf{TopAb}}
+      \DeclareMathOperator{\QCoh}{\mathbf{QCoh}}
     </macros>
     <latex-image-preamble>
       \usepackage{graphicx}
@@ -125,6 +132,8 @@
     <xi:include href="./sec_cohomology.ptx"/>
     <xi:include href="./sec_solid_completion.ptx"/>
     <xi:include href="./sec_analytic.ptx"/>
+    <xi:include href="./sec_huber_rings.ptx"/>
+    <xi:include href="./sec_analytic_stacks1.ptx"/>
     <backmatter>
       <xi:include href="./bibliography.ptx"/>
     </backmatter>
