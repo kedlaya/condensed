@@ -32,7 +32,7 @@
         (for the discrete topology on <m>\ZZ[T]</m>) represents a morphism of ring objects in <m>\CAb_\solid</m>.
       </p>
       <p>
-        By the same token, <m>\ZZ \llbracket T_1 ,\dots, T_n \rrbracket</m> equipped with the <m>(T_1,\dots,T_n)</m>-adic topology represents a ring object in <m>\CAb_\solid</m>.
+        By the same token, <m>\ZZ \llbracket T_1,\dots, T_n \rrbracket</m> equipped with the <m>(T_1,\dots,T_n)</m>-adic topology represents a ring object in <m>\CAb_\solid</m>.
       </p>
     </example>
     <example>
@@ -83,7 +83,7 @@
         </me>.
         As in <xref ref="exa-solid-modules-with-underlying-zero"/>, we can insert in between the functor
         <m>\prod_I \ZZ_\solid \mapsto \prod_I \ZZ[T]</m>. This corresponds to a ring object in <m>\Ab_\solid</m>
-        which we might call <m>\ZZ\langle T \rangle</m>, but which does <em>not</em> correspond to a topological ring
+        which we might call <m>\ZZ\langle T \rangle</m>, but which does <em>not</em> correspond to a topological ring.
       </p>
       <p>
         However, this example is extremely useful! For instance, we have
@@ -91,14 +91,19 @@
           \ZZ \langle T \rangle \otimes_\solid \ZZ \llbracket U \rrbracket \cong \ZZ \llbracket U \rrbracket\langle T \rangle
         </me>
         where <m>\ZZ \llbracket U \rrbracket\langle T \rangle</m> means the <m>U</m>-adic completion of <m>\ZZ\llbracket U \rrbracket[T]</m>
-        (or equivalently <m>\ZZ[U,T]</m>).
-        More precisely, both functors are given by 
+        (or equivalently of <m>\ZZ[U,T]</m>). To see this, write <m>\ZZ \llbracket U \rrbracket</m> as <m>\prod_{n \in \NN} \ZZ U^n</m>, compute
         <me>
-          \prod_I \ZZ_\solid \mapsto \prod_i (\ZZ \llbracket U \rrbracket[T])
+          \ZZ \langle T \rangle \otimes_\solid \prod_{n \in \NN} \ZZ U^n = \prod_{n \in \NN} \ZZ \langle T \rangle U^n,
+        </me>
+        and interpret the right-hand side as the functor
+        <me>
+          \prod_I \ZZ_\solid \mapsto \prod_I \prod_{n \in \NN} \ZZ[T] U^n = \prod_I \ZZ \llbracket U \rrbracket\langle T \rangle
         </me>.
       </p>
+    </example>
+    <example>
       <p>
-        By dividing by <m>U-p</m>, we deduce that
+        By dividing by <m>U-p</m> in the previous example, we deduce that
         <me>
           \ZZ \langle T \rangle \otimes_\solid \ZZ_p \cong \ZZ_p \langle T \rangle
         </me>
@@ -113,7 +118,7 @@
         This suggests some value in working with solid rings and modules instead of topological rings and modules
         when dealing with adic completions and related constructions; they represent certain functors that would otherwise not be representable.
       </p>
-    </example>
+   </example>
   </subsection>
  <subsection>
     <title>Derived completeness</title>
@@ -148,9 +153,13 @@
       </statement>
       <proof>
         <p>
-          This amounts to verifying that
+          Since <m>R_f</m> admits a projective resolution of length 1:
           <me>
-            \Hom_{R}(R_f, M) = 0 \qquad \mbox{and} \qquad \Ext^1_{R}(R_f, M) = 0
+            0 \to R[T] \stackrel{\times 1-fT}{\to} R[T] \to R_f \to 0
+          </me>,
+          this amounts to verifying that
+          <me>
+            \Hom_{R}(R_f, M) = 0 \qquad \text{and} \qquad \Ext^1_{R}(R_f, M) = 0
           </me>.
           The first of these is obvious because
           <md>
@@ -182,11 +191,11 @@
         An object <m>M \in \Mod_{R_\solid}</m> is <term>classically <m>f</m>-complete</term> if the natural map 
         <m>M \to \varprojlim_n M/f^n M</m> is an isomorphism,
         and <term>derived <m>f</m>-complete</term> if <m>R\Hom_{R_\solid}((R_f)_\solid, M) = 0</m>.
-        From the exact sequence
+        As in the proof of <xref ref="lem-classical-to-derived-complete"/>, we have the exact sequence
         <men xml:id="eq-resolution-of-Rf">
           0 \to R[T]_\solid \stackrel{\times (1-fT)}{\to} R[T]_\solid \to (R_f)_\solid \to 0
-        </men>,
-        we see that <m>M</m> is derived <m>f</m>-complete if and only if <m>1-fT</m> acts isomorphically on <m>R\Hom_{R_\solid}(R[T]_\solid, M)</m>.
+        </men>;
+        hence <m>M</m> is derived <m>f</m>-complete if and only if <m>1-fT</m> acts isomorphically on <m>R\Hom_{R_\solid}(R[T]_\solid, M)</m>.
       </p>
       <p>
         By the same token, we say that an object <m>M</m> in the (unbounded) derived category of <m>\Mod_{R_\solid}</m> is <term>derived <m>f</m>-complete</term>
@@ -233,7 +242,7 @@
         At this point some care is required when mixing discrete and solid modules.
         For example, if <m>M</m> is a classically <m>f</m>-complete <m>R</m>-module, then <m>M \otimes_R R_\solid</m> is a discrete <m>R_\solid</m>-module
         which by <xref ref="lem-classical-to-derived-complete"/> is also derived <m>f</m>-complete.
-        On the other hand, if we take the colimit of <m>M/f^n M</m> in <m>R_\solid</m>, we get a different object which we may denote by <m>M^\wedge_\solid</m>;
+        On the other hand, if we take the limit of <m>(M/f^n M) \otimes_R R_\solid</m> in <m>\Mod_{R_\solid}</m>, we get a different object which we may denote by <m>M^\wedge_\solid</m>;
         its underlying module is still <m>M</m>, but at the level of topological abelian groups it carries the <m>f</m>-adic topology rather than the discrete topology.
         This discrepancy traces back to the fact that solidification does not commute with infinite limits (<xref ref="rem-solidification-vs-infinite-products"/>).
       </p>
@@ -243,7 +252,7 @@
     </remark>
     <example xml:id="exa-solid-completion">
       <p>
-        Let <m>\widehat{R}_\solid</m> denote the inverse limit <m>\varprojlim (R/f^n)_\solid</m> (in <m>\Mod_{R_\solid}</m>, not <m>\Mod_R</m>;
+        Let <m>\widehat{R}_\solid</m> denote the inverse limit <m>\varprojlim (R/f^nR)_\solid</m> (in <m>\Mod_{R_\solid}</m>, not <m>\Mod_R</m>;
         compare <xref ref="rem-discrete-versus-solid-completion"/>).
         Since <m>\widehat{R}_\solid</m> is classically <m>f</m>-complete,
         by <xref ref="lem-classical-to-derived-complete-solid"/>, it is also derived <m>f</m>-complete.
@@ -257,7 +266,7 @@
         Since this map defines an isomorphism onto its image, <m>M'</m> is also derived <m>f</m>-complete.
       </p>
       <p>
-        It then follows that <m>M/M'</m> is also derived <m>f</m>-complete. However, it is not classically <m>f</m> complete.
+        It then follows that <m>M/M'</m> is also derived <m>f</m>-complete. However, it is not classically <m>f</m>-complete.
       </p>
     </example>
     <p>
@@ -267,16 +276,16 @@
       <title>Derived Nakayama's lemma</title>
       <statement>
         <p>
-          For <m>M \in \Mod_{R_\solid}</m> which is derived <m>f</m>-complete, <m>M=0</m> if and only if <m>M \otimes^L_{R_\solid} R_\solid/(f) = 0</m>.
-          The same applies in the derived category.
+          For <m>M \in \Mod_{R_\solid}</m> which is derived <m>f</m>-complete, <m>M=0</m> if and only if <m>M \otimes^L_{R_\solid} (R_\solid/fR_\solid) = 0</m>.
+          The same applies in the derived category. (Note: if <m>f</m> is a zero divisor in <m>R</m> then <m>(R_\solid/fR_\solid)</m> should also be interpreted as a derived object.)
         </p>
       </statement>
       <proof>
         <p>
-          By writing <m>R_\solid/(f^n)</m> as a successive extension of copies of <m>R_\solid/(f)</m>, we upgrade the hypothesis to assert that
-          <m>M \otimes^L_{R_\solid} R_\solid/(f^n) = 0</m> for all <m>n \in \NN</m>. 
+          By writing <m>R_\solid/f^n R_\solid</m> as a successive extension of copies of <m>R_\solid/f R_\solid</m>, we upgrade the hypothesis to assert that
+          <m>M \otimes^L_{R_\solid} (R_\solid/f^n R_\solid) = 0</m> for all <m>n \in \NN</m>. 
           Writing <m>(R_f)_\solid/R_\solid</m> (or more precisely the object <m>R_\solid[-1] \to (R_f)_\solid[0]</m> in the derived category,
-          which is the same only if <m>f</m> is not a zero divisor) as the colimit of <m>R_\solid/(f^n) R_\solid</m>, we deduce that
+          which is the same only if <m>f</m> is not a zero divisor) as the colimit of <m>R_\solid/f^n R_\solid</m>, we deduce that
           <m>M \otimes^L_{R_\solid} (R_f)_\solid/R_\solid = 0</m>; 
           since derived completeness is the condition that <m>M \otimes^L_{R_\solid} (R_f)_\solid = 0</m>,
           we deduce that <m>M = M \otimes^L_{R_\solid} R_\solid = 0</m> as well.
@@ -388,7 +397,8 @@
       </p>
       <p>
         By contrast, completion with respect to an infinitely generated ideal is a poorly behaved operation (except when the same topology is defined
-        by some finitely generated ideal), and we will have nothing more to say about it.
+        by some finitely generated ideal), and we will have nothing more to say about it. A better operation is to take the colimit over completion with respect to
+        finitely generated subideals of the given ideal.
       </p>
     </remark>
   </subsection>

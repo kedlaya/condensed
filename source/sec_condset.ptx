@@ -101,7 +101,8 @@
     </remark>
     <remark xml:id="rem-evaluate-condensed-at-singleton">
       <p>
-        Evaluation at a fixed singleton in <m>\Prof</m> defines a functor <m>\CSet \to \Set</m>.
+        Evaluation at a fixed singleton in <m>\Prof</m> defines a functor <m>\CSet \to \Set</m>,
+        which we will denote by <m>X \mapsto X(*)</m>.
         We will interpret this as an <q>underlying set</q> construction, although this should be interpreted carefully
         as the functor is <em>not</em> faithful; that is, one cannot view condensed sets as <q>sets with extra structure</q>.
       </p>

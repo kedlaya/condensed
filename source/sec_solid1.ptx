@@ -338,14 +338,14 @@
         it will end up being the unit for the symmetric monoidal structure on <m>\Mod_{R_\solid}</m> (<xref ref="def-solid-tensor"/>).
       </p>
       <p>
-        By the same token, each set <m>I</m> of cardinality <m>\leq \kappa</m> corresponds to an object of <m>\Mod_{R_{\solid}}</m>,
-        which by convention we are supposed to notate with the same symbol <m>\prod_I R_{\solid}</m> that we used in our preadditive category.
-        Concretely, this object corresponds to the functor 
+        By the same token, each set <m>J</m> of cardinality <m>\leq \kappa</m> corresponds to an object of <m>\Mod_{R_{\solid}}</m>,
+        which by convention we are supposed to notate with the same symbol <m>\prod_J R_{\solid}</m> that we used in our preadditive category.
+        Concretely, this object corresponds to the functor <m>\Hom_{R_\solid}\left(\bullet, \prod_J R_{\solid}\right)</m>, that is,
         <men xml:id="eq-solid-functor-product">
-          \prod_J R_{\solid} \mapsto \prod_I \bigoplus_J R.
+          \prod_I R_{\solid} \mapsto \prod_J \bigoplus_I R.
         </men>
         In particular, this really is the categorical product of a family of copies of <m>R_{\solid}</m>
-        indexed by <m>I</m>, as our notation was meant to suggest.
+        indexed by <m>J</m>, as our notation was meant to suggest.
       </p>
     </example>
     <remark>

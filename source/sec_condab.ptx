@@ -170,10 +170,13 @@
             &amp;= \Cts(T, \Cts(S, X))
           </mrow>
         </md>
-        for the <term>compact-open topology</term> on <m>\Cts(S, X)</m>. In other words,
+        for the <term>compact-open topology</term> on <m>\Cts(S, X)</m> (see <xref ref="bib-Rotman-top"/> for the last equality).
+        In other words,
         <men xml:id="eq-ihom-S-to-X">
           \iHom_{\CAb}(\ZZ[\underline{S}], \underline{X}) = \underline{\Cts(S, X)}
         </men>.
+        The same logic applies to <m>S \in \Top^{\seq}</m>: by <xref ref="prop-cset-to-top-left-adjoint"/> and <xref ref="prop-sequential"/>,
+        we still have <m>\Hom_{\CSet}(\underline{S \times T}, \underline{X}) = \Cts(S \times T, X)</m>.
       </p>
     </example>
     <remark>

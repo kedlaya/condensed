@@ -7,17 +7,18 @@
       \def\CC{\mathbb{C}}
       \def\FF{\mathbb{F}}
       \def\NN{\mathbb{N}}
-      \def\PP{\mathbb{P}}
       \def\QQ{\mathbb{Q}}
       \def\RR{\mathbb{R}}
       \def\TT{\mathbb{T}}
       \def\ZZ{\mathbb{Z}}
 
+      \def\PP{\mathbf{P}}
       \def\frakm{\mathfrak{m}}
       
       \def\calA{\mathscr{A}}
       \def\calB{\mathscr{B}}
       \def\calC{\mathscr{C}}
+      \def\calD{\mathscr{D}}
       \def\calF{\mathscr{F}}
       \def\calL{\mathscr{L}}
       \def\calM{\mathscr{M}}
@@ -39,6 +40,7 @@
       \DeclareMathOperator{\colim}{colim}
       \DeclareMathOperator{\cond}{cond}
       \DeclareMathOperator{\Cts}{Cts}
+      \DeclareMathOperator{\dg}{dg}
       \DeclareMathOperator{\disc}{disc}
       \DeclareMathOperator{\End}{End}
       \DeclareMathOperator{\Ext}{Ext}
@@ -54,20 +56,27 @@
       \DeclareMathOperator{\seq}{seq}
       \DeclareMathOperator{\sheaf}{sheaf}
       \DeclareMathOperator{\sing}{sing}
+      \DeclareMathOperator{\Spa}{Spa}
+      \DeclareMathOperator{\Spv}{Spv}
       \DeclareMathOperator{\Spec}{Spec}
+      \DeclareMathOperator{\Sym}{Sym}
 
       \DeclareMathOperator{\Ab}{\mathbf{Ab}}
       \DeclareMathOperator{\AnRing}{\mathbf{AnRing}}
       \DeclareMathOperator{\CAb}{\mathbf{CAb}}
+      \DeclareMathOperator{\Ch}{\mathbf{Ch}}
       \DeclareMathOperator{\CHaus}{\mathbf{CHaus}}
       \DeclareMathOperator{\CSet}{\mathbf{CSet}}
       \DeclareMathOperator{\iExt}{\underline{Ext}}
       \DeclareMathOperator{\Fun}{\mathbf{Fun}}
       \DeclareMathOperator{\iHom}{\underline{Hom}}
       \DeclareMathOperator{\LCAb}{\mathbf{LCAb}}
+      \DeclareMathOperator{\LCRS}{\mathbf{LCRS}}
+      \DeclareMathOperator{\LRS}{\mathbf{LRS}}
       \DeclareMathOperator{\Mod}{\mathbf{Mod}}
       \DeclareMathOperator{\Prof}{\mathbf{Prof}}
       \DeclareMathOperator{\Ring}{\mathbf{Ring}}
+      \DeclareMathOperator{\Sch}{\mathbf{Sch}}
       \DeclareMathOperator{\Set}{\mathbf{Set}}
       \DeclareMathOperator{\Shv}{\mathbf{Shv}}
       \DeclareMathOperator{\Top}{\mathbf{Top}}
@@ -133,6 +142,9 @@
     <xi:include href="./sec_solid_completion.ptx"/>
     <xi:include href="./sec_analytic.ptx"/>
     <xi:include href="./sec_huber_rings.ptx"/>
+    <xi:include href="./sec_huber_top.ptx"/>
+    <xi:include href="./sec_huber_local.ptx"/>
+    <xi:include href="./sec_huber_qcoh.ptx"/>
     <xi:include href="./sec_analytic_stacks1.ptx"/>
     <backmatter>
       <xi:include href="./bibliography.ptx"/>

@@ -276,5 +276,11 @@
         </p>
       </proof>
     </proposition>
+    <remark>
+      <p>
+        One can prove similar results with <m>\ZZ_\solid</m> replaced by an algebra of finite type over <m>\ZZ_\solid</m>.
+        See <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 11, timestamp 24:30.
+      </p>
+    </remark>
   </subsection>
 </section>

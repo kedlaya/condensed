@@ -1,5 +1,9 @@
 ﻿<references>
   <title>Bibliography</title>
+  <biblio type="raw" xml:id="bib-Andreychev">
+    G. Andreychev, <articletitle>Pseudocoherent and perfect complexes and vector bundles on analytic adic spaces</articletitle>,
+    <url href="https://arxiv.org/abs/2105.12591">arXuv:2105.12591v1</url>.
+  </biblio>
   <biblio type="raw" xml:id="bib-Barwick-Haine">
     C. Barwick and P. Haine, <articletitle>Pyknotic objects, I. Basic Notions</articletitle>, <url href="https://arxiv.org/abs/1904.09966">arXiv:1904.09966v2</url> <year>2019</year>.
   </biblio>
@@ -12,11 +16,15 @@
   <biblio type="raw" xml:id="bib-Clausen-Scholze-youtube">
     D. Clausen and P. Scholze, <articletitle>Analytic Stacks</articletitle>, <url href="https://www.youtube.com/watch?v=YxSZ1mTIpaA">https://www.youtube.com/watch?v=YxSZ1mTIpaA</url>.
   </biblio>
+  <biblio type="raw" xml:id="bib-Fujiwara-Gabber-Kato">
+    K. Fujiwara, O. Gabber, and F. Kato, <articletitle>On Hausdorff completions of commutative rings in rigid geometry</articletitle>, 
+    <journal>Journal of Algebra</journal> <volume>332</volume> <year>2011</year>, 293<ndash/>321.
+  </biblio>
   <biblio type="raw" xml:id="bib-Godement">
     R. Godement, <pubtitle>Topologie algébrique et théorie des faisceaux</pubtitle>, third edition, Hermann, Paris <year>1973</year>.
   </biblio>
   <biblio type="raw" xml:id="bib-Gregoric">
-    R. Gregoric, <articletitle>Stone duality between condensed mathematics and algebraic geometry</articletitle>, <url href="https://arxiv.org/abs/2401.05268">arXiv:2401.05268v1</url> <year>2024</year>.
+    R. Gregoric, <articletitle>Stone duality between condensed mathematics and algebraic geometry</articletitle>, <url href="https://arxiv.org/abs/2401.02568">arXiv:2401.02568v1</url> <year>2024</year>.
   </biblio>
   <biblio type="raw" xml:id="bib-Hansen-Kedlaya">
     D. Hansen and K.S. Kedlaya, <articletitle>Sheafiness criteria for Huber rings</articletitle>, <url href="https://kskedlaya.org/papers/criteria.pdf">https://kskedlaya.org/papers/criteria.pdf</url>.
@@ -32,11 +40,24 @@
   <biblio type="raw" xml:id="bib-Huber1">
     R. Huber, <pubtitle>Continuous valuations</pubtitle>, <journal>Mathematische Zeitschrift</journal> <volume>212</volume> <year>1993</year>, 455<ndash/>477.
   </biblio>
+  <biblio type="raw" xml:id="bib-Huber2">
+    R. Huber, <pubtitle>A generalization of formal schemes and rigid analytic varieties</pubtitle>, <journal>Mathematische Zeitschrift</journal> <volume>217</volume> <year>1994</year>, 513<ndash/>551.
+  </biblio>
   <biblio type="raw" xml:id="bib-Kedlaya-Banach">
     K.S. Kedlaya, <articletitle>On commutatative nonarchimedean Banach fields</articletitle>, <journal>Documenta Mathematica</journal> <volume>23</volume> <year>2018</year>, 171<ndash/>188.
   </biblio>
+  <biblio type="raw" xml:id="bib-Kedlaya-AWS">
+    K.S. Kedlaya, <articletitle>Sheaves, shtukas, and stacks</articletitle>, in <pubtitle>Perfectoid Spaces: Lectures from the 2017 Arizona Winter School</pubtitle>,
+    Mathematical Surveys and Monographs 242, American Mathematical Society <year>2019</year>.
+  </biblio>
   <biblio type="raw" xml:id="bib-prismatic">
     K.S. Kedlaya, <articletitle>Notes on prismatic cohomology</articletitle>, <url href="https://kskedlaya.org/prismatic">https://kskedlaya.org/prismatic</url>.
+  </biblio>
+  <biblio type="raw" xml:id="bib-Lurie-HA">
+    J. Lurie, <pubtitle>Higher Algebra</pubtitle>, <url href="https://www.math.ias.edu/~lurie/papers/HA.pdf">https://www.math.ias.edu/~lurie/papers/HA.pdf</url>.
+  </biblio>
+  <biblio type="raw" xml:id="bib-Rotman-top">
+    J.J. Rotman, <pubtitle>An Introduction to Algebraic Topology</pubtitle>, Graduate Texts in Mathematics 119, Springer-Verlag, Berlin <year>1988</year>.
   </biblio>
   <biblio type="raw" xml:id="bib-Rotman">
     J.J. Rotman, <pubtitle>Advanced Modern Algebra, Part 1</pubtitle>, third edition, Graduate Studies in Mathematics 165, American Mathematical Society <year>2015</year>.
