@@ -326,6 +326,13 @@
         for all <m>i \gt 0</m> (or equivalently for <m>i=1</m> by <xref ref="eq-resolve-cofinite-mod-Z"/>).
       </p>
     </remark>
+    <remark>
+      <p>
+        Using <xref ref="rem-express-solidification-using-cof"/>, we may see that the underived and derived solidifications of <m>P</m> coincide: it suffices to check that
+        <m>\iExt^1_{\CAb}(P, M) = 0</m> for any <m>M \in \CAb_\solid</m>, but since any extension of <m>M</m> by <m>P</m> is again solid (by <xref ref="prop-solid-category"/>) we may apply <xref ref="prop-internally-projective"/> and adjunction to see that any such extension splits.
+        (See <xref ref="rem-liquefaction-kills-ext1"/> for the same observation in a more general setting.)
+      </p>
+    </remark>
   </subsection>
   <subsection>
     <title>Solidification and the real numbers</title>

@@ -58,7 +58,7 @@
       <p>
         In <m>\Ab_\solid</m>, the object <m>\ZZ_\solid[T]</m> is the functor <m>\prod_I \ZZ_\solid \mapsto \left( \prod_I \ZZ \right)[T]</m>.
         We also have an object <m>\ZZ_\solid \langle T \rangle</m> which is the functor <m>\prod_I \ZZ_\solid \mapsto \prod_I \ZZ[T]</m>.
-        The cokernel of the obvious map <m>\ZZ_\solid[T] \to \ZZ_\solid \langle T \rangle</m> is an object of <m>\Ab_solid</m>
+        The cokernel of the obvious map <m>\ZZ_\solid[T] \to \ZZ_\solid \langle T \rangle</m> is an object of <m>\Ab_{\solid}</m>
         whose restriction to <m>\Ab</m> is zero, but which is not the zero object.
       </p>
     </example>

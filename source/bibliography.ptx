@@ -10,8 +10,14 @@
   <biblio type="raw" xml:id="bib-Berkovich">
     V. Berkovich, <pubtitle>Spectral Theory and Analytic Geometry over Non-Archimedean Fields</pubtitle>, Mathematical Surveys and Monographs 33, American Mathematical Society, Providence, 1990.
   </biblio>
+  <biblio type="raw" xml:id="bib-Bhatt-Scholze-proetale">
+    B. Bhatt and P. Scholze, <articletitle>The pro-étale topology for schemes</articletitle>, <journal>Astérisque</journal> <volume>365</volume> <year>2015</year>, 99<ndash/>201.    
+  </biblio>
   <biblio type="raw" xml:id="bib-Clausen-Scholze-notes">
     D. Clausen and P. Scholze, <articletitle>Lectures on condensed mathematics</articletitle>, <url href="https://www.math.uni-bonn.de/people/scholze/Condensed.pdf">https://www.math.uni-bonn.de/people/scholze/Condensed.pdf</url>.
+  </biblio>
+  <biblio type="raw" xml:id="bib-Clausen-Scholze-analytic">
+    D. Clausen and P. Scholze, <articletitle>Lectures on analytic geometry</articletitle>, <url href="https://www.math.uni-bonn.de/people/scholze/Analytic.pdf">https://www.math.uni-bonn.de/people/scholze/Analytic.pdf</url>.
   </biblio>
   <biblio type="raw" xml:id="bib-Clausen-Scholze-youtube">
     D. Clausen and P. Scholze, <articletitle>Analytic Stacks</articletitle>, <url href="https://www.youtube.com/watch?v=YxSZ1mTIpaA">https://www.youtube.com/watch?v=YxSZ1mTIpaA</url>.
@@ -49,6 +55,10 @@
   <biblio type="raw" xml:id="bib-Kedlaya-AWS">
     K.S. Kedlaya, <articletitle>Sheaves, shtukas, and stacks</articletitle>, in <pubtitle>Perfectoid Spaces: Lectures from the 2017 Arizona Winter School</pubtitle>,
     Mathematical Surveys and Monographs 242, American Mathematical Society <year>2019</year>.
+  </biblio>
+  <biblio type="raw" xml:id="bib-Kiehl">
+    R. Kiehl, <articletitle>Der Endlichkeitssatz für eigentliche Abbildungen in der nichtarchimedischen Funktionentheorie</articletitle>,
+    <journal>Inventiones Mathematicae</journal> <volume>2</volume> <year>1967</year>, 191<ndash/>214.
   </biblio>
   <biblio type="raw" xml:id="bib-prismatic">
     K.S. Kedlaya, <articletitle>Notes on prismatic cohomology</articletitle>, <url href="https://kskedlaya.org/prismatic">https://kskedlaya.org/prismatic</url>.

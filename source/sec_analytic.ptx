@@ -37,7 +37,7 @@
         <m>\iExt^i_{R^\triangleright}(M, N) \in \Mod_R</m> for all <m>i \geq 0</m>
         whenever <m>M \in \Mod_{R^{\triangleright}}, N \in \Mod_R</m>.
         A morphism of pre-analytic rings <m>R \to S</m> is a morphism <m>R^{\triangleright} \to S^{\triangleright}</m> of commutative ring objects in <m>\CAb</m>
-        such that for any <m>M \in \Mod_R</m>, the pullback of <m>M</m> from <m>\Mod_{S^{\triangleright}}</m> to <m>\Mod_{R^{\triangleright}}</m> belongs to <m>\Mod_R</m>.
+        such that for any <m>M \in \Mod_S</m>, the pullback of <m>M</m> from <m>\Mod_{S^{\triangleright}}</m> to <m>\Mod_{R^{\triangleright}}</m> belongs to <m>\Mod_R</m>.
       </p>
       <p>
         An <term>analytic ring</term> is a pre-analytic ring 
@@ -56,9 +56,17 @@
     <definition>
       <p>
         Given a pre-analytic ring, the embedding functor <m>\Mod_R \to \Mod_{R^{\triangleright}}</m> admits a left adjoint
-        which we will call <em>analytification</em>.
-        Analytifying <m>R^{\triangleright} \otimes \ZZ[\underline{S}]</m> for <m>S \in \Prof</m> yields a set
+        which we will call <em>analytification</em>. (A better term might be <term>analytic completion</term>, as there is also a geometric concept of
+        <term>analytification</term> which will arise later.)
+      </p>
+      <p>
+        For example, analytifying <m>R^{\triangleright} \otimes \ZZ[\underline{T}]</m> for <m>T \in \Prof</m> yields 
+        an object we call <m>R[\underline{T}]</m>; these objects form a set
         of compact (but not necessarily projective) generators of the category <m>\Mod_R</m>.
+        A morphism of pre-analytic rings can then be interpreted as a map <m>R^{\triangleright} \to S^{\triangleright}</m>
+        such that for each <m>T \in \Prof</m>,
+        the image of <m>S[\underline{T}]</m> in <m>\Mod_{R^{\triangleright}}</m> via restriction of scalars
+        belongs to <m>\Mod_R</m>.
       </p>
       <p>
         We define a tensor product <m>\otimes</m> on <m>\Mod_R</m> by taking the tensor product in <m>\Mod_{R^{\triangleright}}</m>
@@ -67,40 +75,88 @@
     </definition>
     <remark xml:id="rem-pre-analytic-to-analytic">
       <p>
-        The embedding functor from pre-analytic rings to analytic rings also admits a left adjoint,
-        obtained by replacing <m>R^{\triangleright}</m> with its analytification <m>\hat{R}^{\triangleright}</m> and leaving <m>\Mod_R</m> unchanged.
-        The point is that the functor <m>\Mod_R \to \Mod_{R^{\triangleright}}</m> factors through <m>\Mod_{\hat{R}^{\triangleright}}</m>:
-        we get an action of <m>\Mod_{\hat{R}^{\triangleright}}</m> on <m>M \in \Mod_R</m>
-        by identifying the analytifications of <m>R^{\triangleright} \otimes_{R^{\triangleright}} M</m> 
-        and <m>\hat{R}^{\triangleright} \otimes_{R^{\triangleright}} M</m>,
-        and then for <m>M,N \in \Mod_R</m> we have 
+        Let <m>R</m> be a pre-analytic ring and let <m>\hat{R}^{\triangleright}</m> be the analytification of <m>R^{\triangleright}</m>.
+        Since <m>R^{\triangleright} \otimes_{R^{\triangleright}} R^{\triangleright}</m> and <m>\hat{R}^{\triangleright} \otimes_{R^{\triangleright}} \hat{R}^{\triangleright}</m>
+        have the same analytification, 
+        analytifying the multiplication map <m>R^{\triangleright} \otimes_{R^{\triangleright}} R^{\triangleright} \to R^{\triangleright}</m>
+        induces a map <m>\hat{R}^{\triangleright} \otimes_{R^{\triangleright}} \hat{R}^{\triangleright} \to \hat{R}^{\triangleright}</m>.
+        That is, <m>\hat{R}^{\triangleright}</m> canonically promotes to an <m>R^{\triangleright}</m>-algebra.
+      </p>
+      <p>
+        Similarly, for <m>M \in \Mod_R</m>, we have <m>M = R^{\triangleright} \otimes_{R^{\triangleright}} M</m>;
+        since <m>R^{\triangleright} \otimes_{R^{\triangleright}} M</m> and <m>\hat{R}^{\triangleright} \otimes_{R^{\triangleright}} M</m>
+        have the same analytification, we also have <m>M = \hat{R}^{\triangleright} \otimes_{R^{\triangleright}} M</m>.
+        Consequently, the <m>R^{\triangleright}</m>-module structure on <m>M</m> canonically promotes to a <m>\hat{R}^{\triangleright}</m>-module structure.
+      </p>
+      <p>
+        Continuing in this vein, for <m>M \in \Mod_{\hat{R}^{\triangleright}}, N \in \Mod_R</m> we have 
         <md>
           <mrow>
              \Hom_{R^{\triangleright}}(M,N) &amp;= \Hom_{\hat{R}^{\triangleright}}(\hat{R}^{\triangleright} \otimes_{R^{\triangleright}} M,N)
           </mrow>
           <mrow>
-            &amp;= \Hom_{\hat{R}^{\triangleright}}(\widehat{\hat{R}^{\triangleright} \otimes_{R^{\triangleright}} M}, N)
+              &amp;= \Hom_{\hat{R}^{\triangleright}}(\hat{R}^{\triangleright} \otimes_{R^{\triangleright}} \hat{R}^{\triangleright} \otimes_{\hat{R}^{\triangleright}} M,N)
+          </mrow>
+          <mrow>
+              &amp;= \Hom_{\hat{R}^{\triangleright}}(\hat{R}^{\triangleright} \hat{\otimes}_{R^{\triangleright}} \hat{R}^{\triangleright} \otimes_{\hat{R}^{\triangleright}} M,N)
+          </mrow>
+          <mrow>
+              &amp;= \Hom_{\hat{R}^{\triangleright}}(\hat{R}^{\triangleright} \otimes_{\hat{R}^{\triangleright}} M,N)
           </mrow>
           <mrow>
             &amp; = \Hom_{\hat{R}^{\triangleright}}(M,N)
           </mrow>
         </md>.
-        By the same logic with <m>M</m> replaced by <m>M \otimes \ZZ[\underline{S}]</m> for <m>S \in \Prof</m>,
-        we see that also <m>\iHom_{R^{\triangleright}}(M,N) \cong \iHom_{R^{\triangleright}}(M,N)</m>.
+        (The introduction of <m>\hat{\otimes}_{R^{\triangleright}}</m> in place of <m>\otimes_{R^{\triangleright}}</m> is where we are using the fact that
+        the target <m>N</m> belongs to <m>\Mod_R</m>.)
+        Since this applies to <m>M \in \Mod_R</m> in particular,
+        it confirms that <m>\Mod_R \to \Mod_{R^{\triangleright}}</m> factors through <m>\Mod_{\hat{R}^{\triangleright}}</m>.
       </p>
       <p>
+        By the same logic with <m>M</m> replaced by <m>M \otimes \ZZ[\underline{S}]</m> for <m>S \in \Prof</m>,
+        we see that also <m>\iHom_{R^{\triangleright}}(M,N) \cong \iHom_{\hat{R}^{\triangleright}}(M,N)</m>.
         However, note that it is not automatic that
         <m>
-          \Ext^i_{R^{\triangleright}}(M,N) \cong \Ext^i_{R^{\triangleright}}(M,N)
+          \Ext^i_{R^{\triangleright}}(M,N) \cong \Ext^i_{\hat{R}^{\triangleright}}(M,N)
         </m>
         for <m>i \gt 0</m> (or the corresponding statement for internal Ext) <em>unless</em> we know that <m>\hat{R}^{\triangleright}</m> coincides with the <em>derived</em>
-        analytification of <m>R^{\triangleright}</m>. Fortunately, this will be true in many circumstances (<xref ref="rem-liquefaction-kills-ext1"/>).
+        analytification of <m>R^{\triangleright}</m>.
+      </p>
+      <p>
+        Fortunately, this will be true in many circumstances (<xref ref="rem-liquefaction-kills-ext1"/>).
+        When this occurs, <m>\hat{R}^{\triangleright} \hat{\otimes}^L_{R^{\triangleright}} \hat{R}^{\triangleright} = \hat{R}^{\triangleright}</m>
+        and we can argue as above to see that for <m>M \in \Mod_{\hat{R}^{\triangleright}}, N \in \Mod_R</m> we have 
+        <me>
+          R\Hom_{R^{\triangleright}}(M,N) = R\Hom_{\hat{R}^{\triangleright}}(M,N)
+        </me>.
+        In particular,
+        <me>
+          \Ext^i_{R^{\triangleright}}(M,N) = \Ext^i_{\hat{R}^{\triangleright}}(M,N)
+        </me>;
+        by the same logic with <m>M</m> replaced by <m>M \otimes \ZZ[\underline{S}]</m> for <m>S \in \Prof</m>, we also have
+        <me>
+          \iExt^i_{R^{\triangleright}}(M,N) = \iExt^i_{\hat{R}^{\triangleright}}(M,N)
+        </me>
+        so in particular <m>\iExt^i_{\hat{R}^{\triangleright}}(M,N) \in \Mod_R</m>.
+        We conclude the pair <m>\hat{R} := (\hat{R}^{\triangleright}, \Mod_{\hat{R}} := \Mod_R)</m> is an analytic ring.
       </p>
     </remark>
     <remark>
       <p>
         The notation <m>R = (R^{\triangleright}, \Mod_R)</m> is meant to simulate the notation used by Huber in his development of the theory of <term>adic spaces</term>.
         We will integrate this theory into our work later, by showing that Huber pairs can be viewed as a full subcategory of solid analytic rings (<xref ref="prop-Huber-pair-to-solid-analytic"/>).
+      </p>
+    </remark>
+    <remark xml:id="rem-filtered-colimit-analytic">
+      <p>
+        To take a colimit of a system of analytic rings <m>(R_i^{\triangleright}, \Mod_{R_i})</m>, 
+        one first takes the colimit in pre-analytic rings:
+        the base ring is <m>\colim_i R_i^{\triangleright}</m> and the module category is the limit of <m>\Mod_{R_i}</m>.
+        One then analytifies the base ring as usual.
+      </p>
+      <p>
+        For <em>filtered</em> colimits, the second step is not necessary: if <m>i \leq j</m> then <m>R_j^{\triangleright} \in \Mod_{R_i}</m>,
+        so the colimit automatically belongs to <m>\Mod_{R_i}</m> for every <m>i</m>.
       </p>
     </remark>
     <remark>
@@ -117,6 +173,10 @@
       <p>
         For every commutative ring <m>A</m>, the pair <m>(\underline{A}, \Mod_{\underline{A}})</m> is an analytic ring.
         An analytic ring of this form will be said to be <term>discrete</term>.
+      </p>
+      <p>
+        More generally, if <m>A</m> is a condensed ring, we may treat <m>(A, \Mod_A)</m> as an analytic ring.
+        It is natural to label this also as <m>A</m>, so that the two resulting interpretations of <m>\Mod_A</m> coincide.
       </p>
     </example>
     <remark xml:id="rem-discrete-not-solid">
@@ -258,8 +318,9 @@
         </me>
         we have <m>M' \in \Mod_{R_1}</m> by <xref ref="prop-liquefaction"/>, so any splitting of the pullback sequence
         <me>
-          0 \to M \to M_0 \to R_0^{\triangleright} \to 0
+          0 \to M \to M' \times_{R_1^{\triangleright}} R_0^{\triangleright} \to R_0^{\triangleright} \to 0
         </me>
+        (which exists because <m>R_0^{\triangleright}</m> is projective as a module over itself)
         extends by adjunction to a splitting of the original sequence.
         By replacing <m>M</m> with <m>\iHom_{R_0^{\triangleright}}(R_0^{\triangleright} \otimes \ZZ[\underline{S}], M)</m>,
         we formally upgrade this conclusion to assert that <m>\iExt^1_{R_0^{\triangleright}}(R_1^\triangleright, M) = 0</m>.
@@ -267,8 +328,13 @@
       <p>
         From this, we see that <m>R_1^{\triangleright}</m> is also the derived <m>f</m>-liquefaction of <m>R_0^{\triangleright}</m>.
         That is, the issue
-        raised in <xref ref="rem-pre-analytic-to-analytic"/> does not arise in this context
-        when passing from <m>R_0</m> to the new analytic ring <m>R_1 = (R_1^{\triangleright}, \Mod_{R_1})</m>. 
+        raised in <xref ref="rem-pre-analytic-to-analytic"/> does not arise in this context,
+        and so <m>R_1 = (R_1^{\triangleright}, \Mod_{R_1})</m> is itself an analytic ring. 
+      </p>
+      <p>
+        By similar logic, starting from the fact that <m>P</m> is internally projective in <m>\CAb</m> (<xref ref="prop-internally-projective"/>),
+        we may see that the derived analytification <m>P \otimes R_0^{\triangleright}</m> equals <m>P \otimes R_1^{\triangleright}</m> placed in degree 0,
+        which is again internally projective in <m>\Mod_{R_1}</m>.
       </p>
     </remark>
     <p>
@@ -302,7 +368,8 @@
     </remark>
     <example xml:id="exa-solid-affine-line">
       <p>
-        Take <m>R = \underline{\ZZ}[T]</m>, <m>S = \{1,T\}</m> and consider the category <m>\Mod_{R \liquid S}</m>.
+        Let <m>R = \underline{\ZZ}[T] = \underline{\ZZ[T]}</m> be the (discrete) polynomial ring over <m>\ZZ</m>, 
+        take <m>S = \{1,T\}</m>, and consider the category <m>\Mod_{R \liquid S}</m>.
         To compute the <m>S</m>-liquefaction of <m>R</m>, we first note that <m>R</m> is already solid, 
         so we need only worry about the <m>T</m>-liquefaction
         and we may compute it in <m>\Ab_\solid</m>: it is the functor <m>\ZZ\langle T \rangle</m> given by
@@ -433,6 +500,24 @@
         </p>
       </proof>
     </lemma>
+    <corollary xml:id="cor-liquid-top-nilpotent-unit">
+      <statement>
+        <p>
+          Let <m>\varpi_1,\varpi_2 \in R(*)</m> be two topologically nilpotent units.
+          Then <m>\Mod_{R \liquid \varpi_1} = \Mod_{R \liquid \varpi_2}</m>;
+          consequently, both of these equal <m>\Mod_{R \liquid S}</m> where <m>S</m> is the entire set of topologically nilpotent elements of <m>R</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By symmetry it suffices to check that <m>\Mod_{R \liquid \varpi_1} \subseteq \Mod_{R \liquid \varpi_2}</m>.
+          Since <m>\varpi_2</m> is topologically nilpotent, there exists a positive integer <m>n</m> such that <m>\varpi_3 := \varpi_2^n \varpi_1^{-1}</m>
+          is also topologically nilpotent. By <xref ref="rem-f-solidification-versus-fg"/>
+          we have <m>\Mod_{R \liquid \varpi_1} \subseteq \Mod_{R \liquid \varpi_1 \varpi_3} = \Mod_{R \liquid \varpi_2^n}</m>;
+          by <xref ref="lem-f-solidification-versus-fn"/>, the latter equals <m>\Mod_{R \liquid \varpi_2}</m>.
+        </p>
+      </proof>
+    </corollary>
     <p>
       On a related note, we have the following.
     </p>
@@ -444,7 +529,7 @@
       </statement>
       <proof>
         <p>
-          We algebraize the statement that if the sequence <m>([n])_n</m> in <m>P \otimes R</m> is summable against <m>f</m>,
+          We algebraize the statement that if the sequence <m>([n])_n</m> in <m>P \otimes R</m> is summable against <m>g</m>,
           then the sequence <m>(g^n [n])_n</m> is summable against <m>1</m> and hence is a null sequence.
           Start with the map <m>P \otimes P \otimes R \to P \otimes R</m>
           which carries <m>[m] \otimes [n] \otimes r</m> to <m>[n] \otimes r</m> if <m>m \leq n</m> and <m>0</m> otherwise.
@@ -457,9 +542,8 @@
     </lemma>
     <definition xml:id="def-R-liquid">
       <p>
-        By <xref ref="rem-f-solidification-versus-fg"/> and <xref ref="lem-f-solidification-versus-fn"/>,
-        the category <m>\Mod_{\underline{\RR} \liquid f}</m> is the same for any two choices of <m>f \in (0,1)</m>:
-        if <m>f_1, f_2</m> are two such choices, then there exist integers <m>n_1, n_2</m> such that <m>f_1^{n_1}/f_2</m> and <m>f_2^{n_2}/f_1</m> belong to <m>(0,1)</m>.
+        By <xref ref="cor-liquid-top-nilpotent-unit"/>,
+        the category <m>\Mod_{\underline{\RR} \liquid f}</m> is the same for any two choices of <m>f \in (0,1)</m>.
         We denote it also as <m>\Mod_{\underline{\RR} \liquid}</m>.
       </p>
       <p>

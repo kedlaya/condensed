@@ -12,6 +12,7 @@
       \def\TT{\mathbb{T}}
       \def\ZZ{\mathbb{Z}}
 
+      \def\GG{\mathbf{G}}
       \def\PP{\mathbf{P}}
       \def\frakm{\mathfrak{m}}
       
@@ -39,6 +40,7 @@
       \DeclareMathOperator{\coker}{coker}
       \DeclareMathOperator{\colim}{colim}
       \DeclareMathOperator{\cond}{cond}
+      \DeclareMathOperator{\cone}{cone}
       \DeclareMathOperator{\Cts}{Cts}
       \DeclareMathOperator{\dg}{dg}
       \DeclareMathOperator{\disc}{disc}
@@ -145,6 +147,7 @@
     <xi:include href="./sec_huber_top.ptx"/>
     <xi:include href="./sec_huber_local.ptx"/>
     <xi:include href="./sec_huber_qcoh.ptx"/>
+    <xi:include href="./sec_gaga.ptx"/>
     <xi:include href="./sec_analytic_stacks1.ptx"/>
     <backmatter>
       <xi:include href="./bibliography.ptx"/>

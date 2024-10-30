@@ -735,7 +735,7 @@
       <p>
         Putting the two facts together, we see that <m>\ZZ_{\solid} \to M</m> is a monomorphism, but its base extension
         <m>\ZZ[1/p]_{\solid} \to M \otimes_{\ZZ_{\solid}} \ZZ[1/p]_{\solid}</m> has zero target and so is definitely not a monomorphism!
-        That is, the base extension functor is not exact, which is to say that <m>S_{\solid}</m> is not a flat <m>R_{\solid}</m>-module.
+        That is, the base extension functor is not exact, which is to say that <m>\ZZ[1/p]_{\solid}</m> is not a flat <m>\ZZ_{\solid}</m>-module.
         (The same logic applies to <m>R \to R[1/f]</m> whenever <m>f \in R</m> is not a zero divisor.)
       </p>
     </example>

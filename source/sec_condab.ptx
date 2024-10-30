@@ -61,15 +61,21 @@
     <definition xml:id="def-free-condensed-ab">
       <p>
         There is an obvious forgetful functor <m>\CAb \to \CSet</m>.
-        This has a left adjoint <m>X \mapsto \ZZ[X]</m> given by sheafifying the presheaf <m>S \mapsto \ZZ[X(S)]</m>,
-        where <m>\ZZ[X(S)]</m> denotes the free <m>\ZZ</m>-module on the set <m>X(S)</m>.
-        (The sheafification is already needed for trivial reasons: the empty set needs to go to 0 rather than to <m>\ZZ[X(\emptyset)] \cong \ZZ</m>.)
-        It would be a bit more consistent to denote <m>\ZZ[X]</m> by <m>\underline{\ZZ}[X]</m>, but we will not bother doing this.
+        This has a left adjoint <m>X \mapsto \ZZ[X]</m>
+        where <m>\ZZ[X]</m> denotes the sheafification of the sheaf <m>S \mapsto \ZZ[X(S)]</m>
+        (and <m>\ZZ[X(S)]</m> denotes the free <m>\ZZ</m>-module on the set <m>X(S)</m>).
+        The sheafification is already needed for trivial reasons: the empty set needs to go to 0 rather than to <m>\ZZ[X(\emptyset)] \cong \ZZ</m>.
       </p>
       <p>
-        For example, for <m>X \in \Set</m>, <m>\ZZ[\underline{X}]</m> represents the discrete abelian group <m>\ZZ[X]</m>.
+        As an aside, it would be a bit more consistent to denote <m>\ZZ[X]</m> by <m>\underline{\ZZ}[X]</m>, but we will not bother doing this.
       </p>
     </definition>
+    <example>
+      <p>
+        For <m>S \in \Set</m> corresponding to <m>\underline{S} \in \CSet</m>, 
+        <m>\ZZ[\underline{S}]</m> represents the discrete abelian group <m>\ZZ[S]</m>.
+      </p>
+    </example>
     <example xml:id="exa-module-ring-topological-space">
       <p>
         For <m>X \in \Prof</m>, we claim that
@@ -170,19 +176,20 @@
             &amp;= \Cts(T, \Cts(S, X))
           </mrow>
         </md>
-        for the <term>compact-open topology</term> on <m>\Cts(S, X)</m> (see <xref ref="bib-Rotman-top"/> for the last equality).
+        for the <term>compact-open topology</term> on <m>\Cts(S, X)</m> (see <xref ref="bib-Rotman-top"/>, Theorem 11.1 for the last equality).
         In other words,
         <men xml:id="eq-ihom-S-to-X">
           \iHom_{\CAb}(\ZZ[\underline{S}], \underline{X}) = \underline{\Cts(S, X)}
         </men>.
-        The same logic applies to <m>S \in \Top^{\seq}</m>: by <xref ref="prop-cset-to-top-left-adjoint"/> and <xref ref="prop-sequential"/>,
-        we still have <m>\Hom_{\CSet}(\underline{S \times T}, \underline{X}) = \Cts(S \times T, X)</m>.
+        The same logic applies when <m>S \in \Top^{\seq}</m> is locally compact: by <xref ref="prop-cset-to-top-left-adjoint"/> and <xref ref="prop-sequential"/>,
+        we still have <m>\Hom_{\CSet}(\underline{S \times T}, \underline{X}) = \Cts(S \times T, X)</m>,
+        and when <m>S</m> is locally compact we again have <m>\Cts(S \times T, X) = \Cts(T, \Cts(S, X))</m>.
       </p>
     </example>
     <remark>
       <p>
         For any <m>X \in \CSet</m>, tensoring with <m>\ZZ[X]</m> has the effect of tensoring with <m>S \mapsto \ZZ[X(S)]</m>
-        at the presheaf level and then sheafifying. As a result, this operation is exact; that is, <m>\ZZ[T]</m> is flat.
+        at the presheaf level and then sheafifying. As a result, this operation is exact; that is, <m>\ZZ[X]</m> is flat.
       </p>
     </remark>
     <definition xml:id="def-internal-ext-in-cab">
@@ -427,7 +434,7 @@
     <remark>
       <p>
         In principle, the proof of <xref ref="prop-internally-projective"/> also shows that if <m>X \in \Prof</m>, <m>Z \subseteq X</m> is closed, and the subspace topology on <m>U := X \setminus Z</m> is discrete,
-        then <m>\ZZ[\underline{X}]/\ZZ[\underline{Z}]</m> is internally projective in <m>\CAb</m>. Howvere, in this case 
+        then <m>\ZZ[\underline{X}]/\ZZ[\underline{Z}]</m> is internally projective in <m>\CAb</m>. However, in this case 
         <m>X \setminus Z</m> is either finite or countable, so this just reduces to saying that <m>\ZZ</m> and <m>P</m> are internally projective.
       </p>
     </remark>

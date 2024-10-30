@@ -200,7 +200,7 @@
       <p>
         By the same token, we say that an object <m>M</m> in the (unbounded) derived category of <m>\Mod_{R_\solid}</m> is <term>derived <m>f</m>-complete</term>
         if <m>R\Hom_{R_\solid}((R_f)_\solid, M) = 0</m>, or equivalently if <m>1-fT</m> acts isomorphically on <m>R\Hom_{R_\solid}(R[T]_\solid, M)</m>.
-        We will see a bit later that this holds if and only if the cohomology groups are individually derived <m>f</m>-complete.
+        We will see a bit later that this holds if and only if the cohomology groups of <m>M</m> are individually derived <m>f</m>-complete.
         For now, it is clear that an object of <m>\Mod_{R_\solid}</m> is derived <m>f</m>-complete as an object of <m>\Mod_{R_\solid}</m>
         if and only if it is derived <m>f</m>-complete as an object in the derived category.
       </p>
