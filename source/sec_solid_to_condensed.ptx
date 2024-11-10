@@ -347,7 +347,7 @@
     </definition>
     <remark>
       <p>
-        Running the construction in <xref ref="def-construct-map-P-to-monoid"/> with <m>S = \NN_\infty</m>, all of the choices are forced: we must take <m>T_n = \{n\}</m>
+        If we run the construction in <xref ref="def-construct-map-P-to-monoid"/> with <m>S = \NN_\infty</m>, then all of the choices are forced: we must take <m>T_n = \{n\}</m>
         and <m>i_n</m> to be the map <m>n \mapsto n</m>. In this case <m>j_{n-1} \circ \pi_{n-1} \circ i_n = 0</m>, so we recover precisely the map <m>P \to \ZZ[\underline{\NN_\infty}]</m>
         splitting the projection.
       </p>

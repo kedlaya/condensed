@@ -3,7 +3,8 @@
   <introduction>
     <p>
       We now consider the condensed analogues of abelian groups.
-      Similar considerations apply to condensed <m>R</m>-modules for any (discrete) commutative ring <m>R</m>.
+      This will implicitly tell us things about condensed <m>R</m>-modules for any (discrete) commutative ring <m>R</m>,
+      as these will be defined as <m>R</m>-module objects in condensed abelian groups.
     </p>
     <paragraphs>
       <title>Reference</title>
@@ -186,7 +187,7 @@
         and when <m>S</m> is locally compact we again have <m>\Cts(S \times T, X) = \Cts(T, \Cts(S, X))</m>.
       </p>
     </example>
-    <remark>
+    <remark xml:id="rem-tensor-free-ab-flat">
       <p>
         For any <m>X \in \CSet</m>, tensoring with <m>\ZZ[X]</m> has the effect of tensoring with <m>S \mapsto \ZZ[X(S)]</m>
         at the presheaf level and then sheafifying. As a result, this operation is exact; that is, <m>\ZZ[X]</m> is flat.

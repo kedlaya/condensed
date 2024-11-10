@@ -22,6 +22,9 @@
   <biblio type="raw" xml:id="bib-Clausen-Scholze-youtube">
     D. Clausen and P. Scholze, <articletitle>Analytic Stacks</articletitle>, <url href="https://www.youtube.com/watch?v=YxSZ1mTIpaA">https://www.youtube.com/watch?v=YxSZ1mTIpaA</url>.
   </biblio>
+  <biblio type="raw" xml:id="bib-Frisch">
+    J. Frisch, <articletitle>Points de platitude d'un morphisme d'espaces analytiques complexes</articletitle>, <journal>Inventiones Mathematicae</journal> <volume>4</volume> <year>1967</year>, 118<ndash/>138. 
+  </biblio>
   <biblio type="raw" xml:id="bib-Fujiwara-Gabber-Kato">
     K. Fujiwara, O. Gabber, and F. Kato, <articletitle>On Hausdorff completions of commutative rings in rigid geometry</articletitle>, 
     <journal>Journal of Algebra</journal> <volume>332</volume> <year>2011</year>, 293<ndash/>321.

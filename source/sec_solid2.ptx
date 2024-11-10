@@ -2,12 +2,15 @@
   <title>Solid abelian groups</title>
   <introduction>
     <p>
-      Since solid <m>R</m>-modules for any commutative ring <m>R</m> can be viewed as <m>R</m>-module objects in the category of solid abelian groups
-      (<xref ref="rem-solid-R-modules-as-solid-Z-modules"/>),
-      it makes sense to study the category of solid abelian groups in more detail, in part to demystify the construction.
+      We study in more the category of solid abelian groups, i.e., the category of solid <m>R</m>-modules for <m>R = \ZZ</m>.
+      As a reminder of <xref ref="rem-solid-R-modules-as-solid-Z-modules"/>, we recall that this is the only case of the construction we will
+      use in condensed mathematics; for <m>R \neq \ZZ</m> we will rather work with <m>R</m>-module objects in the category of solid abelian groups.
     </p>
     <p>
-      To simplify notation, let us define <m>\Ab_\solid</m> as a synonym for <m>\Mod_{\ZZ_\solid}</m>, the category of soild abelian groups.
+      To simplify notation (and to remind ourselves of the previous point), 
+      let us define <m>\Ab_\solid</m> as a synonym for <m>\Mod_{\ZZ_\solid}</m>, the category of solid abelian groups.
+      Let us also write <m>M_\solid</m> as shorthand for <m>M \otimes_{\ZZ} \ZZ_\solid</m>,
+      meaning the image of a discrete abelian group <m>M</m> under solidification (<xref ref="def-solidification"/>).
     </p>
     <paragraphs>
       <title>Reference</title>

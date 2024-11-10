@@ -302,13 +302,15 @@
       <p>
         As in <xref ref="eq-resolve-cofinite-mod-Z"/>, we have an internally projective resolution of <m>\coker(\Delta_f)/R</m> of length 1:
         <men xml:id="eq-resolve-coker-mod-R-liquefaction">
-          0 \to P \otimes R \to (P/\ZZ) \otimes R \to \coker(\Delta_f)/R \to 0
+          0 \to P \otimes R \stackrel{\Delta_f}{\to} (P/\ZZ) \otimes R \to \coker(\Delta_f)/R \to 0
         </men>
         which means that if <m>M</m> is concentrated in degrees <m>[a,b]</m>, then its derived <m>f</m>-liquefaction is concentrated in degrees <m>[a-1,b]</m>.
-        In particular, for <m>M \in \Mod_R</m> the derived <m>f</m>-liquefaction is concentrated in degrees <m>-1</m> and <m>0</m>.
+        In particular, for <m>M \in \Mod_R</m> the derived <m>f</m>-liquefaction is concentrated in degrees <m>-1</m> and <m>0</m>,
+        with the term in degree <m>-1</m> being <m>\iHom_R(\coker(\Delta_f)/R, M)</m>;
+        this makes it clear that this term is nonzero for instance when <m>M = \coker(\Delta_f)/R</m>.
       </p>
       <p>
-        This has the following important consequence for the construction of analytic rings.
+        The existence of the resolution <xref ref="eq-resolve-coker-mod-R-liquefaction"/> has the following important consequence for the construction of analytic rings.
         Let <m>R_0 = (R_0^{\triangleright}, \Mod_{R_0})</m> be an analytic ring,
         choose <m>f \in R_0(*)</m>, and let <m>\Mod_{R_1} := \Mod_{R_0 \liquid f}</m> be the full subcategory of <m>f</m>-liquid objects in <m>\Mod_{R_0}</m>.
         Then the underived <m>f</m>-liquefaction <m>R_1^{\triangleright}</m> of <m>R_0^{\triangleright}</m> has the property that for any <m>M \in \Mod_{R_1}</m>,
@@ -333,7 +335,7 @@
       </p>
       <p>
         By similar logic, starting from the fact that <m>P</m> is internally projective in <m>\CAb</m> (<xref ref="prop-internally-projective"/>),
-        we may see that the derived analytification <m>P \otimes R_0^{\triangleright}</m> equals <m>P \otimes R_1^{\triangleright}</m> placed in degree 0,
+        we may see that the derived <m>f</m>-liquefaction of <m>P \otimes R_0^{\triangleright}</m> equals <m>P \otimes R_1^{\triangleright}</m> placed in degree 0,
         which is again internally projective in <m>\Mod_{R_1}</m>.
       </p>
     </remark>
@@ -352,6 +354,10 @@
         <me>
           \Mod_{R \liquid 1} = \Mod_{R\solid}
         </me>.
+      </p>
+      <p>
+        It follows that for <m>M \in \Mod_R</m>, forming the <m>f</m>-liquefaction <m>M_{\liquid f}</m> commutes with restriction of scalars from <m>S</m> to <m>R</m>,
+        so there is no ambiguity in the notation. However, this is not necessarily true of the <em>derived</em> <m>f</m>-liquefaction unless <m>S</m> is projective in <m>\Mod_R</m>.
       </p>
     </remark>
     <remark>
@@ -373,10 +379,13 @@
         To compute the <m>S</m>-liquefaction of <m>R</m>, we first note that <m>R</m> is already solid, 
         so we need only worry about the <m>T</m>-liquefaction
         and we may compute it in <m>\Ab_\solid</m>: it is the functor <m>\ZZ\langle T \rangle</m> given by
-        <me>
-          \prod_I \ZZ_\solid \mapsto \prod_I \ZZ_\solid[T],
-        </me>
-        whereas by contrast <m>\ZZ_\solid[T]</m> is the functor <m>\prod_I \ZZ_\solid \mapsto \left( \prod_I \ZZ_\solid \right)[T]</m>.
+        <men xml:id="eq-solid-affine-line">
+          \prod_I \ZZ_\solid \mapsto \colim_S \prod_{S} \ZZ
+        </men>
+        where <m>S</m> runs over subsets of <m>I \times \NN</m> whose projections in both directions have finite fibers.
+        By contrast, <m>\ZZ_\solid[T]</m> is the functor <m>\prod_I \ZZ_\solid \mapsto \bigoplus_I \ZZ[T]</m>;
+        this amounts to restricting <xref ref="eq-solid-affine-line"/> to finite subsets <m>S</m>
+        (which only has an effect when <m>I</m> is infinite).
       </p>
       <p>
         To see better what is going on here, look what happens when we tensor with <m>\ZZ_{p \solid}</m>;
@@ -582,7 +591,7 @@
     <p>
       For some calculations, it is helpful to describe a <q>universal</q> version of liquefaction.
     </p>
-    <definition>
+    <definition xml:id="def-initial-base-ring">
       <p>
         Let <m>\ZZ[\hat{q}]</m> be a copy of <m>P := \ZZ[\underline{\NN_\infty}]/\ZZ[\underline{\infty}]</m> viewed as an algebra over <m>\ZZ[q]</m> via <m>q^n \mapsto [n]</m>.
         Then set <m>A_0^{\triangleright} := \ZZ[\hat{q}][q^{-1}]</m>; this condensed ring is represented by the topological ring with underlying ring <m>\ZZ[q^{\pm}]</m>,

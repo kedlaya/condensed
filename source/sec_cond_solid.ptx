@@ -37,8 +37,6 @@
         <me>
           (m_0, m_1, \dots) \mapsto (m_0-m_1, m_1-m_2, \dots)
         </me>.
-        (Recall that we saw a similar map previously in <xref ref="rem-topological-completion"/>; more on this similarity in <xref ref="sec_solid_completion"/>
-        and <xref ref="sec_analytic"/>.)
       </p>
     </definition>
      <remark xml:id="rem-solid-intuition">

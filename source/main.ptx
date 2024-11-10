@@ -111,6 +111,8 @@
           during the fall 2024 quarter; recordings of the lectures can be found at the same web site.
           The notes were typeset using <url visual="pretextbook.org" href="pretextbook.org/"><pretext /></url> so as to produce matching <url visual="kskedlaya.org/condensed/" href="https://kskedlaya.org/condensed/">HTML</url> and 
           <url visual="kskedlaya.org/papers/condensed.pdf" href="https://kskedlaya.org/papers/condensed.pdf">PDF</url> versions.
+          (Beware that the recordings do not correspond precisely to the notes as you see them due to numerous corrections and remarks having been
+          incorporated into the latter.)
         </p>
         <p>
           As of this writing, condensed mathematics is a moving target: the first version of the theory appears in 
@@ -147,6 +149,7 @@
     <xi:include href="./sec_huber_top.ptx"/>
     <xi:include href="./sec_huber_local.ptx"/>
     <xi:include href="./sec_huber_qcoh.ptx"/>
+    <xi:include href="./sec_huber_qcoh2.ptx"/>
     <xi:include href="./sec_gaga.ptx"/>
     <xi:include href="./sec_analytic_stacks1.ptx"/>
     <backmatter>
