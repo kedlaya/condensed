@@ -59,10 +59,14 @@
     </remark>
     <example xml:id="exa-solid-modules-with-underlying-zero">
       <p>
-        In <m>\Ab_\solid</m>, the object <m>\ZZ_\solid[T]</m> is the functor <m>\prod_I \ZZ_\solid \mapsto \left( \prod_I \ZZ \right)[T]</m>.
-        We also have an object <m>\ZZ_\solid \langle T \rangle</m> which is the functor <m>\prod_I \ZZ_\solid \mapsto \prod_I \ZZ[T]</m>.
+        In <m>\Ab_\solid</m>, the object <m>\ZZ_\solid[T]</m> is the functor <m>\prod_I \ZZ_\solid \mapsto \left( \bigoplus_I \ZZ \right)[T] = \bigoplus_I \ZZ[T]</m>.
+        We also have an object <m>\ZZ_\solid \langle T \rangle</m> which is the functor taking
+        <me>
+          \prod_I \ZZ_\solid \mapsto \left( \prod_I \ZZ[T] \right) \cap \left( \bigoplus_I \ZZ \right) \llbracket T \rrbracket \subset \left( \prod_I \ZZ \right) \llbracket T \rrbracket
+        </me>;
+        that is, we have an <m>I \times \NN</m> matrix over <m>\ZZ</m> in which each row and column has finite support.
         The cokernel of the obvious map <m>\ZZ_\solid[T] \to \ZZ_\solid \langle T \rangle</m> is an object of <m>\Ab_{\solid}</m>
-        whose restriction to <m>\Ab</m> is zero, but which is not the zero object.
+        whose restriction to <m>\Ab</m> is zero (because <m>\bigoplus_I = \prod_I</m> when <m>I</m> is finite), but which is not the zero object.
       </p>
     </example>
   </subsection>
@@ -94,9 +98,11 @@
     <proposition xml:id="prop-Whitehead-for-solid">
       <title>Whitehead's problem for solid modules</title>
       <statement>
-        Let <m>A</m> be a <m>\ZZ</m>-module of cardinality <m>\leq \kappa</m>
-        such that <m>\iExt^1_{\ZZ_\solid}(A_{\solid}, \ZZ_\solid) = 0</m>.
-        Then <m>A</m> is a free module.
+        <p>
+          Let <m>A</m> be a <m>\ZZ</m>-module of cardinality <m>\leq \kappa</m>
+          such that <m>\iExt^1_{\ZZ_\solid}(A_{\solid}, \ZZ_\solid) = 0</m>.
+          Then <m>A</m> is a free module.
+        </p>
       </statement>
       <proof>
         <p>
@@ -136,7 +142,6 @@
       <p>
         An object <m>M \in \Ab_\solid</m> is <term>finitely generated</term> if it can be written as a quotient of <m>\prod_I \ZZ_\solid</m>
         for some <m>I</m> with <m>|I| \leq \kappa</m>.
-        (It is not necessarily to allow a finite product of copies of <m>\prod_I \ZZ_\solid</m> because this is again a product of the same form.)
         The object <m>M</m> is <term>finitely presented</term> if it occurs as the cokernel of some morphism <m>\prod_J \ZZ_\solid \to \prod_I \ZZ_\solid</m>.
       </p>
     </definition>
@@ -203,13 +208,13 @@
           target (discarding the dual of <m>\ker(h)</m>) in such a way that <m>M</m> still embeds as a subobject, but the map <m>h</m> is now injective.
         </p>
         <p>
-          Set <m>Q := \coker(h)</m>. Let <m>\overline{Q}</m> be the quotient of <m>Q</m> by its torsion subgroup; by
-          <xref ref="lem-submodule-free-over-PID"/> again, <m>\overline{Q}</m> is again a free <m>\ZZ</m>-module,
-          so the target <m>\bigoplus_J \ZZ</m> admits a splitting with <m>\overline{Q}</m> as a direct summand.
-          This now transposes to a decomposition of the source <m>\prod_J \ZZ_\solid</m> as a product into two factors,
-          each itself a product of copies of <m>\ZZ_\solid</m>, and we can replace the source with one of these factors
-          (discarding the dual of <m>\overline{Q}</m>) in such a way that we now have a new sequence as in <xref ref="eq-sandwich-free-module"/>, but
-          now <m>Q</m> is a torsion <m>\ZZ</m>-module.
+          Let <m>D</m> be the divisible closure of the image of <m>h</m> within <m>\bigoplus_J \ZZ</m>.
+          By <xref ref="lem-submodule-free-over-PID"/>, <m>D</m> is also a free <m>\ZZ</m>-module
+          so by <xref ref="prop-solid-internal-hom"/> its dual is a product of copies of <m>\ZZ_\solid</m>
+          through which <m>g</m> factors, as then does the map <m>\prod_J \ZZ_\solid \to M</m>
+          since <m>M \to \prod_I \ZZ_\solid</m> is injective.
+          We can thus replace the source <m>\prod_J \ZZ_\solid</m> with this product;
+          at this point, <m>h</m> is still injective but now <m>Q := \coker(h)</m> is torsion.
         </p>
         <p>
           Now dualizing the sequence
@@ -238,11 +243,11 @@
         </p>
       </proof>
     </corollary>
-    <corollary>
+    <corollary xml:id="cor-solid-torsion-by-free">
       <statement>
         <p>
           Any finitely presented solid <m>\ZZ</m>-module is a product of some copies of <m>\ZZ_\solid</m> by
-          <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> for some torsion <m>\ZZ</m>-module <m>Q</m>.
+          <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> for some (finite or countable) torsion <m>\ZZ</m>-module <m>Q</m>.
         </p>
       </statement>
       <proof>
@@ -256,7 +261,7 @@
           This factor projects injectively to <m>M</m>, so we end up splitting off a direct summand of <m>M</m> which is a product of copies of <m>\ZZ_\solid</m>.
         </p>
         <p>
-          We then split <m>\prod_J \ZZ_\solid</m> to ensure that the transpose of the map <m>g</m> has torsion cokernel <m>Q</m>.
+          We then replace <m>\prod_J \ZZ_\solid</m> to ensure that the transpose of the map <m>g</m> has torsion cokernel <m>Q</m>.
           At this point, the sequence <xref ref="eq-hom-from-torsion-sequence"/> continues
           <me>
             0 \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid \to \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}(\prod_J \ZZ_\solid, \ZZ_\solid) = 0
@@ -266,7 +271,7 @@
         </p>
       </proof>
     </corollary>
-    <proposition>
+    <proposition xml:id="prop-finitely-presented-generators-solid">
       <statement>
         <p>
           The finitely presented objects in <m>\Ab_\solid</m> form a subcategory closed under kernels, cokernels, and extensions.
@@ -282,6 +287,8 @@
     <remark>
       <p>
         One can prove similar results with <m>\ZZ_\solid</m> replaced by an algebra of finite type over <m>\ZZ_\solid</m>.
+        (As per <xref ref="rem-solid-R-modules-as-solid-Z-modules"/>, the category of modules in such statements
+        is the category of module objects in <m>\Ab_\solid</m>.)
         See <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 11, timestamp 24:30.
       </p>
     </remark>

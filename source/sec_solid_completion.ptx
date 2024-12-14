@@ -73,16 +73,19 @@
         which can also be interpreted as the bounded rigid-analytic functions on the open unit disc over <m>\QQ_p</m>.
       </p>
     </example>
-    <example>
+    <example xml:id="exa-solid-Tate-algebra">
       <p>
         Returning to <xref ref="exa-power-series-as-solid-rings"/>, note that in <m>\Ab_\solid</m> the rings <m>\ZZ[T]</m> and <m>\ZZ\llbracket T \rrbracket</m>
         correspond to the functors
         <me>
-          \prod_I \ZZ_\solid \mapsto \left( \prod_I \ZZ \right)[T], \qquad
-          \prod_I \ZZ_\solid \mapsto \prod_I \ZZ \llbracket T \rrbracket
+          \prod_I \ZZ_\solid \mapsto \left( \bigoplus_I \ZZ \right)[T] = \bigoplus_I \ZZ[T], \qquad
+          \prod_I \ZZ_\solid \mapsto \left( \bigoplus_I \ZZ \right) \llbracket T \rrbracket
         </me>.
         As in <xref ref="exa-solid-modules-with-underlying-zero"/>, we can insert in between the functor
-        <m>\prod_I \ZZ_\solid \mapsto \prod_I \ZZ[T]</m>. This corresponds to a ring object in <m>\Ab_\solid</m>
+        <me>
+          \prod_I \ZZ_\solid \mapsto \left( \prod_I \ZZ[T] \right) \cap \left( \bigoplus_I \ZZ \right) \llbracket T \rrbracket \subset \left( \prod_I \ZZ \right) \llbracket T \rrbracket
+        </me>.
+        This corresponds to a ring object in <m>\Ab_\solid</m>
         which we might call <m>\ZZ\langle T \rangle</m>, but which does <em>not</em> correspond to a topological ring.
       </p>
       <p>
@@ -91,17 +94,11 @@
           \ZZ \langle T \rangle \otimes_\solid \ZZ \llbracket U \rrbracket \cong \ZZ \llbracket U \rrbracket\langle T \rangle
         </me>
         where <m>\ZZ \llbracket U \rrbracket\langle T \rangle</m> means the <m>U</m>-adic completion of <m>\ZZ\llbracket U \rrbracket[T]</m>
-        (or equivalently of <m>\ZZ[U,T]</m>). To see this, write <m>\ZZ \llbracket U \rrbracket</m> as <m>\prod_{n \in \NN} \ZZ U^n</m>, compute
-        <me>
-          \ZZ \langle T \rangle \otimes_\solid \prod_{n \in \NN} \ZZ U^n = \prod_{n \in \NN} \ZZ \langle T \rangle U^n,
-        </me>
-        and interpret the right-hand side as the functor
-        <me>
-          \prod_I \ZZ_\solid \mapsto \prod_I \prod_{n \in \NN} \ZZ[T] U^n = \prod_I \ZZ \llbracket U \rrbracket\langle T \rangle
-        </me>.
+        (or equivalently of <m>\ZZ[U,T]</m>). To see this, write <m>\ZZ \llbracket U \rrbracket</m> as <m>\prod_n \ZZ\cdot U^n</m>
+        and recall that <m>\otimes_\solid</m> commutes with countable products.
       </p>
     </example>
-    <example>
+    <example xml:id="exa-solid-Tate-algebra2">
       <p>
         By dividing by <m>U-p</m> in the previous example, we deduce that
         <me>

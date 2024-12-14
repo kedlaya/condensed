@@ -69,11 +69,18 @@
   <biblio type="raw" xml:id="bib-Lurie-HA">
     J. Lurie, <pubtitle>Higher Algebra</pubtitle>, <url href="https://www.math.ias.edu/~lurie/papers/HA.pdf">https://www.math.ias.edu/~lurie/papers/HA.pdf</url>.
   </biblio>
+  <biblio type="raw" xml:id="bib-Mann">
+    L. Mann, <articletitle>A <m>p</m>-adic 6-functor formalism in rigid analytic geometry</articletitle>, <url href="https://arxiv.org/abs/2206.02022">arXiv:2206.02022v1</url> <year>2022</year>.
+  </biblio>
   <biblio type="raw" xml:id="bib-Rotman-top">
     J.J. Rotman, <pubtitle>An Introduction to Algebraic Topology</pubtitle>, Graduate Texts in Mathematics 119, Springer-Verlag, Berlin <year>1988</year>.
   </biblio>
   <biblio type="raw" xml:id="bib-Rotman">
     J.J. Rotman, <pubtitle>Advanced Modern Algebra, Part 1</pubtitle>, third edition, Graduate Studies in Mathematics 165, American Mathematical Society <year>2015</year>.
+  </biblio>
+  <biblio type="raw" xml:id="bib-liquid">
+    P. Scholze, <articletitle>Blueprint for the liquid tensor experiment</articletitle>,
+    <url href="https://leanprover-community.github.io/liquid/">https://leanprover-community.github.io/liquid/</url>.
   </biblio>
   <biblio type="raw" xml:id="bib-Stacks">
     The Stacks Project Authors, <pubtitle>Stacks Project</pubtitle>, <url href="https://stacks.math.columbia.edu">https://stacks.math.columbia.edu/</url>.

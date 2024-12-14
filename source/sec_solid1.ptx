@@ -481,8 +481,6 @@
             D\left(\prod_I R_\solid\right) \cong \bigoplus_I R_{\solid}, \qquad D\left( \bigoplus_I R_{\solid} \right) \cong \prod_I R_{\solid}
           </me>
           (the first equality requires <m>|I| \leq \kappa</m>, the second is for arbitrary <m>I</m>).
-          That is, <m>\prod_I R_\solid</m> and <m>\bigoplus_I R_\solid</m> are reflexive even though they are not dualizable
-          <xref ref="def-reflexive-dualizable"/>).
         </p>
       </statement>
       <proof>
@@ -543,21 +541,13 @@
     </proposition>
     <remark>
       <p>
-        Notwithstanding <xref ref="prop-solid-internal-hom"/>, just as in <m>\Mod_R</m> it is the case in <m>\Mod_{R_\solid}</m>
-        that infinite products and coproducts do not coincide.
-        Consequently, a coproduct <m>\bigoplus_I R_\solid</m> with <m>|I| \leq \kappa</m> can only be isomorphic to its own dual
-        if <m>I</m> is finite.
-      </p>
-    </remark>
-    <remark>
-      <p>
-        We can recover the external Hom from the internal Hom via the formula
+        We can recover the external Hom in <m>\Mod_{R_\solid}</m> from the internal Hom via the formula
         <men xml:id="eq-solid-external-hom-from-internal">
           \Hom_{R_\solid}(M, N) = \Hom_{R_\solid}(R_\solid, \iHom_{R_\solid}(M, N)).
         </men>
       </p>
       <p>
-        A related point is that  for <m>M \in \Mod_{R_\solid}</m>, we have a natural isomorphism
+        A related point is that for <m>M \in \Mod_{R_\solid}</m>, we have a natural isomorphism
         <me>
           \iHom_{R_\solid}(R_\solid, M) \cong M
         </me>:
@@ -571,6 +561,20 @@
             &amp; = \Hom_{R_\solid}(N, M)
           </mrow>
         </md>.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        Notwithstanding <xref ref="prop-solid-internal-hom"/>, just as in <m>\Mod_R</m> it is the case in <m>\Mod_{R_\solid}</m>
+        that infinite products and coproducts do not coincide.
+        Consequently, a coproduct <m>\bigoplus_I R_\solid</m> with <m>|I| \leq \kappa</m> can only be isomorphic to its own dual
+        if <m>I</m> is finite.
+      </p>
+      <p>
+        On a related note, <xref ref="prop-solid-internal-hom"/> asserts in particular that <m>\prod_I R_\solid</m> and <m>\bigoplus_I R_\solid</m> 
+        are <term>reflexive</term> objects in <m>\Mod_{R_\solid}</m>.
+        However, they are not <term>dualizable</term> in the usual sense of symmetric monoidal categories
+        (<xref ref="def-reflexive-dualizable"/>) unless <m>I</m> is finite.
       </p>
     </remark>
   </subsection>

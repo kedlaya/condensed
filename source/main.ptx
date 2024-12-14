@@ -61,10 +61,12 @@
       \DeclareMathOperator{\Spa}{Spa}
       \DeclareMathOperator{\Spv}{Spv}
       \DeclareMathOperator{\Spec}{Spec}
+      \DeclareMathOperator{\spect}{sp}
       \DeclareMathOperator{\Sym}{Sym}
 
       \DeclareMathOperator{\Ab}{\mathbf{Ab}}
       \DeclareMathOperator{\AnRing}{\mathbf{AnRing}}
+      \DeclareMathOperator{\AnStack}{\mathbf{AnStack}}
       \DeclareMathOperator{\CAb}{\mathbf{CAb}}
       \DeclareMathOperator{\Ch}{\mathbf{Ch}}
       \DeclareMathOperator{\CHaus}{\mathbf{CHaus}}
@@ -74,6 +76,7 @@
       \DeclareMathOperator{\iHom}{\underline{Hom}}
       \DeclareMathOperator{\LCAb}{\mathbf{LCAb}}
       \DeclareMathOperator{\LCRS}{\mathbf{LCRS}}
+      \DeclareMathOperator{\LQCoh}{\mathbf{LQCoh}}
       \DeclareMathOperator{\LRS}{\mathbf{LRS}}
       \DeclareMathOperator{\Mod}{\mathbf{Mod}}
       \DeclareMathOperator{\Prof}{\mathbf{Prof}}
@@ -119,7 +122,7 @@
           <xref ref="bib-Clausen-Scholze-notes"/>, but this theory is set up in a way that exposes it to a sensitive
           dependence on large cardinal axioms. We will instead follow the approach sketched in <xref ref="bib-Clausen-Scholze-youtube"/>,
           which limits this exposure without too much of a cost when it comes to practical applications; unfortunately, there
-          is not yet an entirely satisfactory print reference (and these notes do not aim to provide one either).
+          is not yet an entirely satisfactory print reference (these notes included).
         </p>
         <p>
           Our goal here is <em>not</em> to give a sweeping overview; for this we defer to the other references.
@@ -151,7 +154,10 @@
     <xi:include href="./sec_huber_qcoh.ptx"/>
     <xi:include href="./sec_huber_qcoh2.ptx"/>
     <xi:include href="./sec_gaga.ptx"/>
+    <xi:include href="./sec_analytic_norm.ptx"/>
     <xi:include href="./sec_analytic_stacks1.ptx"/>
+    <xi:include href="./sec_analytic_top.ptx"/>
+    <xi:include href="./sec_analytic_stacks2.ptx"/>
     <backmatter>
       <xi:include href="./bibliography.ptx"/>
     </backmatter>

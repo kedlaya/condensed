@@ -7,11 +7,18 @@
       We have seen a few examples already coming from solid abelian groups, but using an analogue of solidification we will generate many more,
       including a key example associated to the real numbers.
     </p>
+    <p>
+      Warning: the use of the word <term>liquid</term> and its derivatives in these notes is deprecated,
+      as it conflicts with another usage in the theory:
+      it is appears in a construction of analytic rings not of the sort considered here
+      (see <xref ref="bib-Clausen-Scholze-analytic"/>, or for a brief taste <xref ref="bib-liquid"/>).
+      I am planning to edit the notes to change <term>liquid</term> to <term>gas</term>, and similarly for derived forms
+      such as <term>liquefaction</term>.
+    </p>
     <paragraphs>
       <title>Reference</title>
       <p>
         This section is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lectures 13 and 14.
-        <xref ref="exa-solid-affine-line"/> is taken from <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 7.
         <xref ref="rem-liquefaction-kills-ext1"/> is taken from <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 11.
       </p>
     </paragraphs>
@@ -279,7 +286,7 @@
         </p>
       </proof>
     </proposition>
-    <proposition>
+    <proposition xml:id="prop-formula-for-liquefaction">
       <statement>
         <p>
           The embedding functor <m>\Mod_{R \liquid f} \to \Mod_R</m> admits a left adjoint called <term><m>f</m>-liquefaction</term> and computed by
@@ -339,6 +346,13 @@
         which is again internally projective in <m>\Mod_{R_1}</m>.
       </p>
     </remark>
+    <remark>
+      <p>
+        If <m>M \in \Mod_R</m> is already solid as an abelian group, then it is natural to say that <m>M</m>
+        is <term><m>f</m>-solid</term> as a synonym for <term><m>f</m>-liquid</term>,
+        and to refer to the operation of <term><m>f</m>-liquefaction</term> also as <term><m>f</m>-solidification</term>.
+      </p>
+    </remark>
     <p>
       The operation of <m>f</m>-liquefaction bears a strong formal resemblance to derived <m>f</m>-completion.
       This drives the next few remarks.
@@ -372,29 +386,6 @@
         An important special case is when <m>1 \in S</m>; in this case we can work in terms of solid abelian groups.
       </p>
     </remark>
-    <example xml:id="exa-solid-affine-line">
-      <p>
-        Let <m>R = \underline{\ZZ}[T] = \underline{\ZZ[T]}</m> be the (discrete) polynomial ring over <m>\ZZ</m>, 
-        take <m>S = \{1,T\}</m>, and consider the category <m>\Mod_{R \liquid S}</m>.
-        To compute the <m>S</m>-liquefaction of <m>R</m>, we first note that <m>R</m> is already solid, 
-        so we need only worry about the <m>T</m>-liquefaction
-        and we may compute it in <m>\Ab_\solid</m>: it is the functor <m>\ZZ\langle T \rangle</m> given by
-        <men xml:id="eq-solid-affine-line">
-          \prod_I \ZZ_\solid \mapsto \colim_S \prod_{S} \ZZ
-        </men>
-        where <m>S</m> runs over subsets of <m>I \times \NN</m> whose projections in both directions have finite fibers.
-        By contrast, <m>\ZZ_\solid[T]</m> is the functor <m>\prod_I \ZZ_\solid \mapsto \bigoplus_I \ZZ[T]</m>;
-        this amounts to restricting <xref ref="eq-solid-affine-line"/> to finite subsets <m>S</m>
-        (which only has an effect when <m>I</m> is infinite).
-      </p>
-      <p>
-        To see better what is going on here, look what happens when we tensor with <m>\ZZ_{p \solid}</m>;
-        in <m>\CAb_\solid</m> we get the topological ring <m>\underline{\ZZ_p \langle T \rangle}</m>
-        corresponding to the Tate algebra in one variable (i.e., the <m>p</m>-adic completion of <m>\ZZ[T]</m>),
-        which is larger than the polynomial ring <m>\underline{\ZZ_p[T]}</m>.
-        This corresponds to the general fact that derived <m>f</m>-completion commutes with <m>g</m>-liquefaction.
-      </p>
-    </example>
   </subsection>
   <subsection>
     <title>The liquid real numbers</title>
@@ -406,6 +397,7 @@
     <lemma xml:id="lem-f-solidification-versus-fn">
       <statement>
         <p>
+          Let <m>R</m> be a condensed commutative ring.
           For any positive integer <m>n</m>, <m>\Mod_{R \liquid f} = \Mod_{R \liquid f^n}</m>.
         </p>
       </statement>
@@ -470,6 +462,7 @@
     </lemma>
     <definition xml:id="def-R-topologically-nilpotent">
       <p>
+        Let <m>R</m> be a condensed commutative ring.
         We say that <m>g \in R(*)</m> is <term>topologically nilpotent</term> if there is an element of <m>\Hom_{\CAb}(P, R)</m> taking <m>[n]</m> to <m>g^n</m>
         for all <m>n \in \NN</m>. If <m>R</m> is a topological ring, this says that the powers of <m>g</m> form a null sequence.
       </p>
@@ -486,6 +479,7 @@
     <lemma xml:id="rem-f-solidification-versus-fg">
       <statement>
         <p>
+          Let <m>R</m> be a condensed commutative ring.
           Suppose that <m>g \in R(*)</m> is power-bounded. We then have an inclusion <m>\Mod_{R \liquid f} \subseteq \Mod_{R \liquid fg}</m>.
         </p>
       </statement>
@@ -512,6 +506,7 @@
     <corollary xml:id="cor-liquid-top-nilpotent-unit">
       <statement>
         <p>
+          Let <m>R</m> be a condensed commutative ring.
           Let <m>\varpi_1,\varpi_2 \in R(*)</m> be two topologically nilpotent units.
           Then <m>\Mod_{R \liquid \varpi_1} = \Mod_{R \liquid \varpi_2}</m>;
           consequently, both of these equal <m>\Mod_{R \liquid S}</m> where <m>S</m> is the entire set of topologically nilpotent elements of <m>R</m>.
@@ -533,6 +528,7 @@
     <lemma xml:id="lem-liquid-to-power-bounded">
       <statement>
         <p>
+          Let <m>R</m> be a condensed commutative ring.
           If <m>R</m> is <m>g</m>-liquid for some <m>g \in R(*)</m>, then <m>g</m> is power-bounded.
         </p>
       </statement>
@@ -549,6 +545,19 @@
         </p>
       </proof>
     </lemma>
+    <p>
+      We summarize the previous discussion as follows.
+    </p>
+    <definition>
+      <p>
+        For <m>R</m> an analytic ring, an element <m>f \in R^{\triangleright}(*)</m> is <term>liquid</term>
+        if <m>\Mod_R = \Mod_{R \liquid f}</m>.
+        The set of liquid elements of <m>R^{\triangleright}(*)</m> is contained in <m>R^{\circ}</m>
+        (by <xref ref="lem-liquid-to-power-bounded"/>), closed under multiplication
+        (by <xref ref="rem-f-solidification-versus-fg"/> and <xref ref="lem-liquid-to-power-bounded"/>),
+        and closed under root extraction (by <xref ref="lem-f-solidification-versus-fn"/>).
+      </p>
+    </definition>
     <definition xml:id="def-R-liquid">
       <p>
         By <xref ref="cor-liquid-top-nilpotent-unit"/>,
@@ -603,7 +612,7 @@
       The ring <m>A_0^{\triangleright}</m> is not itself <m>q</m>-liquid because we cannot take any infinite sums over <m>q</m>.
       To remedy this, we allow certain controlled infinite sums.
     </p>
-    <definition>
+    <definition xml:id="def-initial-ring-liquefied">
       <p>
         For <m>k=1,2,\dots</m>, define the topological ring
         <men xml:id="eq-universal-liquefaction-filtered">
