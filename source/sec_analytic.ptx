@@ -258,7 +258,7 @@
       </p>
       <p>
         For <m>f \in R(*)</m>, let <m>\Delta_f\colon P \otimes R \to P \otimes R</m> be the map <m>1 - f \sigma</m>.
-        An object <m>M \in \Mod_R</m> is <term><m>f</m>-liquid</term> if <m>\Delta^*</m> induces an isomorphism on <m>\iHom_{\CAb}(P, M) = \iHom_R(P \otimes R, M)</m>.
+        An object <m>M \in \Mod_R</m> is <term><m>f</m>-liquid</term> (better, <term><m>f</m>-gaseous</term>) if <m>\Delta^*</m> induces an isomorphism on <m>\iHom_{\CAb}(P, M) = \iHom_R(P \otimes R, M)</m>.
         It is again equivalent to consider <m>R\iHom_R(P \otimes R, M)</m> as by <xref ref="prop-internally-projective"/>, 
         we have <m>\iExt_R^i(P \otimes R, M) = 0</m> for <m>i \gt 0</m>.
         Let <m>\Mod_{R \liquid f}</m> denote the full subcategory of <m>f</m>-liquid objects of <m>\Mod_R</m>;
@@ -397,7 +397,7 @@
     <lemma xml:id="lem-f-solidification-versus-fn">
       <statement>
         <p>
-          Let <m>R</m> be a condensed commutative ring.
+          Let <m>R</m> be a condensed commutative ring and choose <m>f \in R(*)</m>.
           For any positive integer <m>n</m>, <m>\Mod_{R \liquid f} = \Mod_{R \liquid f^n}</m>.
         </p>
       </statement>
@@ -479,7 +479,7 @@
     <lemma xml:id="rem-f-solidification-versus-fg">
       <statement>
         <p>
-          Let <m>R</m> be a condensed commutative ring.
+          Let <m>R</m> be a condensed commutative ring and choose <m>f \in R(*)</m>.
           Suppose that <m>g \in R(*)</m> is power-bounded. We then have an inclusion <m>\Mod_{R \liquid f} \subseteq \Mod_{R \liquid fg}</m>.
         </p>
       </statement>
@@ -550,12 +550,15 @@
     </p>
     <definition>
       <p>
-        For <m>R</m> an analytic ring, an element <m>f \in R^{\triangleright}(*)</m> is <term>liquid</term>
+        For <m>R</m> an analytic ring, an element <m>f \in R^{\triangleright}(*)</m> is <term>gaseous</term>
         if <m>\Mod_R = \Mod_{R \liquid f}</m>.
-        The set of liquid elements of <m>R^{\triangleright}(*)</m> is contained in <m>R^{\circ}</m>
-        (by <xref ref="lem-liquid-to-power-bounded"/>), closed under multiplication
-        (by <xref ref="rem-f-solidification-versus-fg"/> and <xref ref="lem-liquid-to-power-bounded"/>),
-        and closed under root extraction (by <xref ref="lem-f-solidification-versus-fn"/>).
+        Let <m>R^{\gas}</m> be the set of gaseous elements of <m>R^{\triangleright}(*)</m>; then
+        <m>R^{\gas} \subset R^{\circ}</m>
+        (by <xref ref="lem-liquid-to-power-bounded"/>);
+        <m>R^{\gas}</m> is closed under multiplication by elements of <m>R^{\circ}</m>
+        (by <xref ref="rem-f-solidification-versus-fg"/>),
+        and hence closed under multiplication within itself;
+        and <m>R^{\gas}</m> is closed under root extraction (by <xref ref="lem-f-solidification-versus-fn"/>).
       </p>
     </definition>
     <definition xml:id="def-R-liquid">

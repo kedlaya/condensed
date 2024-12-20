@@ -24,13 +24,13 @@
         <me>
           H^i(X, M) := \Ext^i_{\CAb}(\ZZ[X], \underline{M}).
         </me>
-        When <m>X \in \Top</m> we may also write <m>H^i_{\cond}(X, M)</m> to mean <m>H^i(\underline{X}, \underline{M})</m>.
+        When <m>X \in \Top</m> we may also write <m>H^i_{\cond}(X, M)</m> to mean <m>H^i(\underline{X}, M)</m>.
       </p>
     </definition>
     <lemma xml:id="lem-cohomology-of-profinite-in-solid">
       <statement>
         <p>
-          For <m>X \in \Prof</m> and <m>M \in \TopAb_\solid</m>, <m>\Ext^i_{\CAb}(\ZZ[\underline{X}], \underline{M}) = 0</m> for all <m>i \gt 0</m>.
+          For <m>X \in \Prof</m> and <m>M \in \TopAb \times_{\CAb} \CAb_\solid</m>, <m>\Ext^i_{\CAb}(\ZZ[\underline{X}], \underline{M}) = 0</m> for all <m>i \gt 0</m>.
         </p>
       </statement>
       <proof>

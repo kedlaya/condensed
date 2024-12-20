@@ -4,7 +4,7 @@
     <p>
       In this section, we show that the functor defined in <xref ref="thm-solid-to-condensed"/> from solid abelian groups as defined in <xref ref="sec_solid1"/>.
       to solid condensed abelian groups is an equivalence of categories.
-      This will allow us to employ the language of solid <m>R</m>-modules while still drawing conclusions about condensed abelian groups.
+      This will allow us to employ the language of solid abelian groups while still drawing conclusions about condensed abelian groups.
     </p>
     <p>
       In the process, we will also identify the solidifications of the sequence space <m>P</m> and of the groups <m>\ZZ[\underline{S}]</m> for <m>S \in \Prof</m>.
@@ -23,9 +23,10 @@
   <subsection>
     <title>Setting up a comparison of solidifications</title>
     <p>
-      Our first goal is to show that the coordinate map <m>c \colon P \to \prod_\NN \underline{\ZZ}</m> induces an isomorphism <m>P_\solid \cong \prod_\NN \underline{\ZZ}</m>,
-      including at the derived level (<xref ref="cor-solidification-of-P"/>).
-      Since both <m>P</m> and <m>\prod_\NN \underline{\ZZ}</m> are sequential topological abelian groups, we can interpret <m>c</m> as a map in that category.
+      Our first goal is to show that the coordinate map <m>c \colon P \to \prod_\NN \underline{\ZZ}</m> induces an isomorphism <m>P_\solid \cong \prod_\NN \underline{\ZZ}</m>
+      (<xref ref="cor-solidification-of-P"/>).
+      Since both <m>P</m> and <m>\prod_\NN \underline{\ZZ}</m> correspond to sequential topological abelian groups (see <xref ref="def-internally-projective-object"/>), 
+      we can interpret <m>c</m> as a map in that category.
       However, to overcome a subtle topological issue (<xref ref="rem-map-does-not-extend-to-unbounded"/>) we need to refactor this map as follows.
     </p>
     <definition xml:id="def-strict-factorization">
@@ -50,15 +51,13 @@
       </p>
     </definition>
     <p>
-      Fortunately, it is easy to compare the solidifications of <m>\prod_\NN^{\bd} \underline{\ZZ}</m> and <m>\prod_\NN \underline{\ZZ}</m>,
-      even at the derived level.
+      Fortunately, it is easy to compare the solidifications of <m>\prod_\NN^{\bd} \underline{\ZZ}</m> and <m>\prod_\NN \underline{\ZZ}</m>.
     </p>
     <lemma xml:id="cor-replace-prod-with-bounded-solid">
       <statement>
         <p>
           The map <m>\left( \prod_\NN^{\bd} \underline{\ZZ} \right)_\solid \to \left( \prod_\NN \underline{\ZZ} \right)_\solid</m> is an isomorphism.
-          Moreover, for each <m>i \gt 0</m>, the morphism <m>\iExt^i_{\CAb}\left(\prod_\NN \underline{\ZZ}, N\right) \to \iExt^i_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right)</m>
-          is an isomorphism for all <m>N \in \CAb_{\solid}</m>.
+          (By <xref ref="lem-top-group-no-derived-solidification"/>, this holds also at the level of derived solidifications.)
         </p>
       </statement>
       <proof>
@@ -156,7 +155,7 @@
               </latex-image>
             </image>
           </figure>
-          where now the top row is <m>[m] \otimes (c_0,c_1,\dots) \mapsto (0,\dots,0,c_m,0,\dots)</m>
+          where now the top row is <m>[m] \otimes (c_0,c_1,\dots) \mapsto (0,\dots,0,c_m,0,\dots)</m>,
           the bottom row is <m>[m] \otimes (c_0,c_1,\dots) \mapsto (0,\dots,0,c_m,c_{m+1},\dots)</m>,
           and the two rows are equalized by a map <m>P \to P \otimes \prod_\NN^{\bd} \underline{\ZZ}</m> acting via <m>[n] \mapsto [n] \otimes c([n])</m>.
           The bottom row is split by a map of the form <m>s \mapsto [0] \otimes s</m>.
@@ -204,51 +203,37 @@
       <statement>
         <p>
           The map <m>c_\solid\colon P_\solid \to \left(\prod_\NN^{\bd} \underline{\ZZ} \right)_\solid</m> is an isomorphism in <m>\CAb</m>.
-          Moreover, for each <m>i \gt 0</m>, <m>\iExt^i_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right) = 0</m> for all <m>N \in \CAb_{\solid}</m>.
+          (By <xref ref="lem-top-group-no-derived-solidification"/>, this holds also at the level of derived solidifications.)
         </p>
       </statement>
       <proof>
         <p>
-          We check the second assertion first.
-          For the second assertion, we apply <m>\iExt^i(\bullet, N)</m> to the diagram in <xref ref="lem-diagram-p-to-bd"/> to obtain
+          We solidify the diagram in <xref ref="lem-diagram-p-to-bd"/> to obtain
           <figure>
             <image>
               <latex-image>
                 \xymatrix{
-                  \iExt^i_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right) \ar[r] \ar^{c^*}[d] &amp; \iExt^i_{\CAb}\left( P \otimes \prod_\NN^{\bd} \underline{\ZZ}, N\right) \ar^{\Delta^* \otimes \id}[d] \\
-                  \iExt^i_{\CAb}\left(P, N\right) \ar[r] &amp; \iExt^i_{\CAb}\left( P \otimes \prod_\NN^{\bd} \underline{\ZZ}, N\right) 
-                }
-              </latex-image>
-            </image>
-          </figure>
-          where now both rows are split injections.
-          By applying Hom-tensor adjunction to write
-          <me>
-            \iExt_{\CAb}^i\left( P \otimes \prod_\NN^{\bd} \underline{\ZZ}, N\right) = \iExt^i_{\CAb}\left( P, \iHom_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right)\right)
-          </me>
-          and invoking <xref ref="prop-solid-category"/> to see that <m>\iHom_{\CAb}(\prod_\NN^{\bd} \underline{\ZZ}, N)</m> is solid, we deduce that the
-          right column is an isomorphism.
-          Consequently, the upper composition is an injection, so we have an injection
-          <me>
-            \iExt^i_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right) \stackrel{c^*}{\to} \iExt^i_{\CAb}\left(P, N\right) = 0
-          </me>
-          where the right equality follows from <xref ref="prop-internally-projective"/>.
-        </p>
-        <p>
-          For the first assertion, we solidify the diagram in <xref ref="lem-diagram-p-to-bd"/> to obtain
-          <figure>
-            <image>
-              <latex-image>
-                \xymatrix{
-                  \left(P \otimes \prod_\NN^{\bd} \underline{\ZZ}\right)_\solid \ar[r] \ar^{\Delta \otimes \id}[d] &amp; P_\solid \ar^{c}[d] \\
+                  \left(P \otimes \prod_\NN^{\bd} \underline{\ZZ}\right)_\solid \ar[r] \ar^{\Delta \otimes \id}[d] &amp; P_\solid \ar^{c_\solid}[d] \\
                   \left(P \otimes \prod_\NN^{\bd} \underline{\ZZ}\right)_\solid \ar[r] &amp; \left( \prod_\NN^{\bd} \underline{\ZZ} \right)_\solid
                 }
               </latex-image>
             </image>
           </figure>
-          where now both rows are split surjections. By considering the previous diagram with <m>i=0</m>, we see that the left column
-          induces an isomorphism of representable functors and hence is an isomorphism by Yoneda's lemma.
-          At this point we conclude that <m>c_\solid</m> is a split surjection; however, since the top row is also surjective,
+          where again rows are split surjections. 
+        </p>
+        <p>
+          We check that the left vertical arrow in the diagram is an isomorphism.
+          By Yoneda's lemma, it suffices to check that this arrow induces an isomorphism after taking internal Homs into any <m>N \in \CAb_\solid</m>.
+          To see this, we apply Hom-tensor adjunction to write
+          <me>
+            \iHom_{\CAb}\left( P \otimes \prod_\NN^{\bd} \underline{\ZZ}, N\right) 
+            = \iHom_{\CAb}\left( P, \iHom_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right)\right)
+          </me>
+          and then invoke <xref ref="prop-solid-category"/> to see that <m>\iHom_{\CAb}(\prod_\NN^{\bd} \underline{\ZZ}, N)</m> is solid.
+        </p>
+        <p>
+          At this point we conclude that <m>c_\solid</m> is a split surjection.
+          Since the top row is also surjective,
           tracing clockwise from <m>\left( \prod_\NN^{\bd} \underline{\ZZ} \right)_\solid</m> back to <m>P_\solid</m> yields a surjection whose postcomposition
           with <m>c_\solid</m> is the identity map. That surjection must therefore be an isomorphism, which proves that <m>c_\solid</m> is also injective.
         </p>
@@ -258,8 +243,8 @@
       <statement>
         <p>
           The map <m>c_\solid \colon P_\solid \to \prod_{\NN} \underline{\ZZ}</m> is an isomorphism.
-          (Note that the target is solid by <xref ref="lem-delta-pullback-on-Rhom"/> and <xref ref="prop-solid-category"/>.)
-          Moreover, for each <m>i \gt 0</m>, <m>\iExt^i_{\CAb}\left(\prod_\NN \underline{\ZZ}, N\right) = 0</m> for all <m>N \in \CAb_{\solid}</m>.
+          (Note that the target is solid by <xref ref="lem-delta-pullback-on-Rhom"/> and <xref ref="prop-solid-category"/>.
+          By <xref ref="lem-top-group-no-derived-solidification"/>, this holds also at the level of derived solidifications.)
         </p>
       </statement>
       <proof>
@@ -300,9 +285,8 @@
     <remark>
       <p>
         In principle one could use the explicit description of <m>\ZZ[\underline{\NN}_\infty]</m> from <xref ref="exa-module-ring-topological-space"/>
-        to recover the isomorphism <m>P_\solid \cong \prod_{\NN} \underline{\ZZ}</m>; however, it is less clear how to upgrade this to make the comparison
-        at the derived level (i.e., to get the second assertion of <xref ref="cor-solidification-of-P"/>) which will also be important later.
-        Similar considerations will apply when we use similar techniques to identify other solidifications (<xref ref="lem-identify-solidification-of-free"/>).
+        to recover the isomorphism <m>P_\solid \cong \prod_{\NN} \underline{\ZZ}</m>.
+        We leave this as a challenge for the motivated reader.
       </p>
     </remark>
   </subsection>
@@ -412,14 +396,13 @@
           For any infinite <m>S \in \Prof</m> and any morphism <m>g\colon P \to \ZZ[\underline{S}]</m>
           constructed as in <xref ref="def-construct-map-P-to-monoid"/>, the induced map <m>g_\solid\colon P_\solid \cong \ZZ[\underline{S}]_\solid</m> is an isomorphism;
           consequently, by <xref ref="cor-solidification-of-P"/> we obtain an isomorphism <m>\ZZ[\underline{S}]_\solid \cong \prod_\NN \underline{\ZZ}</m>.
-          Moreover, for each <m>i \gt 0</m>, <m>\iExt^i_{\CAb}\left(\ZZ[\underline{S}], N\right) = 0</m> for all <m>N \in \CAb_{\solid}</m>.
+          (By <xref ref="lem-top-group-no-derived-solidification"/>, this holds also at the level of derived solidifications.)
         </p>
       </statement>
       <proof>
         <p>
           Using <xref ref="lem-diagram-p-to-bd-S"/> in place of <xref ref="lem-diagram-p-to-bd"/>, 
-          we argue in <xref ref="lem-replace-bounded-with-P-solid"/> to see first that <m>\iExt^i_{\CAb}\left(\ZZ[\underline{S}], N\right) = 0</m> for all <m>N \in \CAb_{\solid}</m>,
-          and then that <m>g_\solid</m> is an isomorphism.
+          we argue as in <xref ref="lem-replace-bounded-with-P-solid"/> to see that <m>g_\solid</m> is an isomorphism.
         </p>
       </proof>
     </lemma>
@@ -457,7 +440,7 @@
       <statement>
         <p>
           The functor <m>\Ab_\solid \to \CAb_\solid</m> from <xref ref="thm-solid-to-condensed"/> is an exact equivalence compatible with limits and colimits,
-          <m>\Hom</m> and <m>\iHom</m>, <m>\Ext^i</m> and <m>\iExt^i</m> for all <m>i \gt 0</m>, and <m>\otimes</m>.
+          <m>\Hom</m> and <m>\iHom</m>, <m>\Ext^i</m> and <m>\iExt^i</m> for all <m>i \gt 0</m>, and <m>\otimes_\solid</m>.
           Moreover, it extends to a corresponding equivalence of derived categories.
         </p>
       </statement>

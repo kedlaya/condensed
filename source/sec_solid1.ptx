@@ -372,17 +372,16 @@
     </remark>
   </subsection>
   <subsection>
-    <title>Solidification</title>
+    <title>Discrete modules as solid modules</title>
     <definition xml:id="def-solidification">
       <p>
         For any singleton set <m>I</m>, we obtain a functor <m>R \to R_{\solid}</m> of preadditive categories.
         Using this, we obtain a restriction of scalars functor <m>\Mod_{R_\solid} \to \Mod_R</m>, which can also be identified with
         <m>\Hom_{R_\solid}(R_\solid, \bullet)</m>; and via <xref ref="prop-preadditive-extension-of-scalars"/> an extension
         of scalars functor <m>\Mod_R \to \Mod_{R_\solid}</m>, which we again notate as <m>\bullet \otimes_R R_\solid</m>.
-        We refer to the latter as <term>solidification</term>.
       </p>
       <p>
-        To make solidification more explicit, we observe that for <m>A \in \Mod_R</m>, <m>A \otimes_R R_{\solid}</m> is the functor
+        To make the extension of scalars more explicit, we observe that for <m>A \in \Mod_R</m>, <m>A \otimes_R R_{\solid}</m> is the functor
         <men xml:id="eq-solid-hom-to-discrete">
           \prod_I R_\solid \mapsto \bigoplus_I A.
         </men>
@@ -394,8 +393,8 @@
         Since <m>R</m> is a compact generator of <m>\Mod_R</m>, the general case then follows by taking colimits.
       </p>
       <p>
-        As a consequence of <xref ref="eq-solid-hom-to-discrete"/>, we see that solidification followed by restriction of scalars
-        is equivalent to the identity functor on <m>\Mod_R</m>. In particular, the solidification functor is fully faithful,
+        As a consequence of <xref ref="eq-solid-hom-to-discrete"/>, we see that extension of scalars followed by restriction of scalars
+        is equivalent to the identity functor on <m>\Mod_R</m>. In particular, the extension of scalars is fully faithful,
         so we can use it to view <m>\Mod_R</m> as a full subcategory of <m>\Mod_{R_\solid}</m>. We refer to elements of this category
         as <term>discrete</term> solid <m>R</m>-modules;  this is meant to suggest that
         solid modules are in some sense <q>topological</q> and the discrete ones are the ones <q>without topology</q>.
@@ -403,7 +402,7 @@
     </definition>
     <remark xml:id="rem-solidification-vs-infinite-products">
       <p>
-        The solidification functor is not compatible with infinite products. 
+        The functor <m>\bullet \otimes_R R_\solid</m> is not compatible with infinite products. 
         For example, for <m>I</m> infinite with <m>|I| \leq\kappa</m>, 
         we have a natural morphism
         <men xml:id="eq-solid-compare-products">
@@ -425,13 +424,13 @@
         so one cannot reconstruct the theory of solid modules within ordinary module theory.
       </p>
       <p>
-        In any case, the failure of solidification to be compatible with infinite products should be considered a feature and not a bug!
+        In any case, the failure of the extension of scalar to be compatible with infinite products should be considered a feature and not a bug!
         The whole point here is that we have built some more favorable behavior of products, at least when the index set falls below the cardinality cutoff.
       </p>
     </remark>
     <proposition xml:id="prop-solidification-is-exact">
       <statement>
-        The solidification functor is exact.
+        The functor <m>\bullet \otimes_R R_\solid \colon \Mod_R \to \Mod_{R_\solid}</m> is exact.
       </statement>
       <proof>
         Given an exact sequence <m>0 \to A \to B \to C \to 0</m>, we need to check that
@@ -629,7 +628,7 @@
         <me>
           \bigoplus_I \ZZ \to \prod_{n=1}^\infty \Hom_{\ZZ_{\solid}}\left( \prod_I \ZZ_{\solid}, \ZZ/p^n \ZZ \otimes_{\ZZ} \ZZ_{\solid} \right)
         </me>.
-        Using <xref ref="eq-solid-hom-to-discrete"/> and the full faithfulness of solidification, we have
+        Using <xref ref="eq-solid-hom-to-discrete"/> and the full faithfulness of extension of scalars from <m>\ZZ</m> to <m>\ZZ_\solid</m>, we have
         <md>
           <mrow>
           \Hom_{\ZZ_{\solid}}\left( \prod_I \ZZ_{\solid}, \ZZ/p^n \ZZ \otimes_{\ZZ} \ZZ_{\solid} \right) &amp;\cong

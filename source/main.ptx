@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <pretext xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en-US">
   <docinfo>
+    <math-package latex-name="mathrsfs" mathjax-name=""/>
     <macros>
-      \usepackage{mathrsfs,wasysym}
       \def\AAA{\mathbb{A}}
       \def\CC{\mathbb{C}}
       \def\FF{\mathbb{F}}
@@ -30,7 +30,7 @@
 
       \def\solid{\blacksquare}
       \def\liquid{\approx}
-      \def\gas{\sun}
+      \def\gas{{\mathrm{O}_2}}
 
       \DeclareMathOperator{\acc}{acc}
       \DeclareMathOperator{\an}{an}

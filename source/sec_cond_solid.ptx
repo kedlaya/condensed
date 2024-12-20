@@ -4,7 +4,8 @@
     <p>
       In this section, we introduce the solid condition on condensed abelian groups,
       and the concept of <term>solidification</term> which is a sort of universal adic completion.
-      We will later show that the solid condensed abelian groups form a category equivalent to the solid abelian groups (<xref ref="prop-solid-vs-presumptively-solid"/>).
+      We will later show that the solid condensed abelian groups form a category equivalent to the solid abelian groups (<xref ref="prop-solid-vs-presumptively-solid"/>);
+      this will allow us to use the latter to reason about the former.
     </p>
     <paragraphs>
       <title>Reference</title>
@@ -123,12 +124,12 @@
         <me>
           0 \to \ZZ[x] \stackrel{\times 1-x}{\to} \ZZ[x] \stackrel{Q(x) \mapsto Q(1)}{\longrightarrow} \ZZ \to 0
         </me>,
-        one might expect that <m>\coker(\Delta) \cong \underline{\ZZ}</m> via the induced map (which sends <m>[n]</m> to <m>1</m> for all <m>n</m>).
+        one might expect that <m>\coker(\Delta) \cong \underline{\ZZ}</m> via the map which sends <m>[n]</m> to <m>1</m> for all <m>n \in \NN</m>.
         But this map is not continuous for the discrete topology on <m>\ZZ</m>:
-        the sequence <m>[n] \in P</m> is a null sequence, so it cannot map to a nonzero constant sequence.
+        the sequence <m>\{[n]\}_n</m> is a null sequence in <m>P</m>, so it cannot map to a nonzero constant sequence.
       </p>
       <p>
-        In fact the cokernel is a sheaf that assigns <m>S \in \Prof</m> to a certain subset of the functions <m>S \to \ZZ</m>:
+        In fact <m>\coker(\Delta)</m> is a sheaf that assigns <m>S \in \Prof</m> to a certain subset of the functions <m>S \to \ZZ</m>:
         these are functions with bounded image with <em>locally closed</em> level sets.
         For example, for any closed subset <m>U \subseteq S</m> we get the function mapping <m>U</m> to 1 and <m>S \setminus U</m> to 0.
         This does not correspond to any topology on <m>\ZZ</m>.
@@ -142,7 +143,8 @@
         <men xml:id="eq-resolve-cofinite-mod-Z">
           0 \to P \stackrel{\Delta}{\to} P/\ZZ \to \coker(\Delta)/\ZZ \to 0
         </men>
-        which is an internally projective resolution of <m>\coker(\Delta)/\ZZ</m> of length <m>1</m>.
+        which (because <m>P/\ZZ \cong P</m>)
+        is an internally projective resolution of <m>\coker(\Delta)/\ZZ</m> of length <m>1</m>        
       </p>
     </remark>
   </subsection>
@@ -165,8 +167,10 @@
         is an isomorphism, as by <xref ref="prop-internally-projective"/> all of the higher Ext objects are automatically zero.
       </p>
       <p>
-        Recall that we already introduced another notion of <term>solid <m>\ZZ</m>-modules</term> in  <xref ref="sec_solid1"/>.
-        We will reconcile terminology later by exhibiting an equivalence between <m>\CAb_\solid</m> and the category <m>\Ab_\solid</m> of solid abelian groups (<xref ref="prop-solid-vs-presumptively-solid"/>).
+        Recall that we already introduced another notion of <term>solid <m>\ZZ</m>-modules</term> in <xref ref="sec_solid1"/>
+        (which we started calling <term>solid abelian groups</term> in <xref ref="sec_solid1a"/>).
+        We will reconcile terminology later by exhibiting an equivalence between <m>\CAb_\solid</m> and the category <m>\Ab_\solid</m> of solid abelian groups
+         (<xref ref="prop-solid-vs-presumptively-solid"/>).
       </p>
     </definition>
     <p>
@@ -204,7 +208,7 @@
           where again continuity of the map ensures that the sum is finite.
         </p>
         <p>
-          Alternatively, <xref ref="eq-ihom-S-to-X"/>, <m>\iHom_{\CAb}(P, \underline{\ZZ})</m>. is represented by the subgroup of the topological group <m>\Cts(\NN_\infty,\ZZ)</m>
+          Alternatively, <xref ref="eq-ihom-S-to-X"/>, <m>\iHom_{\CAb}(P, \underline{\ZZ})</m> is represented by the subgroup of the topological group <m>\Cts(\NN_\infty,\ZZ)</m>
           consisting of continuous functions mapping <m>\infty</m> to <m>0</m>.
           Then the argument in <xref ref="rem-solid-intuition"/> can be upgraded to show that <m>\Delta^*</m> induces a homeomorphism of this topological group with itself.
         </p>
@@ -212,7 +216,7 @@
     </lemma>
     <remark>
       <p>
-        By <xref ref="eq-expression-of-internal-hom-sections"/> if <m>M</m> is solid, then <m>\Delta^*\colon \Hom_{\CAb}(P, M) \to \Hom_{\CAb}(P, M)</m>
+        By <xref ref="eq-expression-of-internal-hom-sections"/> if <m>M \in \CAb</m> is solid, then the map <m>\Delta^*\colon \Hom_{\CAb}(P, M) \to \Hom_{\CAb}(P, M)</m>
         is an isomorphism. The proof of <xref ref="lem-delta-pullback-on-Rhom"/> shows that the converse holds when <m>M \in \TopAb</m>, but it can fail in other cases,
         e.g., for <xref ref="exa-quotient-by-discrete"/>.
       </p>
@@ -229,7 +233,7 @@
       <proof>
         <p>
           Closure under limits and colimits (including kernels and cokernels) follows from the fact that by <xref ref="prop-internally-projective"/>,
-          the functor <m>\Hom_{\CAb}(P, \bullet)</m> commutes with all limits and colimits.
+          the functor <m>\iHom_{\CAb}(P, \bullet)</m> commutes with all limits and colimits.
           Closure under extensions is immediate from <xref ref="eq-def-of-solid-derived-version"/>.
           Closure under <m>N \mapsto R\iHom_{\CAb}(\bullet,N)</m> follows from Hom-tensor adjunction
           (and <xref ref="prop-internally-projective"/> to conflate <m>\iHom_{\CAb}(P, N)</m> with <m>R\iHom_{\CAb}(P, N)</m>):
@@ -263,7 +267,7 @@
       </p>
       <p>
         As usual for a functor defined as an adjoint, the definition does not give much direct control over the behavior of solidification on explicit objects,
-        even if we rephrase it using a nominally explicit formula (<xref ref="rem-express-solidification-using-cof"/>.
+        even if we rephrase it using a nominally explicit formula (<xref ref="rem-express-solidification-using-cof"/>).
         Instead, we will have to take more indirect steps to evaluate some solidifications.
       </p>
     </definition>
@@ -306,6 +310,53 @@
         yields the derived solidification (see <xref ref="rem-R-module-derived-solidification"/>).
       </p>
     </remark>
+    <p>
+      We apply the explicit formula for derived solidification <xref ref="eq-derived-solidification"/> in the following manner.
+    </p>
+    <lemma xml:id="lem-top-group-no-derived-solidification">
+      <statement>
+        <p>
+          For any sequential topological abelian group <m>M</m>, the derived solidification of <m>\underline{M}</m> is concentrated in degree <m>0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By <xref ref="rem-express-solidification-using-cof"/>, this is equivalent to the assertion that
+          <me>
+            \iHom_{\CAb}(\coker(\Delta)/\underline{\ZZ}, \underline{M}) = 0
+          </me>.
+          This in turn is equivalent to the assertion that <m>S \in \Prof</m>,
+          <me>
+            \Hom_{\CAb}(\coker(\Delta)/\underline{\ZZ} \otimes \ZZ[\underline{S}], \underline{M}) = 0
+          </me>.
+          To check this, note that a morphism <m>\coker(\Delta)/\underline{\ZZ} \otimes \ZZ[\underline{S}] \to \underline{M}</m>
+          corresponds to a morphism <m>\ZZ[\underline{\NN_\infty \times S}] \to \underline{M}</m>
+          whose restrictions to <m>\ZZ[\underline{\{\infty\} \times S}]</m>
+          and to the preimage of <m>(\ima(\Delta) \oplus \ZZ) \otimes \ZZ[\underline{S}]</m>
+          vanish.
+          Since <m>\prod_\NN \underline{\ZZ}</m> is represented by a sequential topological abelian group,
+          a morphism <m>\ZZ[\underline{\NN_\infty \times S}] \to \underline{M}</m> corresponds to a continuous map <m>f</m>
+          from <m>\NN_\infty \times S</m> to <m>M</m>;
+          we may thus check the claimed vanishing in the case where <m>S</m> is a singleton.
+        </p>
+        <p>
+          At this point, the condition that the restriction to <m>\ZZ[\underline{\{\infty\}}]</m> vanishes implies that
+          <m>f(\infty) = 0</m>.
+          The condition that the restriction to <m>\ima(\Delta)</m> vanishies implies that <m>f(n) = f(n+1)</m>
+          for all <m>n \in \NN</m>. By continuity, we deduce that <m>f</m> is identically zero.
+        </p>
+      </proof>
+    </lemma>
+    <remark>
+      <p>
+        Since <m>P</m> is represented by a sequential topological abelian group (<xref ref="def-internally-projective-object"/>),
+        <xref ref="lem-top-group-no-derived-solidification"/> implies that the underived and derived solidifications of <m>P</m> coincide.
+        This can also be seen from <xref ref="rem-express-solidification-using-cof"/>: it suffices to check that
+        <m>\iExt^1_{\CAb}(P, M) = 0</m> for any <m>M \in \CAb_\solid</m>, 
+        but since any extension of <m>M</m> by <m>P</m> is again solid (by <xref ref="prop-solid-category"/>) we may apply <xref ref="prop-internally-projective"/> and adjunction to see that any such extension splits.
+        (See <xref ref="rem-liquefaction-kills-ext1"/> for the same observation in a more general setting.)
+      </p>
+    </remark>
     <remark xml:id="rem-R-module-derived-solidification">
       <p>
         We say that an object <m>C</m> in the derived category <m>D(\CAb)</m> is <term>solid</term> if its cohomology groups belong to <m>\CAb_\solid</m>.
@@ -319,16 +370,9 @@
       </p>
       <p>
         Even when we start with a map <m>M \to N</m> in <m>\CAb</m>, there is a difference between saying that this map induces an isomorphism of solidifications
-        versus an isomorphism of derived solidifications; the first is equivalent having the natural isomorphism <m>\iHom_{\CAb}(N, \bullet) \cong \iHom^i_{\CAb}(M, \bullet)</m>
+        versus an isomorphism of derived solidifications; the first is equivalent to having the natural isomorphism <m>\iHom_{\CAb}(N, \bullet) \cong \iHom^i_{\CAb}(M, \bullet)</m>
         of functors on <m>\CAb_\solid</m>, whereas the latter also includes the natural isomorphisms <m>\iExt^i_{\CAb}(N, \bullet) \cong \iExt^i_{\CAb}(M, \bullet)</m>
         for all <m>i \gt 0</m> (or equivalently for <m>i=1</m> by <xref ref="eq-resolve-cofinite-mod-Z"/>).
-      </p>
-    </remark>
-    <remark>
-      <p>
-        Using <xref ref="rem-express-solidification-using-cof"/>, we may see that the underived and derived solidifications of <m>P</m> coincide: it suffices to check that
-        <m>\iExt^1_{\CAb}(P, M) = 0</m> for any <m>M \in \CAb_\solid</m>, but since any extension of <m>M</m> by <m>P</m> is again solid (by <xref ref="prop-solid-category"/>) we may apply <xref ref="prop-internally-projective"/> and adjunction to see that any such extension splits.
-        (See <xref ref="rem-liquefaction-kills-ext1"/> for the same observation in a more general setting.)
       </p>
     </remark>
   </subsection>
@@ -349,12 +393,12 @@
       </statement>
       <proof>
         <p>
-          The null sequence <m>n \mapsto 2^{-\lfloor \log_2 n \rfloor}</m>, i.e.,
+          The null sequence <m>\{2^{-\lfloor \log_2 n \rfloor}\}_n</m> in <m>\RR</m>, i.e.,
           <men xml:id="eq-not-summable-null-sequence">
             1, \tfrac{1}{2}, \tfrac{1}{2}, \tfrac{1}{4}, \tfrac{1}{4}, \tfrac{1}{4}, \tfrac{1}{4}, \dots
           </men>
           defines an element <m>x \in \Hom_{\CAb}(P, \underline{\RR})</m>; we may thus apply the inverse of <m>\Delta^*</m> to get an element
-          <m>y \in \Hom_{\CAb}(P, \underline{\RR}_\solid)</m>. Taking the first coordinate (i.e., restricting along <m>\ZZ \to \ZZ[1] \subset P</m>)
+          <m>y \in \Hom_{\CAb}(P, \underline{\RR}_\solid)</m>. Taking the first coordinate (i.e., restricting along <m>\ZZ \to \ZZ \cdot [1] \subset P</m>)
           yields an element <m>z \in \underline{\RR}_\solid</m>.
         </p>
         <p>
@@ -408,8 +452,9 @@
     <remark>
       <p>
         <xref ref="prop-R-solid-is-zero"/> and its corollaries make clear that if we want any hope of doing analytic geometry over <m>\RR</m> or <m>\CC</m>,
-        we cannot stick to solid groups and must instead find a more flexible framework. We will eventually introduce such a framework in the form of
-        <term>analytic rings</term>, where we define a class of <q>complete modules</q> with properties analogous to those of solid abelian groups.
+        we cannot stick to solid abelian groups and must instead find a more flexible framework. We will eventually introduce such a framework in the form of
+        <term>analytic rings</term>, where we define a class of <q>complete modules</q> with properties analogous to those of solid abelian groups
+        (<xref ref="sec_analytic"/>).
       </p>
     </remark>
   </subsection>
@@ -437,7 +482,7 @@
       <statement>
         <p>
           There is a functor <m>\Ab_\solid \to \CAb_\solid</m> carrying <m>\ZZ_\solid</m> to <m>\underline{\ZZ}</m> and compatible with
-          all limits (notably countable products), colimits, <m>\Hom</m>, <m>\iHom</m>, and <m>\otimes</m>.
+          all limits (notably countable products), colimits, <m>\Hom</m>, <m>\iHom</m>, and <m>\otimes_\solid</m>.
           (Full faithfulness and compatibility with <m>\Ext</m> and <m>\iExt</m> require an extra step; see <xref ref="cor-solid-embedding-exact"/>.)
         </p>
       </statement>
@@ -453,13 +498,8 @@
     <remark>
       <p>
         We note in passing that <xref ref="thm-solid-to-condensed"/> admits the following compatibility with solidification:
-        applying the solidification functor <m>\Ab \to \Ab_\solid</m> and then passing to <m>\CAb</m> gives the same result as 
-        passing from <m>\Ab</m> to <m>\CAb</m> (i.e., passing to discrete topological groups) and then solidifying in <m>\CAb</m>.
-      </p>
-      <p>
-        Note however that these two functors called <q>solidification</q> have very different behavior:
-        the solidification functor <m>\Ab \to \Ab_\solid</m> is a full embedding, whereas the
-        solidification functor <m>\CAb \to \CAb_\solid</m> projects onto a full subcategory.
+        applying the functor <m>\Ab \to \Ab_\solid</m> and then passing to <m>\CAb</m> gives the same result as 
+        passing from <m>\Ab</m> to <m>\CAb</m> (i.e., passing to discrete topological groups). In both cases the essential image is contained in <m>\CAb_\solid</m>.
       </p>
     </remark>
   </subsection>
