@@ -1,0 +1,481 @@
+﻿<section xml:id="sec_analytic_top">
+  <title>Six functors formalism for analytic rings</title>
+  <introduction>
+    <p>
+      In this section, we introduce a Grothendieck topology on the opposite category of analytic rings
+      which gives rise to a six functor formalism in the sense of Mann (<xref ref="bib-Mann"/>, A.5).
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This section is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lectures 16, 17, and 18.
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>Proper morphisms of analytic rings</title>
+    <p>
+      We first define a key geometric property entering into the definition of a six functor formalism.
+      Beware that the terminology is not quite aligned with the usage in algebraic geometry; see <xref ref="rem-analytic-proper"/>.
+    </p>
+    <remark>
+      <p>
+        By convention, the symbol <m>!</m> in the following context is pronounced <q>shriek</q>.
+      </p>
+    </remark>
+    <definition>
+      <p>
+        Let <m>\calC, \calC'</m> be symmetric monoidal categories.
+        Let <m>F \colon \calC \to \calC'</m> be a functor.
+        Let <m>G \colon \calC' \to \calC</m> be a functor which comes with a specified natural transformation (but not an isomorphism)
+        <me>
+          G(M_1 \otimes_{\calC'} M_2) \cong G(M_1) \otimes_{\calC} G(M_2)
+          \qquad (M_1, M_2 \in \calC')
+        </me>.
+        Fix also a natural transformation <m>G \circ F \to \id_{\calC}</m>,
+        e.g., by starting with an adjoint pair (in order).
+      </p>
+      <p>
+        In this setting, the <term>projection formula</term> holds if the composition of natural transformations
+        <me>
+          G(F(M) \otimes_{\calC'} M') \to G(F(M)) \otimes_{\calC} G(M') \to
+          M  \otimes_{\calC} G(M') \qquad (M \in \calC, M' \in \calC')
+        </me>
+        yields a natural isomorphism
+        <men xml:id="eq-projection-formula">
+          G(F(M) \otimes_{\calC'} M') \cong M \otimes_{\calC} G(M') \qquad (M \in \calC, M' \in \calC')
+        </men>.
+      </p>
+      <p>
+        For stable <m>\infty</m>-categories, we make the same definition except (as usual)
+        the property of <xref ref="eq-projection-formula"/> being an isomorphism is replaced by the specification
+        of an inverse (and suitable higher homotopies).
+      </p>
+    </definition>
+    <example xml:id="exa-projection-formula">
+      <p>
+        Let <m>f\colon A \to B</m> be a morphism in <m>\Ring</m>.
+        Then the adjoint pair <m>f^*\colon \Mod_A \to \Mod_B</m> (extension of scalars)
+        and <m>f_*\colon \Mod_B \to \Mod_A</m> (restriction of scalars) satisfies the projection formula:
+        this expands to the statement that for <m>M \in \Mod_A</m>, <m>N \in \Mod_B</m>, we have a natural isomorphism
+        <me>
+          (M \otimes_A B) \otimes_B N \cong M \otimes_A N
+        </me>
+        induced by the composition
+        <md>
+          <mrow>
+            (M \otimes_A B) \otimes_B N &amp;\to (M \otimes_A B) \otimes_A N
+          </mrow>
+          <mrow>
+            &amp;\to (M \otimes_A B) \otimes_A (B \otimes_B N)
+          </mrow>
+          <mrow>
+            &amp;\to M \otimes_A (B \otimes_A B) \otimes_B N
+          </mrow>
+          <mrow>
+            &amp;\to M \otimes_A B \otimes_B N
+          </mrow>
+          <mrow>
+            &amp;\to M \otimes_A (B \otimes_B N) = M \otimes_A N 
+          </mrow>
+        </md>.
+        By the same token, the adjoint pair <m>f^*\colon \calD(\Mod_A) \to \calD(\Mod_B)</m>
+        and <m>f_*\colon \calD(\Mod_B) \to \calD(\Mod_A)</m> also satisfies the projection formula,
+      </p>
+      <p>
+        We also have a miniature analogue of the proper base change property in etale cohomology
+        To formulate this, let <m>g \colon A \to A'</m> be another morphism of rings;
+        set <m>B' := A' \otimes_A B</m>;
+        write <m>g</m> also for the resulting morphism <m>B \to B'</m>;
+        and write <m>f'</m> for the resulting morphism <m>A' \to B'</m>.
+        We can then interpret the comparison in <m>\Mod_{A'}</m>
+        <me>
+          M \otimes_B B' \cong M \otimes_B (B \otimes_A A') \cong M \otimes_A A'
+        </me>
+        as giving rise to a natural isomorphism
+        <me>
+          f'_* g* \cong g^* f_*
+        </me>. This again holds at the derived level also.
+      </p>
+    </example>
+    <definition xml:id="def-analytic-proper">
+      <p>
+        A morphism <m>f\colon \AnSpec B \to \AnSpec A</m> in <m>\AnRing^{\op}</m> is <term>proper</term>
+        if the analytic ring structure on <m>B</m> is the one induced from <m>A</m>:
+        <me>
+          \Mod_B = \Mod_{B^{\triangleright}} \times_{\Mod_{A^{\triangleright}}} \Mod_A
+        </me>.
+        By <xref ref="exa-projection-formula"/>, this is equivalent to requiring that 
+        the adjoint pair <m>f^*\colon \calD(\Mod_A) \to \calD(\Mod_B)</m>
+        and <m>f_*\colon \calD(\Mod_B) \to \calD(\Mod_A)</m> satisfies the projection formula.
+      </p>
+      <p>
+        It is evident that the collection of proper morphisms is stable under composition and base extension.
+        Moreover, if we set
+        <me>
+          B' := (B^{\triangleright}, \Mod_{B^{\triangleright}} \times_{\Mod_{A^{\triangleright}}} \Mod_A)
+        </me>,
+        then we get the unique factorization
+        <m>\AnSpec B \to \AnSpec B' \to \AnSpec A</m>
+        such that <m>\AnSpec B \to \AnSpec B'</m> is an isomorphism of underlying condensed rings and 
+        <m>\AnSpec B' \to \AnSpec A</m> is proper;
+        evidently, <m>f</m> is proper if and only if <m>B' \cong B</m>.
+      </p>
+      <p>
+        For <m>f</m> proper, we write <m>f_!</m> as a synonym for <m>f_*</m>.
+        In this notation, we again have a form of proper base change:
+        for <m>g\colon \AnSpec A' \to \AnSpec A</m> an arbitrary morphism in <m>\AnRing^{\op}</m>,
+        if we set <m>B' := A' \otimes_A B</m>,
+        write <m>g</m> also for the resulting morphism <m>\AnSpec B' \to \AnSpec B</m>,
+        and write <m>f'</m> for the resulting morphism <m>\AnSpec B' \to \AnSpec A'</m>, we then have
+        a natural isomorphism
+        <me>
+          g^* f_! \cong f'_! g^*
+        </me>
+        of functors <m>\calD(\Mod_B) \to \calD(\Mod_{A'})</m>.
+      </p>
+    </definition>
+    <remark xml:id="rem-analytic-proper">
+      <p>
+        <xref ref="def-analytic-proper"/> agrees with Huber's notion of properness when <m>A</m> and <m>B</m> are Tate,
+        but it is of a somewhat different nature than the definition of properness in algebraic geometry.
+        For example, every idempotent morphism is by definition proper;
+        this includes loose rational localizations of solid analytic rings,
+        loose dagger localizations of analytic rings,
+        and dagger localizations of Tate analytic rings 
+        (by <xref ref="prop-dagger-localizations-of-Tate"/>).
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>Open immersions</title>
+    <p>
+      We first define a second key geometric property.
+      Again, there is something of a disconnect with the usage in algebraic geometry; see <xref ref="rem-analytic-open-immersion"/>.
+    </p>
+    <definition xml:id="def-analytic-open-immersion">
+      <p>
+        A morphism <m>f\colon \AnSpec B \to \AnSpec A</m> in <m>\AnRing^{\op}</m> is an <term>open immersion</term>
+        if the functor <m>f^* \colon \calD(\Mod_A) \to \calD(\Mod_B)</m> admits a fully faithful
+        <em>left</em> adjoint <m>f_!</m> such that <m>(f_!,f^*)</m> satisfies the projection formula. 
+        In particular, this implies that <m>f^*</m> commutes not only with colimits but also with limits.
+      </p>
+    </definition>
+    <remark xml:id="rem-analytic-open-immersion">
+      <p>
+        Beware that open immersion of schemes do <em>not</em> give rise to open immersions in the sense we have just defined,
+        except in the special case of a closed-open immersion.
+        In particular, if we take <m>B = A[f^{-1}]</m> for some <m>f \in A^{\triangleright}</m>,
+        then the map <m>\AnSpec B \to \AnSpec A</m> is typically not an open immersion.
+      </p>
+    </remark>
+    <example xml:id="exa-liquefaction-is-open-immersion">
+      <p>
+        For any analytic ring <m>A</m> and any <m>g \in A^{\triangleright}</m>, 
+        we claim that the morphism
+        <me>
+          j\colon (A^{\triangleright}, \Mod_A) \to (A^{\triangleright}_{\liquid g}, \Mod_{A \liquid g})
+        </me>,
+        is an open immersion.
+        To check this, we must produce the left adjoint <m>j_!</m> for <m>j^*</m>.
+        Before we do, recall that <m>j_*</m> is the inclusion of module categories
+        whereas by <xref ref="prop-formula-for-liquefaction"/>,
+        <m>j^*</m> has the form
+        <me>
+          M \mapsto R\iHom_{A^{\triangleright}}(A^{\triangleright}[-1] \to \coker(\Delta_g)[0], M)
+        </me>.
+        Since we want 
+        <me>
+          \Hom_B(j_! M, N) \cong \Hom_C(M, j^* N)
+        </me>,
+        by tensor-Hom adjunction we satisfy the projection formula by taking
+        <me>
+          j_! M = M \otimes_{A^{\triangleright}} (A^{\triangleright}[-1] \to \coker(\Delta_g)[0])
+        </me>.
+      </p>
+    </example>
+    <example xml:id="exa-liquefaction-inversion-is-open-immersion">
+      <p>
+        For any analytic ring <m>A</m> and any <m>g \in A^{\triangleright}</m>, 
+        we claim that the morphism <m>j\colon A \to A[g^{-1}]_{\liquid g^{-1}}</m>
+        is an open immersion. In this case, <m>j_* j^*</m> has the form
+        <md>
+          <mrow>
+            M &amp;\mapsto R\iHom_{A^{\triangleright}[g^{-1}]}(A^{\triangleright}[g^{-1}][-1] \to \coker(1-g^{-1}[1], P \otimes A^{\triangleright}[g^{-1}])[0], M)
+          </mrow>
+          <mrow>
+            &amp;\cong R\iHom_{A^{\triangleright}}(A^{\triangleright}[-1] \to \coker(g-[1], P \otimes A^{\triangleright})[0], M)
+          </mrow>
+        </md>.
+      </p>
+    </example>
+    <example>
+      <p>
+        Making <xref ref="exa-liquefaction-is-open-immersion"/> more explicit in the case
+        <m>A = (\underline{\ZZ}[T], \Mod_{\underline{\ZZ}[T]\solid})</m>, <m>g = T</m>, we can write
+        <md>
+          <mrow>
+            \coker(\Delta_f)_\solid &amp;\cong \coker(P \otimes \underline{\ZZ}[T] \stackrel{\Delta_T}{\to} P \otimes \underline{\ZZ}[T])_\solid
+          </mrow>
+          <mrow>
+            &amp; \cong \coker(P_\solid \otimes_\solid \underline{\ZZ}[T] \stackrel{\Delta_T}{\to} P_\solid \otimes_\solid \underline{\ZZ}[T])
+          </mrow>
+          <mrow>
+            &amp; \cong \coker(\underline{\ZZ} \llbracket U \rrbracket \otimes_\solid  \underline{\ZZ}[T] \stackrel{1-TU}{\to}
+            \underline{\ZZ} \llbracket U \rrbracket \otimes_\solid \underline{\ZZ}[T])
+          </mrow>
+          <mrow>
+            &amp; \cong \underline{\ZZ}((T^{-1}))
+          </mrow>
+        </md>.
+        Consequently, we can write
+        <me>
+          j_! M = M \otimes_{\underline{\ZZ[T]}} \underline{\ZZ}((T^{-1}))/\underline{\ZZ}[T]
+        </me>.
+      </p>
+      <p>
+        Similarly, in <xref ref="exa-liquefaction-inversion-is-open-immersion"/>, if we take
+        <m>A = (\underline{\ZZ}[T], \Mod_{\underline{\ZZ}[T]\solid})</m>, <m>g = T</m>, we get
+        <me>
+          j_! M = M \otimes_{\underline{\ZZ[T]}} \underline{\ZZ}\llbracket T \rrbracket/\underline{\ZZ}[T]
+        </me>.
+      </p>
+    </example>
+    <remark xml:id="rem-rational-localization-is-open-immersion">
+      <p> 
+        By generalizing the proof of <xref ref="exa-liquefaction-inversion-is-open-immersion"/>, 
+        one can show that for any analytic ring <m>A</m>
+        and any <m>f_1,\dots,f_n,g \in A^{\triangleright}(*)</m> generating the unit ideal,
+        the morphism <m>A \to A[\tfrac{f_1}{g},\dots,\tfrac{f_n}{g}]_{\liquid f_1/g, \dots, f_n/g}</m>
+        is an open immersion. Note that this does not follow directly from our arguments so far because
+        <m>A \to A[\tfrac{1}{g}]</m> is not an open immersion (<xref ref="rem-analytic-open-immersion"/>).
+      </p>
+      <p>
+        When <m>A</m> is solid and contains a topologically nilpotent unit, this morphism can be interpreted as a 
+        rational localization
+        using <xref ref="lem-liquefaction-is-Tate-algebra"/>. Even without this condition, we can still apply
+        <xref ref="rem-adjoin-top-nilpotent"/> to infer that for a rational localization <m>A \to B</m>
+        with associated loose rational localization <m>A \to B'</m>, the map <m>\AnSpec B' \to \AnSpec B</m>
+        is an open immersion.
+      </p>
+    </remark>
+    <example>
+      <p>
+        For any solid analytic ring <m>A</m> and any <m>f \in A^{\triangleright}</m>,
+        the map from <m>A</m> to its derived <m>f</m>-completion is an open immersion.
+        This follows by similar logic as in <xref ref="exa-liquefaction-is-open-immersion"/> once we recall
+        from <xref ref="prop-derived-completion"/> that the right adjoint
+        has the form
+        <me>
+          M \mapsto R\iHom_{A^{\triangleright}}(A^{\triangleright} \to A^{\triangleright}_f, M)
+        </me>.
+      </p>
+    </example>
+    <p>
+      The following proposition explains the common shape of the previous examples.
+    </p>
+    <proposition xml:id="prop-open-immersion-by-idempotent">
+      <statement>
+        <p>
+          For a given analytic ring <m>A</m>, the open immersions <m>j\colon \AnSpec B \to \AnSpec A</m>
+          correspond to idempotent commutative algebra objects <m>C \in \calD(A)</m> such that
+          <m>R\iHom_A(C, \bullet)[1]</m> preserves colimits and preserves <m>\calD_{\geq 0}(A)</m>.
+          The assignment is <m>C := \cone(j_! B \to A)</m>.
+        </p>
+      </statement>
+    </proposition>
+    <corollary>
+      <statement>
+        <p>
+          The property of a morphism <m>j</m> in <m>\AnRing^{\op}</m> being an open immersion is stable under base change.
+          Moreover, <m>j_!</m> is compatible with base change in the same sense as for proper morphisms
+          (<xref ref="def-analytic-proper"/>).
+        </p>
+      </statement>
+    </corollary>
+    <example xml:id="eq-sequence-solid-affine-line">
+      <p>
+        Define the analytic rings
+        <md>
+          <mrow>
+            A &amp; := (\underline{\ZZ}, \Mod_{\underline{\ZZ} \liquid 1} = \Mod_{\underline{\ZZ} \solid})
+          </mrow>
+          <mrow>
+            B &amp; := (\underline{\ZZ}[T], \Mod_{\underline{\ZZ}[T] \liquid 1})
+          </mrow>
+          <mrow>
+            C &amp; := (\underline{\ZZ}[T], \Mod_{\underline{\ZZ}[T] \liquid \{1,T\}})
+          </mrow>
+          <mrow>
+            D &amp; := (\underline{\ZZ}\langle T \rangle, \Mod_{\underline{\ZZ}\langle T \rangle \liquid \{1,T\}})
+          </mrow>
+        </md>
+        so that we have a sequence of maps
+        <me>
+          A \to B \to C \to D
+        </me>.
+        We analyze the various compositions as follows.
+        <ul>
+          <li>
+            The map <m>\AnSpec B \to \AnSpec A</m> is proper (by inspection) but not an open immersion (pullback does not commute with infinite products).
+          </li>
+          <li>
+            The map <m>\AnSpec C \to \AnSpec B</m> is an open immersion (by <xref ref="exa-liquefaction-is-open-immersion"/>) but not proper (by inspection).
+          </li>
+          <li>
+            The map <m>\AnSpec D \to \AnSpec C</m> is both proper and an open immersion (as a rational localization).
+          </li>
+          <li>
+            The map <m>\AnSpec C \to \AnSpec A</m> is neither an open immersion (pullback does not commute with infinite products)
+            nor proper (because <m>B \not\cong C</m>).
+          </li>
+          <li>
+            The map <m>\AnSpec D \to \AnSpec B</m> is both proper and an open immersion (as a rational localization).
+          </li>
+          <li>
+            The map <m>\AnSpec D \to \AnSpec A</m> is proper (by factoring through <m>\AnSpec B</m>) but not an open immersion (pullback does not commute with products).
+          </li>
+        </ul>
+      </p>
+    </example>
+  </subsection>
+  <subsection>
+    <title><m>!</m>-able morphisms</title>
+    <p>
+      We now put the two properties together to get the class of <m>!</m>-able morphisms.
+    </p>
+    <definition>
+      <p>
+        A morphism <m>f\colon \AnSpec B \to \AnSpec A</m> in <m>\AnRing^{\op}</m> is <term><m>!</m>-able</term>
+        (pronounced <q>shriekable</q>) if the factorization
+        <me>
+          \AnSpec B \to \AnSpec B' \to \AnSpec A
+        </me>
+        of <xref ref="def-analytic-proper"/> has the property that <m>\AnSpec B \to \AnSpec B'</m> is an open immersion 
+        (recall that <m>\AnSpec B' \to \AnSpec A</m> is automatically proper).
+        Note the analogy with the definition of a quasiprojective morphism of schemes.
+      </p>
+      <p>
+        From this definition, it is not immediately obvious that a composition of <m>!</m>-able morphisms is again <m>!</m>-able;
+        specifically, if <m>f\colon \AnSpec B \to \AnSpec A</m> is an open immersion and
+        <m>g\colon \AnSpec C \to \AnSpec B</m> is proper,
+        if we factor the composition <m>f \circ g\colon \AnSpec C \to \AnSpec A</m> through <m>\AnSpec C'</m> as above,
+        we must check that the resulting map <m>\AnSpec C \to \AnSpec C'</m> is an open immersion.
+        For this, note that on one hand <m>\AnSpec B \otimes_{B'} C' \to \AnSpec C'</m> is the base extension
+        of an open immersion and hence is itself an open immersion; on the other hand, <m>B \otimes_{B'} C' = C</m>
+        because <m>g</m> is proper.
+      </p>
+      <p>
+        Similarly, if <m>f</m> and <m>f \circ g</m> are <m>!</m>-able, then so is <m>g</m>.
+      </p>
+      <p>
+        Since we know how to define <m>f_!</m> when <m>f</m> is either proper or an open immersion,
+        we can compose to define <m>f_!</m> for any <m>!</m>-able morphism. One must again do a bit of work to show
+        that this is compatible with composition of arbitrary <m>!</m>-able morphisms.
+      </p>
+    </definition>
+    <remark>
+      <p>
+        By <xref ref="rem-rational-localization-is-open-immersion"/>, a rational localization of a solid analytic ring
+        is <m>!</m>-able: it factors as an open immersion followed by a proper map (the associated loose rational localization).
+        Similarly, a dagger localization is <m>!</m>-able.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        The definition of a <m>!</m>-able morphism corresponds roughly to Huber's notion of a
+        <q><m>+</m>-weakly finite type morphism</q>.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        For <m>i=1,\dots,n</m>, let <m>f_i \colon \AnSpec B_i \to \AnSpec A</m> be a morphism of analytic rings.
+        Let <m>f \colon \AnSpec \bigoplus_i B_i \to \AnSpec A</m> be the product.
+        Then <m>f</m> is <m>!</m>-able if and only if <m>f_1,\dots,f_n</m> are all <m>!</m>-able.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>A six functors formalisms</title>
+    <p>
+      The <q>six functors formalism</q> for analytic rings will be expressed in terms of the following six functors.
+      For any object <m>A \in \AnRing^{\op}</m>, we have the two functors
+      <md>
+        <mrow>
+          R\Hom_A(\bullet, \bullet) &amp;\colon \calD(\Mod_A)^{\op} \times \calD(\Mod_A) \to \calD(\Mod_A)
+        </mrow>
+        <mrow>
+          \bullet \otimes_A^L \bullet &amp;\colon \calD(\Mod_A) \times \calD(\Mod_A) \to \calD(\Mod_A)
+        </mrow>
+      </md>
+      which form an adjoint pair in that order. Moreover, <m>\otimes_A^L</m> defines a symmetric monoidal structure
+      on <m>\calD(\Mod_A)</m>.
+    </p>
+    <p>
+      For a morphism <m>f\colon \AnSpec B \to \AnSpec A</m> in <m>\AnRing^{\op}</m>,
+      we have two more functors:
+      <md>
+        <mrow>
+          f^* \colon \calD(\Mod_A) \to \calD(\Mod_B)
+        </mrow>
+        <mrow>
+          f_* \colon \calD(\Mod_B) \to \calD(\Mod_A)
+        </mrow>
+      </md>
+      which form an adjoint pair in that order, and whose formation is compatible with composition.
+      Moreover, <m>f^*</m> is symmetric monoidal with respect to tensor product.
+    </p>
+    <p>
+      Finally, for a <m>!</m>-able morphism <m>f\colon \AnSpec B \to \AnSpec A</m> in <m>\AnRing^{\op}</m>,
+      we have two more functors:
+      <md>
+        <mrow>
+          f_! \colon \calD(\Mod_B) \to \calD(\Mod_A)
+        </mrow>
+        <mrow>
+          f^! \colon \calD(\Mod_A) \to \calD(\Mod_B)
+        </mrow>
+      </md>
+      which form an adjoint pair in that order, and whose formation is compatible with composition.
+      Moreover, <m>f_!</m> satisfies base change and the projection formula.
+      (Recall that <m>f_! = f_*</m> when <m>f</m> is proper and <m>f^! = f^*</m> when <m>f</m> is an open immersion.)
+    </p>
+  </subsection>
+  <subsection>
+    <title><m>!</m>-descent</title>
+    <definition>
+      <p>
+        Let <m>f\colon Y = \AnSpec B \to X = \AnSpec A</m> be a morphism in <m>\AnRing^{\op}</m>.
+        We say that <m>f</m> satisfies <term><m>*</m>-descent</term> if <m>f^*</m> defines an isomorphism 
+        of <m>\calD(\Mod_A)</m> with the limit of
+        <me>
+          \calD(\Mod_B) \rightrightarrows \calD(\Mod_{B \otimes_A B}) \cdots
+        </me>
+        where the maps are all of the form <m>\bullet^*</m>.
+      </p>
+      <p>
+        Suppose now that <m>f</m> is <m>!</m>-able.
+        We similarly say that <m>f</m> satisfies <term><m>!</m>-descent</term> if <m>f^!</m> defines an isomorphism 
+        of <m>\calD(\Mod_A)</m> with the limit of
+        <me>
+          \calD(\Mod_B) \rightrightarrows \calD(\Mod_{B \otimes_A B}) \cdots
+        </me>
+        where the maps are all of the form <m>\bullet^!</m>.
+      </p>
+      <p>
+        We say that <m>f</m> satisfies <term>universal <m>*</m>-descent</term> (resp. <term>universal <m>!</m>-descent</term>)
+        if any base change of <m>f</m> satisfies <m>*</m>-descent (resp. <m>!</m>-descent).
+        It can be shown that any <m>!</m>-able morphism that satisfies <m>!</m>-descent also satisfies universal <m>!</m>-descent
+        and (universal) <m>*</m>-descent.
+      </p>
+      <p>
+        We will equip the category <m>\AnRing^{\op}</m> with the Grothendieck topology defined by finite disjoint unions
+        and <m>!</m>-able maps that satisfy <m>!</m>-descent.
+        For example, a dagger localization of a Tate analytic ring <m>f</m> is both proper (<xref ref="rem-analytic-proper"/>)
+        and an open immersion (<xref ref="rem-rational-localization-is-open-immersion"/>),
+        so <m>f^! = f^*</m>
+        and we can deduce <m>!</m>-descent directly from <m>*</m>-descent (<xref ref="thm-mod-to-qcoh-equivalence"/>).
+      </p>
+    </definition>
+  </subsection>
+</section>

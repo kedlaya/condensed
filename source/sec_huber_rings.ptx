@@ -1,0 +1,413 @@
+﻿<section xml:id="sec_huber_rings">
+  <title>Huber rings and solid rings</title>
+  <introduction>
+    <p>
+      In this section, we introduce the topological rings that occur in Huber's theory of adic spaces,
+      and relate these to the constructions we have already introduced.
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This section is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lectures 7 and 8.
+        <xref ref="rem-Huber-vs-Banach"/> is taken from <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 10 (see also <xref ref="bib-Kedlaya-AWS"/>, Remark 1.5.4).
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>Huber rings</title>
+    <p>
+      We first recall the definition of what Huber calls an <term><m>f</m>-adic ring</term> in <xref ref="bib-Huber1"/> and subsequent work.
+    </p>
+    <definition>
+      <p>
+        A <term>(commutative) Huber ring</term> is a topological commutative ring <m>A</m> admitting an open subring <m>A_0</m> (a <term>ring of definition</term>)
+        which in turn contains a finitely generated ideal <m>I</m> (an <term>ideal of definition</term>) such that the topology on <m>A_0</m> is the <m>I</m>-adic topology.
+        This implies in particular that <m>A</m> is <term>linearly topologized</term> (meaning that it admits a neighborhood basis of 0 consisting of subgroups).
+      </p>
+      <p>
+        An element <m>x \in A</m> is <term>topologically nilpotent</term> if <m>1,x,x^2,\dots</m> is a null sequence.
+        We say that a Huber ring is <term>Tate</term> if it contains a topologically nilpotent unit.
+      </p>
+      <p>
+        A subset <m>S</m> is <term>bounded</term> if for every neighborhood <m>U</m> of <m>0</m> in <m>A</m>,
+        there exists a neighborhood <m>V</m> of <m>0</m> in <m>A</m> such that <m>V \cdot S \subseteq U</m>.
+      </p>
+    </definition>
+    <remark>
+      <p>
+        For <m>A</m> a Huber ring, the topological completion <m>\hat{A}</m> of <m>A</m> is again a Huber ring; if <m>A_0</m> is a ring of definition of <m>A</m>
+        and <m>I</m> is an ideal of definition of <m>A_0</m>, then then the <m>I</m>-adic completion <m>\hat{A}_0</m> of <m>A_0</m> is a ring of definition of <m>\hat{A}</m>
+        and <m>I\hat{A}_0</m> is an ideal of definition of <m>\hat{A}_0</m>.
+      </p>
+      <p>
+        We will mostly be interested in complete Huber rings in what follows; note that these are solid as condensed abelian groups. 
+        We will pick up this thread in <xref ref="subsec-solid-Huber"/>.
+      </p>
+    </remark>
+    <example>
+      <p>
+        Any discrete ring is Huber but not Tate.
+        The ring <m>\ZZ_p</m> for the <m>p</m>-adic topology is Huber but not Tate.
+        The ring <m>\QQ_p</m> for the <m>p</m>-adic topology is Huber and also Tate.
+      </p>
+    </example>
+    <example xml:id="exa-strongly-noetherian">
+      <p>
+        For any Huber ring <m>A</m>, with a ring of definition <m>A_0</m> and an ideal of definition <m>I</m>,
+        we obtain a Huber pair <m>A\langle T_1,\dots,T_n\rangle</m> with a ring of definition <m>A_0 \langle T_1,\dots,T_n \rangle</m>,
+        the <m>I</m>-adic completion of <m>A[T_1,\dots,T_n]</m>, and an ideal of definition <m>I A_0 \langle T_1,\dots,T_n \rangle</m>.
+        This is called the <term>Tate algebra</term> in the variables <m>T_1,\dots,T_n</m> over <m>A</m>; 
+        however, it is a Tate Huber ring if and only if <m>A</m> is.
+      </p>
+      <p>
+        There is no analogue of the Hilbert basis theorem in this context: if <m>A</m> is noetherian (even a field) it can happen that <m>A\langle T \rangle</m> is not noetherian
+        (<xref ref="bib-Fujiwara-Gabber-Kato"/>, section 8.3). We say that <m>A</m> is <term>strongly noetherian</term> if <m>A \langle T_1,\dots,T_n \rangle</m> is noetherian
+        for all <m>n \in \NN</m>; for instance this holds when <m>A</m> is a nonarchimedean field.
+      </p>
+    </example>
+    <p>
+      The concept of a Huber ring is closely related to the concept of a <term>nonarchimedean Banach ring</term>.
+    </p>
+    <definition xml:id="def-submult-seminorm">
+      <p>
+        For <m>R</m> a commutative ring, a <em>submultiplicative seminorm</em> on <m>R</m> is a function <m>|\bullet|\colon R \to \RR_{\geq 0}</m> satisfying the following conditions.
+        <ol>
+          <li>
+            We have <m>|0| = 0</m>. If <m>R \neq 0</m>, then also <m>|1| = |-1| = 1</m>.
+          </li>
+          <li>
+            For all <m>x,y \in R</m>, <m>|x+y| \leq |x| + |y|</m>.
+          </li>
+          <li>
+            For all <m>x,y \in R</m>, <m>|xy| \leq |x| |y|</m>.
+          </li>
+        </ol>
+        Some variations:
+        <ul>
+          <li>
+            If the first condition can be upgraded to say that <m>|x| = 0</m> if and only if <m>x  =0</m>, we may say that <m>|\bullet|</m> is a <term>norm</term> rather than a seminorm.
+          </li>
+          <li>
+            If the second condition can be upgraded to say that <m>|x+y| \leq \max\{|x|, |y|\}</m>, we may say that <m>|\bullet|</m> is <term>nonarchimedean</term>.
+          </li>
+          <li>
+            If the third condition can be upgraded to say that <m>|x^n| = |x|^n</m> for all <m>x \in R</m> and all positive integers <m>n</m>, we may say that <m>|\bullet|</m> is 
+            <term>power-multiplicative</term> rather than submultiplicative.
+          </li>
+          <li>
+            If the third condition can be upgraded to say that <m>|xy| = |x||y|</m> for all <m>x,y \in R</m>, we may say that <m>|\bullet|</m> is <term>multiplicative</term>
+            rather than submultiplicative.
+          </li>
+        </ul>
+      </p>
+      <p> 
+        Any submultiplicative seminorm defines a <term>norm topology</term> on <m>R</m> with respect to which the ring operations are continuous.
+        A <term>(commutative) Banach ring</term> consists of a commutative ring <m>R</m> equipped with a submultiplicative norm such that <m>R</m> is complete for the norm topology.
+        As for Huber rings, we say that a Banach ring is <term>Tate</term> if it contains a topologically nilpotent unit.
+      </p>
+    </definition>
+    <remark xml:id="rem-Huber-vs-Banach">
+      <p>
+        For <m>A</m> a nonarchimedean Banach ring, the set of <m>A_0</m> consisting of <m>x \in A</m> with <m>|x| \leq 1</m> is an open subring of <m>A</m>.
+        If <m>A</m> is also Tate, then for any topologically nilpotent unit <m>\varpi \in A</m>, for <m>n</m> sufficiently large, <m>\varpi^n \in A_0</m>
+        and the topology on <m>A_0</m> is the <m>\varpi^n</m>-adic topology. Consequently, in this case the underlying topological ring of <m>A</m> is a complete Huber ring;
+        moreover, a subset <m>S</m> is bounded in the sense of Huber rings if and only if <m>|S| \subseteq [0, \infty)</m> is bounded away from <m>\infty</m>.
+      </p>
+      <p>
+        Conversely, for <m>A</m> a complete Huber ring which is Tate, we can promote <m>A</m> to a Banach ring as follows.
+        Let <m>A_0</m> be a ring of definition, let <m>I = (y_1,\dots,y_m)</m> be an ideal of definition,
+        and let <m>\varpi \in A</m> be a topologically nilpotent unit.
+        By replacing <m>\varpi</m> with a power if needed, we can ensure that <m>\varpi \in I</m>;
+        then <m>\varpi = a_1 y_1 + \cdots + a_m y_m</m> for some <m>a_1,\dots,a_m \in A_0</m>, 
+        so in particular <m>I</m> generates the unit ideal of <m>A</m>. 
+        Conversely, since multiplication by <m>\varpi</m> is a homeomorphism, <m>\varpi A_0</m> is open in <m>A</m> for every <m>n</m>
+        so there exists some positive integer <m>m</m> such that <m>y_1^n, \dots,y_m^n \in \varpi A_0</m>.
+        We deduce that <m>(\varpi)</m> is also an ideal of definition of <m>A_0</m>.
+      </p>
+      <p>
+        By the previous paragraph, we have a well-defined function <m>|\bullet|\colon A \to \RR</m> taking <m>x</m> to <m>0</m> if <m>x = 0</m>, 
+        and otherwise to <m>2^{-n}</m> where <m>n</m> is the largest integer such that <m>x \in \varpi^n A_0</m>.
+        It is easy to verify that this defines a submultiplicative norm on <m>A</m> giving the correct norm topology.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>Rings of integral elements</title>
+    <p>
+      In Huber's theory, to define a good notion of the <term>adic spectrum</term> (to be introduced in <xref ref="subsec-adic-spectra"/>)
+      one must work with not just a Huber ring, but a certain auxiliary ring attached to it.
+      We will see later in this section that this extra structure admits a natural interpretation in the context of analytic rings
+      (<xref ref="subsec-solid-Huber"/>).
+    </p>
+    <definition xml:id="def-Huber-power-bounded">
+      <p>
+        Let <m>A</m> be a Huber ring.
+        An element <m>x \in A</m> is <term>power-bounded</term> if the set <m>\{1,x,x^2,\dots\}</m> is bounded in <m>A</m>.
+        The power-bounded elements form an open subring <m>A^{\circ}</m> of <m>A</m> containing any ring of definition.
+        The topologically nilpotent elements form a radical ideal <m>A^{\circ \circ}</m> of <m>A^{\circ}</m>.
+      </p>
+      <p>
+        In general, <m>A^\circ</m> need not be bounded. When it is, we say that <m>A</m> is a <term>uniform</term> Huber ring.
+      </p>
+    </definition>
+    <example>
+      <p>
+        The ring <m>A = \QQ_p[T]/(T^2)</m>, topologized as <m>\QQ_p \times \QQ_p</m>, is a complete Tate Huber ring:
+        we may take <m>A_0 = \ZZ_p \oplus \ZZ_p T</m> as a ring of definition and <m>I = p A_0</m> as an ideal of definition.
+        In this case, <m>A^{\circ} = \ZZ_p \oplus \QQ_p T</m> which is not bounded.
+      </p>
+      <p>
+        Using similar logic, one may see that <m>A</m> is a Tate Huber ring which is not reduced, then it is not uniform either.
+      </p>
+    </example>
+    <definition>
+      <p>
+        For <m>A</m> a Huber ring, a <term>ring of integral elements</term> of <m>A</m> is a subring <m>A^+</m> of <m>A^{\circ}</m>
+        which is open and integrally closed in <m>A</m>. Like <m>A^\circ</m>, <m>A^+</m> need not be bounded.
+      </p>
+    </definition>
+    <remark>
+      <p>
+        Any ring of integral elements contains <m>A^{\circ \circ}</m>: if <m>x \in A</m> is topologically nilpotent, then
+        the openness of <m>A^+</m> ensures that for some positive integer <m>n</m> we have <m>x^n \in A^+</m>,
+        and the integral closure in <m>A</m> then forces <m>x \in A^+</m>.
+        Since <m>A^{\circ \circ}</m> is itself an open subset of <m>A</m>, we see from this that rings of integral elements of <m>A</m>
+        are in bijection with integrally closed subrings of <m>A^\circ/A^{\circ \circ}</m>.
+      </p>
+      <p>
+        Conversely, <m>A^{\circ \circ}</m> is itself an open neighborhood of <m>0</m> in <m>A^{\triangleright}</m>.
+        We may thus redefine a ring of integral elements of <m>A</m> to be simply an integrally closed subring of <m>A^{\circ}</m> containing <m>A^{\circ \circ}</m>.
+        For example, <m>A^\circ</m> is such a subring; this includes the assertion that it is integrally closed, which we will recover later
+        by proving an analogue for solid rings (<xref ref="lem-analytic-circ-circ-circ"/>).
+      </p>
+    </remark>
+    <definition>
+      <p>
+        A <term>Huber pair</term> is a pair <m>A = (A^{\triangleright}, A^+)</m> in which <m>A^{\triangleright}</m> is a Huber ring
+        and <m>A^+</m> is a ring of integral elements of <m>A^{\triangleright}</m>. We will apply adjectives like <term>complete</term> and <term>Tate</term>
+        to a Huber pair by passing through to the underlying Huber ring.
+      </p>
+    </definition>
+    <example>
+      <p>
+        We can construct multiple complete Huber pairs <m>A</m> with <m>A^{\triangleright} = \QQ_p \langle T \rangle</m>:
+        in one case we take <m>A^+ = \ZZ_p \langle T \rangle</m>, and in the other we take the smaller ring <m>A^+ = \ZZ_p + p \ZZ_p \langle T \rangle</m>.
+      </p>
+    </example>
+    <remark>
+      <p>
+        In Huber's theory, the difference between a Huber ring and a Huber pair manifests in the definition of the <term>adic spectrum</term>;
+        see <xref ref="subsec-adic-spectra"/>.
+        the elements of the adic spectrum are (equivalence classes of) continuous (semi)valuations on the underlying Huber ring
+        whose valuation rings contains the ring of integral elements. 
+        This has some effect when glueing adic spectra together to make <term>adic spaces</term>.
+      </p>
+      <p>
+        However, this difference can also be detected from the point of view of solid modules,
+        which means that different Huber pairs with the same underlying Huber ring will give rise to distinct solid analytic rings.
+        This is one indication that analytic rings will provide a satisfactory basis for constructing analytic stacks in a manner that can absorb adic spaces.
+      </p>
+    </remark>
+  </subsection>
+  <subsection xml:id="subsec-solid-Huber">
+    <title>Solid modules and Huber rings</title>
+    <p>
+      We have already observed that complete Huber rings give rise to solid condensed rings.
+      This prompts us to upgrade our definitions to apply more directly to solid rings.
+    </p>
+    <definition>
+      <p>
+        Write <m>\ZZ[T]_\solid</m> for the analytic ring <m>(\underline{\ZZ}[T], \Mod_{\underline{\ZZ}[T] \liquid \{1, T\}})</m>.
+        Beware that this is not consistent with the notation in <xref ref="sec_solid1"/>.
+      </p>
+    </definition>
+    <definition xml:id="def-condensed-power-bounded">
+      <p>
+        Let <m>A^{\triangleright}</m> be a solid condensed ring.
+        For any <m>f \in A^{\triangleright}(*)</m>, we have a unique homomorphism <m>\underline{\ZZ}[T] \to A^{\triangleright}</m> mapping <m>T</m> to <m>f</m>.
+        We say <m>f</m> is <term>power-bounded</term> if <m>A^{\triangleright} \in \Mod_{\ZZ[T]_\solid}</m>.
+        Let <m>A^{\circ} \subseteq A^{\triangleright}(*)</m> be the set of power-bounded elements.
+      </p>
+      <p>
+        We say <m>f</m> is <term>topologically nilpotent</term> if 
+        <m>\underline{\ZZ}[T] \to A^{\triangleright}</m> factors through <m>P_\solid \cong \underline{\ZZ}\llbracket T \rrbracket</m>.
+        Since we are assuming that <m>A^{\triangleright}</m> is solid as a condensed abelian group, 
+        this is equivalent to the condition given in <xref ref="def-R-topologically-nilpotent"/>.
+        Let <m>A^{\circ \circ} \subseteq A^{\circ}</m> be the set of topologically nilpotent elements.
+      </p>
+      <p>
+        When <m>A^{\triangleright}</m> is a Huber ring, these definitions agree with <xref ref="def-Huber-power-bounded"/>.
+      </p>
+    </definition>
+    <lemma xml:id="lem-solid-condensed-power-bounded-ring">
+      <statement>
+        <p>
+          Let <m>A^{\triangleright}</m> be a solid condensed ring.
+          Let <m>F \in \ZZ[x_1,\dots,x_n][T]</m> be a polynomial monic in <m>T</m>.
+          Let <m>f_1,\dots,f_n,f \in A^{\triangleright}(*)</m> be such that <m>F(f_1,\dots,f_n,f) = 0</m>.
+          If <m>f_1,\dots,f_n \in A^\circ</m>, then <m>f \in A^\circ</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Form the map <m>\underline{\ZZ}[x_1,\dots,x_n][T]/(F) \to A^{\triangleright}</m> via <m>x_i \mapsto f_i, T \mapsto f</m>.
+          The hypothesis that <m>A^{\triangleright}</m> is solid and <m>f_1,\dots,f_n \in A^\circ</m>
+          means that <m>A^{\triangleright} \in \Mod_{\underline{\ZZ}[x_1,\dots,x_n]\liquid \{1,f_1,\dots,f_n\}}</m>.
+          Since <m>\ZZ[x_1,\dots,x_n][T]/(F)</m> is finite free as a module over <m>\ZZ[x_1,\dots,x_n]</m>,
+          we may formally upgrade the previous conclusion to <m>A^{\triangleright} \in \Mod_{\underline{\ZZ}[x_1,\dots,x_n][T]/(F)\liquid \{1,f_1,\dots,f_n,T\}}</m>
+          and hence <m>f \in A^\circ</m>.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-solid-condensed-top-nilpotent-ring">
+      <statement>
+        <p>
+          Let <m>A^{\triangleright}</m> be a solid condensed ring.
+          Let <m>F \in \ZZ[x_1,\dots,x_n][T]</m> be a polynomial monic in <m>T</m> and congruent to some power of <m>T</m> modulo <m>(x_1,\dots,x_n)</m>.
+          Let <m>f_1,\dots,f_n,f \in A^{\triangleright}(*)</m> be such that <m>F(f_1,\dots,f_n,f) = 0</m>.
+          If <m>f_1,\dots,f_n \in A^{\circ \circ}</m>, then <m>f \in A^{\circ \circ}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Since 
+          <me>
+            \underline{\ZZ}\llbracket x_1 \rrbracket \otimes^L_\solid \cdots \otimes^L_\solid \underline{\ZZ}\llbracket x_n \rrbracket \cong \underline{\ZZ}\llbracket x_1,\dots,x_n \rrbracket,
+          </me>
+          the conditions in question imply that we have a homomorphism <m>\underline{\ZZ}\llbracket x_1,\dots,x_n\rrbracket [T]/(F) \to A^{\triangleright}</m>
+          acting via <m>x_i \mapsto f_i, T \mapsto f</m>.
+          We thus deduce that <m>f \in A^{\circ \circ}</m>.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-analytic-circ-circ-circ">
+      <statement>
+        <p>
+          The subset <m>A^{\circ}</m> of <m>A^{\triangleright}(*)</m> is an integrally closed subring.
+          The subset <m>A^{\circ \circ}</m> of <m>A^{\triangleright}(*)</m> is a radical ideal of <m>A^{\circ}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We check the first claim by repeated application of <xref ref="lem-solid-condensed-power-bounded-ring"/>:
+          we check that <m>1 \in A^\circ</m> by taking <m>F = T-1</m>; we check closure under ring operations by taking <m>F = T - (x_1+x_2)</m> and <m>F = T - (x_1x_2)</m>;
+          we check integral closure by taking <m>F</m> arbitrary.
+        </p>
+        <p>
+          We similarly check the second claim by repeated application of <xref ref="lem-solid-condensed-top-nilpotent-ring"/>.
+        </p>
+      </proof>
+    </lemma>
+    <remark>
+      <p>
+        Both aspects of <xref ref="lem-analytic-circ-circ-circ"/> are peculiar to <em>solid</em> analytic rings:
+        for instance they fail for <m>\RR_{\liquid}</m> because the interval <m>(0,1)</m> is not closed under addition.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        For <m>A^{\triangleright}</m> a condensed ring, an element  
+        <m>f \in A^{\triangleright}(*)</m> which is universally power-bounded in the sense of <xref ref="def-R-topologically-nilpotent"/>
+        is also power-bounded, but not conversely even if <m>A^{\triangleright}</m> is represented by a Tate Huber ring.
+        The point is that the conclusion of <xref ref="rem-f-solidification-versus-fg"/> does not hold.
+      </p>
+    </remark>
+    <p>
+      Mirroring the transition from Huber rings to Huber pairs, we now transition from solid condensed rings to solid analytic rings.
+    </p>
+    <definition xml:id="def-solid-integral-elements">
+      <p>
+        Let <m>A = (A^{\triangleright}, \Mod_A)</m> be a solid analytic ring.
+        Let <m>A^+\subseteq A^{\triangleright}(*)</m> be the set of <m>f</m> for which the unique homomorphism <m>\underline{\ZZ}[T] \to A^{\triangleright}</m>
+        taking <m>T</m> to <m>f</m> factors through a morphism <m>\ZZ[T]_\solid \to A</m> of analytic rings.
+        We have an evident inclusion <m>A^+ \subseteq A^\circ</m>;
+        we can also identify <m>A^+</m> with the <term>core</term> of <m>A</m> in the sense of <xref ref="def-corona"/>.
+      </p>
+    </definition>
+    <lemma xml:id="lem-solid-condensed-integral-elements-ring">
+      <statement>
+        <p>
+          Let <m>A</m> be a solid analytic ring.
+          Let <m>F \in \ZZ[x_1,\dots,x_n][T]</m> be a polynomial monic in <m>T</m>.
+          Let <m>f_1,\dots,f_n,f \in A^{\triangleright}(*)</m> be such that <m>F(f_1,\dots,f_n,f) = 0</m>.
+          If <m>f_1,\dots,f_n \in A^+</m>, then <m>f \in A^+</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Argue as in <xref ref="lem-solid-condensed-power-bounded-ring"/> but with <m>\underline{\ZZ}[x_1,\dots,x_n]</m> replaced by the
+          analytic completion of <m>A^{\triangleright}[x_1,\dots,x_n]</m>.
+        </p>
+      </proof>
+    </lemma>
+    <proposition xml:id="prop-solid-integral-elements">
+      <statement>
+        <p>
+          For <m>A</m> a solid analytic ring, <m>A^+</m> is an integrally closed subring of <m>A^\circ</m> containing <m>A^{\circ \circ}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The containments <m>A^{\circ \circ} \subseteq A^+ \subseteq A^{\circ}</m> are straightforward.
+          To check that <m>A^+</m> is an integrally closed subring of <m>A^\circ</m>,
+          argue as in <xref ref="lem-analytic-circ-circ-circ"/> but with <xref ref="lem-solid-condensed-power-bounded-ring"/> replaced by
+          <xref ref="lem-solid-condensed-integral-elements-ring"/>.
+        </p>
+      </proof>
+    </proposition>
+    <theorem xml:id="thm-Huber-pair-from-solid">
+      <statement>
+        <p>
+          For <m>A^{\triangleright}</m> a complete Huber ring, there is a functor from solid analytic rings <m>A</m> with underlying ring <m>\underline{A^{\triangleright}}</m>
+          to complete Huber pairs with underlying ring <m>A^{\triangleright}</m> mapping <m>A</m> to <m>(A^{\triangleright}, A^+)</m> for <m>A^+</m> defined as in 
+          <xref ref="def-solid-integral-elements"/>. Moreover, this functor has a left adjoint denoted <m>(A^{\triangleright}, A^+) \mapsto (A^{\triangleright}, A^+)_\solid</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The fact that the functor does yield a ring of integral elements is the content of <xref ref="prop-solid-integral-elements"/>.
+          The left adjoint takes a Huber pair <m>(A^{\triangleright}, A^+)</m> to <m>(\underline{A^{\triangleright}}, \Mod_{\underline{A^{\triangleright}} \liquid A^+})</m>;
+          the inclusion <m>A^+ \subseteq A^\circ</m> ensures that <m>A^{\triangleright} \in \Mod_{\underline{A^{\triangleright}} \liquid A^+}</m>.
+        </p>
+      </proof>
+    </theorem>
+    <example>
+      <p>
+        We have the following (for the discrete topologies on <m>\ZZ</m> and <m>\ZZ[T]</m>):
+        <md>
+          <mrow>
+            (\ZZ, \ZZ)_\solid &amp;= (\underline{\ZZ}, \Mod_{\underline{\ZZ} \solid})
+          </mrow>
+          <mrow>
+            (\ZZ[T], \ZZ)_\solid &amp;= (\underline{\ZZ[T]}, \Mod_{\underline{\ZZ}[T] \liquid 1})
+          </mrow>
+          <mrow>
+            (\ZZ[T], \ZZ[T])_\solid &amp;= (\underline{\ZZ[T]}, \Mod_{\underline{\ZZ}[T]\liquid\{1,T\}})
+          </mrow>
+        </md>.
+      </p>
+    </example>
+    <proposition xml:id="prop-Huber-pair-to-solid-analytic">
+      <statement>
+        <p>
+          For <m>A = (A^{\triangleright}, A^+)</m> a complete Huber pair, applying the functor of <xref ref="thm-Huber-pair-from-solid"/> to <m>(A^{\triangleright}, A^+)_\solid</m> yields <m>A^+</m>.
+          Consequently, the functor <m>A \mapsto (A^{\triangleright}, A^+)_\solid</m> is fully faithful.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Straightforward.
+        </p>
+      </proof>
+    </proposition>
+    <remark xml:id="rem-Huber-pair-from-solid">
+      <p>
+        If <m>A</m> is a solid analytic ring, then we cannot necessarily equip <m>A^{\triangleright}(*)</m> with the structure of a Huber ring
+        in such a way that <m>A^\circ</m> and <m>A^{\circ \circ}</m> are the sets of power-bounded and topologically nilpotent elements, respectively.
+        (One issue is finding a finitely generated ideal of definition.)
+        However, we can still treat <m>A(*) := (A^{\triangleright}(*), A^+)</m> as a complete Huber pair for the <em>discrete</em> topology on <m>A^{\triangleright}(*)</m>;
+        this will be useful for transferring information about Huber pairs to solid analytic rings.
+      </p>
+    </remark>
+  </subsection>
+</section>

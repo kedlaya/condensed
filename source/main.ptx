@@ -30,7 +30,7 @@
 
       \def\solid{\blacksquare}
       \def\liquid{\approx}
-      \def\gas{{\mathrm{O}_2}}
+      \def\gas{\bigodot}
 
       \DeclareMathOperator{\acc}{acc}
       \DeclareMathOperator{\an}{an}
@@ -96,7 +96,7 @@
   <article xml:id="condensed">
     <title>Notes on condensed mathematics</title>
     <frontmatter>
-      <titlepage>
+      <bibinfo>
         <author>
           <personname>Kiran S. Kedlaya</personname>
           <department>Department of Mathematics</department>
@@ -107,7 +107,7 @@
           <email>kedlaya@ucsd.edu</email>
         </author>
         <date><today /></date>
-      </titlepage>
+      </bibinfo>
       <abstract>
         <p>
           These are notes from a <url visual="kskedlaya.org/math205-fall24/" href="https://kskedlaya.org/math205-fall24/">graduate topics course</url> given at UC San Diego 

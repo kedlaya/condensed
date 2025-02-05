@@ -59,6 +59,9 @@
     K.S. Kedlaya, <articletitle>Sheaves, shtukas, and stacks</articletitle>, in <pubtitle>Perfectoid Spaces: Lectures from the 2017 Arizona Winter School</pubtitle>,
     Mathematical Surveys and Monographs 242, American Mathematical Society <year>2019</year>.
   </biblio>
+  <biblio type="raw" xml:id="bib-Kedlaya-Liu2">
+    K.S. Kedlaya and R. Liu, <articletitle>Relative <m>p</m>-adic Hodge theory, II: Imperfect period rings</articletitle>, <url href="http://arxiv.org/abs/1602.06899">arXiv:1602.06899v3</url> <year>2019</year>.
+  </biblio>
   <biblio type="raw" xml:id="bib-Kiehl">
     R. Kiehl, <articletitle>Der Endlichkeitssatz für eigentliche Abbildungen in der nichtarchimedischen Funktionentheorie</articletitle>,
     <journal>Inventiones Mathematicae</journal> <volume>2</volume> <year>1967</year>, 191<ndash/>214.

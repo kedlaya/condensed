@@ -16,7 +16,7 @@
       <title>Reference</title>
       <p>
         <xref ref="subsec-whitehead"/> is taken from <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 1.
-        <xref ref="subsec-solid-finiteness"/> is taken from <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 6.
+        <xref ref="subsec-solid-finitely-presented-def"/> and <xref ref="subsec-solid-finiteness"/> are taken from <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 6.
       </p>
     </paragraphs>
   </introduction>
@@ -131,7 +131,7 @@
       </proof>
     </proposition>
   </subsection>
-  <subsection xml:id="subsec-solid-finiteness">
+  <subsection xml:id="subsec-solid-finitely-presented-def">
     <title>Finitely presented solid abelian groups</title>
     <p>
       To further illustrate that one can really work with the solid modules despite the somewhat abstract definition,
@@ -186,116 +186,34 @@
       </p>
     </remark>
     <p>
-      We may generate more interesting examples of finitely presented objects of <m>\Ab_\solid</m> as follows.
+      We may generate more interesting examples of finitely presented objects of <m>\Ab_\solid</m> 
+      using the derived version of the dual functor <m>\iHom_{\ZZ_\solid}(\bullet, \ZZ_\solid)</m>.
     </p>
-    <example xml:id="exa-generate-finitely-presented">
-      <p>
-        For any abelian group <m>Q</m> with <m>|Q| \leq \kappa</m>, <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> is a finitely presented object of <m>\Ab_\solid</m>.
-        To see this, choose a surjection <m>\bigoplus_I \ZZ \to Q</m> with <m>|I| \leq \kappa</m> (e.g., by taking <m>I = \QQ</m> and the map
-        to be the counit of the adjunction between sets and abelian groups). By <xref ref="lem-submodule-free-over-PID"/>,
-        the kernel of this map is again a free module of rank at most <m>\kappa</m>; that is, we have an exact sequence of abelian groups
-        <men xml:id="eq-length-1-resolution-of-solid">
-          0 \to \bigoplus_I \ZZ \stackrel{h}{\to} \bigoplus_J \ZZ \to Q \to 0
-        </men>.
-        Passing from <m>\Ab</m> to <m>\Ab_\solid</m> and then taking duals (<xref ref="prop-solid-internal-hom"/>) yields a new exact sequence
-        <men xml:id="eq-hom-from-torsion-sequence">
-          0 \to \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid \to \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to 0
-        </men>
-        where the final <m>0</m> occurs because <m>\prod_J \ZZ_\solid</m> is a projective object in <m>\Ab_\solid</m>.
-      </p>
-    </example>
-    <remark xml:id="rem-generate-finitely-presented">
-      <p>
-        In <xref ref="exa-generate-finitely-presented"/>, there is no loss of generality in restricting the construction to torsion abelian groups.
-        To see this, start with a general <m>Q</m>, then choose a subset <m>B</m> of <m>Q</m>
-        which forms a basis of <m>Q \otimes_{\ZZ} \QQ</m> as a <m>\QQ</m>-vector space.
-        We then get a tautological morphism <m>\bigoplus_B \ZZ \to Q</m> whose cokernel <m>T</m> is a torsion group,
-        and the induced map <m>\iExt^1_{\ZZ_\solid}(T_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> 
-        is an isomorphism because <m>\bigoplus_B \ZZ</m> is projective in <m>\Ab_\solid</m>.
-      </p>
-    </remark>
-    <p>
-      In the countable case, we can make the construction a bit more explicit.
-      (We do not know whether the cardinality hypothesis is needed here.)
-    </p>
-    <proposition xml:id="prop-ext-as-pontryagin-dual">
+    <lemma xml:id="exa-generate-finitely-presented">
       <statement>
         <p>
-          For <m>Q</m> a countable abelian group, <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> is the limit of 
-          <m>\Ext^1_\ZZ(T, \ZZ)_\solid</m> as <m>T</m> runs over finite subgroups of <m>Q</m>.
+          For any abelian group <m>Q</m> with <m>|Q| \leq \kappa</m>, <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> is a finitely presented object of <m>\Ab_\solid</m>.
         </p>
       </statement>
       <proof>
         <p>
-          When <m>Q = T</m> is finite, we may choose an exact sequence as in <xref ref="eq-length-1-resolution-of-solid"/> with <m>I</m> and <m>J</m> finite,
-          then compare <xref ref="eq-hom-from-torsion-sequence"/> with the corresponding sequence obtained by taking algebraic duals.
-          In the general case, write <m>Q</m> as a sequential union of torsion subgroups <m>T_n</m>;
-          we can then choose presentations
-          <me>
-            0 \to \bigoplus_{I_n} \ZZ \to \bigoplus_{J_n} \ZZ \to T_n \to 0
-          </me>
-          in which the inclusions <m>T_n \to T_{n+1}</m> are induced by inclusions <m>I_n \to I_{n+1}</m>, <m>J_n \to J_{n+1}</m>.
-          When we dualize the resulting sequences to obtain
-          <me>
-            0 \to \prod_{J_n} \ZZ_\solid \to \prod_{I_n} \ZZ_\solid \to \Ext^1_\ZZ((T_n)_\solid, \ZZ_\solid) \to 0,
-          </me>
-          we get an inverse system of these sequences in which the transition maps in the left and middle columns are surjective.
-          In particular there is no <m>R^1</m> term on the left, so for <m>I = \bigcup_n I_n</m>, <m>J = \bigcup_n J_n</m> we get an exact sequence
-          <me>
-            0 \to \prod_J \ZZ_\solid \to \prod_I \ZZ_\solid \to \lim_n \Ext^1_\ZZ((T_n)_\solid, \ZZ_\solid) \to 0
-          </me>.
-          Comparing with <xref ref="eq-hom-from-torsion-sequence"/> again yields the desired comparison.
-        </p>
-      </proof>
-    </proposition>
-  </subsection>
-  <subsection>
-    <title>Structure of finitely presented solid abelian groups</title>
-    <p>
-      We next show that the construction of <xref ref="exa-generate-finitely-presented"/> is essentially complete.
-    </p>
-    <proposition xml:id="cor-solid-torsion-by-free">
-      <statement>
-        <p>
-          An object of <m>\Ab_\solid</m> is finitely presented if and only if it is isomorphic to 
-          <m>\left(\prod_K \ZZ_\solid\right) \oplus \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>
-          for some set <m>K</m> with <m>|K| \leq \kappa</m> and some torsion abelian group <m>Q</m>
-          with <m>|Q| \leq \kappa</m>.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          The <q>if</q> assertion follows from <xref ref="exa-generate-finitely-presented"/>; we prove the <q>only if</q> assertion as follows.
-          Let <m>M</m> be a finitely presented object of <m>\Ab_\solid</m>.
-          By definition, we can find an exact sequence of the form
-          <men xml:id="eq-cor-solid-torsion-by-free">
-            0 \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid \to M \to 0
+          Choose a surjection <m>\bigoplus_I \ZZ \to Q</m> with <m>|I| \leq \kappa</m> (e.g., by taking <m>I = \QQ</m> and the map
+          to be the counit of the adjunction between sets and abelian groups). By <xref ref="lem-submodule-free-over-PID"/>,
+          the kernel of this map is again a free module of rank at most <m>\kappa</m>; that is, we have an exact sequence of abelian groups
+          <men xml:id="eq-length-1-resolution-of-solid">
+            0 \to \bigoplus_I \ZZ \stackrel{h}{\to} \bigoplus_J \ZZ \to Q \to 0
           </men>.
-          By taking duals (<xref ref="prop-solid-internal-hom"/>) and noting that everything in sight is discrete, 
-          we get a map <m>h \colon \bigoplus_I \ZZ \to \bigoplus_J \ZZ</m>.
-        </p>
-        <p>
-          Suppose first that <m>h</m> is injective. We can then set <m>Q := \coker(h)</m> and carry out <xref ref="exa-generate-finitely-presented"/>;
-          comparing <xref ref="eq-cor-solid-torsion-by-free"/> with the resulting exact sequence <xref ref="eq-hom-from-torsion-sequence"/>
-          shows that <m>M \cong \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>. Using <xref ref="rem-generate-finitely-presented"/>
-          to replace <m>Q</m> with a torsion abelian group, we deduce the desired result.
-        </p>
-        <p>
-          To reduce the general case to the previous case, apply <xref ref="lem-submodule-free-over-PID"/>
-          to see that <m>\ima(h)</m> is also a free <m>\ZZ</m>-module. This means that the source
-          <m>\bigoplus_I \ZZ</m> splits as <m>\ker(h)</m> plus a submodule isomorphic to <m>\ima(h)</m>, and both factors are free.
-          This splitting transposes to a decomposition of the target <m>\prod_I \ZZ_\solid</m> as a product of two factors,
-          each itself a product of copies of <m>\ZZ_\solid</m> (as in <xref ref="lem-summand-of-product"/>). 
-          Now note that the dual of <m>\ima(h)</m>, viewed as a subobject of <m>\prod_I \ZZ_\solid</m>, is precisely
-          the image of <m>g</m>; consequently, our splitting of <m>\prod_I \ZZ_\solid</m> projects to a splitting of <m>M</m>
-          as the direct sum of the dual of <m>\ker(h)</m> with another module.
-          We can now simultaneously discard the dual of <m>\ker(h)</m> as a summand of both <m>\prod_I \ZZ_\solid</m> and <m>M</m>
-          (leaving <m>\prod_J \ZZ_\solid</m> unchanged)
-          leaving us in a situation where now the map <m>h</m> is injective.
-          Applying the previous paragraph yields the desired result.
+          Passing from <m>\Ab</m> to <m>\Ab_\solid</m> and then taking duals (<xref ref="prop-solid-internal-hom"/>) yields a new exact sequence
+          <men xml:id="eq-hom-from-torsion-sequence">
+            0 \to \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid \to \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to 0
+          </men>
+          where the final <m>0</m> occurs because <m>\prod_J \ZZ_\solid</m> is a projective object in <m>\Ab_\solid</m>.
         </p>
       </proof>
-    </proposition>
+    </lemma>
+    <p>
+      We can say a bit more about the construction in <xref ref="exa-generate-finitely-presented"/> when starting with a torsion group.
+    </p>
     <lemma xml:id="lem-hom-from-torsion-vanishes">
       <statement>
         <p>
@@ -330,9 +248,313 @@
         </p>
       </proof>
     </lemma>
+    <remark xml:id="rem-length-1-projective-resolution">
+      <p>
+        In <xref ref="exa-generate-finitely-presented"/>, if <m>\Hom{\ZZ}(Q, \ZZ) = 0</m> (e.g., if <m>Q</m> is torsion),
+        then <xref ref="lem-hom-from-torsion-vanishes"/> shows that the first term of <xref ref="eq-hom-from-torsion-sequence"/> vanishes;
+        that is, <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> admits a projective resolution of length 1 with terms of the form <m>\prod_I \ZZ_\solid</m>
+        with <m>|I| \leq \kappa</m>. We will pick up on this point in <xref ref="cor-length-1-resolution-of-solid"/>.
+      </p>
+    </remark>
+    <p>
+      For a countable torsion group, we can make the construction from <xref ref="exa-generate-finitely-presented"/> a bit more explicit.
+      (We do not know whether the cardinality hypothesis is needed here, but see <xref ref="rem-torsion-group-as-sequential-limit"/>.)
+    </p>
+    <proposition xml:id="prop-ext-as-pontryagin-dual">
+      <statement>
+        <p>
+          For <m>Q</m> a countable torsion abelian group, <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> is the limit of 
+          <m>\Ext^1_\ZZ(T, \ZZ)_\solid</m> as <m>T</m> runs over finite subgroups of <m>Q</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          When <m>Q = T</m> is finite, we may choose an exact sequence as in <xref ref="eq-length-1-resolution-of-solid"/> with <m>I</m> and <m>J</m> finite,
+          then compare <xref ref="eq-hom-from-torsion-sequence"/> with the corresponding sequence obtained by taking algebraic duals.
+          In the general case, write <m>Q</m> as a sequential union of torsion subgroups <m>T_n</m>;
+          we can then choose presentations
+          <me>
+            0 \to \bigoplus_{I_n} \ZZ \to \bigoplus_{J_n} \ZZ \to T_n \to 0
+          </me>
+          in which the inclusions <m>T_n \to T_{n+1}</m> are induced by inclusions <m>I_n \to I_{n+1}</m>, <m>J_n \to J_{n+1}</m>.
+          When we dualize the resulting sequences to obtain
+          <me>
+            0 \to \prod_{J_n} \ZZ_\solid \to \prod_{I_n} \ZZ_\solid \to \Ext^1_\ZZ((T_n)_\solid, \ZZ_\solid) \to 0,
+          </me>
+          we get an inverse system of these sequences in which the transition maps in the left and middle columns are surjective.
+          In particular there is no <m>R^1</m> term on the left, so for <m>I = \bigcup_n I_n</m>, <m>J = \bigcup_n J_n</m> we get an exact sequence
+          <me>
+            0 \to \prod_J \ZZ_\solid \to \prod_I \ZZ_\solid \to \lim_n \Ext^1_\ZZ((T_n)_\solid, \ZZ_\solid) \to 0
+          </me>.
+          Comparing with <xref ref="eq-hom-from-torsion-sequence"/> again yields the desired comparison.
+        </p>
+      </proof>
+    </proposition>
+    <example xml:id="exa-extension-solid-Q-by-Z">
+      <p>
+        Let us spell out <xref ref="exa-generate-finitely-presented"/> in the case <m>Q = \QQ/\ZZ</m>. We first write <m>Q</m> as the colimit of 
+        <m>\ZZ/n\ZZ</m> over all positive integers <m>n</m>; by <xref ref="prop-ext-as-pontryagin-dual"/>,
+        <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> is the limit of <m>\iExt^1_{\ZZ_\solid}((\ZZ/n\ZZ)_\solid, \ZZ_\solid)</m> over all <m>n</m>.
+      </p>
+      <p>
+        For each <m>n</m>, use the exact sequence
+        <men xml:id="eq-present-Z-mod-n">
+          0 \to \ZZ \stackrel{\times n}{\to} \ZZ \to \ZZ/n\ZZ \to 0
+        </men>
+        to obtain the exact sequence
+        <men xml:id="eq-present-ext-Z-mod-n">
+          0 \to \ZZ_\solid \stackrel{\times n}{\to} \ZZ_\solid \to \iExt^1_{\ZZ_\solid}((\ZZ/n\ZZ)_\solid, \ZZ_\solid) \to 0
+        </men>
+        to compute that <m>\iExt^1_{\ZZ_\solid}((\ZZ/n\ZZ)_\solid, \ZZ_\solid) = \cong (\ZZ/n\ZZ)_\solid</m>.
+        Now note that if <m>n'</m> is a multiple of <m>n</m>, then the inclusion of <m>\ZZ/n\ZZ</m> into <m>\ZZ/n' \ZZ</m> via multiplication by <m>n'/n</m>
+        corresponds to the map between exact sequences as in <xref ref="eq-present-Z-mod-n"/> which acts on the first copy of <m>\ZZ</m> as the identity
+        and on the second copy as multiplication by <m>n'/n</m>.
+        This then corresponds to the map between exact sequences as in <xref ref="eq-present-ext-Z-mod-n"/> which acts on the first copy of <m>\ZZ_\solid</m>
+        as multiplication by <m>n'/n</m> and on the second copy as the identity.
+        We conclude that 
+        <me>
+          \iExt^1_{\ZZ_\solid}((\QQ/\ZZ)_\solid, \ZZ_\solid) \cong \lim_n (\ZZ/n\ZZ)_\solid,
+        </me>
+        which we recognize as the solid analogue of the profinite completion of the integers and therefore denote also as <m>\widehat{\ZZ}_\solid</m>.
+      </p>
+    </example>
+    <p>
+      We can also make the construction more explicit for <m>\QQ</m>-vector spaces.
+    </p>
+    <example xml:id="exa-extension-solid-Q">
+      <p>
+        Let us spell out <xref ref="exa-generate-finitely-presented"/> in the case <m>Q = \QQ</m>.
+        Using the exact sequence
+        <me>
+          0 \to \ZZ \to \QQ \to \QQ/\ZZ \to 0
+        </me>,
+        we obtain an exact sequence
+        <me>
+          0 = \iHom_{\ZZ_\solid}(\QQ_\solid, \ZZ_\solid) \to \ZZ_\solid \to \iExt^1_{\ZZ_\solid}((\QQ/\ZZ)_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}(\QQ_\solid, \ZZ_\solid) \to 0
+        </me>
+        where the first term vanishes by <xref ref="lem-hom-from-torsion-vanishes"/>.
+        Using <xref ref="exa-extension-solid-Q-by-Z"/> to identify the middle term, this yields an isomorphism
+        <me>
+          \iExt^1_{\ZZ_\solid}(\QQ_\solid, \ZZ_\solid) \cong \widehat{\ZZ}_\solid/\ZZ_\solid
+        </me>.
+      </p>
+      <p>
+        For <m>Q</m> a <m>\QQ</m>-vector space with <m>|Q| \leq \kappa</m>, by choosing a basis we can write
+        <m>Q = \bigoplus_I \QQ</m> with <m>|I| \leq \kappa</m>. We then obtain
+        <me>
+          \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \cong \prod_I \left(\widehat{\ZZ}_\solid/\ZZ_\solid \right)
+        </me>.
+      </p>
+    </example>
+    <remark xml:id="rem-reduce-to-torsion-and-Q">
+      <p>
+        For a general abelian group <m>Q</m> with <m>|Q| \leq \kappa</m>, we have a canonical exact sequence
+        <me>
+          0 \to T_0 \to Q \to Q \otimes_{\ZZ} \QQ \to T_1 \to 0
+        </me>
+        in which <m>T_0</m> and <m>T_1</m> are both torsion groups.
+        This allows us to reduce the computation of <m>\iExt^1_{\ZZ_\solid}(Q, \ZZ_\solid)</m> to cases where <m>Q</m> is either a torsion group or a <m>\QQ</m>-vector space.
+      </p>
+    </remark>
+    <p>
+      We next show that the construction of <xref ref="exa-generate-finitely-presented"/> is essentially complete.
+    </p>
+    <proposition xml:id="cor-solid-torsion-by-free">
+      <statement>
+        <p>
+          An object of <m>\Ab_\solid</m> is finitely presented if and only if it is isomorphic to 
+          <m>\left(\prod_K \ZZ_\solid\right) \oplus \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>
+          for some set <m>K</m> with <m>|K| \leq \kappa</m> and some abelian group <m>Q</m>
+          with <m>|Q| \leq \kappa</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The <q>if</q> assertion follows from <xref ref="exa-generate-finitely-presented"/>; we prove the <q>only if</q> assertion as follows.
+          Let <m>M</m> be a finitely presented object of <m>\Ab_\solid</m>.
+          By definition, we can find an exact sequence of the form
+          <men xml:id="eq-cor-solid-torsion-by-free">
+            0 \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid \to M \to 0
+          </men>.
+          By taking duals (<xref ref="prop-solid-internal-hom"/>) and noting that everything in sight is discrete, 
+          we get a map <m>h \colon \bigoplus_I \ZZ \to \bigoplus_J \ZZ</m>.
+        </p>
+        <p>
+          Suppose first that <m>h</m> is injective. We can then set <m>Q := \coker(h)</m> and carry out <xref ref="exa-generate-finitely-presented"/>;
+          comparing <xref ref="eq-cor-solid-torsion-by-free"/> with the resulting exact sequence <xref ref="eq-hom-from-torsion-sequence"/>
+          shows that <m>M \cong \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>.
+        </p>
+        <p>
+          To reduce the general case to the previous case, apply <xref ref="lem-submodule-free-over-PID"/>
+          to see that <m>\ima(h)</m> is also a free <m>\ZZ</m>-module. This means that the source
+          <m>\bigoplus_I \ZZ</m> splits as <m>\ker(h)</m> plus a submodule isomorphic to <m>\ima(h)</m>, and both factors are free.
+          This splitting transposes to a decomposition of the target <m>\prod_I \ZZ_\solid</m> as a product of two factors,
+          each itself a product of copies of <m>\ZZ_\solid</m> (as in <xref ref="lem-summand-of-product"/>). 
+          Now note that the dual of <m>\ima(h)</m>, viewed as a subobject of <m>\prod_I \ZZ_\solid</m>, is precisely
+          the image of <m>g</m>; consequently, our splitting of <m>\prod_I \ZZ_\solid</m> projects to a splitting of <m>M</m>
+          as the direct sum of the dual of <m>\ker(h)</m> with another module.
+          We can now simultaneously discard the dual of <m>\ker(h)</m> as a summand of both <m>\prod_I \ZZ_\solid</m> and <m>M</m>
+          (leaving <m>\prod_J \ZZ_\solid</m> unchanged)
+          leaving us in a situation where now the map <m>h</m> is injective.
+          Applying the previous paragraph yields the desired result.
+        </p>
+      </proof>
+    </proposition>
+    <remark>
+      <p>
+        In <xref ref="cor-solid-torsion-by-free"/>, the group <m>Q</m> cannot in general be taken to be torsion.
+        This can be seen for instance from <xref ref="exa-extension-solid-Q"/>: taking <m>\kappa = \aleph_0</m>,
+        <m>Q = \QQ</m> yields the object <m>\widehat{\ZZ}_\solid/\ZZ_\solid</m>
+        which is not profinite, and therefore by <xref ref="prop-ext-as-pontryagin-dual"/> cannot arise from a torsion group.
+      </p>
+    </remark>
+    <remark xml:id="rem-torsion-group-as-sequential-limit">
+      <p>
+        When <m>Q</m> is a torsion group that is not countable, we may still write it as a countable direct sum of Sylow subgroups:
+        <me>
+          Q \cong \bigoplus_p Q[p^\infty]
+        </me>
+        where <m>p</m> runs over primes. We may correspondingly split <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> as a direct sum of
+        <m>\iExt^1_{\ZZ_\solid}(Q[p^\infty]_\solid, \ZZ_\solid)</m>.
+      </p>
+      <p>
+        Suppose now that <m>Q</m> is <m>p^\infty</m>-torsion for some prime <m>p</m>.
+        We may write <m>Q</m> as the sequential colimit of <m>Q[p^n] = \ker(Q \stackrel{\times p^n}{\to} Q)</m>
+        over <m>n \in \NN</m>, so we can still view <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> as the limit of 
+        <m>\iExt^1_{\ZZ_\solid}(Q[p^n]_\solid, \ZZ_\solid)</m>.
+      </p>
+      <p>
+        However, when we write <m>Q[p^n]</m> as a non-sequential colimit of finite torsion groups,
+        it is not clear whether this colimit transforms into a limit via <m>\iExt^1</m>. This does hold for <m>n=1</m>, though,
+        as in this case <m>Q[p]</m> is a free module over <m>\ZZ/p\ZZ</m> and so the coproduct transforms into a product.
+      </p>
+    </remark>
+  </subsection>
+  <subsection xml:id="subsec-solid-finiteness">
+    <title>The category of finitely presented solid abelian groups</title>
+    <p>
+      When <m>\kappa = \aleph_0</m>, we can say even more about the category of finitely presented solid abelian groups.
+    </p>
+    <remark xml:id="rem-generate-finitely-presented">
+      <p>
+        In <xref ref="exa-generate-finitely-presented"/>, the group <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> may be further analyzed as follows.
+        We have already seen in <xref ref="cor-length-1-resolution-of-solid"/> that if <m>\Hom_{\ZZ}(Q, \ZZ) = 0</m>, then <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>
+        admits a projective resolution of length 1. If <m>\Hom_{\ZZ}(Q, \ZZ) = \ZZ</m>, then we obtain an exact sequence of the form
+        <me>
+          0 \to Q_0 \to Q \to \ZZ \to 0
+        </me>
+        which we can split to obtain a summand <m>Q_0</m> of <m>Q</m> with <m>\Hom_{\ZZ}(Q_0, \ZZ) = 0</m>;
+        we then have  <m>\iExt^1_{\ZZ_\solid}((Q_0)_\solid, \ZZ_\solid) = \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>.
+        By the same token, if <m>\Hom_{\ZZ}(Q, \ZZ)</m> is finitely generated, we can similarly split <m>Q</m> as a direct sum <m>Q_0 \oplus \ZZ^n</m>
+        with <m>\Hom_\ZZ(Q_0, \ZZ) = 0</m>.
+      </p>
+      <p>
+        However, if <m>\Hom_{\ZZ}(Q, \ZZ)</m> is infinitely generated then no such splitting exists in general.
+        For instance, if <m>Q = \prod_\NN \ZZ</m>, then the projection maps form a countable family of homomorphisms <m>Q \to \ZZ</m>
+        with zero kernel, so we would have to take <m>Q_0 = 0</m>; but this is not possible because <m>Q</m> is not itself a free abelian group (see 
+        <xref ref="rem-infinite-product-not-free"/>).
+        Notably, this example is ruled out by taking <m>\kappa = \aleph_0</m>, and indeed this process can be pushed through under this restriction.
+      </p>
+    </remark>
+    <remark xml:id="rem-infinite-product-not-free">
+      <p>
+        We verify that the product <m>\prod_\NN \ZZ</m> is not a free abelian group.
+        Suppose to the contrary that <m>\prod_\NN \ZZ \cong \bigoplus_I \ZZ</m> for some <m>I</m>,
+        necessarily with <m>|I| = 2^{\aleph_0}</m>.
+        The image of <m>\bigoplus_\NN \ZZ \to \prod_\NN \ZZ</m> would then be contained in <m>\bigoplus_J \ZZ</m>
+        for some countable subset <m>J</m> of <m>I</m> (namely, the union of the supports of the images of each generator
+        of <m>\bigoplus_\NN \ZZ</m> in <m>\bigoplus_I \ZZ</m>). This would in turn imply that 
+        the divisible subgroup of <m>\left( \prod_\NN \ZZ \right) / \left( \bigoplus_\NN \ZZ \right)</m>
+        is countable (as this quotient would be contained in the product of the torsion-free group <m>\bigoplus_{I \setminus J} \ZZ</m>
+        with a countable group), but this is manifestly false: the map
+        <me>
+          \left( \prod_\NN \ZZ \right) / \left( \bigoplus_\NN \ZZ \right) \to \left( \prod_\NN \ZZ \right) / \left( \bigoplus_\NN \ZZ \right),
+          \qquad (a_n)_n \mapsto (n! a_n)_n
+        </me>
+        is injective, its domain is uncountable, and its image is contained in the divisible subgroup of the codomain.
+      </p>
+    </remark>
+    <lemma xml:id="lem-divisible-closure-finitely-generated">
+      <statement>
+        <p>
+          Let <m>M</m> be a finitely generated subgroup of <m>\prod_\NN \ZZ</m>.
+          Then the divisible closure of <m>M</m> in <m>\prod_\NN \ZZ</m> is also finitely generated.
+          (By <xref ref="rem-infinite-product-not-free"/>, this fails if we replace <q>finitely generated</q> with <q>countably generated</q> in both places.)
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Choose a basis of <m>M</m> and record the elements of this basis as a semi-infinite matrix of integers
+          (with finitely many columns and countably many rows). We can then perform elementary row and column operations
+          on this matrix without changing the isomorphism class of either <m>M</m> or its divisible closure.
+          In particular, we can put the matrix into Hermite normal form, from which the claim is evident.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-countable-sub-of-product-is-free">
+      <statement>
+        <p>
+          Let <m>M</m> be a subgroup of <m>\prod_I \ZZ</m> for some index set <m>I</m>
+          with <m>|I| \leq \aleph_0</m>.
+          Then <m>M</m> is free. (The cardinality restriction is needed on account of <xref ref="rem-infinite-product-not-free"/>.)
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By hypothesis, we can find a surjection <m>\bigoplus_J \ZZ \to M</m> with <m>|J| \leq \aleph_0</m>.
+          There is nothing to check if <m>J</m> is finite, as then we can project from <m>I</m> onto some finite index
+          set and then apply <xref ref="lem-submodule-free-over-PID"/>.
+          We may thus assume that <m>J = \NN</m>.
+        </p>
+        <p>
+          Let <m>F_n</m> be the divisible closure in <m>M</m> of the image of <m>\bigoplus_{\{0,\dots,n-1\}} \ZZ</m>.
+          Since <m>F_n</m> is contained in the divisible closure of the image of <m>\bigoplus_{\{0,\dots,n-1\}} \ZZ</m>
+          in <m>\prod_I \ZZ</m>, which by <xref ref="lem-divisible-closure-finitely-generated"/> is finitely generated,
+          so then is <m>F_n</m>.
+        </p>
+        <p>
+          For each <m>n \gt 0</m>, <m>F_n/F_{n-1}</m> is finitely generated (by the previous paragraph)
+          and torsion-free (since <m>M/F_{n-1}</m> is by construction), hence free.
+          for each <m>n \gt 0</m>.
+          In particular, we can choose a splitting <m>F_n \cong F_{n-1} \oplus (F_n/F_{n-1})</m>.
+          Combining these splittings yields a coherent sequence of isomorphisms
+          <me>
+            F_n \cong F_0 \oplus (F_1/F_0) \oplus \cdots \oplus (F_n/F_{n-1})
+          </me>,
+          and taking colimits yields an isomorphism
+          <me>
+            M \cong F_0 \oplus (F_1/F_0) \oplus \cdots
+          </me>
+          which shows that <m>M</m> is free.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-split-off-free-sub">
+      <statement>
+        <p>
+          Let <m>Q</m> be an abelian group with <m>|Q| \leq \aleph_0</m>. 
+          Let <m>Q^\vee := \Hom_\ZZ(Q,\ZZ)</m> be the (algebraic) dual group of <m>Q</m>,
+          let <m>Q^{\vee vee} := \Hom_\ZZ(Q^\vee, \ZZ)</m> be the double dual of <m>Q</m>,
+          and let <m>Q_0</m> be the kernel of the evaluation map <m>Q \to Q^{\vee \vee}</m>.
+          Then <m>Q/Q_0</m> is free, so <m>Q</m> splits as a direct sum <m>Q_0 \oplus (Q/Q_0)</m>
+          in which <m>\Hom_\ZZ(Q_0, \ZZ) = 0</m>.
+          (The cardinality restriction is needed on account of <xref ref="rem-generate-finitely-presented"/>.)
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Note that <m>Q^{\vee \vee}</m> embeds into <m>\prod_{Q^\vee} \ZZ</m>;
+          this restricts to an embedding of <m>Q/Q_0</m> into <m>\prod_{Q^\vee} \ZZ</m>.
+          We may thus apply <xref ref="lem-countable-sub-of-product-is-free"/> to deduce that <m>Q/Q_0</m> is free.
+          Using any resulting splitting of <m>Q</m>, we see that any nonzero homomorphism <m>Q_0 \to \ZZ</m> extends to a homomorphism <m>Q \to \ZZ</m>
+          which does not vanish identically on <m>Q_0</m>; from this we conclude that in fact <m>\Hom_\ZZ(Q_0, \ZZ) = 0</m>.
+        </p>
+      </proof>
+    </lemma>
     <proposition xml:id="cor-length-1-resolution-of-solid">
       <statement>
         <p>
+          Assume <m>\kappa = \aleph_0</m>.
           Any finitely presented object of <m>\Ab_\solid</m> is the cokernel of some <em>injective</em> map of the form <m>\prod_J \ZZ_\solid \to \prod_I \ZZ_\solid</m>;
           that is, it admits a projective resolution of length at most <m>1</m>.
         </p>
@@ -340,21 +562,47 @@
       <proof>
         <p>
           With notation as in <xref ref="cor-solid-torsion-by-free"/>,
-          it suffices to check the claim assuming <m>K = \emptyset</m>, as we can just insert a copy of <m>K</m> into <m>I</m> at the end;
-          that is, it suffices to treat the case of the object <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>
-          for <m>Q</m> a torsion abelian group with <m>|Q| \leq \kappa</m>.
-          Now set notation as in <xref ref="exa-generate-finitely-presented"/>. By <xref ref="lem-hom-from-torsion-vanishes"/>,
-          the first term of <xref ref="eq-hom-from-torsion-sequence"/> vanishes, so the map <m>g</m> is injective and has the desired effect.
+          it suffices to check the claim assuming <m>K = \emptyset</m>, as we can just insert a copy of <m>K</m> into <m>I</m> at the end.
+          That is, it suffices to treat the case of the object <m>M = \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>
+          for <m>Q</m> an abelian group with <m>|Q| \leq \kappa</m>. 
+        </p>
+        <p>
+          By <xref ref="lem-split-off-free-sub"/>,
+          we may split <m>Q</m> as the kernel <m>Q_0</m> of the evaluation map plus a free summand.
+          As in <xref ref="rem-generate-finitely-presented"/>,
+          we may discard the free summand without changing <m>M</m>.
+          That is, we may assume <m>Q = Q_0</m>, which means that <m>\Hom_{\ZZ}(Q, \ZZ) = 0</m> (again by <xref ref="lem-split-off-free-sub"/>).
+          This case was already treated in <xref ref="rem-length-1-projective-resolution"/>.
         </p>
       </proof>
     </proposition>
+    <corollary xml:id="lem-subobject-of-finitely-generated">
+      <statement>
+        <p>
+          For any <m>K</m> with <m>|K| \leq \aleph_0</m>,
+          any finitely generated subobject of <m>\prod_K \ZZ_\solid</m>  in <m>\Ab_\solid</m> is a direct summand, 
+          and hence by <xref ref="lem-summand-of-product"/> can itself be written as a product of copies of <m>\ZZ_\solid</m>.
+          (This fails without the finitely generated hypothesis as per <xref ref="rem-infinite-coproduct-not-fingen"/>.)
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Let <m>M</m> be a finitely generated subobject of <m>\prod_K \ZZ_\solid</m> in <m>\Ab_\solid</m>.
+          Then <m>\coker(M \to \prod_K \ZZ_\solid)</m> is finitely presented, and hence by <xref ref="cor-length-1-resolution-of-solid"/>
+          has projective dimension at most 1. Since <m>\prod_K \ZZ_\solid</m> is projective, we deduce that <m>M</m> is a projective
+          object of <m>\Ab_\solid</m> (this is again a <q>two out of three</q> argument as in <xref ref="bib-Stacks"/>, tag 064R).
+        </p>
+      </proof>
+    </corollary>
     <proposition xml:id="prop-finitely-presented-generators-solid">
       <statement>
         <p>
+          Assume <m>\kappa = \aleph_0</m>.
           The finitely presented objects in <m>\Ab_\solid</m> form a subcategory closed under kernels, cokernels, extensions, 
           tensor products, limits indexed by sets of cardinality <m>\leq \kappa</m>,
           and finite colimits.
           Moreover, every object of <m>\Ab_\solid</m> is a colimit of finitely presented objects.
+          (The cardinality restriction is needed on account of <xref ref="rem-double-dual-without-cardinality"/>.)
         </p>
       </statement>
       <proof>
@@ -377,23 +625,47 @@
         </p>
       </proof>
     </proposition>
-    <corollary xml:id="lem-subobject-of-finitely-generated">
-      <statement>
-        <p>
-          For any <m>K</m> with <m>|K| \leq \kappa</m>,
-          any finitely generated subobject of <m>\prod_K \ZZ_\solid</m>  in <m>\Ab_\solid</m> is itself a product of copies of <m>\ZZ_\solid</m>. 
-          (This fails without the finitely generated hypothesis as per <xref ref="rem-infinite-coproduct-not-fingen"/>).
-        </p>
-      </statement>
-      <proof>
-        <p>
-          Let <m>M</m> be a finitely generated subobject of <m>\prod_K \ZZ_\solid</m> in <m>\Ab_\solid</m>.
-          Then <m>\coker(M \to \prod_K \ZZ_\solid)</m> is finitely presented, and hence by <xref ref="cor-length-1-resolution-of-solid"/>
-          has projective dimension at most 1. Since <m>\prod_K \ZZ_\solid</m> is projective, we deduce that <m>M</m> is a projective
-          object of <m>\Ab_\solid</m> (this is again a <q>two out of three</q> argument as in <xref ref="bib-Stacks"/>, tag 064R); we may thus apply <xref ref="lem-summand-of-product"/> to conclude.
-        </p>
-      </proof>
-    </corollary>
+    <remark xml:id="rem-double-dual-without-cardinality">
+      <p>
+        We show by way of contradiction that the conclusions of <xref ref="prop-finitely-presented-generators-solid"/> cannot all hold when <m>\kappa \geq 2^{\aleph_0}</m>.
+        Since we will have to make the restriction <m>\kappa = \aleph_0</m> later for other reasons, this is ultimately not so problematic for our purposes.
+      </p>
+      <p>
+        Set <m>Q := \prod_\NN \ZZ</m> and choose a presentation as in <xref ref="eq-length-1-resolution-of-solid"/> with <m>|I|, |J| \leq 2^{\aleph_0}</m>.
+        In <xref ref="eq-hom-from-torsion-sequence"/>, all of the terms except <m>\iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> are finitely presented,
+        so by the conclusions of <xref ref="prop-finitely-presented-generators-solid"/>, so must be <m>\iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>.
+        In particular, the image of <m>\iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> in <m>\prod_J \ZZ_\solid</m> must be finitely generated,
+        so we can apply the conclusion of <xref ref="lem-subobject-of-finitely-generated"/> to deduce that it can be written as <m>\prod_L \ZZ_\solid</m> for some <m>L</m> with <m>|L| \leq 2^{\aleph_0}</m>.
+      </p>
+      <p>
+        Define <m>M \in \Ab_\solid</m> to make
+        <me>
+          0 \to \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \prod_J \ZZ_\solid \to M \to 0
+        </me>
+        an exact sequence. Since this sequence splits, it dualizes to an exact sequence
+        <me>
+          0 \to \iHom_{\ZZ_\solid}(M, \ZZ_\solid) \to \bigoplus_J \ZZ \to R \to 0
+        </me>
+        where 
+        <me>
+          R := \iHom_{\ZZ_\solid}(\iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid), \ZZ_\solid) \cong \iHom_{\ZZ_\solid}\left(\prod_L \ZZ_\solid, \ZZ_\solid\right) \cong \bigoplus_L \ZZ
+        </me> 
+        is the solid double dual of <m>Q</m>.
+      </p>
+      <p>
+        Although <m>R</m> is not <em>a priori</em> equal to the algebraic double dual of <m>Q</m>,
+        we may argue as in <xref ref="rem-generate-finitely-presented"/> that the projection maps <m>\prod_\NN \ZZ \to \ZZ</m>
+        correspond to sections of <m>\iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>. Since the projection maps have zero joint kernel, the evaluation map <m>Q \to R</m>
+        must be injective.
+      </p>
+      <p>
+        On the other hand, since <m>g\colon \prod_J \ZZ_\solid \to \prod_I \ZZ_\solid</m> factors through the projection <m>\prod_J \ZZ_\solid \to M</m>,
+        <m>h \colon \bigoplus_I \ZZ \to \bigoplus_J \ZZ</m> factors through the inclusion <m>\iHom_{\ZZ_\solid}(M, \ZZ_\solid) \to \bigoplus_J \ZZ</m>.
+        From this, we see that the evaluation map <m>Q \to R</m> is also surjective.
+        We conclude that <m>Q \cong R \cong \bigoplus_L \ZZ</m>,
+        a contradiction against the fact that <m>Q</m> is known not to be a free abelian group (<xref ref="rem-infinite-product-not-free"/>).
+      </p>
+    </remark>
     <remark>
       <p>
         One can prove an analogue of <xref ref="prop-finitely-presented-generators-solid"/>

@@ -1,0 +1,351 @@
+﻿<section xml:id="sec_analytic_norm">
+  <title>Norms on analytic rings</title>
+  <introduction>
+    <p>
+      In this section, we introduce the concept of a norm on an analytic ring, 
+      set up in a way that will make it compatible with the theory of analytic stacks.
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This section is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lectures 19 and 20.
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>Norms and Gelfand<ndash/>Berkovich spectra</title>
+    <p>
+      The concepts of a <term>submultiplicative seminorm</term> on a commutative ring,
+      and the resulting concept of a <term>commutative Banach ring</term>, were introduced in <xref ref="def-submult-seminorm"/>.
+      While this is ultimately <em>not</em> the model for the concept of a norm on an analytic ring,
+      it will be helpful to recall some related points.
+    </p>
+    <example xml:id="exa-gauss-norm">
+      <p>
+        If <m>R</m> carries a submultiplicative seminorm <m>|\bullet|</m>, then for any <m>\rho \geq 0</m>,
+        we can define a submultiplicative seminorm on <m>R[T]</m> by the formula
+        <me>
+          \left| \sum_i x_i T^i \right|_\rho = \sum_i |x|_i \rho^i.
+        </me>
+        If the seminorm on <m>R</m> is nonarchimedean, we can replace the summation with the supremum in this definition
+        to recover the <term><m>\rho</m>-Gauss seminorm</term>. The terminology arises from the fact that if the original seminorm on <m>R</m> is both nonarchimedean
+        and multiplicative, then adapting the proof of Gauss's lemma on integer polynomials shows that the <m>\rho</m>-Gauss seminorm is again multiplicative.
+      </p>
+    </example>
+    <remark xml:id="rem-Banach-neighborhood-units">
+      <p>
+        For <m>R</m> a commutative Banach ring, the set of units in <m>R</m> is an open subset.
+        More precisely, for any <m>x \in R^\times</m>, the open ball <m>\{y \in R\colon |x-y| \lt |x^{-1}|^{-1}\}</m> consists entirely of units:
+        for <m>y</m> in the ball, <m>|1-y/x| \leq |x-y| |x^{-1}| \lt 1</m> and so the series <m>x^{-1} \sum_i (1-y/x)^i</m> converges to an inverse of <m>x(1-y/x) = y</m>.
+      </p>
+    </remark>
+    <remark xml:id="rem-quotient-to-field">
+      <p>
+        For <m>R</m> a commutative Banach ring, for any maximal ideal <m>\frakm</m> of <m>R</m>, 
+        define the quotient seminorm on <m>F := R/\frakm</m> taking <m>x</m> to the infimum of <m>|y|</m> over all <m>y \in R</m> lifting <m>x</m>.
+        We verify that this is in fact a submultiplicative norm
+        with respect to which <m>F</m> is again complete.
+      </p>
+      <p>
+        Note first that if <m>y \in 1 + \frakm</m>, then <m>|y| \geq 1</m> as otherwise <xref ref="rem-Banach-neighborhood-units"/> would 
+        imply that <m>1-y \in \frakm</m> is a unit, a contradiction (as the existence of a maximal ideal forces <m>R \neq 0</m>).
+        By the same token, for any <m>y \in R \setminus \frakm</m>, we can find <m>z \in R \setminus \frakm</m> with <m>yz \equiv 1 \pmod{\frakm}</m>,
+        and then <m>|yz| \geq 1</m> and so <m>|y| \geq |z|^{-1}</m>; since we can choose <m>z</m> depending only on the image of <m>y</m> in <m>R</m>,
+        this shows that the quotient seminorm is a norm.
+      </p>
+      <p>
+        Finally, note that if <m>(x_n)</m> is a null sequence in <m>F</m>, then for any fixed <m>\epsilon \gt 0</m>, we can lift each <m>x_n</m> to <m>y_n \in R</m>
+        so that <m>|y_n|</m> is at most <m>1+\epsilon</m> times the quotient seminorm of <m>x_n</m>. Consequently, the <m>y_n</m> form a null sequence in <m>R</m>,
+        which is thus summable to some limit <m>y</m>; hence the <m>x_n</m> also form a sequence summable to the image <m>x</m> of <m>y</m> in <m>F</m>.
+      </p>
+    </remark>
+    <remark xml:id="rem-multiplicativity-on-field">
+      <p>
+        Let <m>R</m> be a field equipped with a submultiplicative seminorm <m>|\bullet|</m> (e.g., the field <m>F</m> of <xref ref="rem-quotient-to-field"/>).
+        Then for any <m>x \in R^\times</m>, <m>|x| |x^{-1}| \geq |1| = 1</m>; consequently, <m>|\bullet|</m> is actually a norm.
+      </p>
+      <p>
+        In general the norm need not be multiplicative. However, in this case multiplicativity can be deduced from the formally weaker condition that
+        <m>|x| |x^{-1}| = 1</m> for all <m>x \in R^\times</m>: this condition implies that for <m>x \in R^\times, y \in R</m>, 
+        <me>
+          |xy| \leq |x| |y| \leq |x| |x^{-1}| |xy| = |xy|
+        </me>;
+        hence <m>|xy| = |x| |y|</m> when <m>x</m> is nonzero, and obviously also when <m>x =0</m>.
+      </p>
+      <p>
+        It is a different and subtler question to ask whether or not the topology on <m>R</m> can also be defined by some multiplicative norm.
+        See <xref ref="bib-Kedlaya-Banach"/> for discussion of this issue in the nonarchimedean case.
+      </p>      
+    </remark>
+    <definition>
+      <p>
+        Let <m>R</m> be a ring equipped with a submultiplicative norm <m>|\bullet|</m>.
+        The <term>Gelfand<ndash/>Berkovich spectrum</term> of <m>R</m> is the set <m>\calM(R)</m> of multiplicative seminorms <m>\alpha</m> on <m>R</m>
+        which are dominated by <m>|\bullet|</m> (meaning that <m>\alpha(x) \leq |x|</m> for all <m>x \in R</m>).
+        We upgrade this to a topological space by viewing this as a subspace of <m>\prod_{x \in R} \RR_{\geq 0}</m>,
+        or equivalently <m>\prod_{x \in R} [0, |x|]</m>; from the latter point of view we see that <m>\calM(R)</m> is compact Hausdorff.
+      </p>
+      <p>
+        Note that <m>\calM(R)</m> is unchanged by replacing <m>R</m> with the completion with respect to the seminorm.
+      </p>
+    </definition>
+    <proposition xml:id="prop-gelfand-spectrum-nonempty">
+      <statement>
+        <p>
+          For <m>R</m> a nonzero commutative Banach ring, <m>\calM(R) \neq \emptyset</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We give the argument from <xref ref="bib-Berkovich"/>, Theorem 1.2.1 (filling in some details).
+          Using <xref ref="rem-quotient-to-field"/>, by quotienting by some maximal ideal we may reduce to the case where <m>R</m> is a field,
+          which ensures that every submultiplicative seminorm on <m>R</m> is actually a norm (<xref ref="rem-multiplicativity-on-field"/>).
+          By Zorn's lemma, the space of submultiplicative norms on <m>R</m> dominated by <m>|\bullet|</m> contains a minimal element <m>\alpha</m> with respect to domination.
+          It will suffice to check that any such element is in fact multiplicative.
+          By <xref ref="rem-multiplicativity-on-field"/>, it suffices to check that <m>\alpha(x)^{-1} = \alpha(x^{-1})</m> for all <m>x \in R^\times</m>.
+        </p>
+        <p>
+          Suppose the contrary; since <m>\alpha(x) \alpha(x^{-1}) \geq \alpha(1) = 1</m> by submultiplicativity, we must have <m>\alpha(x^{-1}) \gt \alpha(x)^{-1}</m>.
+          Set <m>\rho := \alpha(x^{-1})^{-1}</m>;
+          by the same token, for any positive integer <m>i</m>, <m>\alpha(x^{-i}) \alpha(x^{-1})^i \geq 1</m> and so <m>\alpha(x^{-i}) \geq \rho^{-i}</m>.
+          In particular, the sum <m>\sum_{i=0}^\infty \alpha(x^{-i}) \rho^i</m> diverges.
+          Now let <m>S</m> be the completion of <m>R[T]</m> for the seminorm defined in <xref ref="exa-gauss-norm"/> with respect to <m>\alpha</m> and <m>\rho</m>,
+          viewed as a subring of <m>R \llbracket T \rrbracket</m>; then <m>(1-x^{-1}T)^{-1} \notin S</m>, so <m>1-x^{-1} T</m> is not a unit in <m>S</m>.
+          Hence the map <m>R \to S/(x-T)</m> is injective and we can pull back the quotient seminorm from <m>S/(x-T)</m> to <m>R</m>;
+          this gives a submultiplicative norm <m>\beta</m> on <m>R</m> such that <m>\beta(y) \leq \alpha(y)</m> for all <m>y \in R</m> (by lifting <m>y</m> to itself)
+          but <m>\beta(x) \lt \alpha(x)</m> (by lifting <m>x</m> to <m>T</m>), a contradiction.
+        </p>
+      </proof>
+    </proposition>
+    <corollary xml:id="cor-Gelfand-spectrum-unit">
+      <statement>
+        <p>
+          For <m>R</m> a nonzero commutative Banach ring, an element <m>x \in R</m> is invertible if and only if <m>\alpha(x) \neq 0</m>
+          for all <m>\alpha \in \calM(R)</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Let <m>I</m> be the closure of the ideal <m>(x)</m>. By hypothesis, <m>\calM(R/I)</m> is empty, so
+          <xref ref="prop-gelfand-spectrum-nonempty"/> that <m>I</m> is the unit ideal.
+          By <xref ref="rem-Banach-neighborhood-units"/>, this means that <m>(x)</m> contains a unit, and so <m>x</m> is itself a unit.
+        </p>
+      </proof>
+    </corollary>
+    <example xml:id="exa-Berkovich-space-of-ZZ">
+      <p>
+        Take <m>R = \ZZ</m> equipped with the archimedean absolute value <m>|\bullet|_\infty</m>.
+        Using Ostrowski's theorem, we may classify the points <m>\alpha \in \calM(\ZZ)</m> as follows.
+        <ul>
+          <li>
+            The trivial norm: <m>\alpha(x) = 1</m> for all nonzero <m>x \in \ZZ</m>.
+          </li>
+          <li>
+            For <m>c \in (0,1]</m>, the scaled archimedean norm <m>\alpha(x) = |x|_\infty^c</m>.
+            (We cannot take <m>c \gt 1</m> as then the triangle inequality would fail; see <xref ref="rem-Berkovich-space-of-ZZ"/>.)
+          </li>
+          <li>
+            For <m>p</m> prime and <m>c \in (0, +\infty)</m>, the scaled <m>p</m>-adic norm <m>\alpha|x| = |x|_p^c</m>.
+          </li>
+          <li>
+            For <m>p</m> prime, the seminorm pulled back from the trivial norm on <m>\FF_p</m>.
+          </li>
+        </ul>
+      </p>
+      <p>
+        We can get some partial information about the topology by noting that on one hand the map <m>[0,1] \to \calM(\ZZ)</m> taking <m>c</m> to <m>|x|_\infty^c</m> (meaning the trivial norm for <m>c=0</m>)
+        is continuous; and on the other hand, for each prime <m>p</m> the map <m>[0, \infty] \to \calM(\ZZ)</m> taking <m>c</m> to <m>|x|_p^c</m> (meaning the trivial norm for <m>c=0</m>
+        and the pullback of the trivial norm on <m>\FF_p</m> for <m>c = \infty</m>) is also continuous.
+      </p>
+      <p>
+        To describe the topology completely, note that on one hand, any nontrivial <m>\alpha \in \calM(\ZZ)</m> lies on exactly one of the segments described above and this forms
+        a compact neighborhood of <m>\alpha</m>. On the other hand, any neighborhood of the trivial norm contains the entire segments corresponding to all but many primes <m>p</m>.
+        An efficient description of the resulting space is that it is homeomorphic to the union of the segment from <m>[0,0]</m> to <m>[0,1]</m> (corresponding
+        to the segment ending at <m>|\bullet|_\infty</m>) with, for each prime <m>p</m>, the segment from <m>[0,0]</m> to <m>[1/p, 1/p^2]</m>.
+      </p>
+    </example>
+    <remark xml:id="rem-Berkovich-space-of-ZZ">
+      <p>
+        In <xref ref="exa-Berkovich-space-of-ZZ"/>, the fact that the branch of <m>\calM(\ZZ)</m> containing the points <m>\alpha(x) = |x|_\infty^c</m>
+        is truncated at <m>c=1</m> is arguably a bit artificial: for <m>c \gt 1</m>, the function <m>|x|_\infty^c</m> still satisfies a somewhat
+        weaker form of the triangle inequality. More importantly, the balls with respect to this function still define the archimedean topology.
+      </p>
+    </remark>
+    <definition xml:id="def-spectral-seminorm">
+      <p>
+        For <m>R</m> a ring equipped with a submultiplicative seminorm <m>|\bullet|_R</m>,
+        define the associated <term>spectral seminorm</term> by the formula
+        <me>
+          |x|_{\spect,R} = \lim_{n \to \infty} |x^n|_R^{1/n}
+        </me>;
+        it is an elementary exercise to verify that the limit exists (and actually equals the infimum). By construction,
+        <m>|\bullet|_{\spect,R}</m> is a power-multiplicative seminorm.
+      </p>
+      <p>
+        For <m>R</m> a commutative Banach ring, it is not always the case that the spectral seminorm defines the same topology as the original norm;
+        for one, if <m>R</m> is not reduced, then any nilpotent element has spectral seminorm <m>0</m>.
+        However, replacing the norm with its associated spectral seminorm does not affect <m>\calM(R)</m>:
+        any multiplicative seminorm that is dominated by the original norm is also dominated by the spectral seminorm.
+      </p>
+    </definition>
+    <proposition xml:id="prop-spectral-seminorm-is-supremum">
+      <statement>
+        <p>
+          For <m>R</m> a commutative Banach ring, for every <m>x \in R</m> we have
+          <me>
+            |x|_{\spect,R} = \sup\{\alpha(x)\colon \alpha \in \calM(R)\}
+          </me>.
+          (By compactness, the supremum is necessarily achieved.)
+        </p>
+      </statement>
+      <proof>
+        <p>
+          In one direction, as pointed out in <xref ref="def-spectral-seminorm"/>, every <m>\alpha \in \calM(R)</m> is dominated by the
+          spectral seminorm. In the other direction, if <m>\alpha(x) \lt \rho</m> for all <m>\alpha \in \calM(R)</m>, then
+          let <m>S</m> be the completion of <m>R[T]</m> for the seminorm defined in <xref ref="exa-gauss-norm"/> with respect to 
+          <m>|\bullet|_R</m> and <m>\rho^{-1}</m>.
+          By <xref ref="cor-Gelfand-spectrum-unit"/>, the element <m>1-xT</m> of <m>S</m> is invertible; this means that 
+          <m>\sum_{n=0}^\infty |x^n| \rho^{-n}</m> converges, implying <m>|x|_{\spect,R} \leq \rho</m>.
+          (Compare <xref ref="bib-Berkovich"/>, Theorem 1.3.1.)
+        </p>
+      </proof>
+    </proposition>
+  </subsection>
+  <subsection>
+    <title>Norm functions</title>
+    <remark>
+      <p>
+        In order to study norms on analytic rings in terms of analytic stacks, we need to adopt a shift in perspective.
+        For <m>R</m> a ring, an element of <m>R</m> corresponds to a section of the projection <m>\AAA^1_R \to \Spec R</m>;
+        while our conventional thinking about norms would suggest that we assign a single number to such a section, 
+        it is ultimately better to think of assigning a number to each individual point on the section,
+        with the supremum over these numbers corresponding to the norm in the traditional sense.
+        This forces the supremum to be power-multiplicative (compare <xref ref="prop-spectral-seminorm-is-supremum"/>);
+        in the case where <m>R</m> is a Banach ring,
+        this means that we do not recover the topology on <m>R</m> but we do recover the Gelfand spectrum (<xref ref="def-spectral-seminorm"/>).
+      </p>
+      <p>
+        Another way to say this is that we want to specify a way to pick out the closed ball of radius <m>\rho</m>
+        for every <m>\rho \in [0, \infty)</m>. For any given section of the projection <m>\AAA^1_R \to \Spec R</m>,
+        we would like to be able to detect whether any given point on the section indeed lies in this closed ball.
+      </p>
+      <p>
+        In order to do this, we need to make sense of writing down an <q>analytic</q> map from <m>\AAA^1_R</m> to the nonnegative real numbers.
+        We give an <em>ad hoc</em> definition here, but it will be explained later in the language of analytic stacks.
+      </p>
+    </remark>
+    <definition xml:id="def-norm-function">
+      <p>
+        For <m>R</m> an analytic ring, a <term>norm function</term> on <m>R</m>
+        consists of, for each <m>\rho \in (0, \infty)</m>, an idempotent covering 
+        <m>\{\AnSpec R_{\leq \rho} \to \PP^1_R, \AnSpec R_{\geq \rho} \to \PP^1_R\}</m> satisfying the following conditions.
+        <ul>
+          <li>
+            For <m>0 \lt \rho_1 \lt \rho_2 \lt \infty</m>, <m>\AnSpec R_{\leq \rho_1} \to \PP^1_R</m> factors through
+            <m>R_{\leq \rho_2}</m>.
+          </li>
+          <li>
+            For <m>\rho \in (0, \infty)</m>, <m>R_{\leq \rho}</m> is the colimit of <m>R_{\leq \rho_1}</m>
+            over all <m>\rho_1 \in (\rho, \infty)</m>.
+          </li>
+          <li>
+            For all <m>\rho \in (0, \infty)</m>, <m>\AnSpec R_{\leq \rho} \to \PP^1_R</m> factors through <m>\AnSpec R[T]</m>.
+          </li>
+          <li>
+            For <m>\rho \in (0, \infty)</m>, the pullback of <m>\AnSpec R_{\leq \rho} \to \PP^1_R</m>
+            along the inversion map on <m>\PP^1_R</m> is isomorphic to <m>\AnSpec R_{\geq 1/\rho} \to \PP^1_R</m>.
+          </li>
+          <li>
+            For <m>\rho_1, \rho_2 \in (0, \infty)</m>, the composition
+            <me>
+              \AnSpec R_{\leq \rho_1} \times_R \AnSpec R_{\leq \rho_2} \to \AnSpec R[T] \times_R \AnSpec R[T] \stackrel{\mu}{\to} \AnSpec R[T]
+            </me>,
+            where <m>\mu</m> is the multiplication map,
+            factors through <m>\AnSpec R_{\leq \rho_1 \rho_2} \to \AnSpec R[T]</m>.
+          </li>
+          <li>
+            For any <m>\rho \gt 1</m>, the map <m>\AnSpec (P \otimes R) \to \PP^1_R</m> identifying <m>[n]</m> with <m>T^n</m>
+            factors through <m>\AnSpec R_{\leq \rho}</m>.
+          </li>
+        </ul>
+      </p>
+    </definition>
+    <example>
+      <p>
+        For any analytic ring <m>R</m>, we get a norm function on <m>R</m> by taking
+        <me>
+          R_{\leq \rho} = \begin{cases} \AnSpec R[T] &amp; \rho \geq 1 \\
+          \AnSpec R[T]_{(T)} &amp; \rho \lt 1
+          \end{cases}
+        </me>.
+      </p>
+    </example>
+    <remark>
+      <p>
+        In the language of analytic stacks, the data of a norm function 
+        will correspond to a morphism <m>N\colon \PP^1_R \to [0, \infty]</m>
+        of analytic stacks subject to the following conditions.
+        <ul>
+          <li>
+            For <m>\infty_R \colon \AnSpec R \to \PP^1_R</m>, <m>N \circ \infty_R = \infty</m>.
+          </li>
+          <li>
+            The map <m>N</m> commutes with inversion (on <m>\PP^1_R</m> and <m>[0,\infty]</m>).
+          </li>
+          <li>
+            The map <m>N</m> commutes with multiplication (on <m>\AAA^1_R</m> and <m>[0, \infty)</m>).
+          </li>
+          <li>
+            The restriction of <m>N</m> to <m>\AnSpec (P \otimes R)</m> factors through <m>[0,1]</m>.
+          </li>
+        </ul>
+        The analytic stack <m>[0,\infty]</m> will admit a covering by <m>[0,\rho]</m> and <m>[\rho,\infty]</m> for any
+        <m>\rho \in (0, \infty)</m>; this covering will pull back to the covering specified in <xref ref="def-norm-function"/>.
+      </p>
+    </remark>
+    <example xml:id="exa-norm-on-Tate-ring-by-q">
+      <p>
+        Let <m>A</m> be a Tate analytic ring and fix a unit <m>q \in A^{\circ \circ}</m>
+        and a constant <m>c \in (0,1)</m>.
+        For <m>\rho \in (0, \infty)</m>, let <m>A_{\leq \rho}</m> be the colimit of <m>A[T]_{\liquid T^m/q^n}</m>
+        over all pairs of integers <m>(m,n)</m> with <m>m \gt 0</m> and <m>c^{n/m} \gt \rho</m>.
+        We then obtain a norm function on <m>A</m>.
+      </p>
+      <p>
+        When <m>A</m> is the initial Tate analytic ring (<xref ref="def-initial-base-ring"/>), it can be shown that this norm function is uniquely determined by the property that
+        <m>q</m> maps identically to <m>c</m>. However, in general, each topologically nilpotent unit of <m>A</m> map into
+        <m>[0,1)</m> but not necessarily to a constant.
+      </p>
+    </example>
+    <example>
+      <p>
+        Let <m>A</m> be an arbitrary analytic ring and let <m>B</m> be the initial Tate analytic ring (<xref ref="def-initial-base-ring"/>). Then
+        applying <xref ref="exa-norm-on-Tate-ring-by-q"/> over <m>A \otimes B</m> also gives a norm function on <m>A</m>.
+      </p>
+    </example>
+    <remark>
+      <p>
+        In <xref ref="def-norm-function"/>, the last condition corresponds to requiring that any topologically nilpotent ring element has norm in <m>[0,1]</m>.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>Application to the Tate elliptic curve</title>
+    <p>
+      One key application of this construction is to construct the <q>universal</q> Tate elliptic curve.
+    </p>
+    <definition>
+      <p>
+        Let <m>A</m> be the initial Tate analytic ring constructed in <xref ref="def-initial-ring-liquefied"/>.
+        Fix the norm function given by <xref ref="exa-norm-on-Tate-ring-by-q"/> for some <m>c \in (0,1)</m>.
+        We can then define <m>\GG_{m,A}^{\an}</m> as the colimit of <m>\AnSpec R_{\leq \rho}</m> as <m>\rho \to \infty</m>.
+      </p>
+      <p>
+        The analytic version of the Tate elliptic curve will be the <q>free quotient</q> <m>\GG_{m,A}^{\an}/q^{\ZZ}</m>.
+        One can then prove an <q>algebraization</q> statement exhibiting this as the analytification of some elliptic curve
+        over <m>A</m>, which for instance one can interpret as a map from <m>\AnSpec A</m> to the <em>algebraic</em> moduli
+        stack <m>M_{1,1}</m> of elliptic curves over <m>\ZZ</m>.
+      </p>
+    </definition>
+  </subsection>
+</section>

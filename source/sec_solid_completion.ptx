@@ -115,7 +115,45 @@
         This suggests some value in working with solid rings and modules instead of topological rings and modules
         when dealing with adic completions and related constructions; they represent certain functors that would otherwise not be representable.
       </p>
-   </example>
+    </example>
+    <p>
+      Our treatment of the following example follows <xref ref="bib-Kedlaya-Liu2"/>, Example 2.1.10.
+    </p>
+    <example xml:id="exa-localization-not-flat">
+      <p>
+        Define <m>A := \QQ_p \langle T \rangle</m> as in <xref ref="exa-solid-Tate-algebra2"/>, then set
+        <md>
+          <mrow>
+            B &amp;:= A \langle U \rangle/(T -pU)
+          </mrow>
+          <mrow>
+            C &amp;:= A \langle V \rangle/(T-1 - pV)
+          </mrow>
+        </md>.
+        Geometrically, <m>B</m> and <m>C</m> correspond to the disjoint closed discs <m>|T| \leq |p|</m> and <m>|T-1| \leq |p|</m>.
+        Writing <m>\otimes_{A \solid}</m> for the solidification of the tensor product over <m>A</m> (notably a composition of two right exact functors), 
+        we then have
+        <md>
+          <mrow>
+            B \otimes_{A \solid} C &amp;= A \langle U,V \rangle / (T-pU, T-1-pV)
+          </mrow>
+          <mrow>
+            &amp;= A \langle U,V \rangle/ (T-pU, 1-p(V-U))
+          </mrow>
+          <mrow>
+            &amp; = (A \langle U,V \rangle/(1-p(U-V)) / (T-pU)
+          </mrow>
+        </md>
+        and already <m>(A \langle U,V \rangle/(1-p(U-V)) = 0</m> because <m>1-p(U-V)</m> admits the inverse <m>1 + p(U-V) + p^2(U-V)^2 + \cdots</m> in <m>A \langle U,V \rangle</m>.
+      </p>
+      <p>
+        Now note that <m>A \to B</m> is injective, but applying <m>\bullet \otimes_{A \solid} C</m> yields <m>C \to 0</m> which is not injective.
+        In other words, 
+        <me>
+          (B/A) \otimes^L_{A \solid} C \cong C[-1]
+        </me>.
+      </p>
+    </example>
   </subsection>
  <subsection>
     <title>Derived completeness</title>

@@ -1,0 +1,477 @@
+﻿<section xml:id="sec_huber_top">
+  <title>Topology of Huber pairs</title>
+  <introduction>
+    <p>
+      In this section, we recall the topology on the category of Huber rings, again adapting to the setting of solid analytic rings.
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This section is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lectures 7, 9, and 10.
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>Whither the Zariski topology?</title>
+    <p>
+      As a warmup, let us think carefully about how one might arrive at the Zariski topology on an affine scheme,
+      or better as a Grothendieck topology on the category of affine schemes, given that one wants to end up reconstructing the usual theory of schemes.
+    </p>
+    <remark>
+      <p>
+        By Yoneda's lemma, a scheme <m>X</m> can be reconstructed from its <term>functor of points</term>, i.e., the functor <m>S \to \Hom_{\Sch}(S,X)</m> on <m>\Sch</m>.
+        Since every scheme is covered by affine schemes, it is enough to use the restriction of this functor to the category of affine schemes, which is equivalent
+        to the opposite category of rings. In fact the term <term>scheme</term> is meant to suggest this: a scheme is a <q>blueprint</q> for turning rings into
+        sets carrying some meaningful algebro-geometric structure.
+      </p>
+    </remark>
+    <example xml:id="exa-map-to-P1">
+      <p>
+        Let us spell out the functor of points for mapping a test scheme <m>X</m> into <m>X \to \PP^1_\ZZ</m>.
+        Since we have the canonical line bundle <m>\calO(1)</m> on <m>\PP^1_\ZZ</m>, <m>f^* \calO(1)</m> is a line bundle on <m>X</m>.
+        If we write <m>\PP^1_\ZZ = \Proj \ZZ[s_0, s_1]</m>, then the two sections <m>s_0, s_1</m> of <m>\calO(1)</m> pull back to sections of <m>f^* \calO(1)</m>
+        which generate this bundle.
+        We can then reconstruct <m>f</m> uniquely from the data of the line bundle <m>f^* \calO(1)</m> and the sections <m>f^*(s_0), f^*(s_1)</m>.
+      </p>
+      <p>
+        Put another way, the data of the map <m>f</m> is equivalent to the data of the short exact sequence of sheaves of <m>\calO_X</m>-modules
+        <me>
+          0 \to \calL_1 \to \calO_X \oplus \calO_X \to \calL_0 \to 0
+        </me>
+        in which <m>\calL_0</m> is invertible: the bundle <m>\calL_0</m> corresponds to <m>f^* \calO(1)</m> and the two maps <m>\calO_X \to \calL_0</m>
+        correspond to the two sections <m>f^*(s_0), f^*(s_1)</m>.
+      </p>
+      <p>
+        If <m>X = \Spec R</m> is an affine scheme, we can again replace the data with a short exact sequence of <m>R</m>-modules:
+        <me>
+          0 \to L_1 \to R \oplus R \to L_0 \to 0
+        </me>
+        in which <m>L_0</m> is <term>invertible</term> (projective of rank 1). In particular, this functor can be described in terms of the category of <m>R</m>-modules,
+        which is equivalent to the category of quasicoherent sheaves on <m>X</m>.
+      </p>
+      <p>
+        Now suppose we want to think of <m>\PP^1_\ZZ</m> as itself being built out of the two affine schemes <m>\Spec \ZZ[s_1/s_0]</m> and <m>\Spec \ZZ[s_0/s_1]</m>.
+        We then have to cover <m>\Spec R</m> with two localizations corresponding to the subsets on which <m>s_0</m> and <m>s_1</m> are respectively nonzero.
+        If <m>L_0</m> is trivial, then we can identify <m>s_0</m> and <m>s_1</m> with elements of <m>R</m> that generate the unit ideal
+        and take the maps
+        <me>
+          \Spec R[T]/(s_1 T - s_0) \to \Spec R, \qquad \Spec R[T]/(s_0 T - s_1) \to \Spec R
+        </me>.
+        The analogue in the general case is to convert <m>R \oplus R \to L_0</m> into the closed immersion
+        <me>
+          \Spec R = \Proj_R \Sym_R(L_0) \to \Proj_R \Sym_R(R \oplus R) = \PP^1_R
+        </me>,
+        take the fiber product with the inclusion of one of the basic open subsets <m>\Spec R[T]</m> corresponding to dehomogenizing <m>\Sym_R(R \oplus R) \cong R[T_0, T_1]</m>
+        (i.e., mapping one variable to <m>T</m> and the other to 1), and then project via <m>\PP^1_R \to \Spec R</m>.
+      </p>
+    </example>
+    <remark>
+      <p>
+        The key role played in <xref ref="exa-map-to-P1"/> by the category of coherent sheaves on <m>X</m> is perhaps not surprising.
+        After all, for a ring <m>R</m>, every affine scheme over <m>\Spec R</m> can be interpreted as an <m>R</m>-algebra object in <m>\QCoh(\Spec R)</m>.
+        By the same token, building a satisfactory theory of quasicoherent sheaves on analytic rings will be crucial to the development of analytic stacks.
+      </p>
+    </remark>
+    <p>
+      It may not be readily apparent that <xref ref="exa-map-to-P1"/> tells us <em>everything</em> we need to know to make Zariski coverings of affine schemes, but that is in fact the case.
+    </p>
+    <definition xml:id="def-standard-binary-covering-Zariski">
+      <p>
+        For <m>R</m> a commutative ring, define a <term>standard binary covering</term> of <m>\Spec R</m> to be a covering of the form
+        <me>
+          \Spec R\left[\tfrac{f}{g}\right] \to \Spec R, \qquad \Spec R\left[\tfrac{g}{f}\right] \to \Spec R
+        </me>
+        for some <m>f,g \in R</m> generating the unit ideal. In particular there must exist <m>a,b \in R</m> with <m>af + bg = 1</m>,
+        so <m>\frac{1}{g} = a\tfrac{f}{g}+b</m> and so <m>R\left[\tfrac{f}{g}\right] = R\left[ \tfrac{1}{g} \right]</m>;
+        consequently, <m>\Spec R\left[\tfrac{f}{g}\right] \to \Spec R</m> induces an isomorphism
+        <m>\Spec R\left[ \tfrac{f}{g} \right] \cong U_g</m> where <m>U_g \subseteq \Spec R</m> is the set of prime ideals not containing <m>g</m>. 
+      </p>
+    </definition>
+    <example xml:id="exa-standard-binary-covering-Zariski-type">
+      <p>
+        In <xref ref="def-standard-binary-covering-Zariski"/>, one common class of examples occurs when <m>g = 1-f</m>.
+        This type of covering will be sufficient for the proof of <xref ref="prop-standard-binary-coverings"/>.
+      </p>
+    </example>
+    <remark xml:id="rem-compose-distinguished">
+      <p>
+        In scheme theory, it is obvious that a distinguished open subspace of a distinguished open subspace is again a distinguished open subspace.
+        That is, if I start with a ring <m>R</m>, an element <m>f \in R</m>, and a second element <m>g \in R[\tfrac{1}{f}]</m>,
+        then <m>\Spec R[\tfrac{1}{f}][\tfrac{1}{g}] \to \Spec R</m> induces an isomorphism onto <m>U_{h}</m> for some <m>h \in R</m>; namely,
+        write <m>g = g_1/f</m> and take <m>h := fg_1</m>.
+      </p>
+      <p>
+        The situation is a bit more complicated for Huber rings;
+        see <xref ref="rem-compose-rational-localizations"/>.
+      </p>
+    </remark>
+    <proposition xml:id="prop-standard-binary-coverings">
+      <statement>
+        <p>
+          The Zariski topology on the category <m>\Ring^{\op}</m> (i.e., the category of affine schemes)
+          is generated by standard binary coverings.
+          (Note: by convention, we consider the empty covering of the empty space to be <q>generated</q> by any collection.)
+        </p>
+      </statement>
+      <proof>
+        <p>
+          For <m>R \in \Ring</m>, we have a basis of the Zariski topology on <m>\Spec R</m> given by the open subsets <m>U_{f} = \Spec R[\tfrac{1}{f}]</m>
+          for <m>f \in R</m>. Given an open covering by <m>U_{f_i}</m> for some <m>f_i \in R</m>, the ideal generated by the <m>f_i</m> must not be contained in any prime ideal,
+          or even any maximal ideal, so it must be the unit ideal; we can thus find some finite subset <m>f_1,\dots,f_n</m> of the <m>f_i</m> such that the original covering
+          is refined by the covering by <m>U_{f_1},\dots,U_{f_n}</m>, and some <m>a_1,\dots,a_n \in R</m> such that <m>a_1 f_1 + \cdots + a_n f_n = 1</m>.
+        </p>
+        <p>
+          We prove by induction on <m>n</m> that this covering is refined by some covering generated by standard binary coverings.
+          When <m>n=1</m>, <m>f_1</m> must be a unit and so we are considering the one-element covering, which we may ignore.
+          When <m>n=2</m>, we have <m>U_{a_1 f_1} \subseteq U_{f_1}</m>, <m>U_{a_2 f_2} \subseteq U_{f_2}</m> and so
+          the covering is refined by the standard binary covering defined by <m>a_1 f_1</m>.
+        </p>
+        <p>
+          When <m>n \gt 2</m>, set
+          <me>
+            g := a_1 f_1 + \cdots + a_{\lfloor n/2 \rfloor} = 1 - a_{\lfloor n/2 \rfloor+1} f_{\lfloor n/2 \rfloor} - \cdots - a_n f_n
+          </me>
+          so that <m>V_1 := \Spec R[\tfrac{1}{g}]</m>, <m>V_2 := \Spec R[\tfrac{1}{1-g}]</m> form a standard binary covering of <m>\Spec R</m>.
+          In the ring <m>R[\tfrac{1}{g}]</m>, the elements <m>f_i</m> for <m>1 \leq i \leq \lfloor n/2 \rfloor</m> generate the unit ideal;
+          in the ring <m>R[\tfrac{1}{1-g}]</m>, the elements <m>f_i</m> for <m>\lfloor n/2 \rfloor + 1 \leq i \leq n</m> generate the unit ideal.
+          Consequently, the original covering is refined by the covering by
+          <me>
+            \Spec R[\tfrac{1}{g}][\tfrac{1}{f_i}] \quad (i=1,\dots,\lfloor n/2 \rfloor), \quad
+            \Spec R[\tfrac{1}{1-g}][\tfrac{1}{f_i}] \quad (i=\lfloor n/2 \rfloor+1, \dots,n)
+          </me>.
+          Since both <m>\lfloor n/2 \rfloor</m> and <m>n - \lfloor n/2 \rfloor</m> are strictly less than <m>n</m>, we may apply the induction hypothesis to
+          conclude.
+        </p>
+      </proof>
+    </proposition>
+  </subsection>
+  <subsection>
+    <title>Rational localizations of Huber pairs</title>
+    <p>
+      We next recall the construction of localization maps in Huber's theory, in the language of solid analytic rings.
+      We first provide some context from the previous discussion.
+      (We will introduce further context when we discuss <term>analytification</term> more thoroughly in <xref ref="subsec-analytification"/>).
+    </p>
+    <remark xml:id="rem-maps-to-P1-huber">
+      <p>
+        For <m>R</m> a ring, we can formally reinterpret maps from <m>\Spec R</m> to <m>\PP^1_\ZZ</m> as maps from <m>\Spec R</m> to <m>\PP^1_R = \PP^1_\ZZ \times_\ZZ R</m>
+        in the category of schemes over <m>\Spec R</m>.
+        For <m>R</m> an analytic ring, we will want to consider maps from its associated geometric object to the analytic projective line over <m>R</m>,
+        which means we should be able to pull back coverings of the latter.
+      </p>
+      <p>
+        For Huber pairs (or more generally solid analytic rings), we will want there to be a covering of the analytic projective line by two subspaces defined by the conditions
+        <m>|s_0| \leq |s_1|</m> and <m>|s_1| \leq |s_0|</m>, corresponding in complex geometry to the covering of the Riemann sphere by the closed unit disc and its reciprocal.
+        As for schemes (<xref ref="prop-standard-binary-coverings"/>), this desire turns out to force the entire topology of adic spectra (<xref ref="prop-standard-binary-coverings-Huber"/>).
+      </p>
+    </remark>
+    <p>
+      In order to explain <xref ref="rem-maps-to-P1-huber"/>, we first construct the analogue of localization maps <m>R \to R_f</m> for complete Huber pairs,
+      and more generally for solid condensed rings.
+    </p>
+    <definition xml:id="def-solid-Tate">
+      <p>
+        Following <xref ref="exa-solid-Tate-algebra"/>, for any positive integer <m>n</m>, define the <term>solid Tate algebra</term> 
+        <m>\underline{\ZZ}\langle T_1,\dots,T_n \rangle</m> over <m>\underline{\ZZ}</m> as the solid condensed ring corresponding to the functor in <m>\Ab_\solid</m> given by
+        <me>
+          \prod_I \ZZ_\solid \mapsto \left( \prod_I \ZZ[T_1,\dots,T_n] \right) \cap \left( \bigoplus_I \ZZ \right) \llbracket T_1,\dots,T_n \rrbracket 
+        </me>
+        where the intersection is taken inside <m>\left( \prod_I \ZZ \right) \llbracket T_1,\dots,T_n \rrbracket</m>.
+      </p>
+      <p>
+        For any solid condensed ring <m>R</m>, set <m>R \langle T_1,\dots,T_n \rangle := R \otimes_\solid \underline{\ZZ} \langle T_1,\dots,T_n \rangle</m>.
+        When <m>R</m> is the solid ring associated to a Tate Huber ring, this coincides with the usual definition of the Tate algebra
+        (the ring of power series whose coefficients form a null sequence) by some computations as in <xref ref="exa-solid-Tate-algebra"/>
+        and <xref ref="exa-solid-Tate-algebra2"/>.
+      </p>
+    </definition>
+    <lemma xml:id="lem-liquefaction-is-Tate-algebra">
+      <statement>
+        <p>
+          Let <m>R</m> be a solid condensed ring admitting a topologically nilpotent unit <m>q \in R^{\circ \circ} \cap R(*)^\times</m>.
+          Then 
+          <me>
+            R [T_1,\dots,T_n]_{\liquid T_1,\dots,T_n} = R \langle T_1,\dots,T_n \rangle
+          </me>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          It suffices to check the case <m>n=1</m> and then induct; that is, we must check that
+          <me>
+            R[T]_{\liquid T} \cong R \langle T \rangle
+          </me>.
+          This further reduces to the universal case <m>R = \underline{\ZZ((q))}</m> for the <m>q</m>-adic topology on <m>\ZZ((q))</m>.
+          As noted in <xref ref="def-solid-Tate"/>, we may identify <m>R \langle T \rangle</m> with the usual notion of the Tate algebra over
+          the Huber ring <m>\ZZ((q))</m>, and then it is straightforward to compare the two.
+        </p>
+      </proof>
+    </lemma>
+    <remark xml:id="rem-discrete-liquefy">
+      <p>
+        In <xref ref="lem-liquefaction-is-Tate-algebra"/>, the hypothesis that <m>A</m> admits a topologically nilpotent unit is indeed necessary.
+        For instance, for <m>A = \underline{\ZZ}</m>, <m>A[T]_{\liquid T} = \underline{\ZZ[T]}</m> for the discrete topology,
+        which is not equal to <m>\ZZ \langle T \rangle</m> as per <xref ref="exa-solid-Tate-algebra"/>.
+        The point is that in this case, the passage from <m>A[T]</m> to <m>A[T]_{\liquid T}</m> is not sensitive enough
+        to distinguish between <m>\underline{\ZZ}[T]</m> and <m>\underline{\ZZ} \langle T \rangle</m>.
+      </p>
+    </remark>
+    <definition xml:id="prop-solid-rational-localization">
+      <p>
+        For <m>A^{\triangleright}</m> a solid condensed ring and <m>f_1,\dots,f_n,g \in A^{\triangleright}(*)</m>,
+        define 
+        <men xml:id="eq-formula-rational-localization">
+           A^{\triangleright}\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g} \rangle := 
+           \frac{A^{\triangleright}\langle T_1,\dots,T_n \rangle}{(f_1-gT_1,\dots,f_n-gT_n)} \left[ \frac{1}{g} \right]
+        </men>.
+        For <m>A</m> a solid analytic ring, we correspondingly form a homomorphism <m>A \to A \langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g} \rangle</m> by setting
+        <me>
+          \Mod_{A \langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g} \rangle} := 
+          \Mod_{A^{\triangleright}\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g} \rangle \liquid T_1,\dots,T_n}
+          \times_{\Mod_{A^{\triangleright}}} \Mod_A
+        </me>.
+      </p>
+      <p>
+        Any homomorphism as above in which <m>f_1,\dots,f_n,g</m> generate the unit ideal
+        will be called a <term>rational localization</term> of the solid condensed ring <m>A^{\triangleright}</m>
+        or of the solid analytic ring <m>A</m>.
+      </p>
+      <p>
+        For comparison with Huber's theory, we will also need to consider the case where <m>f_1,\dots,f_n,g</m> generate an ideal whose radical contains <m>A^{\circ \circ}</m>.
+        In this case we refer to the resulting homomorphism as a <term>weak rational localization</term>.
+      </p>
+    </definition>
+    <remark>
+      <p>
+        In <xref ref="prop-solid-rational-localization"/>, note that nothing changes if we insert an extra copy of <m>g</m>, as <m>A^{\triangleright} \langle T \rangle/(T-1) \cong A^{\triangleright}</m>.
+        This is convenient for some arguments.
+      </p>
+      <p>
+        For example, if <m>f_1,\dots,f_n,g</m> and <m>f'_1,\dots,f'_m,g'</m> both generate the unit ideal, then we can define a rational localization with parameters <m>T \cup \{gg'\}</m>
+        where
+        <me>
+          T = \{t_1 \cdot t_2 \colon t_1 \in \{f_1,\dots,f_n,g\}, t_2 \in \{f'_1,\dots,f'_m,g'\}\}
+        </me>
+        also generates the unit ideal. The resulting object is the tensor product of the two original rational localizations.
+      </p>
+    </remark>
+    <remark xml:id="rem-Huber-open-ideal">
+      <p>
+        When considering a rational localization as in <xref ref="prop-solid-rational-localization"/>,
+        <m>1/g</m> can be written as an <m>A^{\triangleright}</m>-linear combination of <m>1, f_1/g, \dots, f_n/g</m>;
+        consequently, it is not necessary to invert <m>g</m> separately in <xref ref="eq-formula-rational-localization"/>.
+        That is,
+        <men xml:id="eq-formula-rational-localization-without-inversion">
+          A^{\triangleright} \left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle =
+          \frac{A^{\triangleright}\langle T_1,\dots,T_n \rangle}{(f_1-gT_1,\dots,f_n-gT_n)}
+        </men>.
+      </p>
+      <p>
+        The distinction between rational localizations and weak rational localizations collapses 
+        when <m>A^{\triangleright}</m> contains a topologically nilpotent unit, 
+        or more generally if <m>A^{\circ \circ}</m> generates the unit ideal of <m>A</m>.
+        An example where the two concepts differ would be with <m>A^{\triangleright} = \ZZ[x,y]</m> with the <m>(x,y)</m>-adic topology and the parameters <m>x,y</m>.
+      </p>
+      <p>
+        One reason for using weak rational localizations is that they have better behavior with respect to composition;
+        see <xref ref="rem-compose-rational-localizations"/>. However, rational localizations are enough to generate the right topology,
+        and they have much better algebraic properties (<xref ref="rem-localization-is-underived"/>), so we will prefer them in what follows.
+      </p>
+    </remark>
+    <remark xml:id="rem-compose-rational-localizations">
+      <p>
+        In contrast with <xref ref="rem-compose-distinguished"/>, it is not clear that a composition <m>A \to B \to C</m> of rational localizations is a rational localization.
+        One issue is that the parameters defining <m>B \to C</m> do not belong to <m>A</m>, but this is easily remedied by replacing them with suitable approximations in
+        <m>A[\tfrac{1}{g}]</m> and then clearing denominators. A much more serious issue is that the resulting parameters do not generate the unit ideal.
+      </p>
+      <p>
+        For weak rational localizations of a Huber ring, the composition is again a weak rational localization 
+        (<xref ref="bib-Huber2"/>, Lemma 1.5(ii)); as a corollary, if <m>A \to B</m> and <m>A \to C</m> are weak rational localizations, then the composition
+        <m>A \to B \to B \otimes_A C</m> is again a weak rational localization.
+        However, these arguments depend on the fact that a Huber ring contains a finitely generated ideal of definition, 
+        a property which has no analogue for solid analytic rings.
+      </p>
+      <p>
+        In any case, we will formulate a more intrinsic version of the rational localization property that will be automatically compatible with compositions,
+        that of an <term>idempotent morphism</term> (<xref ref="def-idempotent-morphism"/>).
+      </p>
+    </remark>
+    <remark xml:id="rem-rational-subspace-derived">
+      <p>
+        When constructing a rational localization using <xref ref="prop-solid-rational-localization"/> starting with a Tate Huber pair <m>A</m>
+        (more precisely, with an element of the essential image of the functor
+        <xref ref="prop-Huber-pair-to-solid-analytic"/>), it can still happen that the resulting solid analytic ring 
+        <m>A^{\triangleright} \left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle</m> is not a Huber pair!
+        The issue is that to get the object in the category of Huber pairs with the corresponding universal property, one must take the <em>completion</em>
+        of the ideal <m>(f_1 - gT_1,\dots,f_n  - gT_n)</m> as this ideal may itself not be closed.
+      </p>
+      <p>
+        This failure turns out to be intimately related to the failure of general Tate Huber rings to be <term>sheafy</term>,
+        an issue that in fact does not arise for solid analytic rings. We will discuss this in some detail in <xref ref="sec_huber_local"/>;
+        see specifically <xref ref="prop-sheafy-by-localizations-are-Huber"/>.
+      </p>
+    </remark>
+  </subsection>
+  <subsection xml:id="subsec-adic-spectra">
+    <title>Adic spectra of Huber rings</title>
+    <definition>
+      <p>
+        Let <m>R</m> be a ring.
+        A <term>valuation</term> on <m>R</m> is a function <m>v\colon R \to \Gamma \cup \{0\}</m>,
+        where <m>\Gamma</m> is a totally ordered abelian group written multiplicatively, such that:
+        <ul>
+          <li>
+            <m>v(0) = 0</m>, <m>v(1) = 1</m>. (We do not require <m>v^{-1}(0) = \{0\}</m>.)
+          </li>
+          <li>
+            <m>v(x+y) \leq \max\{v(x), v(y)\}</m> for all <m>x,y \in A^{\triangleright}</m>.
+          </li>
+          <li>
+            <m>v(xy) = v(x) v(y)</m> for all <m>x,y \in A^{\triangleright}</m>.
+          </li>
+        </ul>
+        We declare two valuations to be equivalent if they give rise to the same sets <m>\{(x,y) \in R \times R \colon v(x) \leq v(y)\}</m>.
+        Define the <term>valuative spectrum</term> <m>\Spv(R)</m> to be the set of equivalence classes of valuations of <m>R</m>,
+        equipped with the topology generated by subsets of the form <m>\{v \in \Spv(R)\colon v(x) \leq v(y)\neq 0\}</m> for <m>x,y \in R</m>.
+        This is a spectral space (<xref ref="bib-Huber1"/>, Proposition 2.2).
+      </p>
+    </definition>
+    <p>
+      We incorporate <xref ref="bib-Huber1"/>, Lemma 2.5(ii) in the following definition.
+    </p>
+    <definition xml:id="def-valuative-spectrum-huber">
+      <p>
+        Let <m>A^{\triangleright}</m> be a Huber ring. Let <m>\Spv(A^{\triangleright}, A^{\circ \circ})</m> be the subspace of <m>\Spv(A^{\triangleright})</m>
+        consisting of those valuations <m>v</m> with the following property:
+        either there is no convex proper subgroup of <m>\Gamma_v := v(v^{-1}(\Gamma))</m> containing <m>\{v(a)\colon a \in A^{\triangleright}, v(a) \geq 1\}</m>;
+        or <m>v(x)</m> is cofinal in <m>\Gamma_v</m> for each <m>x \in A^{\circ \circ}</m>.
+        Unpacking terminology here,
+        a subgroup <m>H</m> of <m>\Gamma</m> is <term>convex</term> if for all <m>x \leq y \in H</m>, we have <m>[x,y] \subseteq H</m>;
+        and <m>v(x)</m> is <term>cofinal</term> in <m>\Gamma_v</m> if
+        <me>
+          \Gamma_v = \bigcup_{n=1}^\infty \Gamma_v \cap [v(x)^n, \infty)
+        </me>.
+        (Note that we are not requiring that <m>v(x) \in H</m>.)
+        When <m>A^{\triangleright}</m> is Tate, cofinality can be tested using a single topologically nilpotent unit <m>x</m>.
+        The space <m>\Spv(A^{\triangleright}, A^{\circ \circ})</m> is again spectral (<xref ref="bib-Huber1"/>, Proposition 2.6(i)).
+      </p>
+      <p>
+        A valuation <m>v</m> is <term>continuous</term> if for every <m>\gamma \in \Gamma_v</m>, there is a neighborhood <m>U</m> of <m>0</m> in <m>A^{\triangleright}</m>
+        such that <m>v(x) \lt \gamma</m> for all <m>x \in U</m>.
+        Equivalently, <m>v \in \Spv(A, A^{\circ \circ})</m> and <m>v(a) \lt 1</m> for all <m>a \in A^{\circ \circ}</m>
+        (<xref ref="bib-Huber1"/>, Theorem 3.1).
+      </p>
+      <p>
+        Let <m>A = (A^{\triangleright}, A^+)</m> be a Huber pair. The <term>adic spectrum</term> of <m>A</m>
+        is the subspace <m>\Spa(A) \subseteq \Spv(A^{\triangleright}, A^{\circ \circ})</m> consisting of those equivalence classes of continuous valuations <m>v</m> for which
+        <m>A^+ \subseteq \{a \in A^{\triangleright}\colon v(a) \leq 1\}</m>.
+        This is again a spectral space (<xref ref="bib-Huber1"/>, Theorem 3.5(i));
+        moreover, the inclusion <m>\Spa(A) \subseteq \Spv(A^{\triangleright}, A^{\circ \circ})</m> has a canonical retraction
+        (see the proof of <xref ref="lem-top-Huber-use-1"/>).
+      </p>
+    </definition>
+    <definition>
+      <p>
+        Let <m>A = (A^{\triangleright}, A^+)</m> be a Huber pair.
+        For <m>f_1,\dots,f_n,g \in A^{\triangleright}</m> which generate the unit ideal,
+        let <m>U(\tfrac{f_1,\dots,f_n}{g})</m> be the set of <m>v \in \Spa(A)</m> such that <m>v(g) \neq 0</m> and <m>v(f_i) \leq v(g)</m> for <m>i=1,\dots,n</m>.
+        Any subspace of this form is called a <term>rational subspace</term> of <m>\Spa(A)</m>; these subspaces are open and form a basis of the topology
+        (<xref ref="lem-top-Huber-use-1"/>).
+       </p>
+       <p>
+         The rational localization <m>A \to A^{\triangleright}\left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle</m> 
+         induces a homeomorphism <m>\Spa A^{\triangleright}\left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle \cong U(\tfrac{f_1,\dots,f_n}{g})</m> 
+         (<xref ref="bib-Huber2"/>, Lemma 1.5(ii)).
+         Note that this identification makes crucial use of the rings of integral elements!
+       </p>
+    </definition>
+    <lemma xml:id="lem-top-Huber-use-1">
+      <statement>
+        <p>
+          For <m>A</m> a Huber pair,
+          the topology of <m>\Spa A</m> is generated by rational subspaces of the form <m>U(\tfrac{1,f_1,\dots,f_n}{g})</m>.
+          (Note that this class of rational subspaces is closed under pairwise intersection.)
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Consider a point <m>v \in \Spa A</m> contained in an open subspace <m>U</m> of <m>\Spa A</m>.
+          Let <m>c\Gamma_v</m> be the convex subgroup of the value group <m>\Gamma_v</m> generated by all <m>v(a) \geq 1</m> for <m>a \in A^{\triangleright}</m>;
+          we get a new valuation <m>w \in \Spa A</m> by setting <m>w(a) = v(a)</m> if <m>v(a) \in c\Gamma_v</m> and <m>w(a) = 0</m> otherwise.
+          Now choose a rational subspace <m>U(\tfrac{f_1,\dots,f_n}{g}) \subseteq U</m> containing <m>w</m>.
+          Since <m>w(g) \neq 0</m>, there exists <m>a \in A</m> with <m>w(ag) \geq 1</m>. Then
+          <m>U(\tfrac{1,af_1,\dots,af_n}{ag})</m> contains both <m>w</m> and its generization <m>v</m>.
+        </p>
+      </proof>
+    </lemma>
+    <definition>
+      <p>
+        For <m>A</m> a Huber pair, define a <term>standard binary covering</term> of <m>\Spa A</m> to be a covering of the form
+        <me>
+          U(\tfrac{f}{g}), U(\tfrac{g}{f})
+        </me>
+        for some <m>f,g \in A</m> generating the unit ideal.
+      </p>
+    </definition>
+    <example xml:id="exa-types-of-standard-binary-coverings-Huber">
+      <p>
+        As in the proof of <xref ref="prop-standard-binary-coverings"/>, we will need standard binary coverings with <m>g = 1-f</m>.
+        Unlike in the proof of <xref ref="prop-standard-binary-coverings"/>, we will also need standard binary coverings with <m>g = 1</m>;
+        these are sometimes called <term>standard Laurent coverings</term>.
+        Note that in both cases, the terms in such a covering are all of the form indicated in <xref ref="lem-top-Huber-use-1"/>.
+      </p>
+    </example>
+    <lemma xml:id="lem-standard-rational-covering">
+      <statement>
+        <p>
+          For <m>A</m> a Huber pair, every covering of <m>\Spa A</m> is refined by a covering of the following form: fix <m>f_1,\dots,f_n \in A^{\triangleright}</m>
+          generating the unit ideal and take <m>U_i = U(\tfrac{f_1,\dots,f_n}{f_i})</m> for <m>i=1,\dots,n</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By <xref ref="lem-top-Huber-use-1"/>,
+          we may start with a covering of <m>\Spa A</m> by rational subspaces of the form <m>U_i = U(\tfrac{1,f_{i1},\dots,f_{in_i}}{g_i})</m> for <m>i=1,\dots,m</m>.
+          Note that <m>g_1,\dots,g_m</m> must generate the unit ideal.
+        </p>
+        <p>
+          Let <m>S</m> be the set of products <m>t_1 \cdots t_m</m> with <m>t_i \in \{1,f_{i1},\dots,f_{in_i},g_i\}</m> for all <m>i</m> and <m>t_i = g_i</m> for at least one <m>i</m>.
+          Since <m>g_1,\dots,g_m \in S</m>, <m>S</m> generates the unit ideal, so the sets <m>U(\tfrac{S}{s})</m> for <m>s \in S</m> do form a covering.
+        </p>
+        <p>
+          Finally, note that for each <m>s = t_1 \cdots t_m \in S</m>, if we choose an index <m>i</m> for which <m>t_i = g_i</m>, then 
+          we also obtain elements of <m>S</m> by replacing <m>g_i</m> with each of <m>1,f_{i1},\dots,f_{in_i}</m> in the product.
+          This implies that <m>U(\tfrac{S}{s}) \subseteq U_i</m>, so we have found a refinement of our initial covering.
+        </p>
+      </proof>
+    </lemma>
+    <proposition xml:id="prop-standard-binary-coverings-Huber">
+      <statement>
+        <p>
+          The Grothendieck topology on the opposite category of Huber pairs is generated by standard binary coverings.
+          In fact only the types listed in <xref ref="exa-types-of-standard-binary-coverings-Huber"/> are needed.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Let <m>A</m> be a Huber pair.
+          To prove that every covering of <m>\Spa A</m> is refined by a covering generated by standard binary coverings,
+          thanks to <xref ref="lem-standard-rational-covering"/>, we are free to start with a covering of <m>\Spa A</m>
+          by the sets <m>U_i = U(\tfrac{f_1,\dots,f_n}{f_i})</m> for <m>i=1,\dots,n</m> for some elements <m>f_1,\dots,f_n \in A^{\triangleright}</m> generating the unit ideal.
+          We can then proceed by induction on <m>n</m>, with induction step as in the proof of <xref ref="prop-standard-binary-coverings"/>.
+          As for the base cases,  note that <m>n=1</m> is trivial.
+          For <m>n=2</m>, choose <m>a_1, a_2 \in A^{\triangleright}</m> with <m>a_1 f_1 + a_2 f_2 = 1</m>,
+          then pass to the terms of the standard binary covering defined by <m>a_1 f_1</m>; on each term, at least one of <m>f_1</m> or <m>f_2</m> is a unit
+          and so we are considering a standard Laurent covering.
+        </p>
+      </proof>
+    </proposition>
+    <remark>
+      <p>
+        <xref ref="prop-standard-binary-coverings-Huber"/> suggests that to topologize the category of analytic rings,
+        it will already give useful results to just take the coverings generated by standard binary coverings.
+        We will pursue this point in <xref ref="sec_huber_local"/>.
+      </p>
+    </remark>
+  </subsection>
+</section>

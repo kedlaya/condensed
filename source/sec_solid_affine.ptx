@@ -1,0 +1,116 @@
+﻿<section xml:id="sec_solid_affine">
+  <title>Solid analytic rings and Huber pairs</title>
+  <introduction>
+    <p>
+      In this lecture, we consider the solid analogue of the affine line over <m>\ZZ</m>.
+      In particular, we will obtain a new analytic ring in the sense of <xref ref="def-analytic-ring"/>.
+    </p>
+    <p>
+      As noted at the end of <xref ref="def-solid-topological-groups"/>, we can interpret solid abelian groups
+      as a subcategory of (sequential) topological abelian groups, and this is the point of view that lines up best with the
+      examples we will consider in this lecture. We thus adopt that viewpoint here, keeping in mind that we will occasionally need to shift our frame of reference.
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This section is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 7.
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>Some solid rings</title>
+    <p>
+      We first observe that a number of familiar topological rings are in fact solid (in the sense that their underlying groups are solid).
+    </p>
+    <example>
+      <p>
+        Equip the ring <m>\ZZ \llbracket T \rrbracket</m> with the <m>T</m>-adic topology.
+        The underlying object of <m>\TopAb</m> is then solid: it corresponds to <m>\prod_\NN \ZZ_\solid \in \Ab_\solid</m>.
+        We may thus view it as a ring object in <m>\TopAb_\solid</m>, and the homomorphism <m>\ZZ[T] \to \ZZ \llbracket T \rrbracket</m>
+        (for the discrete topology on <m>\ZZ[T]</m>) is a morphism of ring objects in <m>\TopAb_\solid</m>.
+      </p>
+      <p>
+        By the same token, <m>\ZZ \llbracket T_1 ,\dots, T_n \rrbracket</m> equipped with the <m>(T_1,\dots,T_n)</m>-adic topology is a ring object in <m>\TopAb_\solid</m>.
+      </p>
+    </example>
+    <example>
+      <p>
+        Equip <m>\ZZ_p \cong \ZZ \llbracket T \rrbracket/(T-p)</m> with the <m>p</m>-adic topology.
+        This gives yet another ring object in <m>\TopAb_\solid</m>.
+      </p>
+      <p>
+        Equip <m>\QQ_p = \ZZ_p[1/p]</m> with its usual topology, which we can view as the direct limit topology on
+        <me>
+          \colim \left( \ZZ_{p} \stackrel{\times p}{\to} \ZZ_{p} \stackrel{\times p}{\to} \cdots \right).
+        </me>
+        This is also a ring object in <m>\TopAb_\solid</m>.
+      </p>
+    </example>
+    <example>
+      <p>
+        We have
+        <md>
+          <mrow>
+            \QQ_{p} \otimes_\solid \ZZ \llbracket T \rrbracket &amp;= (\ZZ_{p} \otimes_{\solid} \ZZ \llbracket T \rrbracket)[1/p] 
+          </mrow>
+          <mrow>
+            &amp;= \left(\left(\ZZ\llbracket T_1 \rrbracket/(T_1-p) \right) \otimes \ZZ \llbracket T_2 \rrbracket \right)[1/p]
+          </mrow>
+          <mrow>
+            &amp; = \left( \ZZ\llbracket T_1, T_2 \rrbracket/(T_1-p) \right)[1/p]
+          </mrow>
+          <mrow>
+            &amp; = \ZZ_p \llbracket T \rrbracket[1/p]
+          </mrow>
+        </md>
+        where we equip <m>\ZZ_p \llbracket T \rrbracket</m> with the <m>(p,T)</m>-adic topology.
+        We observe that <m>\QQ_{p} \otimes_\solid \ZZ \llbracket T \rrbracket </m> injects into <m>\QQ_p \llbracket T \rrbracket</m> but is much smaller; 
+        it consists of the power series with bounded coefficients,
+        which can also be interpreted as the bounded rigid-analytic functions on the open unit disc over <m>\QQ_p</m>.
+      </p>
+    </example>
+  </subsection>
+  <subsection>
+    <title>A new analytic ring</title>
+      <p>
+        We previously induced the notion of an <term>analytic ring</term> (<xref ref="def-analytic-ring"/>),
+        as a condensed ring equipped with a certain subcategory of the modules over a ring,
+        constrained in a such a way that solid abelian groups provide an example.
+        We describe a new example here, meant to capture the geometry of the <em>closed</em> unit disc.
+      </p>
+      <definition>
+      <p>
+        Let <m>\Mod_{\ZZ[T]}(\TopAb_\solid)</m> denote the category of <m>\ZZ[T]</m>-module objects in <m>\TopAb_\solid</m>.
+        We say that <m>M \in \Mod_{\ZZ[T]}(\TopAb_\solid)</m>  is <term><m>T</m>-solid</term>, or for short <term><m>T</m>-solid</term>,
+        if multiplication by <m>1-TU</m> induces an isomorphism on <m>\Hom_{\TopAb_\solid}(\ZZ \llbracket U \rrbracket, M)</m>.
+        Equivalently, the map <m>1 - T \sigma</m> on <m>\Hom_{\TopAb}(P, M)</m> is an isomorphism
+        for <m>P</m> as in <xref ref="def-internally-projective-object"/>.
+      </p>
+    </definition>
+    <theorem>
+      <statement>
+        <p> 
+          The full subcategory of <m>T</m>-solid objects of <m>\Mod_{\ZZ[T]}(\TopAb_\solid)</m> is closed under kernels, cokernels, limits, colimits, and extensions.
+          Moreover, for any <m>M,N \in \Mod_{\ZZ[T]}(\TopAb_\solid)</m>, if <m>N</m> is <m>T</m>-solid, then so are <m>\iHom_{\Mod_{\ZZ[T]}(\TopAb_\solid)}(M, N)</m>
+          and <m>\iExt^i_{\Mod_{\ZZ[T]}(\TopAb_\solid)}(M,N)</m> for all <m>i \gt 0</m>.
+          Consequently, the pair consisting of <m>\ZZ[T]</m> and the <m>T</m>-solid objects of <m>\Mod_{\ZZ[T]}(\TopAb_\solid)</m>, viewed as objects of <m>\CAb</m>,
+          form an analytic ring.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          As in <xref ref="prop-solid-category"/>, everything follows pretty formally from the definition.
+        </p>
+      </proof>
+    </theorem>
+    <example>
+      <p>
+        By interpreting
+        <me>
+          \ZZ((T^{-1})) = \ZZ\llbracket U \rrbracket[T]/(TU-1) = \coker(\times TU-1\colon \ZZ \llbracket U \rrbracket[T] \to \ZZ \llbracket U \rrbracket[T])
+        </me>
+        we see that this object has <m>T</m>-solidification zero; the definition was carefully crafted to enforce this.
+      </p>
+    </example>
+  </subsection>
+</section>

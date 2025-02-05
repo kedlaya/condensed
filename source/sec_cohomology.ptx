@@ -160,7 +160,10 @@
             admitting a compact open subgroup. In particular, <m>A'</m> is an extension of a discrete abelian group by a compact group.
           </li>
           <li>
-            Let <m>\TT \cong \RR/\ZZ \in \Top</m> be the circle group.
+            Let <m>\TT \cong \RR/\ZZ \in \Top</m> be the circle group, so that we have an exact sequence
+            <men xml:id="eq-exact-seq-for-torus">
+              0 \to \ZZ \to \RR \to \TT \to 0
+            </men>.
             The Pontryagin duality functor 
             <me>
               A \mapsto D(A) := \Hom_{\LCAb}(A, \TT)
@@ -183,17 +186,14 @@
         <p>
           For any discrete abelian group <m>M</m> and any at most countable index set <m>I</m>, we have
           <me>
-            R\Hom_{\CAb}(\TT, \underline{M}) = \bigoplus_I M[-1].
+            R\Hom_{\CAb}\left( \prod_I \TT, \underline{M} \right) = \bigoplus_I M[-1].
           </me>
-          More precisely, the map from right to left has the form
+          More precisely, the map from right to left is the product over <m>i \in I</m> of the maps
           <me>
             M[-1] = R\Hom_{\CAb}(\underline{\ZZ}[1], M) \cong R\Hom_{\CAb}(\underline{\TT}, M) \to R\Hom_{\CAb}(\prod_I \underline{\TT}, M)
           </me>
-          where the passage from <m>\ZZ</m> to <m>\TT</m> is the connecting homomorphism from the exact sequence of topological abelian groups:
-          <me>
-            0 \to \ZZ \to \RR \to \TT \to 0
-          </me>
-          and the map <m>\underline{\TT} \to \prod_I \underline{\TT}</m> varies over the insertion maps.
+          where the passage from <m>\ZZ</m> to <m>\TT</m> is the connecting homomorphism from <xref ref="eq-exact-seq-for-torus"/>
+          and the last arrow is induced by the <m>i</m>-th projection <m>\prod_I \underline{\TT} \to \underline{\TT}</m>.
         </p>
       </statement>
       <proof>
@@ -231,10 +231,7 @@
           Suppose next that <m>A</m> is compact. By taking a resolution of the dual group, we may reduce to the case where <m>A = \prod_I \TT</m> with <m>I</m> at most countable.
           At this point, when <m>B</m> is discrete we may deduce the desired isomorphism by comparing <xref ref="lem-cohom-of-torus"/> with <xref ref="bib-Hoffmann-Spitzweck"/>, Example 4.11;
           when <m>B = \RR</m> we may instead compare <xref ref="thm-cohom-compact-coeffs-in-R"/> with <xref ref="bib-Hoffmann-Spitzweck"/>, Proposition 4.15 for the same effect.
-          Combining these and using the exact sequence
-          <men xml:id="eq-exact-seq-for-torus">
-            0 \to \ZZ \to \RR \to \TT \to 0
-          </men>
+          Combining these and using the exact sequence <xref ref="eq-exact-seq-for-torus"/>,
           we deduce the claim also when <m>B = \TT</m>, and consequently when <m>B = \prod_I \TT</m>; again we may formally promote this to the general case of <m>B</m> compact.
         </p>
         <p>

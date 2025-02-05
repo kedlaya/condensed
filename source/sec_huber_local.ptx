@@ -1,0 +1,554 @@
+﻿<section xml:id="sec_huber_local">
+  <title>Localization for solid analytic rings</title>
+  <introduction>
+    <p>
+      In this section, we indicate how the sheaf theory of Huber rings translates into the setting of solid analytic rings.
+      In the process, we patch a major technical complication
+      in the usual theory of adic spaces, namely the failure of <q>sheafiness</q> for general Huber rings,
+      at the expense of passing from Huber rings to solid analytic rings which may not be represented by topological rings.
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This section is (loosely) based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lectures 9 and 10.
+        See also <xref ref="bib-Kedlaya-AWS"/>, Lecture 1 (for the version of the story using Huber rings)
+        and <xref ref="bib-Andreychev"/> (for the solid analogue).
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>Rational localizations are universally injective</title>
+    <p>
+      We break down the structure of rational localizations in somewhat more detail.
+    </p>
+    <remark xml:id="rem-adjoin-top-nilpotent">
+      <p>
+        In the following discussion, at certain points we will need to assume that 
+        we are working with a solid condensed ring <m>A</m> which admits a topologically nilpotent unit <m>q</m>.
+        When this is not the case, we can formally push ourselves back into that situation by replacing
+        <m>A</m> with <m>A \otimes_{\underline{\ZZ} \solid} \underline{\ZZ((q))}</m>, noting that
+        the map <m>A \to A \otimes_{\underline{\ZZ} \solid} \underline{\ZZ((q))}</m> is split in <m>\Mod_A \times_{\CAb} \CAb_\solid</m> 
+        by the constant coefficient map.
+      </p>
+      <p>
+        We can make a similar construction starting with a Huber ring <m>A</m>: choose a ring of definition <m>A_0</m>
+        and an ideal of definition <m>I_0</m>, complete <m>A_0[q]</m> with respect to the <m>(I_0,q)</m>-adic topology,
+        then tensor over <m>A_0[q]</m> with <m>A[q^{\pm}]</m>.
+      </p>
+    </remark>
+    <lemma xml:id="cor-tensor-with-liquid-T">
+      <statement>
+        <p>
+          Let <m>A</m> be a solid analytic ring. 
+          Then for any <m>M \in \Mod_{A}</m>, the coordinate map
+          <me>
+            M \otimes^L_A A^{\triangleright}\langle T \rangle \to \prod_\NN M
+          </me>
+        is injective.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By rewriting 
+          <me>
+            M \otimes^L_A A^{\triangleright} \langle T \rangle 
+            \cong M \otimes^L_A A^{\triangleright} \otimes^L_{\underline{\ZZ}\solid} \underline{\ZZ} \langle T \rangle
+          </me>
+          we reduce to the case <m>A = (\underline{\ZZ}, \Mod_{\underline{\ZZ} \solid})</m>.
+          Hereafter, we implicitly apply <xref ref="prop-solid-vs-presumptively-solid"/> to transfer results
+          between <m>\Ab_\solid</m> and <m>\CAb_\solid</m>.
+        </p>
+        <p>
+          We next pass through a sequence of reduction steps on <m>M</m>.
+          By <xref ref="prop-finitely-presented-generators-solid"/>, we may assume that <m>M</m>
+          is finitely presented. 
+          By <xref ref="cor-solid-torsion-by-free"/>, we have a splitting
+          <me>
+            M = \left( \prod_I \underline{\ZZ} \right) \oplus \iExt^1_{\underline{\ZZ}}(\underline{Q}, \underline{\ZZ})
+          </me>
+          where <m>I</m> is at most countable and <m>Q</m> is an at most countable abelian group,
+          and we may treat the two factors separately.
+          For the first factor, using the compatibility of solid tensor product with countable products,
+          we may reduce to the case where <m>I</m> is a singleton, at which point the claim is apparent.        
+          For the second factor, using <xref ref="rem-reduce-to-torsion-and-Q"/> we may further reduce to the cases where <m>Q</m>
+          is either a torsion group or a <m>\QQ</m>-vector space.
+        </p>
+        <p>
+          Suppose that <m>M = \iExt^1_{\underline{\ZZ}}(\underline{Q}, \underline{\ZZ})</m> where <m>Q</m> is a torsion group. 
+          Using <xref ref="prop-ext-as-pontryagin-dual"/> and the compatibility of solid tensor product
+          with countable limits, we may reduce to the case where <m>Q</m> is itself finite.
+          By the usual structure theorem for finite abelian groups, we may further assume <m>Q</m> is even cyclic,
+          say <m>Q = \ZZ/m\ZZ</m> and hence <m>M \cong \underline{\ZZ/m\ZZ}</m>.
+          At this point, we must check that for any at most countable set <m>I</m>,
+          an element of <m>\Hom_{\underline{\ZZ}}\left( \prod_I \underline{\ZZ}, \underline{\ZZ} \langle T \rangle \right)</m>
+          is divisible by <m>m</m> if its image in
+          <m>\Hom_{\underline{\ZZ}}\left( \prod_I \underline{\ZZ}, \underline{\ZZ} \llbracket T \llbracket \right)</m>
+          is divisible by <m>m</m>.
+          Now identify the elements of
+          <me>
+            \Hom_{\underline{\ZZ}}\left( \prod_I \underline{\ZZ}, \underline{\ZZ} \llbracket T \rrbracket \right)
+            = \prod_\NN \bigoplus_I \ZZ
+          </me>
+          with <m>\NN \times I</m> matrices whose row vectors have finite support,
+          and the elements of 
+          <m>\Hom_{\underline{\ZZ}}\left( \prod_I \underline{\ZZ}, \underline{\ZZ} \langle T \rangle \right)</m>
+          with <m>\NN \times I</m> matrices whose row and column vectors have finite support. 
+          From this description,
+          it is clear that dividing out a factor of <m>m</m> does not disturb any support conditions;
+          alternatively, since we already start with a support condition on row vectors,
+          we may reduce to the case where <m>I</m> is a singleton, which is apparent.
+        </p>
+        <p>
+          Suppose that <m>M = \iExt^1_{\underline{\ZZ}}(\underline{Q}, \underline{\ZZ})</m> where <m>Q</m> is a <m>\QQ</m>-vector space. 
+          By <xref ref="exa-extension-solid-Q"/>, we then have <m>M \cong \prod_J \underline{\widehat{\ZZ}/\ZZ}</m> for some <m>I</m> with <m>|J| \leq \kappa</m>;
+          we again reduce to the case where <m>I</m> is a singleton.
+          At this point, we must check that for any at most countable set <m>I</m>,
+          an element of <m>\Hom_{\underline{\ZZ}}\left( \prod_I \underline{\ZZ}, \underline{\widehat{\ZZ}} \langle T \rangle \right)</m>
+          factors through <m>\Hom_{\underline{\ZZ}}\left( \prod_I \underline{\ZZ}, \underline{\ZZ} \langle T \rangle \right)</m> if its 
+          image in <m>\Hom_{\underline{\ZZ}}\left( \prod_I \underline{\ZZ}, \underline{\widehat{\ZZ}} \llbracket T \rrbracket \right)</m>
+          factors through <m>\Hom_{\underline{\ZZ}}\left( \prod_I \underline{\ZZ}, \underline{\ZZ} \llbracket T \rrbracket \right)</m>.
+          Using the matrix interpretation from the previous paragraph, we reduce to the case where <m>I</m> is a singleton, which is apparent.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-flat-mult-f">
+      <statement>
+        <p>
+          Let <m>A</m> be a solid analytic ring, 
+          and fix <m>f \in A^{\triangleright}(*)</m>.
+          Then for any <m>M \in \Mod_A</m>,
+          multiplication by <m>1-fT</m> is an injective map on both 
+          <m>M \otimes_A A^{\triangleright}[T]</m> and <m>M \otimes_A A^{\triangleright}\langle T \rangle</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Using <xref ref="cor-tensor-with-liquid-T"/>, we reduce to the corresponding assertion for <m>\prod_\NN M</m>,
+          on which multiplication by <m>1-fT</m> is an isomorphism.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-flat-mult-f-v2">
+      <statement>
+        <p>
+          Let <m>A</m> be a solid analytic ring, 
+          and fix <m>f \in A^{\triangleright}(*)</m>.
+          Then for any <m>M \in \Mod_A</m>,
+          multiplication by <m>T-f</m> is an injective map on both 
+          <m>M \otimes_A A^{\triangleright}[T]</m> and <m>M \otimes_A A^{\triangleright} \langle T \rangle</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The statement for <m>M \otimes_A A^{\triangleright}[T]= \bigoplus_{n \in \NN} MT^n</m> is obvious because <m>T-f</m> is a monic polynomial.
+          For  <m>M \otimes_A A^{\triangleright}\langle T \rangle</m>, we break the argument into various cases.
+          <ul>
+            <li>
+              <p>
+                If <m>M</m> is a module over <m>A^{\triangleright}[1/f]</m>, then <m>T-f</m> and <m>1-f^{-1} T</m> have the same kernel on <m>M \otimes_A A^{\triangleright}[T]_{\liquid T}</m>
+                and we may invoke <xref ref="lem-flat-mult-f"/>.
+              </p>
+            </li>
+            <li>
+              <p>
+                If <m>M</m> is <m>f</m>-torsion-free, then <m>M</m> embeds into <m>M \otimes_A A^{\triangleright}[1/f]</m> and the previous case applies.
+              </p>
+            </li>
+            <li>
+              <p>
+                If <m>M</m> is killed by <m>f^m</m> for some positive integer <m>m</m>, then multiplication by <m>T^m</m> on <m>M \otimes_A A^{\triangleright}[1/f]</m> 
+                is visibly injective, but this coincides with multiplication by <m>T^m-f^m = (T-f)(T^{m-1} + fT^{m-2} + \cdots + f^{m-1})</m>.
+                Consequently, multiplication by <m>T-f</m> is also injective.
+              </p>
+            </li>
+            <li>
+              <p>
+                If <m>M</m> is <m>f</m>-torsion, then it is the colimit of its submodules killed by <m>f^m</m> over all <m>m \in \NN</m>
+                and the previous case applies.
+              </p>
+            </li>
+            <li>
+              <p>
+                Finally, in the general case we have an exact sequence
+                <me>
+                  0 \to M[f^\infty] := \colim_n \ker(f^n, M) \to M \to M/M[f^\infty] \to 0
+                </me>
+                in which <m>M[f^\infty]</m> is <m>f</m>-torsion and <m>M/M[f^\infty]</m> is <m>f</m>-torsion-free.
+                Hence we may reduce to previously settled cases.
+              </p>
+            </li>
+          </ul>
+        </p>
+      </proof>
+    </lemma>
+    <corollary xml:id="cor-flat-mult-f-v2">
+      <statement>
+        <p>
+          Let <m>A</m> be a solid analytic ring, 
+          and fix <m>f \in A^{\triangleright}(*)</m>.
+          Then for any <m>M \in \Mod_A</m>,
+          the sequences
+          <md>
+            <mrow>
+              0 \to A^{\triangleright}\langle T \rangle \stackrel{\times (T-f)}{\to} A^{\triangleright}\langle T \rangle 
+              \to A^{\triangleright} \langle f \rangle \to 0
+            </mrow>
+            <mrow>
+              0 \to A^{\triangleright}\langle T \rangle \stackrel{\times (1-fT)}{\to} A^{\triangleright}\langle T \rangle 
+              \to A^{\triangleright} \langle f^{-1} \rangle \to 0
+            </mrow>
+          </md>
+          remain exact upon tensoring with any <m>M \in \Mod_A</m>. 
+          That is, the morphisms <m>\times (T-f)</m> and <m>\times (1-fT)</m>
+          on <m>A^{\triangleright}\langle T \rangle</m> in <m>\Mod_A</m> are <term>universally injective</term>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The tensor product in <m>A</m> is right exact by Hom-tensor adjunction,
+          and exactness at the left is preserved by <xref ref="lem-flat-mult-f-v2"/>.
+        </p>
+      </proof>
+    </corollary>
+    <remark xml:id="rem-not-flat">
+      <p>
+        Note that <xref ref="cor-flat-mult-f-v2"/> does not imply that <m>A^{\triangleright} \langle f \rangle</m> is a flat object of <m>\Mod_A</m>
+        (i.e., tensoring with it is exact); this is not the case as can be seen from <xref ref="exa-localization-not-flat"/>.
+        Rather, we only conclude that the connecting homomorphism out of the first Tor group is always zero.
+        In particular, we deduce that <m>A^{\triangleright} \langle T \rangle</m> is a universally injective
+        (by <xref ref="cor-tensor-with-liquid-T"/>) but not flat object of <m>\Mod_A</m>;
+        in particular, <m>\ZZ \langle T \rangle</m> is a universally injective but not flat object of <m>\Mod_{\ZZ\solid}</m>.
+      </p>
+      <p>
+        Note also that this failure of flatness holds even when when <m>A</m> is a strongly noetherian Huber ring, in which case the map from <m>A</m>
+        to any rational localization is flat in the algebraic sense (<xref ref="bib-Huber2"/>, proof of Theorem 2.5, case II, point (II.1.iv)).
+        There is no contradiction here because the two notions of flatness concern different tensor product functors.
+      </p>
+      <p>
+        We will have more to say about this point in <xref ref="sec_huber_qcoh"/>.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>The adic topology and the structure sheaf</title>
+    <lemma xml:id="lem-solid-split-laurent-poly-ring">
+      <statement>
+        <p>
+          For any solid condensed ring <m>R</m>, the map
+          <me>
+            R\langle T \rangle \oplus T^{-1} R\langle T^{-1} \rangle \to R\langle T^{\pm} \rangle := R \langle T,U \rangle / (TU-1)
+          </me>
+          is an isomorphism.
+        </p>
+      </statement>
+      <proof>
+        <p> 
+          It suffices to treat the case <m>R = \underline{\ZZ}</m>, as we obtain the general case by taking a solid tensor product with <m>R</m> over <m>\ZZ</m>.
+          We may treat that case in either <m>\Ab_\solid</m> or <m>\CAb_\solid</m> by virtue of <xref ref="prop-solid-vs-presumptively-solid"/>;
+          we do both for the sake of illustration.
+        </p>
+        <p>
+          In <m>\Ab_\solid</m>, evaluating <m>\underline{\ZZ}\langle T,T^{-1} \rangle</m> at <m>\prod_I \ZZ_\solid</m> yields 
+          the intersection of <m>\prod_I \ZZ[T,T^{-1}]</m> and <m>\prod_\ZZ \bigoplus_I \ZZ</m> within <m>\prod_\ZZ \prod_I \ZZ</m>.
+          This clearly splits into the two indicated summands.
+        </p>
+        <p>
+          In <m>\CAb_\solid</m>, evaluating at <m>S  = \varprojlim_i S_i \in \Prof</m> has the following effect:
+          for <m>R \langle T \rangle</m> we get power series <m>\sum_n a_n T^n</m> in which the coefficients <m>a_n</m> 
+          are finite sums of <m>\ZZ</m>-valued Dirac measures
+          with the property that for any fixed closed-open subset <m>U</m> of <m>S</m>, 
+          the integral of <m>U</m> against <m>a_n</m> is eventually zero.
+          From the corresponding descriptions for <m>R\langle T^{-1} \rangle</m> and <m> R\langle T^{\pm} \rangle</m>,
+          we infer the desired exact sequence.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-sheafy-exact-sequence-v1">
+      <statement>
+        <p>
+          Let <m>R</m> be a solid condensed ring. Then for any <m>f \in R(*)</m>,
+          for <m>g \in \{1, 1-f\}</m>, we have an exact sequence
+          <men xml:id="eq-sheafy-exact-sequence-v1">
+            0 \to R\to R\left\langle \tfrac{f}{g} \right\rangle \oplus 
+            R\left\langle \tfrac{g}{f} \right\rangle \to R\left\langle \tfrac{f}{g}, \tfrac{g}{f} \right\rangle \to 0
+          </men>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We first observe that the sequences
+          <md>
+            <mrow>
+              0 \to R \langle T \rangle \stackrel{\times f-gT}{\to} R\langle T \rangle \to R\left\langle \tfrac{f}{g} \right\rangle \to 0
+            </mrow>
+            <mrow>
+              0 \to R \langle T^{-1} \rangle \stackrel{\times g-fT^{-1}}{\to} R \langle T^{-1} \rangle \to R\left\langle \tfrac{g}{f} \right\rangle \to 0
+            </mrow>
+          </md>
+          are exact. If <m>g = 1-f</m> then <m>R\left\langle \tfrac{f}{g} \right\rangle = R\left\langle \tfrac{1}{1-f} \right\rangle</m>
+          and <m>R\left\langle \tfrac{g}{f} \right\rangle = R\left\langle \tfrac{1}{f} \right\rangle</m>, so both claims follow from
+          <xref ref="lem-flat-mult-f"/>. If <m>g = 1</m>, then we apply both <xref ref="lem-flat-mult-f"/> and <xref ref="lem-flat-mult-f-v2"/>.
+        </p>
+        <p>
+          We then apply <xref ref="lem-solid-split-laurent-poly-ring"/> to obtain an exact sequence
+          <me>
+            0 \to 0 \to A^{\triangleright}\langle T \rangle \oplus T^{-1} A^{\triangleright}\langle T^{-1} \rangle 
+            \to A^{\triangleright}\langle T^{\pm} \rangle \to 0
+          </me>
+          and a split exact sequence
+          <me>
+            0 \to A^{\triangleright} \to A^{\triangleright}\langle T \rangle \oplus A^{\triangleright} \langle T^{-1} \rangle
+            \to A^{\triangleright} \langle T^{\pm} \rangle \to 0
+          </me>.
+          Mapping the first sequence to the second via multiplication by <m>f-gT = T(g-fT^{-1})</m> and applying the snake lemma
+          yields the desired triangle.
+        </p>
+      </proof>
+    </lemma>
+    <definition>
+      <p>
+        To make notation sensible, write <m>\AnSpec A</m> for the object of <m>\AnRing^{\op}</m> corresponding to <m>A \in \AnRing</m>.
+        Define the <term>adic topology</term> on <m>\AnRing^{\op}</m> as the topology corresponding to coverings of <m>\Spa A(*)</m>
+        where <m>A(*)</m> denotes the Huber pair <m>(A^{\triangleright}(*), A^+)</m> for the discrete topology on <m>A^{\triangleright}</m>.
+        Define the <term>structure presheaf</term> <m>\calO</m> on <m>\AnRing^{\op}</m> by <m>\AnSpec A \mapsto A^{\triangleright}</m>.
+      </p>
+    </definition>
+    <theorem xml:id="thm-solid-sheafy">
+      <statement>
+        <p>
+          For any solid analytic ring <m>A</m>,
+          the structure presheaf <m>\calO</m> is a sheaf on <m>\AnRing^{\op}_{\solid/A}</m> for the adic topology;
+          moreover, <m>H^i(\AnSpec A, \calO) = 0</m> for <m>i \gt 0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By <xref ref="lem-sheafy-exact-sequence-v1"/>, we have the sheaf property and the vanishing of higher Cech cohomology for standard binary coverings 
+          defined by parameters of the form <m>f,1</m> or <m>f,1-f</m>.
+          Using <xref ref="prop-standard-binary-coverings-Huber"/>, we may parlay this into the sheaf property and the vanishing of higher Cech cohomology for general coverings.
+          The latter formally implies the vanishing of higher sheaf cohomology.
+        </p>
+      </proof>
+    </theorem>
+    <corollary xml:id="lem-sheafy-exact-sequence">
+      <statement>
+        <p>
+          Let <m>R</m> be a solid condensed ring. Then for any <m>f,g \in R(*)</m> generating the unit ideal,
+          we have an exact sequence
+          <men xml:id="eq-sheafy-exact-sequence">
+            0 \to R\to R\left\langle \tfrac{f}{g} \right\rangle \oplus 
+            R\left\langle \tfrac{g}{f} \right\rangle \to R\left\langle \tfrac{f}{g}, \tfrac{g}{f} \right\rangle \to 0
+          </men>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Apply <xref ref="thm-solid-sheafy"/>.
+        </p>
+      </proof>
+    </corollary>
+    <lemma xml:id="lem-sheafy-exact-sequence-v2">
+      <statement>
+        <p>
+          Let <m>A</m> be a solid analytic ring. Then for any <m>f \in A(*)</m>,
+          for <m>g \in \{1, 1-f\}</m>, for any <m>M \in \Mod_A</m>, the sequence
+          <me>
+            0\to M \to M \otimes_A A^{\triangleright} \left\langle \tfrac{f}{g} \right\rangle \oplus 
+            M \otimes_A A^{\triangleright} \left\langle \tfrac{g}{f} \right\rangle \to 
+            M \otimes_A A^{\triangleright} \left\langle \tfrac{f}{g}, \tfrac{g}{f} \right\rangle \to 0
+          </me>
+          is exact.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Since the map in <xref ref="lem-solid-split-laurent-poly-ring"/> (taking <m>R := A^{\triangleright}</m>) is an isomorphism,
+          it remains an isomorphism after tensoring with <m>A</m>.
+          Meanwhile, by <xref ref="cor-flat-mult-f-v2"/>, the sequences used in the proof of <xref ref="lem-sheafy-exact-sequence-v1"/>
+          remain exact after tensoring with <m>M</m>, so we may emulate the argument therein.
+        </p>
+      </proof>
+    </lemma>
+    <corollary xml:id="rem-localization-is-underived">
+      <statement>
+        <p>
+          Let <m>R</m> be a solid condensed ring and suppose that <m>f_1,\dots,f_n,g \in R(*)</m> generate the unit ideal.
+          Then <m>R\left\langle \tfrac{f_1}{g},\dots,\tfrac{f_n}{g} \right\rangle</m>
+          is resolved by the Koszul complex over <m>R[1/g]\langle T_1,\dots,T_n\rangle</m> 
+          defined by the elements <m>f_i - g T_i</m> for <m>i=1,\dots,n</m>.
+          Moreover, if <m>f_1,\dots,f_n,g</m> generate the unit ideal, then we may replace <m>R[1/g]</m> with <m>R</m> with the same result.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By <xref ref="lem-sheafy-exact-sequence-v2"/>, 
+          we may check the exactness of the augmented Koszul complex locally on the terms of a standard binary covering
+          defined by parameters of the form <m>f,1</m> or <m>f,1-f</m>. By this plus <xref ref="prop-standard-binary-coverings-Huber"/>,
+          we are reduced to working locally with respect to a refinement of the covering defined by <xref ref="lem-standard-rational-covering"/> using the parameters
+          <m>f_1,\dots,f_n,g</m>. If we end up in the situation where <m>\tfrac{f_1}{g}, \dots, \tfrac{f_n}{g} \in R^{\circ}</m>, then the Koszul complex
+          is in fact split exact. Otherwise, there exists an index <m>i</m> for which <m>\tfrac{g}{f_i}, \tfrac{f_1}{f_i}, \dots, \tfrac{f_n}{f_i} \in R^{\circ}</m>;
+          we handle <m>\tfrac{g}{f_i}</m> using <xref ref="lem-flat-mult-f"/> and the other terms using <xref ref="lem-flat-mult-f-v2"/>.
+        </p>
+      </proof>
+    </corollary>
+  </subsection>
+  <subsection>
+    <title>Sheafiness for Huber rings</title>
+    <p>
+      We now introduce the structure presheaf of a Huber pair and study the extent to which it does or does not satisfy the sheaf property.
+    </p>
+    <definition>
+      <p>
+        For <m>A</m> a Huber pair, the <term>structure presheaf</term> <m>\calO</m> on <m>\Spa A</m>
+        assigns to every rational subspace <m>U\left( \tfrac{f_1,\dots,f_n}{g} \right)</m>
+        the quotient of <m>A\left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g} \right\rangle^{\triangleright}</m> indicated in <xref ref="rem-rational-subspace-derived"/>.
+        (It is then extended to arbitrary open subspaces by taking stalks.)
+        We say <m>A</m> is <term>locally Tate</term> if <m>A^{\circ \circ}</m> generates the unit ideal in <m>A^{\triangleright}</m>; this is equivalent to saying that
+        <m>\Spa A</m> admits a covering by rational subspaces each of whose associated Huber ring is Tate.
+        (This condition is called <term>analytic</term> in <xref ref="bib-Kedlaya-AWS"/>, but that terminology clashes with the notion of an <term>analytic ring</term> being used throughout these notes.)
+      </p>
+      <p>
+        We say <m>A</m> is <term>sheafy</term> if <m>\calO</m> is a sheaf. This is a property of the underlying Huber ring <m>A^{\triangleright}</m>
+        (which must in particular be complete).
+      </p>
+    </definition>
+    <proposition xml:id="prop-sheafy-by-localizations-are-Huber">
+      <statement>
+        <p>
+          The complete Tate Huber pair <m>A</m> is sheafy if and only if for every rational localization <m>\underline{A^{\triangleright}} \to B^{\triangleright}</m> at the level of solid analytic rings,
+          <m>B^{\triangleright}</m> again represents a complete Huber ring.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          For the <q>if</q> assertion, we may deduce the claim from <xref ref="thm-solid-sheafy"/>,
+          plus <xref ref="def-solid-Tate"/> in order to compare the concepts of Tate algebras (and by extension rational localizations)
+          in the Huber setting and the solid setting. The latter is why we need <m>A</m> to be Tate.
+        </p>
+        <p>
+          For the <q>only if</q> assertion, we need to check that the rational localization of Huber rings defined by the elements <m>f_1,\dots,f_n,g \in A^{\triangleright}</m>
+          (which generate the unit ideal) is resolved by the Koszul complex defined by <m>f_1 - g T_1, \dots, f_n - g T_n</m> in
+          <m>A^{\triangleright}\langle T_1,\dots,T_n \rangle</m>, as then <xref ref="rem-localization-is-underived"/> will imply that the rational localization
+          of Huber rings coincides with the rational localization of condensed rings.
+          Since <m>A</m> is sheafy we may check this locally. By applying <xref ref="lem-standard-rational-covering"/> to the rational
+          covering defined by <m>f_1,\dots,f_n,g</m>, we reduce to checking the claim for a rational localization in a standard binary covering
+          generated by <m>1,f</m> for some <m>f \in A^{\circ}</m>. That is, we need to show that if <m>f \in A^\circ</m>, 
+          then the multiplication maps by <m>1-fT</m> and <m>f-T</m> in <m>A^{\triangleright} \langle T \rangle</m> are strict inclusions;
+          this can be seen by working in terms of graded rings, as in <xref ref="bib-Kedlaya-AWS"/>, Lemma 1.8.2.
+          (The ultimate point is that in any univariate polynomial ring, an element cannot be a zero divisor if either its constant coefficient or its leading coefficient is a unit.)
+        </p>
+      </proof>
+    </proposition>
+    <corollary xml:id="cor-sheafy-acyclic">
+      <statement>
+        <p>
+          If <m>A</m> is a sheafy Huber pair, then <m>H^i(\Spa(A), \calO) = 0</m> for all <m>i \gt 0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          When <m>A</m> is Tate,
+          this follows by combining <xref ref="thm-solid-sheafy"/> with <xref ref="prop-sheafy-by-localizations-are-Huber"/>
+          and a general spectral sequence argument (compare <xref ref="bib-Stacks"/>, Tag 01EW 
+          and <xref ref="bib-Kedlaya-AWS"/>, Lemma 1.6.3).
+        </p>
+        <p>
+          In the general case, we need a slightly different argument.
+          We may apply <xref ref="rem-adjoin-top-nilpotent"/> to replace <m>A^{\triangleright}</m> with <m>A^{\triangleright}((q))</m>,
+          but it does not formally follow that the latter is sheafy.
+          Nonetheless, we may argue as in <xref ref="prop-sheafy-by-localizations-are-Huber"/>
+          that every rational localization of <m>\underline{A^{\triangleright}((q))}</m>
+          which is a base extension from <m>A</m> does represent a complete Huber ring;
+          we may then continue as in the previous paragraph.
+        </p>
+      </proof>
+    </corollary>
+    <remark>
+      <p>
+        <xref ref="cor-sheafy-acyclic"/> was previously shown by Kedlaya<ndash/>Liu for <m>A</m> locally Tate; see <xref ref="bib-Kedlaya-AWS"/>, Theorem 1.3.4.
+      </p>
+    </remark>
+    <remark xml:id="rem-sheafy-for-Huber-ring">
+      <p>
+        The sheafy condition for Huber pairs is somewhat subtle; it is known to hold in certain classes (e.g., for strongly noetherian Huber rings
+        in the sense of <xref ref="exa-strongly-noetherian"/>, and for perfectoid rings) and to fail in certain carefully constructed examples,
+        but in most cases it is difficult to decide whether a given Huber pair is sheafy. 
+        See <xref ref="bib-Hansen-Kedlaya"/> for a thorough discussion.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>Solid adic spaces</title>
+    <p>
+      Although this discussion is aimed towards a study of analytic stacks, it may be useful for conceptual purposes to note that we can 
+      already define something analogous to the category of schemes.
+    </p>
+    <definition>
+      <p>
+        Let <m>\LRS</m> denote the category of <term>locally ringed spaces</term>.
+        An object of <m>\LRS</m> is a topological space <m>X</m> equipped with a sheaf of rings <m>\calO_X</m> with the property that for each <m>x \in X</m>,
+        the stalk <m>\calO_{X,x}</m> is a local ring (a ring with a unique maximal ideal).
+        A morphism <m>(Y, \calO_Y) \to (X, \calO_X)</m> of <m>\LRS</m> consists of a continuous map <m>f\colon Y \to X</m>
+        together with a ring homomorphism <m>f^\sharp\colon \calO_X \to f_*\calO_Y</m> which, for each <m>y \in Y</m> mapping to <m>x \in X</m>,
+        induces a local homomorphism <m>\calO_{X,x} \to \calO_{Y,y}</m> of local rings (i.e., the maximal ideal contracts to the maximal ideal).
+      </p>
+    </definition>
+    <remark>
+      <p>
+        In <m>\LRS</m>, the affine scheme <m>\Spec R</m> corresponding to <m>R \in \Ring</m> has the following universal property:
+        for every <m>X \in \LRS</m>, homomorphisms <m>R \to \Gamma(X, \calO_X)</m> correspond to morphisms <m>X \to \Spec R</m> via taking global sections.
+        In other words, <m>\Spec</m> is right adjoint to the global sections functor <m>\LRS \to \Ring^{\op}</m>.
+      </p>
+      <p>
+        Of course we can also construct other interesting objects in <m>\LRS</m>: topological manifolds, smooth (<m>C^{\infty}</m>) manifolds, real analytic manifolds,
+        complex analytic manifolds, complex analytic varieties, adic spaces, etc.
+        While the adjunction property of <m>\Spec</m> tells us exactly how these other objects map to affine schemes, it does not explain how they map to more general schemes.
+        In fact this is quite an interesting matter!
+      </p>
+    </remark>
+    <definition>
+      <p>
+        Let <m>\LCRS</m> be the category of <term>locally condensed ringed spaces</term> as follows.
+        An object of <m>\LCRS</m> is a topological space <m>X</m> equipped with a sheaf of condensed rings <m>\calO_X</m> with the property that for each <m>x \in X</m>,
+        the stalk <m>\calO_{X,x}(*)</m> is a local ring (without topology).
+        A morphism <m>(Y, \calO_Y) \to (X, \calO_X)</m> of <m>\LRS</m> consists of a continuous map <m>f\colon Y \to X</m>
+        together with a condensed ring homomorphism <m>f^\sharp\colon \calO_X \to f_*\calO_Y</m> which, for each <m>y \in Y</m> mapping to <m>x \in X</m>,
+        induces a local homomorphism <m>\calO_{X,x}(*) \to \calO_{Y,y}(*)</m> of local rings.
+      </p>
+      <p>
+        Let <m>\LCRS_\solid</m> be the subcategory of <term>locally solid ringed spaces</term>, i.e., the locally condensed ringed spaces <m>X</m> for which the sheaf 
+        takes values in solid condensed rings. By <xref ref="thm-solid-sheafy"/>, for any solid analytic ring <m>A</m>,
+        we may define an object <m>\AnSpec A \in \LCRS_\solid</m>
+        with underlying topological space <m>\Spa(A(*))</m> (for the discrete topology on <m>A^{\triangleright}(*)</m>); we call this the <term>(solid) adic spectrum</term> of <m>A</m>.
+      </p>
+      <p>
+        A <term>solid adic space</term> is a locally condensed ringed space admitting a open covering by subspaces each of which is the solid adic spectrum
+        of some solid analytic ring.
+      </p>
+    </definition>
+    <example xml:id="exa-solid-P1">
+      <p>
+        We obtain a solid adic space <m>\PP^1_{\solid}</m> by glueing <m>\AnSpec \ZZ[T]_\solid</m> and <m>\AnSpec \ZZ[T^{-1}]_\solid</m>
+        along <m>\AnSpec \ZZ[T,T^{-1}]_\solid</m>.
+      </p>
+      <p>
+        Note that <m>\PP^1_{\solid}</m> admits a natural map to <m>\PP^1_\ZZ</m>, induced by the maps <m>\AnSpec \ZZ[T]_\solid \to \Spec \ZZ[T]</m>,
+        <m>\AnSpec \ZZ[T^{-1}]_\solid \to \Spec \ZZ[T^{-1}]</m>.
+        We will study this map later in the context of <term>analytification</term> (<xref ref="sec_gaga"/>).
+      </p>
+    </example>
+    <example xml:id="exa-solid-Tate-curve">
+      <p>
+        Let <m>A</m> be any solid analytic ring.
+        By base extension from the previous example, we get the analytic projective line <m>\PP^1_A</m> over <m>A</m>.
+        Let <m>\GG_{m,A}</m> be the maximal open subspace of <m>\PP^1_A</m> on which <m>T</m> and <m>T^{-1}</m> are both defined (and inverse to each other).
+      </p>
+      <p>
+        Now choose a topologically nilpotent unit <m>q \in A^{\triangleright}(*)</m>.
+        Then the action of <m>q^\ZZ</m> on <m>\GG_{m,A}</m> is free, so we can quotient to form a new solid adic space <m>\GG_{m,A}/q^\ZZ</m>,
+        the <term>Tate elliptic curve</term> over <m>A</m>. It can be shown that this construction can be <q>algebraized</q>;
+        we will return to this point later in a more general setting.
+      </p>
+    </example>
+  </subsection>
+</section>

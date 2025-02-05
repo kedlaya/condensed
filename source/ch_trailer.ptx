@@ -1,0 +1,34 @@
+﻿<chapter xmlns:xi="http://www.w3.org/2001/XInclude"  xml:id="ch_trailer">
+  <title>Trailer: Abelian extensions of the rationals</title>
+  <introduction>
+    <p>
+      Though class field theory has its origins in the law of quadratic reciprocity discovered by Gauss,
+      its proper beginning is indicated by the Kronecker-Weber theorem,
+      first stated by Kronecker in 1853 and proved by Weber in 1886.
+      Although one could skip this theorem and deduce it as a consequence of more general results later on, I prefer to work through it explicitly.
+      It will serve as a trailer for the rest of the course, giving us a preview of a number of key elements:
+      <ul>
+        <li>
+          <p>
+            reciprocity laws;
+          </p>
+        </li>
+        <li>
+          <p>
+            passage between local and global fields, using Galois theory;
+          </p>
+        </li>
+        <li>
+          <p>
+            group cohomology, and applications to classifying field extensions;
+          </p>
+        </li>
+        <li>
+          <p>
+            computations in local fields.
+          </p>
+        </li>
+      </ul>
+    </p>
+  </introduction>
+</chapter>

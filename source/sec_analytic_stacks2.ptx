@@ -1,0 +1,133 @@
+﻿<section xml:id="sec_analytic_stacks2">
+  <title>Analytic stacks</title>
+  <introduction>
+    <p>
+      In this section, we define analytic stacks and give some examples.
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This section is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 19.
+        <xref ref="rem-morse"/> is taken from  <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 24.
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>Definition of analytic stacks</title>
+    <definition>
+      <p>
+        An <term>analytic stack</term> is an accessible (<xref ref="rem-accessible"/>)
+        functor <m>F\colon \AnRing \to \Set</m> with the following property:
+        for any hypercovering <m>\AnSpec(A_\bullet) \to \AnSpec(A)</m> by <m>!</m>-able maps
+        for which <m>\calD(\Mod_A) \cong \lim^! \calD(\Mod_{A_\bullet})</m>,
+        we have
+        <me>
+          F(A) \cong \lim X(A_\bullet)
+        </me>.
+        Let <m>\AnStack</m> be the category of analytic stacks.
+      </p>
+      <p>
+        For example, any representable functor is an analytic stack
+        (and by Yoneda this defines a full embedding <m>\AnRing^{\op} \to \AnStack</m>).
+        With this, the accessibility condition ensures that
+        any object is a small colimit of representable functors.
+      </p>
+    </definition>
+    <remark>
+      <p>
+        This is not quite the definition of <xref ref="bib-Clausen-Scholze-youtube"/> because
+        we are taking functors valued in sets, not something more simplicial.
+        This difference is certainly relevant but will not appear in the examples we consider.
+      </p>
+    </remark>
+    <example>
+      <p>
+        Adic spaces, solid adic spaces, and dagger spaces all give rise to analytic stacks;
+        in particular, the last of these include complex analytic spaces and Berkovich spaces.
+        However, it is not clear that these functors are fully faithful.
+      </p>
+    </example>
+    <example>
+      <p>
+        There is a functor <m>\Sch \to \AnStack</m> taking <m>\Spec A</m> to <m>\AnSpec \underline{A}</m>
+        where the discrete condensed ring <m>\underline{A}</m> is interpreted as a discrete analytic ring.
+        This functor is fully faithful by a theorem of Bhatt.
+      </p>
+      <p>
+        This construction extends further to algebraic stacks.
+        For example, using Stone duality (<xref ref="exa-embed-cset-into-schemes"/>) we get a fully faithful functor
+        <m>\CSet \to \AnStack</m>.
+        This allows to give meaning to the assertion that the definition of a norm function on an analytic ring
+        (<xref ref="def-norm-function"/>) corresponds to a morphism <m>\AnSpec A \to [0,\infty]</m> of analytic stacks;
+        in this formulation, one can extend the definition immediately to arbitrary analytic stacks.
+      </p>
+      <p>
+        In addition, if we start with an analytic ring <m>A</m>, we can consider schemes over <m>\Spec A^{\triangleright}</m>
+        and form the functor taking <m>\Spec B</m> to <m>\AnSpec \underline{B}</m> where <m>\underline{B}</m>
+        is given the analytic ring structure induced from <m>A</m>. This again defines a functor to analytic stacks.
+      </p>
+    </example>
+  </subsection>
+  <subsection>
+    <title>Flavors of the Riemann sphere</title>
+    <p>
+      To illustrate the richness of the category of analytic stacks, we indicate how some different flavors of the
+      Riemann sphere interact within this category.
+    </p>
+    <example>
+      <p>
+        We can form a sequence of morphisms of analytic stacks
+        <me>
+          X_1 \to X_2 \to X_3 \to X_4 \to X_5 \to X_6 
+        </me>
+        in which:
+        <ul>
+          <li>
+            <m>X_1</m> is the topological manifold <m>S^2</m>.
+            This corresponds to taking the ring <m>\Cts(S^2, \CC)</m> over <m>\CC_{\liquid}</m>.
+          </li>
+          <li>
+            <m>X_2</m> is the <m>C^\infty</m> manifold <m>S^2</m>.
+            This again corresponds to take the ring of global sections.
+          </li>
+          <li>
+            <m>X_3</m> is the real analytic manifold <m>S^2</m>. This cannot be treated globally;
+            instead it is created by glueing as in <xref ref="sec_gaga"/>.
+          </li>
+          <li>
+            <m>X_4</m> is the complex analytic manifold <m>S^2</m>. This is again created by glueing.
+          </li>
+          <li>
+            <m>X_5</m> is the scheme <m>\PP^1_\CC</m>. This is again created by glueing.
+          </li>
+          <li>
+            <m>X_6</m> is the topological space <m>S^2</m> treated as a condensed set.
+            As a reminder, this is created by covering <m>S^2</m> with a profinite set.
+          </li>
+        </ul>
+        <xref ref="thm-gaga-liquid"/> implies that <m>X_4 \to X_5</m> is an isomorphism of analytic stacks!
+        The other maps are not isomorphisms.
+      </p>
+    </example>
+  </subsection>
+  <subsection>
+    <title>A final remark</title>
+    <remark xml:id="rem-morse">
+      <p>
+        One potential use of this setup is to construct the sort of <term>virtual fundamental classes</term>
+        which are needed all over the place in enumerative geometry. These are needed to count intersections
+        of two geometric objects in cases where the <q>expected dimension</q> of the intersection is 0
+        but things can sometimes behave more badly. This is fairly familiar in algebraic geometry, where
+        various techniques exist to handle this (moving lemmas, deformation to the normal cone) but is
+        much more problematic in less rigid geometries, such as symplectic geometry (where such enumerative
+        questions are fundamental in mirror symmetry).
+      </p>
+      <p>
+        A model case of this can be seen by considering <m>R = \Cts(\RR, \RR)</m> as a condensed ring.
+        It can be shown that for <m>f \in R</m>, the isomorphism class of the quotient <m>R/(f)</m>
+        determines <m>f</m> up to a unit; in particular this can be used to detect whether <m>f</m> has a sign
+        crossing at one of its zeroes, even when the Taylor series of <m>f</m> is identically zero.
+      </p>
+    </remark>
+  </subsection>
+</section>
