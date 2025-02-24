@@ -13,6 +13,9 @@
   <biblio type="raw" xml:id="bib-Bhatt-Scholze-proetale">
     B. Bhatt and P. Scholze, <articletitle>The pro-étale topology for schemes</articletitle>, <journal>Astérisque</journal> <volume>365</volume> <year>2015</year>, 99<ndash/>201.    
   </biblio>
+  <biblio type="raw" xml:id="bib-Buzzard-Verberkmoes">
+    K. Buzzard and A. Verberkmoes, <articletitle>Stably uniform affinoids are sheafy</articletitle>, <journal>Journal für die reine und angewandte Mathematik</journal> <volume>740</volume> <year>2018</year>, 25<ndash/>39.
+  </biblio>
   <biblio type="raw" xml:id="bib-Clausen-Scholze-notes">
     D. Clausen and P. Scholze, <articletitle>Lectures on condensed mathematics</articletitle>, <url href="https://www.math.uni-bonn.de/people/scholze/Condensed.pdf">https://www.math.uni-bonn.de/people/scholze/Condensed.pdf</url>.
   </biblio>

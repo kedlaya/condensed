@@ -171,7 +171,7 @@
         so the colimit automatically belongs to <m>\Mod_{R_i}</m> for every <m>i</m>.
       </p>
     </remark>
-    <remark>
+    <remark xml:id="rem-more-homotopical-rings">
       <p>
         For some applications, it is useful to extend the notion of an analytic ring to the case where the base is no longer a condensed commutative ring,
         but a more homotopical object such as a <term>animated ring</term>, a <term>simplicial ring</term>, or an <term><m>E_\infty</m>-commutative ring</term>.

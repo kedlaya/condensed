@@ -170,7 +170,9 @@
     </p>
     <lemma xml:id="lem-every-surjection-in-CHaus-is-quotient">
       <statement>
-        Any continuous surjection <m>f\colon Y \to X</m> of compact Hausdorff spaces is a quotient map.
+        <p>
+          Any continuous surjection <m>f\colon Y \to X</m> of compact Hausdorff spaces is a quotient map.
+        </p>
       </statement>
       <proof>
         <p>
@@ -222,8 +224,10 @@
     </remark>
     <proposition>
       <statement>
-        For <m>S \in \Prof</m>, any open subset <m>U</m> of <m>S</m> (as an object of <m>\Top</m>) is an at most
-        <em>countable</em> disjoint union of objects of <m>\Prof</m>.
+        <p>
+          For <m>S \in \Prof</m>, any open subset <m>U</m> of <m>S</m> (as an object of <m>\Top</m>) is an at most
+          <em>countable</em> disjoint union of objects of <m>\Prof</m>.
+        </p>
       </statement>
       <proof>
         <p>
@@ -311,5 +315,4 @@
       </proof>
     </proposition>
   </subsection>
-    
 </section>

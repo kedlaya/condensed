@@ -120,10 +120,12 @@
     </p>
     <lemma xml:id="lem-top-space-as-condensed-set">
       <statement>
-        For any <m>X \in \Top</m>, the assignment  <m>X(S) = \Hom_{\Top}(S, X)</m> 
-        (i.e., the restriction of the representable functor <m>h_X</m> 
-        from <m>\Top</m> to <m>\Prof</m>) defines an object <m>\underline{X}</m> of <m>\CSet</m>.
-        (Warning: we may sometimes forget the underline.)
+        <p>
+          For any <m>X \in \Top</m>, the assignment  <m>X(S) = \Hom_{\Top}(S, X)</m> 
+          (i.e., the restriction of the representable functor <m>h_X</m> 
+          from <m>\Top</m> to <m>\Prof</m>) defines an object <m>\underline{X}</m> of <m>\CSet</m>.
+          (Warning: we may sometimes forget the underline.)
+        </p>
       </statement>
       <proof>
         <p>
@@ -296,7 +298,9 @@
     </example>
     <proposition xml:id="prop-compact-hausdorff-in-condensed">
       <statement>
-        The functor <m>\CHaus \to \CSet</m> is fully faithful.
+        <p>
+          The functor <m>\CHaus \to \CSet</m> is fully faithful.
+        </p>
       </statement>
       <proof>
         <p>
@@ -358,15 +362,17 @@
         A consequence of this will be that <m>\Top \to \CSet</m> is not fully faithful.
       </p>
       <p>
-        However, <m>\Top \to \CSet</m> will become fully faithful if we restrict to <q>small enough</q> topological space (<xref ref="prop-sequential"/>). 
+        However, <m>\Top \to \CSet</m> will become fully faithful if we restrict to <q>small enough</q> topological spaces (<xref ref="prop-sequential"/>). 
         Among other things, this will provide a mechanism by which condensed sets
         detect some sophisticated invariants of algebraic topology; see <xref ref="sec_cohomology"/>.
       </p>
     </definition>
     <proposition xml:id="prop-cset-to-top-left-adjoint">
       <statement>
-        The functor <m>\CSet \to \Top</m> from <xref ref="def-functor-cset-top"/> is <em>left</em> adjoint to the functor
-        <m>\Top \to \CSet</m> from <xref ref="lem-top-space-as-condensed-set"/>.
+        <p>
+          The functor <m>\CSet \to \Top</m> from <xref ref="def-functor-cset-top"/> is <em>left</em> adjoint to the functor
+          <m>\Top \to \CSet</m> from <xref ref="lem-top-space-as-condensed-set"/>.
+        </p>
       </statement>
       <proof>
         <p>
@@ -420,8 +426,10 @@
     </definition>
     <proposition xml:id="prop-sequential">
       <statement>
-        The restriction of the composition <m>\Top \to \CSet \to \Top</m> to sequential spaces is an equivalence.
-        Consequently, we have a fully faithful functor <m>\Top^{\seq} \to \CSet</m>.
+        <p>
+          The restriction of the composition <m>\Top \to \CSet \to \Top</m> to sequential spaces is an equivalence.
+          Consequently, we have a fully faithful functor <m>\Top^{\seq} \to \CSet</m>.
+        </p>
       </statement>
       <proof>
         <p>
@@ -433,8 +441,10 @@
     </proposition>
     <proposition xml:id="prop-sequential-limits-of-surjections">
       <statement>
-        Given a sequential inverse system <m>\varprojlim_{n \in \NN} X_n</m> in <m>\CSet</m> with limit <m>X</m> whose transition maps are epimorphisms,
-        and a compatible family of epimorphisms <m>X_n \to Y</m>, the induced map <m>X \to Y</m> is an epimorphism.
+        <p>
+          Given a sequential inverse system <m>\varprojlim_{n \in \NN} X_n</m> in <m>\CSet</m> with limit <m>X</m> whose transition maps are epimorphisms,
+          and a compatible family of epimorphisms <m>X_n \to Y</m>, the induced map <m>X \to Y</m> is an epimorphism.
+        </p>
       </statement>
       <proof>
         <p>
@@ -450,8 +460,10 @@
     </proposition>
     <corollary>
       <statement>
+        <p>
         For <m>n \in \NN</m>, let <m>X_n \to Y_n</m> be an epimorphism in <m>\CSet</m>.
         Then <m>\prod_{n \in \NN} X_n \to \prod_{n \in \NN} Y_n</m> is also an epimorphism.
+        </p>
       </statement>
       <proof>
         Apply <xref ref="prop-sequential-limits-of-surjections"/> to the inverse system

@@ -275,7 +275,7 @@
       <p>
         One reason for using weak rational localizations is that they have better behavior with respect to composition;
         see <xref ref="rem-compose-rational-localizations"/>. However, rational localizations are enough to generate the right topology,
-        and they have much better algebraic properties (<xref ref="rem-localization-is-underived"/>), so we will prefer them in what follows.
+        and it is somewhat easier to analyze coverings made solely of rational localizations; so we will prefer them in what follows.
       </p>
     </remark>
     <remark xml:id="rem-compose-rational-localizations">
@@ -306,9 +306,9 @@
         of the ideal <m>(f_1 - gT_1,\dots,f_n  - gT_n)</m> as this ideal may itself not be closed.
       </p>
       <p>
-        This failure turns out to be intimately related to the failure of general Tate Huber rings to be <term>sheafy</term>,
-        an issue that in fact does not arise for solid analytic rings. We will discuss this in some detail in <xref ref="sec_huber_local"/>;
-        see specifically <xref ref="prop-sheafy-by-localizations-are-Huber"/>.
+        This failure turns out to be intimately related to the failure of general Tate Huber rings to be <term>sheafy</term>.
+        We will discuss this in some detail in <xref ref="sec_huber_local"/>;
+        see especially <xref ref="prop-sheafy-by-localizations-are-Huber"/>.
       </p>
     </remark>
   </subsection>

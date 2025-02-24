@@ -579,13 +579,7 @@
       </statement>
       <proof>
         <p>
-          We first need to check that <m>A \to A_i^\dagger</m> is idempotent; the key point is to check that <m>A_i^\dagger \otimes_A^L A_i^\dagger</m>
-          is underived. This follows by adapting the proof of <xref ref="rem-localization-is-underived"/> using
-          <xref ref="lem-sheafy-exact-sequence-v1-liquid"/> in place of <xref ref="lem-sheafy-exact-sequence"/>,
-          <xref ref="lem-flat-mult-f"/>, and <xref ref="lem-flat-mult-f-v2"/>.
-        </p>
-        <p>
-          We next need to check the exactness of <xref ref="eq-idempotent-topology"/>. 
+          We need to check the exactness of <xref ref="eq-idempotent-topology"/>. 
           Using <xref ref="prop-standard-binary-coverings-Huber"/>, we may reduce to some applications of <xref ref="lem-sheafy-exact-sequence-v1-liquid"/>.
         </p>
       </proof>

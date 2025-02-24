@@ -17,7 +17,7 @@
     </paragraphs>
   </introduction>
   <subsection>
-    <title>Rational localizations are universally injective</title>
+    <title>On the formation of rational localizations</title>
     <p>
       We break down the structure of rational localizations in somewhat more detail.
     </p>
@@ -210,6 +210,34 @@
         </p>
       </proof>
     </corollary>
+    <remark>
+      <p>
+        <xref ref="cor-flat-mult-f-v2"/> asserts that the morphisms <m>\times (T-f)</m> and <m>\times (1-fT)</m>
+        on <m>A^{\triangleright}\langle T \rangle</m> in <m>\Mod_A</m> are <term>universally injective</term>.
+        However, this is not true on <m>A^{\triangleright}\langle T^{\pm} \rangle</m>; see <xref ref="exa-local-sections-to-zero"/>.
+      </p>
+    </remark>
+    <example xml:id="exa-local-sections-to-zero">
+      <p>
+        The following example is essentially that of Rost from <xref ref="bib-Huber2"/>, end of section 1.
+        Fix <m>c \in (0,1)</m>,
+        let <m>A^{\triangleright}</m> be the completion of <m>\ZZ[f^{\pm},Z]/(Z^2)</m>
+        for the submultiplicative norm 
+        <me>
+          \left| \sum_{n \in \ZZ} a_n f^n + \sum_{n \in \ZZ} b_n f^n Z \right| = \max_{n \in \ZZ} \{|a_n| c^{-|n|}, |b_n| c^{|n|}\}
+        </me>,
+        and take <m>A^+</m> to be the elements of norm at most 1. Then <m>A = (A^{\triangleright}, A^+)</m> is a complete Huber ring
+        and 
+        <me>
+          x := \sum_{n \in \ZZ} f^{-n} Z T^n
+        </me>
+        is a well-defined nonzero element of <m>A^{\triangleright} \langle T^{\pm} \rangle</m> such that <m>(T-f)x = 0</m>.
+      </p>
+      <p>
+        One can similarly replace <m>\ZZ</m> with a nonarchimedean field to get an example where <m>A</m> is a Tate Huber ring.
+        This reproduces <xref ref="bib-Buzzard-Verberkmoes"/>, Proposition 12.
+      </p>
+    </example>
     <remark xml:id="rem-not-flat">
       <p>
         Note that <xref ref="cor-flat-mult-f-v2"/> does not imply that <m>A^{\triangleright} \langle f \rangle</m> is a flat object of <m>\Mod_A</m>
@@ -225,12 +253,22 @@
         There is no contradiction here because the two notions of flatness concern different tensor product functors.
       </p>
       <p>
+        One can interpret the phenomenon being observed here as the fact that a rational localization must be distinguished from a
+        <term>derived</term> rational localization, which by fiat is resolved by a Koszul complex.
+        In this way, we can also interpret <xref ref="exa-local-sections-to-zero"/> as the failure of a rational localization
+        (in this case <m>A \to A \langle f^{\pm} \rangle</m>) to coincide with the corresponding derived rational localization.
+      </p>
+      <p>
         We will have more to say about this point in <xref ref="sec_huber_qcoh"/>.
       </p>
     </remark>
   </subsection>
   <subsection>
-    <title>The adic topology and the structure sheaf</title>
+    <title>The adic topology and the structure presheaf</title>
+    <p>
+      We next introduce a presheaf of rings associated to a solid analytic rings.
+      This presheaf fails to be a sheaf in general, partially echoing the corresponding failure for Huber rings; see <xref ref="subsec-sheafiness-for-Huber"/>.
+    </p>
     <lemma xml:id="lem-solid-split-laurent-poly-ring">
       <statement>
         <p>
@@ -269,9 +307,14 @@
           Let <m>R</m> be a solid condensed ring. Then for any <m>f \in R(*)</m>,
           for <m>g \in \{1, 1-f\}</m>, we have an exact sequence
           <men xml:id="eq-sheafy-exact-sequence-v1">
-            0 \to R\to R\left\langle \tfrac{f}{g} \right\rangle \oplus 
+            0 \to K \to R \to R\left\langle \tfrac{f}{g} \right\rangle \oplus 
             R\left\langle \tfrac{g}{f} \right\rangle \to R\left\langle \tfrac{f}{g}, \tfrac{g}{f} \right\rangle \to 0
-          </men>.
+          </men>
+          where
+          <me>
+            K := \ker(\times (f-gT), R \langle T^{\pm} \rangle)
+          </me>.
+          (<xref ref="exa-local-sections-to-zero"/> shows that <m>K</m> can be nonzero.)
         </p>
       </statement>
       <proof>
@@ -292,16 +335,16 @@
         <p>
           We then apply <xref ref="lem-solid-split-laurent-poly-ring"/> to obtain an exact sequence
           <me>
-            0 \to 0 \to A^{\triangleright}\langle T \rangle \oplus T^{-1} A^{\triangleright}\langle T^{-1} \rangle 
-            \to A^{\triangleright}\langle T^{\pm} \rangle \to 0
+            0 \to 0 \to R\langle T \rangle \oplus T^{-1} R\langle T^{-1} \rangle 
+            \to R\langle T^{\pm} \rangle \to 0
           </me>
           and a split exact sequence
           <me>
-            0 \to A^{\triangleright} \to A^{\triangleright}\langle T \rangle \oplus A^{\triangleright} \langle T^{-1} \rangle
-            \to A^{\triangleright} \langle T^{\pm} \rangle \to 0
+            0 \to R \to R\langle T \rangle \oplus R \langle T^{-1} \rangle
+            \to R \langle T^{\pm} \rangle \to 0
           </me>.
           Mapping the first sequence to the second via multiplication by <m>f-gT = T(g-fT^{-1})</m> and applying the snake lemma
-          yields the desired triangle.
+          yields the desired seqeunce.
         </p>
       </proof>
     </lemma>
@@ -313,27 +356,46 @@
         Define the <term>structure presheaf</term> <m>\calO</m> on <m>\AnRing^{\op}</m> by <m>\AnSpec A \mapsto A^{\triangleright}</m>.
       </p>
     </definition>
-    <theorem xml:id="thm-solid-sheafy">
+    <lemma>
       <statement>
         <p>
-          For any solid analytic ring <m>A</m>,
-          the structure presheaf <m>\calO</m> is a sheaf on <m>\AnRing^{\op}_{\solid/A}</m> for the adic topology;
-          moreover, <m>H^i(\AnSpec A, \calO) = 0</m> for <m>i \gt 0</m>.
+          For any solid analytic ring <m>A</m>, the map <m>A \to H^0(\AnSpec A, \calO)</m> is surjective (but not necessarily injective).
         </p>
       </statement>
       <proof>
         <p>
-          By <xref ref="lem-sheafy-exact-sequence-v1"/>, we have the sheaf property and the vanishing of higher Cech cohomology for standard binary coverings 
+          By <xref ref="prop-standard-binary-coverings-Huber"/>, this reduces to <xref ref="lem-sheafy-exact-sequence-v1"/>.
+        </p>
+      </proof>
+    </lemma>
+    <definition>
+      <p>
+        We say that <m>A \in \AnRing_\solid</m> is <term>sheafy</term> if the structure presheaf is a sheaf for the adic topology.
+        By <xref ref="lem-sheafy-exact-sequence-v1"/> and <xref ref="prop-standard-binary-coverings-Huber"/>, this is equivalent to saying that for every rational localization <m>A \to B</m>
+        and every <m>f \in B</m>, <m>T-f</m> and <m>(1-f)T-f</m> are not zero divisors on <m>B^{\triangleright} \langle T^{\pm} \rangle</m>.
+        However, it is not enough to impose this condition only for <m>B = A</m>.
+      </p>
+    </definition>
+    <theorem xml:id="thm-solid-sheafy">
+      <statement>
+        <p>
+          For any sheafy solid analytic ring <m>A</m>, <m>H^i(\AnSpec A, \calO) = 0</m> for <m>i \gt 0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By <xref ref="lem-sheafy-exact-sequence-v1"/>, we have the vanishing of higher Cech cohomology for standard binary coverings 
           defined by parameters of the form <m>f,1</m> or <m>f,1-f</m>.
-          Using <xref ref="prop-standard-binary-coverings-Huber"/>, we may parlay this into the sheaf property and the vanishing of higher Cech cohomology for general coverings.
-          The latter formally implies the vanishing of higher sheaf cohomology.
+          Using <xref ref="prop-standard-binary-coverings-Huber"/>, we may parlay this into the vanishing of higher Cech cohomology for general coverings.
+          The latter formally implies the vanishing of higher sheaf cohomology by a general spectral sequence argument (compare <xref ref="bib-Stacks"/>, Tag 01EW 
+          and <xref ref="bib-Kedlaya-AWS"/>, Lemma 1.6.3).
         </p>
       </proof>
     </theorem>
     <corollary xml:id="lem-sheafy-exact-sequence">
       <statement>
         <p>
-          Let <m>R</m> be a solid condensed ring. Then for any <m>f,g \in R(*)</m> generating the unit ideal,
+          Let <m>R</m> be a sheafy solid condensed ring. Then for any <m>f,g \in R(*)</m> generating the unit ideal,
           we have an exact sequence
           <men xml:id="eq-sheafy-exact-sequence">
             0 \to R\to R\left\langle \tfrac{f}{g} \right\rangle \oplus 
@@ -347,55 +409,23 @@
         </p>
       </proof>
     </corollary>
-    <lemma xml:id="lem-sheafy-exact-sequence-v2">
-      <statement>
-        <p>
-          Let <m>A</m> be a solid analytic ring. Then for any <m>f \in A(*)</m>,
-          for <m>g \in \{1, 1-f\}</m>, for any <m>M \in \Mod_A</m>, the sequence
-          <me>
-            0\to M \to M \otimes_A A^{\triangleright} \left\langle \tfrac{f}{g} \right\rangle \oplus 
-            M \otimes_A A^{\triangleright} \left\langle \tfrac{g}{f} \right\rangle \to 
-            M \otimes_A A^{\triangleright} \left\langle \tfrac{f}{g}, \tfrac{g}{f} \right\rangle \to 0
-          </me>
-          is exact.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          Since the map in <xref ref="lem-solid-split-laurent-poly-ring"/> (taking <m>R := A^{\triangleright}</m>) is an isomorphism,
-          it remains an isomorphism after tensoring with <m>A</m>.
-          Meanwhile, by <xref ref="cor-flat-mult-f-v2"/>, the sequences used in the proof of <xref ref="lem-sheafy-exact-sequence-v1"/>
-          remain exact after tensoring with <m>M</m>, so we may emulate the argument therein.
-        </p>
-      </proof>
-    </lemma>
-    <corollary xml:id="rem-localization-is-underived">
-      <statement>
-        <p>
-          Let <m>R</m> be a solid condensed ring and suppose that <m>f_1,\dots,f_n,g \in R(*)</m> generate the unit ideal.
-          Then <m>R\left\langle \tfrac{f_1}{g},\dots,\tfrac{f_n}{g} \right\rangle</m>
-          is resolved by the Koszul complex over <m>R[1/g]\langle T_1,\dots,T_n\rangle</m> 
-          defined by the elements <m>f_i - g T_i</m> for <m>i=1,\dots,n</m>.
-          Moreover, if <m>f_1,\dots,f_n,g</m> generate the unit ideal, then we may replace <m>R[1/g]</m> with <m>R</m> with the same result.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          By <xref ref="lem-sheafy-exact-sequence-v2"/>, 
-          we may check the exactness of the augmented Koszul complex locally on the terms of a standard binary covering
-          defined by parameters of the form <m>f,1</m> or <m>f,1-f</m>. By this plus <xref ref="prop-standard-binary-coverings-Huber"/>,
-          we are reduced to working locally with respect to a refinement of the covering defined by <xref ref="lem-standard-rational-covering"/> using the parameters
-          <m>f_1,\dots,f_n,g</m>. If we end up in the situation where <m>\tfrac{f_1}{g}, \dots, \tfrac{f_n}{g} \in R^{\circ}</m>, then the Koszul complex
-          is in fact split exact. Otherwise, there exists an index <m>i</m> for which <m>\tfrac{g}{f_i}, \tfrac{f_1}{f_i}, \dots, \tfrac{f_n}{f_i} \in R^{\circ}</m>;
-          we handle <m>\tfrac{g}{f_i}</m> using <xref ref="lem-flat-mult-f"/> and the other terms using <xref ref="lem-flat-mult-f-v2"/>.
-        </p>
-      </proof>
-    </corollary>
+    <remark>
+      <p>
+        Let <m>A</m> be a solid analytic ring for which the natural map <m>A \to H^0(\AnSpec(A), \calO)</m> fails to be injective.
+        Then <m>A' := H^0(\AnSpec(A), \calO)</m> is again a solid analytic ring, but we do not know whether it is sheafy because
+        sheafiness also includes a corresponding restriction on every rational localization of <m>A</m>.
+      </p>
+      <p>
+        On the other hand, if <m>A</m> admits a covering by rational localizations <m>A \to B_i</m> such that each <m>B_i</m> is sheafy,
+        then it can be shown using <xref ref="thm-solid-sheafy"/> that <m>H^0(\AnSpec(A), \calO)</m> is sheafy.
+      </p>
+    </remark>
   </subsection>
-  <subsection>
+  <subsection xml:id="subsec-sheafiness-for-Huber">
     <title>Sheafiness for Huber rings</title>
     <p>
       We now introduce the structure presheaf of a Huber pair and study the extent to which it does or does not satisfy the sheaf property.
+      This will reveal that there are two different failure modes for sheafiness of Huber rings which can be separated by working with solid analytic rings.
     </p>
     <definition>
       <p>
@@ -415,27 +445,33 @@
     <proposition xml:id="prop-sheafy-by-localizations-are-Huber">
       <statement>
         <p>
-          The complete Tate Huber pair <m>A</m> is sheafy if and only if for every rational localization <m>\underline{A^{\triangleright}} \to B^{\triangleright}</m> at the level of solid analytic rings,
+          The complete Tate Huber pair <m>A</m> is sheafy if and only if the associated solid analytic ring <m>\underline{A}</m> is sheafy
+          and for every rational localization <m>\underline{A^{\triangleright}} \to B^{\triangleright}</m> at the level of solid analytic rings,
           <m>B^{\triangleright}</m> again represents a complete Huber ring.
         </p>
       </statement>
       <proof>
         <p>
-          For the <q>if</q> assertion, we may deduce the claim from <xref ref="thm-solid-sheafy"/>,
-          plus <xref ref="def-solid-Tate"/> in order to compare the concepts of Tate algebras (and by extension rational localizations)
-          in the Huber setting and the solid setting. The latter is why we need <m>A</m> to be Tate.
+          For the <q>if</q> assertion, we may deduce the claim from  <xref ref="def-solid-Tate"/> in order to compare the concepts of Tate algebras (and by extension rational localizations)
+          in the Huber setting and the solid setting.
         </p>
         <p>
-          For the <q>only if</q> assertion, we need to check that the rational localization of Huber rings defined by the elements <m>f_1,\dots,f_n,g \in A^{\triangleright}</m>
-          (which generate the unit ideal) is resolved by the Koszul complex defined by <m>f_1 - g T_1, \dots, f_n - g T_n</m> in
-          <m>A^{\triangleright}\langle T_1,\dots,T_n \rangle</m>, as then <xref ref="rem-localization-is-underived"/> will imply that the rational localization
-          of Huber rings coincides with the rational localization of condensed rings.
-          Since <m>A</m> is sheafy we may check this locally. By applying <xref ref="lem-standard-rational-covering"/> to the rational
-          covering defined by <m>f_1,\dots,f_n,g</m>, we reduce to checking the claim for a rational localization in a standard binary covering
-          generated by <m>1,f</m> for some <m>f \in A^{\circ}</m>. That is, we need to show that if <m>f \in A^\circ</m>, 
+          For the <q>only if</q> assertion, 
+          by <xref ref="prop-standard-binary-coverings-Huber"/>
+          we are reduced to reduce to checking that if <m>\underline{A} \to B_1, \underline{A} \to B_2</m> are the rational localizations in a
+          standard binary covering generated by <m>f,1</m> or <m>f,1-f</m>, then firstly <m>B_1, B_2</m> represent complete Huber rings,
+          and secondly
+          <me>
+            0 \to A^{\triangleright} \to B_1^{\triangleright} \oplus B_2^{\triangleright} \to B_{12}^{\triangleright} \to 0
+          </me>
+          is an exact sequence of solid abelian groups.
+          For the first assertion, we must check that if <m>f \in A^\circ</m>, 
           then the multiplication maps by <m>1-fT</m> and <m>f-T</m> in <m>A^{\triangleright} \langle T \rangle</m> are strict inclusions;
           this can be seen by working in terms of graded rings, as in <xref ref="bib-Kedlaya-AWS"/>, Lemma 1.8.2.
           (The ultimate point is that in any univariate polynomial ring, an element cannot be a zero divisor if either its constant coefficient or its leading coefficient is a unit.)
+          For the second assertion, by <xref ref="lem-sheafy-exact-sequence-v1"/> we need only check exactness at the left;
+          by the first assertion this equates to the corresponding exactness using Huber's rational localizations,
+          which follows from <m>A</m> being sheafy.
         </p>
       </proof>
     </proposition>
@@ -449,8 +485,7 @@
         <p>
           When <m>A</m> is Tate,
           this follows by combining <xref ref="thm-solid-sheafy"/> with <xref ref="prop-sheafy-by-localizations-are-Huber"/>
-          and a general spectral sequence argument (compare <xref ref="bib-Stacks"/>, Tag 01EW 
-          and <xref ref="bib-Kedlaya-AWS"/>, Lemma 1.6.3).
+          and the same spectral sequence argument as in the proof of <xref ref="thm-solid-sheafy"/>.
         </p>
         <p>
           In the general case, we need a slightly different argument.
@@ -517,13 +552,13 @@
       </p>
       <p>
         Let <m>\LCRS_\solid</m> be the subcategory of <term>locally solid ringed spaces</term>, i.e., the locally condensed ringed spaces <m>X</m> for which the sheaf 
-        takes values in solid condensed rings. By <xref ref="thm-solid-sheafy"/>, for any solid analytic ring <m>A</m>,
+        takes values in solid condensed rings. By <xref ref="thm-solid-sheafy"/>, for any sheafy solid analytic ring <m>A</m>,
         we may define an object <m>\AnSpec A \in \LCRS_\solid</m>
         with underlying topological space <m>\Spa(A(*))</m> (for the discrete topology on <m>A^{\triangleright}(*)</m>); we call this the <term>(solid) adic spectrum</term> of <m>A</m>.
       </p>
       <p>
         A <term>solid adic space</term> is a locally condensed ringed space admitting a open covering by subspaces each of which is the solid adic spectrum
-        of some solid analytic ring.
+        of some sheafy solid analytic ring.
       </p>
     </definition>
     <example xml:id="exa-solid-P1">
@@ -539,7 +574,7 @@
     </example>
     <example xml:id="exa-solid-Tate-curve">
       <p>
-        Let <m>A</m> be any solid analytic ring.
+        Let <m>A</m> be a solid analytic ring such that both <m>A</m> and <m>A \langle T \rangle</m> are sheafy.
         By base extension from the previous example, we get the analytic projective line <m>\PP^1_A</m> over <m>A</m>.
         Let <m>\GG_{m,A}</m> be the maximal open subspace of <m>\PP^1_A</m> on which <m>T</m> and <m>T^{-1}</m> are both defined (and inverse to each other).
       </p>
