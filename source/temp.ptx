@@ -1,0 +1,3160 @@
+﻿  <subsection>
+    <title>Cohomology</title>
+    <p>
+      We insert a remark here which we will build upon later.
+    </p>
+    <definition>
+      <p>
+        For <m>X \in \CSet, M \in \Ab</m>, define <m>H^i(X, M) := \Ext^i_{\CAb}(\ZZ[X], M)</m> viewing <m>M</m> as a discrete object in <m>\CAb</m>.
+      </p>
+    </definition>
+    <theorem>
+      <statement>
+        For <m>X \in \Top</m> a CW complex, <m>H^i(X, M)</m> is canonically identified with <m>H^i_{\sing}(X, M)</m>,
+        the singular cohomology with coefficients in <m>M</m>.
+      </statement>
+      <proof>
+        <p>
+          This is a form of the Dold<ndash/>Thom theorem;
+          see <xref ref="bib-Clausen-Scholze-notes"/>, Lecture 3 (but this is written with <m>\kappa</m> large).
+        </p>
+      </proof>
+    </theorem>
+  </subsection>
+    <remark xml:id="rem-profinite-projective">
+      <p>
+        Let <m>Z \to Y</m> be a surjection (in the sense of topological spaces) in <m>\Prof</m>.
+        Per <xref ref="rem-change-pro-system-to-sequential"/>, we may write <m>Y</m> and <m>Z</m> as sequential inverse limits of finite sets:
+        <m>Y = \varprojlim_{n \in \NN} Y_n</m>, <m>Z = \varprojlim_{n \in \NN} Z_n</m>.
+        By renumbering as needed, we may express the surjection <m>Z \to Y</m> as a coherent sequence of surjective maps <m>Z_n \to Y_n</m>.
+      </p>
+      <p>
+        By <xref ref="rem-Stone-duality"/>, we can ensure than the transition maps in each system are surjective.
+        However, we can actually do better: we can enforce that the maps
+        <me>
+          Z_{n+1} \to Z_n \times_{Y_n} Y_{n+1}
+        </me>
+        are surjective. To see this, we interpret <m>Y_n</m> and <m>Z_n</m> as coverings of <m>Y</m> and <m>Z</m>, respectively,
+        by finite disjoint unions of closed-open subsets. We can then choose <m>Z_{n+1}</m> (and everything above it) so that as a covering, it
+        refines not only <m>Z_n</m> but also the pullback cover from <m>Y_{n+1}</m>.
+      </p>
+      <p>
+        Using this, it is easy to see that any object of <m>\Prof</m> is projective: that is, given any <m>X \in \Prof</m>
+        and any surjection <m>Z \to Y</m> in <m>\Prof</m>, any morphism <m>X \to Y</m> can be lifted through <m>Z</m>.
+        In particular, any surjection <m>Y \to X</m> in <m>\Prof</m> admits a section; this is quite a special feature of the category
+        (for instance it is totally false in <m>\CHaus</m>).
+      </p>
+      <p>
+        It formally follows that any object of <m>\Prof</m> is also projective in <m>\CSet</m>.
+        To wit, for <m>X \in \Prof</m> and <m>T \to S</m> a surjection in <m>\CSet</m>, the map <m>T(X) \to S(X)</m> is <em>a priori</em> not surjective,
+        but we do know that every element of <m>S(X)</m> lifts to <m>T(Y)</m> for some surjection <m>Y \to X</m> in <m>\Prof</m> depending on the original element.
+        
+      </p>
+    </remark>
+
+    <remark xml:id="rem-minimal-covers-of-Ninfty">
+      <p>
+        We record an important special property of the space <m>\NN_\infty</m> used in <xref ref="prop-internally-projective"/>:
+        given any surjection <m>S \to \NN_\infty</m> in <m>\Prof</m>, we can construct a closed subspace <m>S'</m> of <m>S</m>
+        such that the composition <m>S' \to S \to \NN_\infty</m> is surjective and also bijective over <m>\NN</m>.
+      </p>
+      <p>
+        Specifically, we take <m>S'</m> to be the union of the whole fiber over <m>\infty</m> plus a single lift of each <m>n \in \NN</m>.
+        To see that this is closed in <m>S</m>, we check that the complement is open: each fiber of <m>S</m> over <m>n \in \NN</m> is itself open
+        by continuity of <m>S \to \NN_\infty</m>, and the complement of a single point in this fiber is also open.
+      </p>
+    </remark>
+  <subsection>
+    <title>Six functors formalism for quasicoherent sheaves</title>
+    <p>
+      One takeaway from <xref ref="exa-base-extension-not-flat"/> is that we cannot rely on flatness of localization if we want to
+      pass from solid modules to an associated theory of solid quasicoherent sheaves on schemes.
+      This means that we have to give up on working exclusively with the category of solid modules and instead pass to its associated derived category.
+      This is perhaps not surprising in light of the fact that we built some duality into the definition of solid modules,
+      and duality is invariably a property about derived categories of modules anyway.
+    </p>
+    <p>
+      In fact, there is already a similar issue with working with quasicoherent sheaves in scheme theory!
+      if <m>f\colon Y \to X</m> is a morphism of schemes and <m>\calF</m> is a quasicoherent sheaf on <m>Y</m>, then we cannot
+      guarantee that the direct image sheaf <m>f_* \calF</m> is actually quasicoherent unless the map <m>f</m> is <term>qcqs</term>,
+      short for <term>quasicompact and quasiseparated</term> (<xref ref="bib-Stacks"/>, Tag 01LC).
+      OTherwise, one is forced to take an infinite product of quasicoherent sheaves and this is not quasicoherent because
+      <me>
+        \left( \prod_i M_i \right) \otimes_R R[1/f] \neq \prod_i (M_i \otimes_R R[1/f]).
+      </me>
+    </p>
+    <p>
+      One can resolve both issues at once by working with the derived category of solid quasicoherent sheaves.
+      In fact, in this context one can build a <term>six functors formalism</term> for quasicoherent sheaves
+      analogous to what we are used to in etale cohomology!
+      We will not focus on this right now, but it should become clear how to do this by the end of the course.
+    </p>
+  </subsection>
+
+  <biblio type="raw" xml:id="bib-Banus-Xarles">
+    D. Rodríguez Banús and X. Xarles, <articletitle>Condensed sets via free resolutions</articletitle>, <url>https://arxiv.org/pdf/2209.01660</url> <year>2022</year>.
+  </biblio>
+
+
+
+
+  <subsection>
+    <title>Setting up a comparison of solidifications</title>
+    <p>
+      Since we already know from <xref ref="lem-delta-pullback-on-Rhom"/> and <xref ref="prop-solid-category"/>
+      that <m>\prod_\NN \underline{\ZZ} \in \CAb_\solid</m>,
+      the key remaining point in constructing a functor <m>\Mod_{\ZZ_\solid} \to \CAb_\solid</m> is to match up endomorphisms into and especially
+      out of infinite products of <m>\ZZ_{\solid}</m> versus <m>\underline{\ZZ}</m>.
+      We study these in <m>\CAb</m> using the object <m>P</m> over which we have already established some control;
+      in the process, we will also identify its solidification.
+    </p>
+    <definition>
+      <p>
+        For each <m>n \in \NN</m>, we define the <m>n</m>-th coordinate map <m>c_n\colon P \to \underline{\ZZ}</m>.
+        This is induced by the map <m>\ZZ[\underline{\NN_\infty}] \to \underline{\ZZ}</m> corresponding to the map <m>\NN_\infty \to \ZZ</m> in <m>\Prof</m>
+        carrying <m>n</m> to 1 and all other elements to 0.
+      </p>
+      <p>
+        The product of the maps <m>c_n</m> defines the full coordinate map <m>c \colon P \to \prod_\NN \underline{\ZZ}</m>,
+        where the product is taken in <m>\CAb</m>. We may think of this product more concretely by first forming it in <m>\Top</m> and then applying the functor <m>\Top \to \CSet</m>.
+      </p>
+    </definition>
+    <remark xml:id="rem-compare-homs-out-of-product-solid">
+      <p>
+        In order to match up <m>\prod_\NN \ZZ_\solid \in \Mod_{\ZZ_\solid}</m> with <m>\prod_n \underline{\ZZ} \in \CAb_\solid</m>, we need to know that
+        <me>
+          \Hom_{\CAb}\left( \prod_\NN \underline{\ZZ}, \underline{\ZZ} \right) = \bigoplus_\NN \ZZ.
+        </me>
+        There is an obvious map from right to left: each generator of the direct sum corresponds to the projection onto a single coordinate.
+        However, we also obtain a map in the other direction by restricting along the coordinate map <m>c\colon P \to \prod_\NN \underline{\ZZ}</m>
+        (<xref ref="rem-coord-map"/>) and then interpreting <m>\Hom_{\CAb}(P, \underline{\ZZ})</m> as the 
+        null sequences in <m>\ZZ</m>, which is the same thing as the direct sum because <m>\ZZ</m> carries the discrete topology.
+      </p>
+      <p>
+        It is clear that the composition from right to left to right is an isomorphism, but not so in the other direction:
+        we do not have any formal control of morphisms out of a product in <m>\CAb</m> like we built into the construction of <m>\Mod_{\ZZ_{\solid}}</m>.
+        To study the composition, we insert an additional term between <m>P</m> and <m>\prod_\NN \underline{\ZZ}</m> and use two different arguments
+        to take the two steps across this intermediate term.
+        This will amount to showing that <m>P</m> is <q>dense</q> in <m>\bigoplus_\NN \underline{\ZZ}</m>, 
+        or in more precise terms, the map <m>c_\solid\colon P_\solid \to \prod_\NN \underline{\ZZ}</m> is an isomorphism (<xref ref="cor-solidification-of-P"/>).
+      </p>
+    </remark>
+    <definition>
+      <p>
+        Note that <m>\prod_\NN \underline{\ZZ}</m> admits the subobject
+        <me>
+          \prod_\NN^{\bd} \underline{\ZZ} := \colim_{n \in \NN} \prod_\NN \underline{\{-n,\dots,n\}}.
+        </me>
+        In terms of evaluations at <m>S \in \Prof</m>, <m>\left(\prod_\NN \underline{\ZZ}\right)(S)</m> consists of continuous maps <m>S \to \prod_\NN \ZZ</m>,
+        or equivalently families of continuous maps <m>S \to \ZZ</m> indexed by <m>\NN</m>. Each of these maps has bounded image, but
+        <m>\left( \prod_\NN^{\bd} \underline{\ZZ} \right)(S)</m> picks out the families with <em>uniformly</em> bounded image.
+      </p>
+      <p>
+        From the explicit description of <m>\ZZ[\NN_\infty]</m> (<xref ref="exa-module-ring-topological-space"/>),
+        we can factor <m>c\colon P \to \prod_\NN \underline{\ZZ}</m> through <m>\prod_\NN^{\bd} \underline{\ZZ}</m> to yield a sequence of inclusions
+        <men xml:id="eq-p-to-product">
+          P \stackrel{c}{\to} \prod_\NN^{\bd} \underline{\ZZ} \to \prod_\NN \underline{\ZZ}.
+        </men>
+        Namely, <m>\Hom_{\CAb}(P, \prod_\NN \underline{\ZZ}) = \prod_\NN \Hom_{\CAb}(P, \underline{\ZZ})</m> consists of infinite families of null sequences in <m>\ZZ</m>,
+        while <m>\Hom_{\CAb}(P, \prod_\NN^{\bd} \underline{\ZZ})</m> picks out those families whose images are uniformly bounded.
+        The sequences corresponding to the factors of the map <m>c</m> only take values in <m>\{0,1\}</m>, so they form a family of the latter form.
+      </p>
+    </definition>
+  </subsection>
+  <subsection>
+    <title>A comparison of solidifications</title>
+    <p>
+      We now compare the effect of solidification across the terms of <xref ref="eq-p-to-product"/>.
+      For the first step, the strategy is to build a diagram that allows us to exploit the fact that <m>\Delta\colon P \to P</m>
+      becomes an isomorphism after solidification.
+    </p>
+    <definition xml:id="def-diagram-for-Delta">
+      <p>
+        Let <m>\Delta\colon \ZZ[\NN] \to \ZZ[\NN]</m> denote the map <m>[n] \mapsto [n]-[n+1]</m>.
+        We then obtain a commutative diagram
+        <figure>
+          <image>
+            <latex-image>
+              \xymatrix{
+               \ZZ[\NN] \otimes \ZZ[\NN] \ar[r] \ar^{\Delta \otimes \id}[d]  &amp;\ZZ[\NN] \ar@{=}[d] \\
+               \ZZ[\NN] \otimes \ZZ[\NN] \ar[r] &amp; \ZZ[\NN]
+              }
+            </latex-image>
+          </image>
+        </figure>
+      of discrete abelian groups in which the top row arrow maps <m>[m] \otimes [n]</m> to <m>[n]</m> if <m>m = n</m> and 0 otherwise,
+      and the bottom row maps <m>[m] \otimes [n]</m> to <m>[n]</m> if <m>m \leq n</m> and 0 otherwise.
+      Note that the two rows are equalized by <m>\ZZ[\NN] \to \ZZ[\NN] \otimes \ZZ[\NN]</m> via <m>[n] \mapsto [n] \otimes [n]</m>.
+    </p>
+    <p>
+      This promotes to a commutative diagram
+        <figure>
+          <image>
+            <latex-image>
+              \xymatrix{
+                P \otimes P \ar[r] \ar^{\Delta \otimes \id}[d] &amp; P \ar@{=}[d] \\
+                P \otimes P \ar[r] &amp; P
+              }
+            </latex-image>
+          </image>
+        </figure>
+        where again the rows are equalized by a map <m>P \to P \otimes P</m> acting via <m>[n] \mapsto [n] \otimes [n]</m>.
+      </p>
+    </definition>
+    <lemma xml:id="lem-diagram-p-to-bd">
+      <statement>
+        <p>
+          There exists a commutative diagram in <m>\CAb</m> of the form
+          <figure>
+            <image>
+              <latex-image>
+                \xymatrix{
+                  P \otimes \prod_\NN^{\bd} \underline{\ZZ} \ar[r] \ar^{\Delta \otimes \id}[d] &amp; P \ar^{c}[d] \\
+                  P \otimes \prod_\NN^{\bd} \underline{\ZZ} \ar[r] &amp; \prod_\NN^{\bd} \underline{\ZZ}
+                }
+              </latex-image>
+            </image>
+          </figure>
+          in which both rows are split surjections.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By tensoring the second diagram from <xref ref="def-diagram-for-Delta"/> on the right along <m>c</m>, 
+          we get a diagram of the form we want except with <m>P</m> replaced by <m>\prod_\NN^{\bd} \underline{\ZZ}</m>.
+          To get what we want, all that remains is to verify that the resulting top row
+          <men xml:id="eq-Delta-top-row">
+            P \otimes \prod_\NN^{\bd} \underline{\ZZ} \to \prod_\NN^{\bd} \underline{\ZZ}
+          </men>
+          factors through <m>c</m>; the splitting of the resulting top row will be guaranteed by the fact that since <m>c</m> is injective,  
+           the composition <m>P \to P \otimes \prod_\NN^{\bd} \underline{\ZZ} \to P</m> will again be the identity.
+        </p>
+        <p>
+          By Hom-tensor adjunction, we reinterpret <xref ref="eq-Delta-top-row"/> as an element of <m>\Hom_{\CAb}(P, \iHom_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ},\prod_\NN^{\bd} \underline{\ZZ}\right) </m>
+          and in turn by <xref ref="rem-coord-map"/> as a null sequence in <m>\iHom_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ},\prod_\NN^{\bd} \underline{\ZZ}\right)</m>;
+          the claim is that this sequence belongs to the image of
+          <me> 
+            \Hom_{\CAb}(P, \iHom_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ},P \right) 
+          </me>
+          under postcomposition with <m>c</m>; that just means that each individual term in the sequence belongs to <m>\iHom_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ},P \right)</m>.
+        </p>
+        <p>
+          The sequence in question is the one whose <m>n</m>-th term is the <m>n</m>-th projection <m>\prod_\NN^{\bd} \underline{\ZZ} \to \underline{\ZZ}</m> followed
+          by the <m>n</m>-th injection <m>\underline{\ZZ} \to \prod_\NN^{\bd} \underline{\ZZ}</m>. The latter is the image of <m>[n] \in P</m> under <m>c</m>, proving the claim.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-replace-bounded-with-P-solid">
+      <statement>
+        <p>
+          The map <m>c_\solid\colon P_\solid \to \left(\prod_\NN^{\bd} \underline{\ZZ} \right)_\solid</m> is an isomorphism in <m>\CAb</m>.
+          Moreover, for each <m>i \gt 0</m>, <m>\iExt^i_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right) = 0</m> for all <m>N \in \CAb_{\solid}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We check the second assertion first.
+          For the second assertion, we apply <m>\iExt^i(\bullet, N)</m> to the diagram in <xref ref="lem-diagram-p-to-bd"/> to obtain
+          <figure>
+            <image>
+              <latex-image>
+                \xymatrix{
+                  \iExt^i_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right) \ar[r] \ar^{c^*}[d] &amp; \iExt^i_{\CAb}\left( P \otimes \prod_\NN^{\bd} \underline{\ZZ}, N\right) \ar^{\Delta^* \otimes \id}[d] \\
+                  \iExt^i_{\CAb}\left(P, N\right) \ar[r] &amp; \iExt^i_{\CAb}\left( P \otimes \prod_\NN^{\bd} \underline{\ZZ}, N\right) 
+                }
+              </latex-image>
+            </image>
+          </figure>
+          where now both rows are split injections.
+          By applying Hom-tensor adjunction to write
+          <me>
+            \iExt_{\CAb}^i\left( P \otimes \prod_\NN^{\bd} \underline{\ZZ}, N\right) = \iExt^i_{\CAb}\left( P, \iHom_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right)\right)
+          </me>
+          and invoking <xref ref="prop-solid-category"/> to see that <m>\iHom_{\CAb}(\prod_\NN^{\bd} \underline{\ZZ}, N)</m> is solid, we deduce that the
+          right column is an isomorphism.
+          Consequently, the upper composition is an injection, so we have an injection
+          <me>
+            \iExt^i_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right) \stackrel{c^*}{\to} \iExt^i_{\CAb}\left(P, N\right) = 0
+          </me>
+          where the right equality follows from <xref ref="prop-internally-projective"/>.
+        </p>
+        <p>
+          For the first assertion, we solidify the diagram in <xref ref="lem-diagram-p-to-bd"/> to obtain
+          <figure>
+            <image>
+              <latex-image>
+                \xymatrix{
+                  \left(P \otimes \prod_\NN^{\bd} \underline{\ZZ}\right)_\solid \ar[r] \ar^{\Delta \otimes \id}[d] &amp; P_\solid \ar^{c}[d] \\
+                  \left(P \otimes \prod_\NN^{\bd} \underline{\ZZ}\right)_\solid \ar[r] &amp; \left( \prod_\NN^{\bd} \underline{\ZZ} \right)_\solid
+                }
+              </latex-image>
+            </image>
+          </figure>
+          where now the bottom row is a split surjection. By considering the previous diagram with <m>i=0</m>, we see that the left column
+          induces an isomorphism of representable functors and hence is an isomorphism by Yoneda's lemma.
+          At this point we conclude that <m>c_\solid</m> is a split surjection; however, since the top row is also surjective,
+          tracing clockwise from <m>\left( \prod_\NN^{\bd} \underline{\ZZ} \right)_\solid</m> back to <m>P_\solid</m> yields a surjection whose postcomposition
+          with <m>c_\solid</m> is the identity map. This proves that <m>c_\solid</m> is also injective.
+        </p>
+      </proof>
+    </lemma>
+    <p>
+      For the second step, we use a completely different strategy.
+    </p>
+    <lemma xml:id="cor-replace-prod-with-bounded-solid">
+      <statement>
+        <p>
+          The map <m>\left( \prod_\NN^{\bd} \underline{\ZZ} \right)_\solid \to \left( \prod_\NN \underline{\ZZ} \right)_\solid</m> is an isomorphism.
+          Moreover, for each <m>i \gt 0</m>, the morphism <m>\iExt^i_{\CAb}\left(\prod_\NN \underline{\ZZ}, N\right) \to \iExt^i_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right)</m>
+          is an isomorphism for all <m>N \in \CAb_{\solid}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By analogy with the construction of <m>\prod_\NN^{\bd} \underline{\ZZ}</m>, we define
+          <me>
+            \prod_\NN^{\bd} \underline{\RR} := \colim_{n \in \NN} \prod_\NN \underline{[-n,n]};
+          </me>
+          we will construct an isomorphism
+          <me>
+            \left( \prod_\NN \underline{\ZZ}\right) / \left( \prod_\NN^{\bd} \underline{\ZZ} \right) \cong \left( \prod_\NN \underline{\RR} \right) / \left( \prod_\NN^{\bd} \underline{\RR} \right).
+          </me>
+          Since the right-hand side carries an evident <m>\underline{\RR}</m>-module structure, so does the left-hand side. 
+          By <xref ref="cor-solid-R-module-is-zero-monomorphism"/>, this will yield the claim.
+        </p>
+        <p>
+          The proposed isomorphism is formally equivalent to the claim that
+          <me>
+            \left( \prod_\NN^{\bd} \underline{\RR} \right) / \left( \prod_\NN^{\bd} \underline{\ZZ} \right) \cong \left( \prod_\NN \underline{\RR} \right) / \left( \prod_\NN \underline{\ZZ} \right);
+          </me>
+          this holds because <m>\RR/\ZZ</m> is compact.
+        </p>
+      </proof>
+    </lemma>
+    <corollary xml:id="cor-solidification-of-P">
+      <statement>
+        <p>
+          The map <m>c_\solid \colon P_\solid \to \prod_{\NN} \underline{\ZZ}</m> is an isomorphism.
+          (Note that the target is solid by <xref ref="lem-delta-pullback-on-Rhom"/> and <xref ref="prop-solid-category"/>.)
+          Moreover, for each <m>i \gt 0</m>, <m>\iExt^i_{\CAb}\left(\prod_\NN \underline{\ZZ}, N\right) = 0</m> for all <m>N \in \CAb_{\solid}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          This follows by combining <xref ref="lem-replace-bounded-with-P-solid"/> and <xref ref="cor-replace-prod-with-bounded-solid"/>.
+        </p>
+      </proof>
+    </corollary>
+    <p>
+      We will use a similar idea to identify some more soldifications later; see <xref ref="lem-identify-solidification-of-free"/>.
+    </p>
+  </subsection>
+  <subsection>
+    <title>From solid abelian groups to condensed abelian groups</title>
+    <p>
+      We now construct a functor from solid <m>\ZZ</m>-modules to solid objects in <m>\CAb</m>.
+    </p>
+    <lemma xml:id="lem-compare-hom-solid-con">
+      <statement>
+        In <m>\CAb</m>, for any at most countable index sets <m>I,J</m>, we have
+        <me>
+          \Hom_{\CAb}\left(\prod_I \underline{\ZZ}, \prod_J \underline{\ZZ}\right) = \prod_J \bigoplus_I \ZZ.
+        </me>
+      </statement>
+      <proof>
+        <p>
+          We immediately reduce to the case where <m>I = \NN</m> and <m>J</m> is a singleton; that is, we must show that
+          <me>
+            R\Hom_{\CAb}\left(\prod_\NN \underline{\ZZ}, \underline{\ZZ}\right) = \bigoplus_\NN \ZZ.
+          </me>
+          By <xref ref="cor-solidification-of-P"/>, we may replace <m>\prod_\NN \underline{\ZZ}</m> with <m>P^\solid</m>;
+          by adjunction, we may further replace <m>P^\solid</m> with <m>P</m>.
+          This leaves us with the statement of <xref ref="lem-Rhom-P"/>.
+        </p>
+      </proof>
+    </lemma>
+    <proposition xml:id="thm-solid-to-condensed">
+      <statement>
+        <p>
+          There is a fully faithful exact functor <m>\Mod_{\ZZ_\solid} \to \CAb</m> carrying <m>\ZZ_\solid</m> to <m>\underline{\ZZ}</m> and compatible with
+          all limits (notably countable products) and colimits.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By <xref ref="lem-compare-hom-solid-con"/>, we get a fully faithful functor <m>\ZZ_\solid \to \CAb</m> carrying <m>\prod_I \ZZ_\solid</m> to <m>\prod_I \underline{\ZZ}</m>.
+          Since <m>\prod_\NN \ZZ_\solid</m> is a compact generator of <m>\Mod_{\ZZ_\solid}</m>, we get the functor we want by forming a left Kan extension.
+        </p>
+      </proof>
+    </proposition>
+    <remark>
+      <p>
+        We note in passing that <xref ref="thm-solid-to-condensed"/> admits the following compatibility with solidification:
+        applying the solidification functor <m>\Mod_\ZZ \to \Mod_{\ZZ_\solid}</m> and then passing to <m>\CAb</m> gives the same result as 
+        passing from <m>\Mod_\ZZ</m> to <m>\CAb</m> (i.e., passing to discrete topological groups) and then solidifying in <m>\CAb</m>.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>A characterization of solid condensed abelian groups</title>
+    <p>
+      It still remains to identify the essential image of the functor from solid <m>\ZZ</m>-modules.
+      In one direction, it is easy to see that we get solid objects in <m>\CAb</m>.
+    </p>
+    <lemma xml:id="lem-solid-to-solid">
+      <statement>
+        The image of any <m>M \in \Mod_{\ZZ_\solid}</m> in <m>\CAb</m> is solid.
+      </statement>
+      <proof>
+        For <m>M = \prod_I \ZZ_\solid</m> this follows from <xref ref="lem-delta-pullback-on-Rhom"/> and <xref ref="prop-solid-category"/>.
+        Since <m>M</m> is a compact generator of <m>\Mod_{\ZZ_\solid}</m>, this is enough to deduce the full claim.
+      </proof>
+    </lemma>
+    <p>
+      To go in the other direction, we must calculate some more solidifications using a process similar to the computation of <m>P_\solid</m>.
+    </p>
+    <definition xml:id="def-construct-map-P-to-monoid">
+      <p>
+        For <m>S \in \Prof</m> infinite, we construct a morphism <m>g\colon P \to \ZZ[\underline{S}]</m> as follows.
+        Per <xref ref="rem-change-pro-system-to-sequential"/>, we may write <m>S</m> as a sequential inverse limit of finite sets with surjective transition maps:
+        <m>S = \varprojlim_{n \in \NN} S_n</m>.
+        We inductively choose subsets <m>T_n \subset S_n</m> and maps <m>i_n: T_n \to S</m> subject to the following conditions:
+        <ul>
+          <li>
+            Each composition <m>T_n \stackrel{i_n}{\to} S \to S_n</m> coincides with the inclusion <m>T_n \subseteq S_n</m>.
+          </li>
+          <li>
+            Each <m>T_n</m> is the complement of the images of the maps <m>T_m \stackrel{i_m}{\to} S \to S_n</m> for all <m>m \lt n</m>.
+            In particular, <m>T_1 = S_1</m>.
+          </li>
+        </ul>
+        Choose a bijection <m>\NN \cong T_1 \sqcup T_2 \sqcup \cdots</m>.
+        We then define the map <m>g\colon P \to \ZZ[\underline{S}]</m> by mapping each <m>T_n</m> via <m>i_m</m> minus the map given by taking <m>T_n \to S_{n-1}</m>
+        and then collating the maps <m>i_m</m> for <m>m \lt n</m>. (That is, each element of <m>S_{n-1}</m> projects to <m>T_m</m> for a unique choice of <m>m</m>,
+        and then we apply <m>i_m</m> for that choice of <m>m</m>.)
+      </p>
+    </definition>
+    <remark>
+      <p>
+        For <m>S = \NN_\infty</m>, in <xref ref="def-construct-map-P-to-monoid"/> we may take <m>T_n = \{n\}</m>.
+        In this case, the resulting map <m>g</m> is nothing but the splitting of <m>\ZZ[\underline{\NN_\infty}] \to P</m> described in <xref ref="def-internally-projective-object"/>.
+      </p>
+    </remark>
+        <p>
+          We next follow the strategy of <xref ref="lem-diagram-p-to-bd"/>,
+          except with no analogue of replacing <m>\prod_\NN \underline{\ZZ}</m> with <m>\prod_\NN^{\bd} \underline{\ZZ}</m>
+          because <m>\ZZ[\underline{S}]</m> is already a colimit over compact subspaces (<xref ref="exa-module-ring-topological-space"/>).
+        </p>
+    <lemma xml:id="lem-identify-solidification-of-free">
+      <statement>
+        <p>
+          For any infinite <m>S \in \Prof</m> and any morphism <m>g\colon P \to \ZZ[\underline{S}]</m>
+          constructed as in <xref ref="def-construct-map-P-to-monoid"/>, the induced map <m>g_\solid: P_\solid \cong \ZZ[\underline{S}]_\solid</m> is an isomorphism.
+          Consequently, by <xref ref="cor-solidification-of-P"/> we obtain an isomorphism <m>\ZZ[\underline{S}]_\solid \cong \prod_\NN \underline{\ZZ}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We construct a diagram
+          <figure>
+            <image>
+              <latex-image>
+                \xymatrix{
+                  P \otimes \ZZ[\underline{S}] \ar[r] \ar^{\Delta \otimes \id}[d] &amp; P \ar^{g}[d] \\
+                  P \otimes \ZZ[\underline{S}] \ar[r] &amp; \ZZ[\underline{S}]
+                }
+              </latex-image>
+            </image>
+          </figure>
+          in which the bottom row is a split surjection. The bottom row corresponds to the null sequence of maps <m>\ZZ[\underline{S}] \to \ZZ[\underline{S}]</m>
+          obtained by starting with the identity and successively subtracting off the compositions <m>S \to S_n \to S</m>
+          (where the second map is the collated map from earlier).
+          Then we argue as in <xref ref="lem-diagram-p-to-bd"/> to show that the lower composition factors through <m>g</m>;
+          the left column becomes an isomorphism after solidifying; and tracing a loop clockwise from <m>P_\solid</m> in the solidified diagram yields an isomorphism.
+        </p>
+      </proof>
+    </lemma>
+    <theorem xml:id="prop-solid-vs-presumptively-solid">
+      <statement>
+        <p>
+          The object <m>M \in \CAb</m> is solid if and only if it belongs to the essential image of the functor <m>\Mod_{\ZZ_\solid} \to \CAb</m>
+          described in <xref ref="thm-solid-to-condensed"/>.
+          In other words, we have an equivalence <m>\Mod_{\ZZ_\solid} \cong \CAb_\solid</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By <xref ref="lem-solid-to-solid"/>, any object in the essential image is solid.
+          Conversely, by <xref ref="lem-identify-solidification-of-free"/>,
+          <m>\CAb_\solid</m> admits <m>\prod_\NN \underline{\ZZ}</m> as a single compact generator,
+          so we can identify any object as a colimit of a diagram arising from <m>\Mod_{\ZZ_\solid}</m>.
+        </p>
+      </proof>
+    </theorem>
+    <remark>
+      <p>
+        <xref ref="prop-solid-vs-presumptively-solid"/> has the effect that we can replace the study of <m>\CAb_\solid</m>
+        with the equivalent but conceptually simpler category <m>\Mod_{\ZZ_\solid}</m>, whose definition contains no topology.
+        One can also go in the opposite direction, as in the following.
+      </p>
+    </remark>
+    <remark xml:id="rem-hom-from-torsion-vanishes-condensed">
+      <p>
+        We give an alternate proof of <xref ref="lem-hom-from-torsion-vanishes"/> in the setting of condensed abelian groups.
+        In this language, the statement is that for <m>Q</m> a torsion <m>\ZZ</m>-module,
+        <m>\iHom_{\CAb}(\underline{\QQ}, \underline{ZZ}) = 0</m>. To prove this, evaluate at <m>S \in \Prof</m>:
+        <me>
+          \iHom_{\CAb}(\underline{Q}, \underline{\ZZ})(S) = \Hom_{\CAb}(\underline{Q} \otimes \ZZ[\underline{S}], \underline{\ZZ})
+          = \Hom_{\CAb}(\underline{Q}, \iHom_{\CAb}(\ZZ[\underline{S}], \underline{\ZZ})).
+        </me>
+        In this expression, <m>\iHom_{\CAb}(\ZZ[\underline{S}], \underline{\ZZ})</m> is represented by the locally compact topological abelian group
+        consisting of the continuous (i.e., locally constant) functions <m>S \to \ZZ</m>, and we can interpret the outer <m>\Hom</m> in the category of topological abelian groups.
+        But even at the level of underlying abelian groups this Hom is zero because <m>Q</m> cannot admit a nonzero map to any torsion-free abelian group.
+      </p>
+    </remark>
+  </subsection>
+
+    <remark>
+    </remark>
+    <p>
+      Since we already know from <xref ref="lem-delta-pullback-on-Rhom"/> and <xref ref="prop-solid-category"/>
+      that <m>\prod_\NN \underline{\ZZ} \in \CAb_\solid</m>,
+      the key remaining point in constructing a functor <m>\Mod_{\ZZ_\solid} \to \CAb_\solid</m> is to match up endomorphisms into and especially
+      out of infinite products of <m>\ZZ_{\solid}</m> versus <m>\underline{\ZZ}</m>.
+      We study these in <m>\CAb</m> using the object <m>P</m> over which we have already established some control;
+      in the process, we will also identify its solidification.
+    </p>
+    <remark xml:id="rem-compare-homs-out-of-product-solid">
+      <p>
+        In order to match up <m>\prod_\NN \ZZ_\solid \in \Mod_{\ZZ_\solid}</m> with <m>\prod_n \underline{\ZZ} \in \CAb_\solid</m>, we need to know that
+        <me>
+          \Hom_{\CAb}\left( \prod_\NN \underline{\ZZ}, \underline{\ZZ} \right) = \bigoplus_\NN \ZZ.
+        </me>
+        There is an obvious map from right to left: each generator of the direct sum corresponds to the projection onto a single coordinate.
+        However, we also obtain a map in the other direction by restricting along the coordinate map <m>c\colon P \to \prod_\NN \underline{\ZZ}</m>
+        (<xref ref="rem-coord-map"/>) and then interpreting <m>\Hom_{\CAb}(P, \underline{\ZZ})</m> as the 
+        null sequences in <m>\ZZ</m>, which is the same thing as the direct sum because <m>\ZZ</m> carries the discrete topology.
+      </p>
+      <p>
+        It is clear that the composition from right to left to right is an isomorphism, but not so in the other direction:
+        we do not have any formal control of morphisms out of a product in <m>\CAb</m> like we built into the construction of <m>\Mod_{\ZZ_{\solid}}</m>.
+        To study the composition, we insert an additional term between <m>P</m> and <m>\prod_\NN \underline{\ZZ}</m> and use two different arguments
+        to take the two steps across this intermediate term.
+        This will amount to showing that <m>P</m> is <q>dense</q> in <m>\bigoplus_\NN \underline{\ZZ}</m>, 
+        or in more precise terms, the map <m>c_\solid\colon P_\solid \to \prod_\NN \underline{\ZZ}</m> is an isomorphism (<xref ref="cor-solidification-of-P"/>).
+      </p>
+      <p>
+        Note that both <m>P</m> and <m>\bigoplus_\NN \underline{\ZZ}</m> are sequential topological abelian groups,
+        so we can interpret <m>c</m> as an inclusion in that category instead. The same will be true of the intermediate object we
+        insert between them in <xref ref="def-strict-factorization"/>.
+      </p>
+    </remark>
+    <p>
+      Unfortunately, it is not straightforward to compare <m>P</m> with <m>\prod_\NN \ZZ_\solid</m>
+      due to a subtle topological point which we now discuss and work around.
+    </p>
+    <lemma xml:id="lem-functor-sequence-space">
+      <statement>
+        <p>
+          Identify <m>P \in \CAb</m> with <m>\ker(\ZZ[\underline{\NN_\infty}] \to \ZZ[\underline{\infty}])</m>
+          and the underlying set of <m>P</m> with <m>\ker(\ZZ[\NN_\infty] \to \ZZ[\infty]) \cong \ZZ[\NN]</m>.
+          Then for <m>S \in \Prof</m>, <m>P(S) = \Cts(S, \ker(\ZZ[\NN_\infty] \to \ZZ[\infty]))</m> 
+          consists of functions <m>f \colon S \to \ZZ[\NN]</m> with the following properties.
+          <ol>
+            <li>
+              The image of <m>f</m> belongs to the subset <m>\{\sum_n a_n[n] \in \ZZ[\NN]\colon \sum_n |a_n| \leq c\}</m> for some <m>c \in \NN</m>.
+            </li>
+            <li>
+              Every level set of <m>f</m> (i.e., the preimage of a point) is a closed subset of <m>S</m>.
+            </li>
+            <li>
+              For any <m>n_0 \in \NN</m>, <m>f</m> assumes only finitely many values not contained in <m>\ZZ[n_0 + \NN]</m>.
+            </li>
+          </ol>
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Left to the reader.
+        </p>
+      </proof>
+    </lemma>
+   <lemma>
+      <statement>
+        <p>
+          Let <m>\ZZ[\hat{x}]</m> be another copy of <m>P</m> viewed as an algebra over <m>\ZZ[x]</m> via <m>x^n \mapsto [n]</m>.
+          Then
+          <me>
+            \Hom_{\CAb}(\ZZ[\hat{x}], \ZZ[\hat{q}]) = \bigcup_{n \gt 0} \varprojlim_m \left( \ZZ[q]/(q^m)_{\leq n} [x] \right)
+          </me>
+          where the subscript <m>\leq n</m> means consider sums <m>\sum_j a_j q^j</m> with <m>\sum_j |a_j| \leq n</m>
+          (that is, we take the subring of <m>\ZZ[q]/(q^m)[x]</m> in which the coefficient of each power of <m>x</m> satisfies this condition).
+          Similarly, for <m>S = \varprojlim_i S_i \in \Prof</m>,
+          <me>
+            \Hom_{\CAb}(P, P[\underline{S}]) = \bigcup_{n \gt 0} \varprojlim_{m, i} \left( \ZZ[q]/(q^m)[S_i]_{\leq n} [x] \right)
+          </me>
+          where the subscript <m>\leq n</m> means consider sums <m>\sum_{j,s} a_j q^j[s]</m> with <m>\sum_{j,s} |a_{j,s}| \leq n</m>
+          (for the coefficient of each power of <m>x</m>).
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Left to the reader.
+        </p>
+      </proof>
+    </lemma>
+ 
+     <remark>
+      <p>
+        As a corollary of the proof of <xref ref="prop-solid-vs-presumptively-solid"/>, we note that the operation <m>\otimes</m> on <m>\CAb</m>
+        preserves <m>\CAb_{\solid}</m>, so the solid tensor product on solid objects just reduces to the ordinary tensor product. Namely,
+        it suffices to check that <m>\ZZ[\underline{S}}_\solid \otimes \ZZ[\underline{T}]_\solid \to \ZZ[\underline{S \otimes T}]_\solid</m> 
+        is an isomorphism whenever
+        <m>S, T \in \Prof</m>. For this, we may assume that <m>S</m> and <m>T</m> are both infinite,
+        then note that the construction of the isomorphisms <m>\ZZ[\underline{S}]_\solid \cong \prod_\NN \underline{\ZZ}</m>,
+        <m>\ZZ[\underline{T}]_\solid \cong \prod_\NN \underline{\ZZ}</m> in <xref ref="lem-identify-solidification-of-free"/> also yields
+        an isomorphism <m>\ZZ[\underline{S \times T}]_\solid \cong \prod_{\NN \times \NN} \underline{\ZZ}</m> in such a way that the map 
+        <m>\ZZ[\underline{S}}_\solid \otimes \ZZ[\underline{T}]_\solid \to \ZZ[\underline{S \otimes T}]_\solid</m> corresponds to the canonical identification
+        <me>
+          \prod_\NN \underline{\ZZ} \otimes \prod_\NN \underline{\ZZ} \cong \prod_{\NN \times \NN} 
+        </me>
+      </p>
+    </remark>
+    <lemma xml:id="lem-separate-sum-by-order-of-k">
+      <statement>
+        <p>
+          Let <m>(s_n)_{n \in \NN}</m> be a sequence of integers such that <m>|s_n| = O(n^k)</m> for some positive integer <m>k</m>.
+          (Here the big-O notation means that there exists <m>c \gt 0</m> such that <m>|s_n| \leq c(n+1)^k</m> for all <m>n</m>.)
+          Then there exist integers <m>t_{i,j}</m> for <m>i,j \geq 0</m> and a constant <m>c' \gt 0</m> such that:
+          <ul>
+            <li>
+              <m>|t_{i,j}| \leq c'(j+1)^{k-1}</m> for all <m>i,j</m>;
+            </li>
+            <li>
+              <m>s_n = \sum_{i=0}^n t_{i,n-i}</m> for all <m>n</m>.
+            </li>
+          </ul>
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The formula
+          <me>
+            t_{i,j} := \left \lfloor \frac{s_{i+j} + j}{i+j+1} \right\rfloor
+          </me>
+          has the desired effect.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-map-to-universal-liquefaction">
+      <statement>
+        <p>
+          The map <m>A_0^{\triangleright} \to A^{\triangleright}</m> induces a surjection <m>(A_0^{\triangleright})_{\liquid q} \to A^{\triangleright}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Per <xref ref="eq-universal-liquefaction"/>, it suffices to check that for <m>k \gt 0</m> and <m>c \gt 0</m>, an arbitrary series 
+          <m>s = \sum_{m \in \NN} s_{m} q^m</m> with <m>|s_{m}| \leq c(m+1)^k</m> for all <m>m</m> belongs to the image of <m>(A_0^{\triangleright})_{\liquid q}</m>.
+          We proceed by induction on <m>k</m>. In the base case <m>k=0</m>,
+          <me>
+            s = \sum_{m=0}^\infty (s_{2m} q^m + s_{2m+1}q^{m+1}) q^m
+          </me>
+          and the coefficients of <m>q^m</m> form a null sequence in <m>A_0^{\triangleright}</m>.
+          For the induction step, define <m>t_{i,j}</m> according to <xref ref="lem-separate-sum-by-order-of-k"/> and
+          set <m>t_i := \sum_{j=0}^\infty t_{i,j} q^j</m>, so that
+          <me>
+            s = \sum_{i=0}^\infty t_i q^i
+          </me>;
+          then each <m>t_i</m> belongs to <m>(A_0^{\triangleright})_{\liquid q}</m> by the induction hypothesis,
+          but the <m>t_i</m> do not form a null sequence.
+          However, as in the base case we may rewrite this sum as
+          <me>
+            s = \sum_{i=0}^\infty (t_{2i} q^i + t_{2m+1}q^{i+1}) q^i
+          </me>
+          and now the coefficients of <m>q^i</m> do form a null sequence in <m>(A_0^{\triangleright})_{\liquid q}</m>.
+        </p>
+      </proof>
+    </lemma>
+
+    <remark>
+      <p>
+        By writing <m>\Ext^1_{\ZZ_\solid}(A_{\solid},\ZZ_{\solid})</m> as <m>\Hom_{\ZZ_\solid}(\ZZ_\solid, \iExt^1_{\ZZ_\solid}(A_\solid, \ZZ_\solid))</m>
+        and then invoking <xref ref="rem-solid-to-ordinary-is-faithful"/>, we may see that 
+        <m>\Ext^1_{\ZZ_\solid}(A_{\solid},\ZZ_{\solid}) = 0</m> if and only if <m>\iExt^1_{\ZZ_\solid}(A_\solid, \ZZ_\solid) = 0</m>.
+        That is, we may state <xref ref="prop-Whitehead-for-solid"/> in terms of the vanishing of the external Ext instead of the internal one.
+      </p>
+    </remark>
+   <p>
+      In practice, we will typically think of solid abelian groups in a third manner, following <xref ref="rem-compare-solid-to-top-ab-group"/>.
+    </p>
+    <definition xml:id="def-solid-topological-groups">
+      <p>
+        It follows from <xref ref="prop-solid-vs-presumptively-solid"/> that the functor <m>\Ab_\solid \to \CAb_\solid</m> factors through the category <m>\TopAb^{\seq}</m>
+        of sequential topological abelian groups: 
+        this is evident for the generator <m>\prod_\NN \ZZ_\solid</m> (which corresponds to <m>\prod_\NN \ZZ</m> for the discrete topology on <m>\NN</m>)
+        and then follows formally by taking colimits. Let <m>\TopAb_\solid</m> denote the resulting full subcategory of <m>\TopAb</m>;
+        it is equivalent to both <m>\Ab_\solid</m> and <m>\CAb_\solid</m>; however, the tensor product <m>\otimes_\solid</m> on <m>\TopAb_\solid</m> 
+        is not inherited from a tensor product on <m>\TopAb</m>.
+      </p>
+    </definition>
+     <example>
+      <p>
+        If <m>R</m> carries a submultiplicative seminorm <m>|\bullet|</m>, then we may define the <term>Gauss seminorm</term> on <m>R[T]</m> relative to the norm on <m>R</m>
+        taking <m>\sum_i a_i T^i</m> to <m>\max_i \{|a_i|\}</m>. This is again submultiplicative; if <m>|\bullet|</m> is multiplicative, then the Gauss seminorm is also multiplicative
+        (this amounts to a version of Gauss's lemma on factorization of integer polynomials, hence the terminology).
+      </p>
+      <p>
+        More generally, for <m>\rho \geq 0</m>, we define the <term><m>\rho</m>-Gauss seminorm</term> on <m>R[T]</m> relative to the seminorm on <m>R</m>
+        to take <m>\sum_i a_i T^i</m> to <m>\max_i \{|a_i| \rho^i\}</m>. This is again submultiplicative, and even multiplicative if the original seminorm is multiplicative.
+      </p>
+      <p>
+        More evidently, if <m>\rho \gt 0</m> and we start with a norm on <m>R</m>, then the <m>\rho</m>-Gauss seminorm on <m>R[T]</m> is a norm, so we also refer to it as the
+        <term><m>\rho</m>-Gauss norm</term> on <m>R[T]</m> (or the <term>Gauss norm</term> if <m>\rho = 1</m>).
+      </p>
+    </example>
+    <lemma>
+      <statement>
+        <p>
+          Let <m>R</m> be a ring equipped with a multiplicative seminorm <m>|\bullet|</m>. Then for any <m>\rho \geq 0</m>, the <m>\rho</m>-Gauss seminorm <m>|\bullet|_\rho</m> on <m>R[T]</m>
+          relative to <m>|\bullet|</m> is again multiplicative.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Our goal is to verify that <m>|xy|_\rho = |x|_\rho|y|_\rho</m> for all <m>x,y \in R[T]</m>; there is nothing to check unless <m>|x|_\rho, |y|_\rho \gt 0</m>.
+          In that case, if we write <m>x = \sum_i x_i T^i</m>, <m>y = \sum_j x_j T^j</m>, then there is a maximal index <m>i_0</m> for which <m>|x_{i_0}| \rho^{i_0} = |x|_\rho</m>
+          and a maximal index <m>j_0</m> for which <m>|y_{j_0}| \rho^{j_0} = |y|_\rho</m>. 
+          Now set <m>k := i_0 + j_0</m> and write the coefficient of <m>T^{i_0+j_0}</m> in <m>xy</m> as the sum of <m>x_i y_j</m> over all pairs of nonnegative integers <m>i,j</m>
+          with <m>i+j=k</m>.
+          <ul>
+            <li>
+              If <m>j \gt j_0</m>, then <m>|x_i| \rho^i \leq |x|_\rho</m>, <m>|y_j| \rho^j \lt |y|_\rho</m>
+              and so <m>|x_i y_j| \rho^k \lt |x|_\rho |y|_\rho</m>.
+            </li>
+            <li>
+              If <m>i \gt i_0</m>, then <m>|x_i| \rho^i \lt |x|_\rho</m>, <m>|y_j| \rho^j \leq |y|_\rho</m>
+              and so <m>|x_i y_j| \rho^k \lt |x|_\rho |y|_\rho</m>.
+            </li>
+            <li>
+              This leaves only the case <m>i=i_0, j = j_0</m>, in which case <m>|x_i| \rho^i = |x|_\rho</m>, <m>|y_j| \rho^j = |y|_\rho</m>
+              and so <m>|x_i y_j| \rho^k = |x|_\rho |y|_\rho</m>.
+            </li>
+          </ul>
+          as <m>x_{i_0} y_{j_0}</m> plus
+          a complementary term <m>z</m> and we have
+          <me>
+            |x_{i_0} y_{j_0}| \rho^{i_0+j_0} = |x|_\rho |y|_\rho.
+          </me>
+          Meanwhile, <m>z</m>
+        </p>
+      </proof>
+    </lemma>
+     <remark>
+      <p>
+        If <m>A</m> is not sheafy, then <xref ref="lem-sheafy-exact-sequence"/> remains valid as a statement in the derived category of <m>A^{\triangleright}</m>
+        if we give all of the terms their natural derived structure per <xref ref="rem-rational-subspace-derived"/>,
+        which is to say we view the other rings in the sequence as animated condensed rings.
+        The same holds if we allow <m>A</m> itself to be an animated condensed ring.
+      </p>
+    </remark>    <definition>
+      <p>
+        For <m>A</m> a complete Huber pair, the <term>structure presheaf</term> on <m>\Spa A</m> is defined on rational subspaces by
+        <me>
+          U(\tfrac{f_1,\dots,f_n}{g}) \mapsto A^{\triangleright}\left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle.
+        </me>
+        When this presheaf is a sheaf, we may view <m>\Spa A</m> as a locally ringed space,
+        and then define a <term>adic space</term> to be a locally ringed space covered by open subspaces of this form.
+      </p>
+      <p>
+        One serious complication in Huber's theory is that the structure presheaf is not always a sheaf;
+        when this occurs we say that <m>A</m> is <term>sheafy</term>.
+        (This turns out to depend only on <m>A^{\triangleright}</m>.)
+        The question of when a Huber pair is sheafy is quite subtle;
+        see <xref ref="bib-Hansen-Kedlaya"/> for a thorough discussion.
+      </p>
+    </definition>
+
+       <p>
+        
+        A corresponding issue in the context of solid analytic rings is that the quotient by the ideal <m>(f_1- gT_1, \dots, f_n - gT_n)</m> may not equal the
+        <em>derived</em> quotient. The latter is represented by the Koszul complex associated to the sequence <m>f_1  - gT_1, \dots, f_n - gT_n</m>; when <m>n=1</m>
+        this is just the two-term complex
+        <me>
+          A^{\triangleright}[T_1] \stackrel{\times f_1 - g T_1}{\to} A^{\triangleright}[T_1]
+        </me>
+        with the second term in degree 0.
+      </p>
+      <p>
+        To keep the exposition simple, we will focus on <em>sheafy</em> solid analytic rings, for which these issues do not occur
+        (<xref ref="def-sheafy-analytic"/>). In the solid setting one can finesse the issue by replacing animated rings with <term>animated</term> analytic rings,
+        for which quotienting by the ideal <m>(f_1- gT_1, \dots, f_n - gT_n)</m> preserves the derived structure.
+      </p>
+    <corollary xml:id="cor-exact-sequence-sheafy-persistence">
+      <statement>
+        <p>
+          The sequences <xref ref="eq-represent-localization-as-quotient"/>, <xref ref="eq-represent-localization-as-quotient2"/>,
+          and <xref ref="eq-sheafy-exact-sequence"/> are exact whenever <m>f,g \in A^{\triangleright}(*)</m> generate the unit ideal.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Using <xref ref="thm-solid-sheafy"/>, we may reduce the claim to the situation where either <m>f/g</m> or <m>g/f</m> is a power-bounded element of <m>A^{\triangleright}</m>.
+          In those cases we can deduce the claims directly from <xref ref="lem-sheafy-exact-sequence"/>.
+        </p>
+      </proof>
+    </corollary>
+
+    <lemma>
+      <statement>
+        <p>
+          A morphism <m>A \to B</m> of analytic rings can be specified by giving:
+          <ul>
+            <li>
+              a morphism <m>A^{\triangleright} \to B^{\triangleright}</m> of condensed rings with <m>B^{\triangleright} \in \Mod_A</m>;
+            </li>
+            <li>
+              for each <m>S \in \Prof</m>, a morphism <m>A[\underline{S}] \to B[\underline{S}]</m> functorial in <m>S</m>;
+            </li>
+          </ul>
+          such that for each morphism <m>\underline{S} \to A^{\triangleright}</m> in <m>\CAb</m>, we have a commuting diagram
+          <figure>
+            <image>
+              <latex-image>
+                \xymatrix{
+                  A[\underline{S}] \ar[r] \ar[d] &amp; A^{\triangleright} \ar[d] \\
+                  B[\underline{S}] \ar[r] &amp; B^{\triangleright}
+                }
+              </latex-image>
+            </image>
+          </figure>
+          where the rows are induced by <m>\underline{S} \to A^{\triangleright}</m>
+          and <m>\underline{S} \to A^{\triangleright} \to B^{\triangleright}</m> by adjunction.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We must check that for every <m>M \in \Mod_B</m>, its restriction of scalars along <m>A^{\triangleright} \to B^{\triangleright}</m>
+          belongs to <m>A</m>; it suffices to check this for <m>B[\underline{S}]</m> with <m>S \in \Prof</m> as every object in <m>\Mod_S</m>
+          is a colimit of these.
+        </p>
+        <p>
+          Rest of the proof to follow.
+        </p>
+      </proof>
+    </lemma>
+    <definition>
+      <p>
+        For <m>A \in \AnRing</m> and <m>f_1,\dots,f_n,g \in A^{\triangleright}(*)</m>, define the <term>rational localization</term>
+        <m>A \to A \left \langle \frac{f_1,\dots,f_n}{g} \right\rangle</m> by analogy with <xref ref="prop-solid-rational-localization"/>:
+        form <m>A[T_1,\dots,T_n]/(f_1 - g T_1,\dots,f_n - g T_n)</m> and then liquefy with respect to <m>T_1,\dots,T_n</m>.
+        When <m>f_1,\dots,f_n,g</m> generate the unit ideal, this construction is again intrinsically underived
+        (as in <xref ref="rem-localization-is-underived"/>).
+      </p>
+    </definition>
+    <p>
+      Staying in the solid setting for the moment, let us consider a variant of the previous construction.
+    </p>
+    <lemma xml:id="lem-Beauville-Laszlo-exact-seq">
+      <statement>
+        <p>
+          Let <m>A</m> be a solid analytic ring. Then the sequences
+          <md>
+            <mrow>
+              0 \to A[T] \to A\langle T \rangle \oplus A((T^{-1})) \to A \langle T \rangle\llbracket T^{-1} \rrbracket \rangle \to 0
+            </mrow>
+            <mrow>
+              0 \to A[T^{-1}] \to A\langle T \rangle[T^{-1}] \oplus A\llbracket T^{-1}\rrbracket \to A \langle T \rangle\llbracket T^{-1} \rrbracket \rangle \to 0
+            </mrow>
+            <mrow>
+              0 to A[T^{\pm}] \to A\langle T \rangle[T^{-1}] \oplus A((T^{-1})) \to A \langle T \rangle\llbracket T^{-1} \rrbracket \rangle \to 0
+            </mrow>
+          </md>
+          are exact.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Start with the split exact sequence
+          <me>
+            0 \to A \to A \langle T \rangle \oplus A((T^{-1})) \to A\langle T \rangle \llbracket T^{-1} \rrbracket \to 0.
+          </me>
+          and take solid tensor products with <m>A[T], A[T^{-1}], A[T^{\pm}]</m> over <m>A</m>.
+        </p>
+      </proof>
+    </lemma>
+      <statement>
+        <p>
+          Any composition of weak rational localizations is again a weak rational localization.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The first point is that if <m>A \to B \to C</m> is a sequence of rational localizations, 
+          then the second localization <m>B \to C</m> can always be described using parameters
+          in <m>A^{\triangleright}</m> rather than <m>B^{\triangleright}</m>. Namely, there is no change if we perturb the <m>f_i/g</m> by an element of <m>B^{\circ \circ}</m>,
+          so we can at least put the parameters in <m>A^{\triangleright}\left[\tfrac{1}{g} \right]</m>. We can now clear denominators by multiplying through by a suitable power of <m>g</m>.
+        </p>
+        <p>
+          Now the first localization is defined by some parameters <m>f_1,\dots,f_n,g \in A^{\triangleright}</m>, 
+          and the second is defined by some parameters <m>f'_1,\dots,f'_m,g' \in A^{\triangleright}</m>. The composition is then defined by the parameters
+          <me>
+            f_1g', \dots, f_ng', f'_1g, \dots,f'_m g, gg'
+          </me>.
+        </p>
+      </proof>
+          the following sequences are exact:
+          <mdn>
+            <mrow xml:id="eq-represent-localization-as-quotient">
+              0 \to A^{\triangleright}[T]_{\liquid T} \stackrel{\times f-gT}{\to} A^{\triangleright}[T]_{\liquid T} \to  A\left\langle \tfrac{f}{g} \right\rangle^{\triangleright} \to 0
+            </mrow>
+            <mrow xml:id="eq-represent-localization-as-quotient2">
+              0 \to A^{\triangleright}[T^{\pm}]_{\liquid T^{\pm}} \stackrel{\times f-gT}{\to} A^{\triangleright}[T^{\pm}]_{\liquid T^{\pm}} \to  A\left\langle \tfrac{f}{g},\tfrac{g}{f} \right\rangle^{\triangleright} \to 0
+            </mrow>
+    <definition>
+      <p>
+        For <m>A</m> an analytic ring, a morphism <m>f\colon P \to Q</m> between compact objects in <m>\calD(\Mod_A)</m> is <term>trace class</term> if
+        there exists a morphism <m>g \colon A \to P^\vee \otimes^L_A Q</m> for which <m>f</m> equals the composition
+        <me>
+          P \stackrel{1 \otimes g}{\to} P \otimes^L_A P^\vee \otimes^L_A Q \to Q
+        </me>
+        in which the second map is induced by the contraction <m>P \otimes^L_A P^\vee \to A</m>.
+      </p>
+      <p>
+        An object of <m>\calD(\Mod_A)</m> is <term>basic nuclear</term> if it can be written as a colimit
+        <me>
+          P_0 \to P_1 \to \cdots
+        </me>
+        of trace class morphisms between compact objects. Any such object is nuclear, and conversely every nuclear object is a filtered colimit of basic
+        nuclear objects (<xref ref="bib-Clausen-Scholze-analytic"/>, Proposition 13.13).
+      </p>
+    </definition>
+        <p>
+          By <xref ref="thm-pseudocoherent-descent"/>, the complex <m>M_1 \oplus M_2 \to M_{12}</m> of <m>A^{\triangleright}</m>-modules is pseudocoherent;
+          it is visibly concentrated in degrees <m>[0,1]</m>. Using <xref ref="lem-covering-by-local"/>, we may further deduce that the cohomology in degree <m>0</m> vanishes,
+          so we get a complex associated to an <m>A^{\triangleright}</m>-module <m>M</m> placed in degree <m>0</m>.
+        </p>
+        <p>
+          Since <m>A</m> is sheafy, by <xref ref="prop-sheafy-by-localizations-are-Huber"/> taking a rational localization of <m>A</m> commutes with passage to the associated
+          solid analytic ring <m>\underline{A}</m>. Using <xref ref="thm-sheaf-qcoh-for-adic"/>,
+          we can interpret a vector bundle on <m>\Spa A</m> as giving rise to a complex in <m>\calD(\Mod_{\underline{A}})</m>
+          which locally can be represented by a finite projective module placed in degree <m>0</m>.
+          We need to show that this implies that the original complex can also be so represented.
+        </p>
+        <p>
+          Our original complex, when truncated up to degree <m>-1</m> or down to degree <m>1</m>,
+          becomes a complex that base extends to zero, and so by <xref ref="thm-sheaf-qcoh-for-adic"/> is isomorphic to the zero complex.
+          We may thus reduce to the case where we start with a single module <m>\underline{M} \in \Mod_{\underline{A}}</m> placed in degree <m>0</m> whose base extensions are 
+          represented by finite projective modules placed in degree <m>0</m>, and we wish to deduce that
+          <m>\underline{M}</m> is itself represented by a finite projective <m>A^{\triangleright}</m>-module. 
+          Beware that we do not yet know that <m>\underline{M}</m> is represented by an <m>A^{\triangleright}</m>-module <m>M</m>; we will only infer this in the next step.
+        </p>
+        <p>
+          Since we know that <m>\underline{M} \otimes_{\underline{A}}^L \underline{A_i}^{\triangleright}</m> is concentrated in degree <m>0</m>, we have an exact sequence
+          <men xml:id="eq-M-exact-sequence">
+            0 \to \underline{M} \to \underline{M} \otimes_{\underline{A}} \underline{A_1}^{\triangleright} \oplus \underline{M} \otimes_{\underline{A}} \underline{A_2}^{\triangleright} \to M \otimes_{\underline{A}} \underline{A_{12}}^{\triangleright} \to 0
+          </men>
+          in which every term other than <m>\underline{M}</m> is represented by a topological <m>A^{\triangleright}</m>-module 
+          (namely a finite projective module over some <m>A_i^{\triangleright}</m>).
+          The same then follows for <m>\underline{M}</m> because kernels of topological groups are preserved by the passage to condensed groups;
+          that is, we now can interpret <m>\underline{M}</m> as being represented by a topological <m>A^{\triangleright}</m>-module <m>M</m>.
+        </p>
+        <p>
+          We next verify that we can choose a morphism <m>F \to M</m> from a finite free <m>A^{\triangleright}</m>-module <m>F</m>
+          which induces a surjection 
+          <m>\underline{F} \otimes_{\underline{A}} \underline{A_i}^{\triangleright} \to \underline{M} \otimes_{\underline{A}} \underline{A_i}^{\triangleright}</m> 
+          for <m>i=1,2</m>;
+          this would be automatic if the tensor products in <xref ref="eq-M-exact-sequence"/> were purely algebraic, but as it stands some argument is needed.
+          Since we are now talking about Huber rings rather than condensed rings, we can at least say that the algebraic tensor product 
+          <m>M \otimes_{A^{\triangleright}} A_i^{\triangleright}</m>
+          has dense image in the underlying topological module of <m>\underline{M} \otimes_{\underline{A}} \underline{A}_i^{\triangleright}</m>.
+          We may thus deduce the existence of the desired morphism from <xref ref="lem-approximate-basis"/>.
+        </p>
+        <p>
+          If we now view <m>\underline{F} \to \underline{M}</m> as a two-term complex in <m>\calD(\Mod_{\underline{A}})</m> with <m>\underline{M}</m> placed in degree <m>0</m>,
+          its base extension to <m>\calD(\Mod_{\underline{A_i}})</m> has vanishing cohomology in degree <m>0</m>.
+          By <xref ref="thm-sheaf-qcoh-for-adic"/> again, <m>\underline{F} \to \underline{M}</m> itself has vanishing cohomology in degree <m>0</m>, 
+          meaning that <m>\underline{F} \to \underline{M}</m> is surjective in <m>\Mod_{\underline{A}}</m>.
+          This in turn implies that <m>F \to M</m> is surjective, so <m>M</m> is a finitely generated <m>A^{\triangleright}</m>-module.
+        </p>
+        <p>
+          By <xref ref="thm-sheaf-qcoh-for-adic"/> again, for any <m>N \in \Mod_{\underline{A}}</m>, <m>\iExt^1_{\underline{A}}(\underline{M}, N) = 0</m>;
+          consequently, <m>\underline{M}</m> is projective in <m>\Mod_{\underline{A}}</m>.
+          While this does not itself imply that <m>M</m> is projective as an <m>A^{\triangleright}</m>-module,
+          we do have a surjection <m>\underline{F} \to \underline{M}</m> in <m>\Mod_{\underline{A}}</m> which we can now split;
+          this implies that <m>F \to M</m> is split, and hence that <m>M</m> is a projective <m>A^{\triangleright}</m>-module.
+        </p>
+    <lemma xml:id="lem-approximate-basis">
+      <statement>
+        <p>
+          Let <m>A</m> be a complete Huber ring. Let <m>M</m> be a finite projective <m>A</m>-module, topologized as a quotient of some finite free <m>A</m>-module
+          (note that this topology is independent of the choice). Let <m>S</m> be a subset of <m>M</m> whose accumulation points include a set of <m>A</m>-module generators of <m>M</m>.
+          Then <m>S</m> generates <m>M</m> as an <m>A</m>-module; in particular, it contains a finite subset which generates <m>M</m> as an <m>A</m>-module.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Since <m>M</m> is a finite projective <m>A</m>-module, we can write it as a summand of a finite free module <m>F \cong M \oplus M'</m>.
+          By adding to <m>S</m> a finite set of <m>A</m>-module generators of <m>M'</m>, we may reduce to the case <m>M = F</m>.
+        </p>
+        <p>
+          We thus assume hereafter that <m>M</m> is free on the basis <m>e_1,\dots,e_n</m>. By hypothesis, we can choose elements <m>e'_1,\dots,e'_n \in S</m>
+          such that the <m>n \times n</m> matrix <m>B</m> with <m>e'_j = \sum_i B_{ij} e_i</m> has the property that <m>1-B</m> has entries in <m>A^{\circ \circ}</m>.
+          Consequently, <m>1-\det(B) \in A^{\circ \circ}</m> and so <m>B</m> is invertible; this proves the claim.
+        </p>
+      </proof>
+    </lemma>
+    <corollary xml:id="cor-pseudocoherent-complexes">
+      <statement>
+        <p>
+          For <m>A</m> a sheafy Huber pair, the category of pseudocoherent complexes of <m>A^{\triangleright}</m>-modules admits descent for the adic topology.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          As in the proof of <xref ref="cor-vector-bundles"/>, we translate this into the statement that if we start with a complex <m>\underline{M}</m> in <m>\calD(\Mod_{\underline{A}})</m>
+          whose base extensions to <m>\calD(\Mod_{\underline{A}_i})</m> are represented by bounded-above complexes of finite projective <m>A_i^{\triangleright}</m>-modules,
+          then <m>\underline{M}</m> is represented by a bounded-above complex of finite projective <m>A^{\triangleright}</m>-modules.
+          This condition means that some lower truncation of the original complex base extends to zero,
+          and so by <xref ref="thm-sheaf-qcoh-for-adic"/> is isomorphic to zero; we may thus reduce to the case where our original complex is itself bounded above.
+        </p>
+        <p>
+          Suppose the largest degree that occurs is <m>n</m>.
+          By arguing as in the proof of <xref ref="cor-vector-bundles"/>, we obtain a finite free <m>A^{\triangleright}</m>-module <m>F</m>
+          and a morphism <m>\underline{F}[n] \to \underline{M}</m> which induces a surjection of cohomology in degree <m>n</m>.
+          By forming a mapping cone, we obtain a representation of <m>\underline{M}</m> by a complex with <m>\underline{F}</m> placed in degree <m>n</m>
+          and zero terms in higher degrees. By applying the same argument to the mapping cone and iterating,
+          we build a representation of <m>\underline{M}</m> with terms represented by finite projective <m>A^{\triangleright}</m>-modules placed in all degrees <m>\leq n</m>
+          and zero terms in higher degrees.
+        </p>
+      </proof>
+    </corollary>
+        <p>
+          We first upgrade 
+          <xref ref="lem-descent-standard-covering"/> to an <m>\infty</m>-categorical analogue by exhibiting an equivalence
+          <men xml:id="eq-glueing-equivalence-qcoh">
+            \calD(\Mod_A) \to \calD(\Mod_{A \left\langle f/g \right\rangle}) \times_{\calD(\Mod_{A \left\langle f/g, g/f \right\rangle})} \calD(\Mod_{A \left\langle g/f \right\rangle})
+          </men>.
+          Namely, in the proof of <xref ref="lem-descent-standard-covering"/> we <q>explicitly</q> checked that the unit and counit are isomorphisms,
+          in that our description yields explicit (and functorial) inverse morphisms and chain homotopy equivalences of the compositions with the identity morphisms.
+          We can thus formally deduce the conclusion from <xref ref="prop-standard-binary-coverings-Huber"/>.
+        </p>
+      <p>
+        For any morphism <m>A \to C</m>, <m>B^{\triangleright} \otimes_A^L C^{\triangleright}</m>
+        is the derived derived <m>f</m>-completion of <m>C^{\triangleright}</m>. It thus suffices to check that this completion is equal to the naive derived <m>f</m>-completion.
+        For this, as suggested in <xref ref="rem-sum-null-against-f"/>,
+        we may proceed in two steps. We first force <m>f</m> to become topologically nilpotent by passing from <m>C</m> to <m>(\ZZ[\hat{q}] \otimes C)/(q-f)</m>;
+        this quotient equals the derived quotient because <m>q-f</m> is not a zero divisor in <m>\ZZ[\hat{q}] \otimes C^{\triangleright}</m>.
+        (The sections over <m>S \in \Prof</m> are obtained by sheafifying <m>P(S) \otimes C^{\triangleright}(S) \subseteq \prod_{s \in S} C^{\triangleright}(*)[q]</m>,
+        where it is visible that multiplication by the monic polynomial <m>q-f</m> is injective.)
+        We then liquefy with respect to <m>f</m>, which as usual is an underived operation on rings (<xref ref="rem-liquefaction-kills-ext1"/>).
+      </p>
+    <p>
+      We compare the previous discussion with the following definition in algebraic geometry.
+    </p>
+    <definition xml:id="def-absolutely-flat-rings">
+      <p>
+        A morphism <m>A \to B</m> in <m>\Ring</m> is <term>absolutely flat</term> (or <term>weakly étale</term>) if <m>A \to B</m>
+        and <m>B \otimes_A B \to B</m> are both flat. In particular, <m>B \otimes_A^L B \to B</m> is flat.
+      </p>
+      <p>
+        For instance, any étale morphism is absolutely flat.
+        Also, any colimit of absolutely flat morphisms is absolutely flat;
+        in particular, localization at any multiplicative subset (which need not be of finite type) is absolutely flat.
+      </p>
+      <p>
+        The <term>pro-étale topology</term> on <m>\Ring^{\op}</m>, as considered by Bhatt<ndash/>Scholze <xref ref="bib-Bhatt-Scholze-proetale"/>,
+        is the topology generated by finite disjoint unions and morphisms which are both faithfully flat and absolutely flat.
+        This includes more coverings than the Zariski topology and the étale topology, but fewer than the fpqc topology.
+      </p>
+    </definition>
+    <p>
+      Modeling <xref ref="def-absolutely-flat-rings"/> in analytic rings is a bit subtle; we propose the following.
+    </p>
+    <definition>
+      <p>
+        A morphism <m>A \to B</m> of analytic rings is <term>absolutely flat</term>
+        if <m>B \otimes^L_B</m> is underived and <m>B</m> is projective as an object of <m>\Mod_{B \otimes_A B}</m>.
+        Any idempotent morphism is absolutely flat.
+      </p>
+      <p>
+        The corresponding <term>pro-étale topology</term> on <m>\AnRing^{\op}</m> is again generated by finite families of absolutely flat morphisms <m>\{\AnSpec A_i \to \AnSpec A\}_{i \in I}</m>
+        such that for <m>B := \bigoplus_i A_i</m>, the complex <xref ref="eq-proetale-topology"/> is exact
+        (once again assuming all the tensor products in question are underived).
+        Note that this is no longer equivalent to <xref ref="eq-idempotent-topology"/> being exact.
+      </p>
+    </definition>
+  <subsection>
+    <title>Derivedness revisited</title>
+    <p>
+      Let us unpack <xref ref="exa-rational-localization-is-idempotent"/> a bit to further clarify why rational localizations of solid analytic rings
+      are sometimes derived, and more to the point why they are sometimes consistently <em>not</em> derived.
+    </p>
+    <definition>
+      <p>
+        A condensed abelian group <m>M</m> is <term>separated</term> if the coordinate map <m>\bigoplus_\NN M \to \prod_\NN M</m> is injective. 
+      </p>
+    </definition>
+    <p>
+      We may infer from <xref ref="eq-Zariski-localization-idempotent"/> that the object <m>M</m> used in 
+      <xref ref="exa-Koszul-complex-not-acyclic"/> is not separated. Here is the universal version of that example.
+    </p>
+    <example>
+      <p>
+        Let <m>M</m> be the condensed abelian group corresponding to the solid abelian group <m>M_\solid</m> described in
+        <xref ref="eq-solid-object-with-zero-underlying"/> with <m>R = \ZZ, I = \NN</m>; that is,
+        <me>
+          M_\solid = \coker\left( \left( \prod_\NN \ZZ \right)_\solid \to \prod_\NN \ZZ_\solid
+        </me>
+        and in particular
+        <m>
+          M_\solid\left( \prod_I \ZZ_\solid \right) = \left( \prod_\NN \bigoplus_I \ZZ \right) / \left( \bigoplus_I \prod_\NN \ZZ \right)
+        </m>.
+        (see <xref ref="eq-solid-object-with-zero-underlying"/>) is not separated.
+        We have
+        <md>
+          <mrow>
+            \left(\bigoplus_\NN M \right)\left(\prod_I \ZZ_\solid \right) = \left( 
+          </mrow>
+        </md>
+        <m>M := \coker(\ZZ[T] \to \ZZ\llbracket T \rrbracket)</m>
+        <m>M = \coker(\underline{\ZZ}[T] \to \prod_n \underline{\ZZ}[T]/(T^n))</m> is not separated.
+        We may check this in <m>\Ab_\solid</m>:
+        start with the exact sequence
+        <men xml:id="eq-present-M-not-separated">
+          0 \to \ZZ[T] \to \ZZ\llbracket T \rrbracket \to M \to 0
+        </men>
+        whose evaluation on <m>\prod_I \ZZ_\solid</m> is 
+        <me>
+          0 \to \left( \prod_I \ZZ \right)[T] \to \prod_I \ZZ\llbracket T \rrbracket \to M\left(\prod_I \ZZ_\solid \right) \to 0
+        </me>.
+        Taking coproducts over <m>\NN</m> in <xref ref="eq-present-M-not-separated"/> yields an exact sequence...
+        Taking products over <m>\NN</m> in <xref ref="eq-present-M-not-separated"/> yields an exact sequence...
+        
+        <md>
+          <mrow>
+            \left(\bigoplus_\NN M \right)\left( \prod_I \ZZ_\solid \right) &amp;= \bigoplus_\NN \bigoplus_I \ZZ \llbracket T \rrbracket/\ZZ[T]
+          </mrow>
+          <mrow>
+            \left(\prod_\NN M \right)\left( \prod_I \ZZ_\solid \right) &amp;= \prod_\NN \bigoplus_I \ZZ \llbracket T \rrbracket/\ZZ[T]
+          </mrow>
+        </md>
+      </p>
+    </example>
+      <p>
+        For example, if <m>M = \coker(\underline{\ZZ}[T] \to \prod_n \underline{\ZZ}[T]/(T^n))</m>, then <m>M</m> is not condensed:
+        in <m>\Ab_\solid</m> we have
+        <md>
+          <mrow>
+            \left(\bigoplus_\NN M \right)\left( \prod_I \ZZ_\solid \right) &amp;= \bigoplus_\NN \bigoplus_I \ZZ \llbracket T \rrbracket/\ZZ[T]
+          </mrow>
+          <mrow>
+            \left(\prod_\NN M \right)\left( \prod_I \ZZ_\solid \right) &amp;= \prod_\NN \bigoplus_I \ZZ \llbracket T \rrbracket/\ZZ[T]
+          </mrow>
+        </md>
+      </p>
+      <p>
+        Taking this further, in <m>\Mod_A</m> we can reinterpret the map <m>A[T] \to A \llbracket T \rrbracket</m> as the map
+        <m>\bigoplus_\NN A \to \prod_\NN A</m>, which is of course the base extension of the map <m>\bigoplus_\NN \underline{\ZZ} \to \prod_\NN \underline{\ZZ}</m>.
+        The injectivity of <m>A[T] \to A \llbracket T \rrbracket</m> is then equivalent to the equality
+        <me>
+          A \otimes_{\ZZ} \ZZ \llbracket T \rrbracket/\ZZ[T] \cong A \otimes^L_{\ZZ} \ZZ \llbracket T \rrbracket/\ZZ[T]
+        </me>.
+        Using <xref ref="ref-liquefaction-is-underived"/>, we can further equate with the equality
+        <me>
+          A \otimes_{\ZZ} \ZZ \llbracket T \rrbracket/\ZZ[T]_{\liquid T} \cong A \otimes^L_{\ZZ} \ZZ \llbracket T \rrbracket/\ZZ[T]_{\liquid T}
+        </me>.
+      </p>
+  </subsection>
+      <p>
+        By construction, for <m>|I| \leq \kappa</m>,
+        <men xml:id="eq-base-extension-on-product">
+          \left(\prod_I R_\solid \right) \otimes_{R_{\solid}} S_{\solid} = \prod_I S_\solid.
+        </men>
+        More generally, for any <m>M_i \in \Mod_{R_\solid}</m>, by writing <m>M_i</m> as a colimit over 
+        objects of the form <m>\prod_J R_{\solid}</m> and using <xref ref="eq-base-extension-on-product"/>,
+        <men>
+          \left(\prod_I M_i \right) \otimes_{R_{\solid}} S_{\solid} = \prod_I (M_i \otimes_{R_\solid} S_\solid).
+        </men>
+      </p>
+        <me>
+          \prod_{n=1}^\infty \ZZ[1/p]_{\solid} \to \prod_{n=1}^\infty \ZZ[1/p]_{\solid} \to M \otimes_{\ZZ_{\solid}} \ZZ[1/p]_{\solid} \to 0
+        </me>
+        is again exact. However, the map on <m>\prod_{n=1}^\infty \ZZ[1/p]_{\solid}</m> is now invertible,
+        so <m>M \otimes_{\ZZ_{\solid}} \ZZ[1/p]_{\solid} = 0</m>.
+      </p>
+      <p>
+        Putting the two facts together, we see that <m>\ZZ_{\solid} \to M</m> is a monomorphism, but its base extension
+        <m>\ZZ[1/p]_{\solid} \to M \otimes_{\ZZ_{\solid}} \ZZ[1/p]_{\solid}</m> has zero target and so is definitely not a monomorphism!
+        That is, the base extension functor is not exact, which is to say that <m>\ZZ[1/p]_{\solid}</m> is not a flat <m>\ZZ_{\solid}</m>-module.
+        (The same logic applies to <m>R \to R[1/f]</m> whenever <m>f \in R</m> is not a zero divisor.)
+    <proposition>
+      <statement>
+        <p>
+          For <m>R \to S</m> a ring homomorphism, the restriction of scalars functor <m>F\colon \Mod_{S_\solid} \to \Mod_{R_{\solid}}</m> is exact.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Start with an exact sequence in <m>\Mod_{S_{\solid}}</m>:
+          <me>
+            0 \to M_1 \to M_2 \to M_3 \to 0.
+          </me>
+          Evaluate on <m>\prod_I S_{\solid}</m> to obtain another exact sequence:
+          <me>
+            0 \to \Hom_{S_\solid}(\prod_I S_{\solid}, M_1) \to \Hom_{S_\solid}(\prod_I S_{\solid}, M_2) \to 
+            \Hom_{S_\solid}(\prod_I S_{\solid}, M_3) \to 0.
+          </me>
+          Apply adjunction between restriction of scalars and extension of scalars to obtain another exact sequence
+          <me>
+            0 \to \Hom_{R_\solid}(\prod_I R_{\solid}, F(M_1)) \to \Hom_{R_\solid}(\prod_I R_{\solid}, F(M_2)) \to 
+            \Hom_{R_\solid}(\prod_I R_{\solid}, F(M_3)) \to 0.
+          </me>
+          Finally, infer from this that the sequence
+          <me>
+            0 \to F(M_1) \to F(M_2) \to F(M_3) \to 0
+          </me>
+          is exact, proving the claim.
+        </p>
+      </proof>
+    </proposition>
+      <p>
+        More generally, for any <m>M_i, N_j \in \Mod_{R_\solid}</m>,
+        <men xml:id="eq-solid-product-on-one-free">
+          \left(\prod_{i \in I} M_i\right) \otimes_{R_\solid} \left(\prod_{j \in I} M_j\right) = \prod_{i \in I, j \in J} (M_i \otimes_{R_\solid} N_j);
+        </men>
+        namely, this holds for <m>M_i = N_j = R_\solid</m> by <xref ref="eq-solid-product-on-one-free"/> and then follows in general by taking colimits.
+      </p>
+      <p>
+        This is very convenient and not at all how tensor products work for ordinary modules!
+        By contrast, in <m>\Mod_R</m>, there is a canonical morphism
+        <me>
+          \prod_I R \otimes_R \prod_J R \to \prod_{I \times J} R
+        </me>
+        but this is not an isomorphism when both index sets are infinite.
+      </p>
+    <definition>
+      <p>
+        We say that <m>M \in \Mod_{R_\solid}</m> is <term>flat</term> if <m>M \otimes_{R_\solid} \bullet</m> is an exact functor on <m>\Mod_{R_\solid}</m>.
+        By <xref ref="eq-solid-product-on-one-free"/>, any product <m>\prod_I M_i</m> of flat solid modules is again flat.
+        By contrast, for ordinary modules this holds if and only if the base ring is coherent (<xref ref="bib-Stacks"/>, tag 05CZ).
+      </p>
+    </definition>
+    <remark xml:id="rem-topological-completion">
+      <p>
+        This failure of flatness for localizations echoes similar failures elsewhere in formal/analytic geometry.
+        For instance, the completion of a non-noetherian ring with respect to a finitely generated ideal need not be flat
+        (<xref ref="bib-Stacks"/>, tag 0AL8); for similar reasons, a completed rational localization of a completed Huber ring
+        need not be flat. Even in cases where flatness holds (e.g., for localizations of classical affinoid algebras), this is only
+        a statement about the exactness of <em>algebraic</em> tensor products, not the <em>topological</em> tensor products that are
+        more relevant. One way around this is to work systematically with <term>derived categories</term> of modules; we will take up this point later in the course.
+      </p>
+      <p>
+        As a preview for how these topics will be linked, let us make an observation about the ring <m>\ZZ_p</m> of <term><m>p</m>-adic integers</term>.
+        It is classically defined as the completion of the ring <m>\ZZ</m> with respect to the ideal <m>(p)</m>.
+        In symbols, we can write <m>\ZZ_p</m> as the kernel of the map
+        <me>
+          \prod_{n \in \NN} \ZZ/p^n \ZZ \to \prod_{n \in \NN} \ZZ/p^n \ZZ, \quad (a_n)_{n \in \NN} \mapsto (a_n - a_{n+1} \pmod{p^n})_{n \in \NN}.
+        </me>
+        In the notation of <xref ref="exa-base-extension-not-flat"/>, it is natural to define a solid analogue <m>\ZZ_{p \solid}</m> by taking the corresponding 
+        kernel out of <m>M</m> (i.e., the <q>solid completion</q> of <m>\ZZ</m> along <m>(p)</m>). 
+        This can be viewed as a ring object in the category of solid <m>\ZZ</m>-modules; we can then define the module category
+        <m>\Mod_{\ZZ_{p \solid}}</m> by taking solid <m>\ZZ</m>-modules <m>M</m> equipped with a ring homomorphism <m>\ZZ_{p \solid} \to \iHom_{\ZZ_{\solid}}(M,M)</m>.
+        This is <em>not</em> the same thing as <m>\Mod_{{\ZZ_p}_\solid}</m>, the category of solid <m>R</m>-modules for <m>R = \ZZ_p</m>, which treats <m>\ZZ_p</m> as a discrete ring;
+        instead, we are taking the <m>p</m>-adic topology into account in the module structure, so we are getting something more akin to <q>topological <m>\ZZ_p</m>-modules</q>.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        When applying <xref ref="rem-liquefaction-kills-ext1"/>, one must make sure that <m>R_0^{\triangleright}</m> is itself not a derived ring!
+        This will not be an issue when constructing examples directly, but comes up when we try to make constructions like rational localizations
+        (<xref ref="rem-localization-is-underived"/>).
+      </p>
+    </remark>
+      <p>
+        Unfortunately, this favorable situation does not persist when <m>A</m> is a more general solid analytic ring.
+        In that case, we should treat the Koszul complex itself as the derived version of the rational localization,
+        as in <xref ref="exa-Koszul-complex-not-acyclic"/>. In order to work with this systematically, 
+        one needs to consider some sort of derived rings, which we will not do for the moment.
+        We will however write <m>A\left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle^L</m> in case we need to indicate the derived localization.
+      </p>
+      <p>
+        To keep track of this issue, we will say that <m>A</m> is <term>locally underived</term>
+        if every rational localization of <m>A</m> coincides with the corresponding derived localization.
+      </p>
+    <example xml:id="exa-Koszul-complex-not-acyclic">
+      <p>
+        Following <xref ref="exa-base-extension-not-flat"/>, 
+        take <m>M := \coker(\underline{\ZZ} \to \prod_n \underline{\ZZ/p^n \ZZ}) \in \CAb_\solid</m>;
+        take <m>A^{\triangleright} := \underline{\ZZ} \oplus M</m> with <m>M^2 = 0</m>;
+        and take <m>f=1, g=p</m>. Then the derived rational localization of <m>A^{\triangleright}</m> with parameters <m>f,g</m>
+        can be interpreted as 
+        <me>
+          \underline{\ZZ}\langle \tfrac{1}{p} \rangle \otimes_\solid^L A^{\triangleright}
+          = \underline{\ZZ}[\tfrac{1}{p}] \otimes_\solid^L A^{\triangleright}, 
+        </me>
+        which has a copy of <m>\underline{\ZZ}[1/p]</m> placed in degree <m>-1</m>.
+      </p>
+    </example>
+    <remark xml:id="rem-localization-is-underived">
+      <p>
+        The formula in <xref ref="eq-formula-rational-localization"/> does not change if we interpret everything as an operation of derived rings.
+        This breaks down into three separate statements.
+        <ul>
+          <li>
+            The condensed ring <m>A^{\triangleright}[\tfrac{1}{g}]</m> is resolved by the Koszul complex associated to <m>1-gU \in A^{\triangleright}[U]</m>.
+            This amounts to saying that multiplication by <m>1-gU</m> is injective on <m>A^{\triangleright}[U]</m>, which is evident because
+             <m>A^{\triangleright}[U]</m> injects into <m>A^{\triangleright}\llbracket U \rrbracket</m> and multiplication by <m>1-gU</m> is an isomorphism there.
+          </li>
+          <li>
+            The liquefaction of <m>A^{\triangleright}[\tfrac{1}{g}][T_1,\dots,T_n]</m> at <m>\{T_1,\dots,T_n\}</m> is underived.
+            This follows from <xref ref="rem-liquefaction-kills-ext1"/>.
+          </li>
+          <li>
+            The final quotient is resolved by the Koszul complex associated to <m>T_1 - \tfrac{f_1}{g},\dots,T_n - \tfrac{f_n}{g} \in A^{\triangleright}[\tfrac{1}{g}][T_1,\dots,T_n]_{\liquid \{T_1,\dots,T_n\}}</m>.
+            By interpreting the construction as a series of localizations of <m>B^{\triangleright} := A^{\triangleright}[\tfrac{1}{g}]</m>, we can treat one parameter at a time;
+            we then have to check that for <m>h_i := \tfrac{f_i}{g}</m>,
+            <me>
+              0 \to B^{\triangleright}[T_i]_{\liquid T_i} \stackrel{\times T_i-h_i}{\to} B^{\triangleright}[T_i]_{\liquid T_i} \to B^{\triangleright}[T_i]_{\liquid T_i}/(T_i-h_i) \to 0
+            </me>
+            is exact at the left. That is, for <m>M = B^{\triangleright} \in \Mod_B</m>, we must check that multiplication by <m>T_i-h_i</m>
+            is injective on <m>M \otimes_{B^{\triangleright}} B^{\triangleright}[T_i]_{\liquid T_i}</m>.
+            Note that <m>B^{\triangleright}[T_i]_{\liquid T_i}</m> is projective in <m>\Mod_B</m>,
+            so we may exploit the exact sequence
+            <me>
+              0 \to \ker(B^{\triangleright} \to B^{\triangleright}[\tfrac{1}{h_i}]) \to B^{\triangleright} \to \ima(B^{\triangleright} \to B^{\triangleright}[\tfrac{1}{h_i}]) \to 0
+            </me>
+            to reduce to checking the claim for <m>M = \ker(B^{\triangleright} \to B^{\triangleright}[\tfrac{1}{h_i}])</m>
+            and <m>M = \ima(B^{\triangleright} \to B^{\triangleright}[\tfrac{1}{h_i}])</m>.
+            The former holds by writing <m>M = \colim_n M_n</m> with <m>M_n := \ker(B^{\triangleright} \stackrel{\times h_i^n}{\to} B^{\triangleright})</m>,
+            then noting that multiplication by <m>T_i^n</m> on <m>M_n \otimes_{B^{\triangleright}} B^{\triangleright}[T_i]_{\liquid T_i}</m>
+            (which is obviously injective)
+            coincides with multiplication by <m>T_i^n - h_i^n</m> and hence factors through multiplication by <m>T_i-h_i</m>.
+            The latter holds because multiplication by <m>T_i-h_i</m> and <m>1-h_i^{-1}T_i</m> on <m>M = \ima(B^{\triangleright} \to B^{\triangleright}[\tfrac{1}{h_i}])</m> have the same kernel,
+            and the latter is injective as in the first step.
+          </li>
+        </ul>
+      </p>
+      <p>
+        From the previous discussion, we see that for any morphism <m>A \to B</m> of solid analytic rings,
+        <m>B^{\triangleright} \otimes^L_A A^{\triangleright}\langle \tfrac{f_1}{g},\dots,\tfrac{f_n}{g} \rangle</m> is underived.
+      </p>
+    </remark>
+          we have a distinguished triangle in the derived category <m>D(\Mod_A)</m> (in degrees <m>-1</m> and <m>0</m>).
+          <me>
+            A^{\triangleright} \to A\left\langle \tfrac{f}{g} \right\rangle^{\triangleright L} \oplus 
+            A\left\langle \tfrac{g}{f} \right\rangle^{\triangleright L} \to  A\left\langle \tfrac{f}{g}, \tfrac{g}{f} \right\rangle^{\triangleright L} \stackrel{+1}{\to}
+          </me>.
+          In particular, if the localizations are all underived, we get an exact sequence
+    <lemma xml:id="lem-sheafy-exact-sequence">
+      <statement>
+        <p>
+          Let <m>A</m> be a solid analytic ring. Then for any <m>f,g \in A^{\triangleright}(*)</m> generating the unit ideal, we have an exact sequence
+          <men xml:id="eq-sheafy-exact-sequence">
+            0 \to A^{\triangleright} \to A\left\langle \tfrac{f}{g} \right\rangle^{\triangleright} \oplus 
+            A\left\langle \tfrac{g}{f} \right\rangle^{\triangleright} \to  A\left\langle \tfrac{f}{g}, \tfrac{g}{f} \right\rangle^{\triangleright} \to 0
+          </men>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By 
+          Recall that the derived localizations are represented by the corresponding Koszul complexes (<xref ref="rem-localization-is-underived"/>).
+          Apply <xref ref="lem-solid-split-laurent-poly-ring"/> to obtain an exact sequence
+          <me>
+            0 \to 0 \to A^{\triangleright}[T]_{\liquid T}  \oplus T^{-1} A^{\triangleright}[T^{-1}]_{\liquid T^{-1}} \to A^{\triangleright}[T^{\pm}]_{\liquid T^{\pm}} \to 0
+          </me>
+          and a split exact sequence
+          <me>
+            0 \to A^{\triangleright} \to A^{\triangleright}[T]_{\liquid T} \oplus A^{\triangleright}[T^{-1}]_{\liquid T^{-1}} \to A^{\triangleright}[T^{\pm}]_{\liquid T^{\pm}} \to 0
+          </me>.
+          Mapping the first sequence to the second via multiplication by <m>f-gT = T(g-fT^{-1})</m> and applying the snake lemma
+          yields the desired triangle.
+        </p>
+      </proof>
+    </lemma>
+    <p>
+      Let us identify a key situation where the localizations are all underived.
+    </p>
+    <remark xml:id="rem-discrete-localizations-are-underived">
+      <p>
+        Let <m>A</m> be a solid analytic ring whose underlying ring <m>A^{\triangleright}</m> is discrete.
+        Then every rational localization of <m>A</m> is underived with discrete underlying ring: for <m>f_1,\dots,f_n,g</m> generating the unit ideal,
+        we have <m>A^{\triangleright}[T_1,\dots,T_n]_{\liquid T_1,\dots,T_n} = A^{\triangleright}[T_1,\dots,T_n]</m> and this is resolved by the Koszul complex
+        as in <xref ref="rem-localization-is-underived"/>. In particular, <m>A</m> is locally underived.
+      </p>
+      <p>
+        We can use this to formulate <q>universal</q> versions of various statements about sheafiness
+        in which no derived localizations are involved.
+        For example, the universal case of <xref ref="lem-sheafy-exact-sequence"/> is
+        <me>
+          A = \underline{\ZZ}[a,b,f,g]/(af+bg-1)
+        </me>.
+        See <xref ref="thm-solid-sheafy-universal"/> for a similar use of this point of view.
+      </p>
+    </remark>
+    <theorem xml:id="thm-solid-sheafy-universal">
+      <statement>
+        <p>
+          For the ring 
+          <me>
+            A := \underline{\ZZ}[a_1,\dots,a_n,f_1,\dots,f_n]/(a_1f_1 + \cdots + a_nf_n - 1)
+          </me>,
+          let <m>A_i</m> denote the rational localization of <m>A</m> corresponding to the parameters <m>f_1,\dots,f_n,f_i</m>.
+          Then 
+          <me>
+            0 \to A^{\triangleright} \to \bigoplus_i A_i^{\triangleright} \to \bigoplus_{i\lt j} A_i^{\triangleright} \otimes_A A_j^{\triangleright} \to \cdots
+          </me>
+          is an exact sequence in <m>\Mod_A</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          This follows from <xref ref="prop-standard-binary-coverings-Huber"/> and <xref ref="lem-sheafy-exact-sequence"/>
+          (because <xref ref="rem-discrete-localizations-are-underived"/> guarantees that all rational localizations that intervene are underived).
+        </p>
+      </proof>
+    </theorem>
+    <remark>
+      <p>
+        In <xref ref="thm-solid-sheafy-universal"/>,
+        tensoring along any morphism <m>A \to B</m> of solid analytic rings yields a zero object in the derived category <m>D(\Mod_A)</m>.
+        If in fact <m>B_i := B \otimes_A^L A_i</m> is underived for all <m>i</m>, then 
+        <me>
+          0 \to B^{\triangleright} \to \bigoplus_i B_i^{\triangleright} \to \bigoplus_{i\lt j} B_i^{\triangleright} \otimes_A B_j^{\triangleright} \to \cdots
+        </me>
+        is an exact sequence in <m>\Mod_B</m>.
+      </p>
+    </remark>
+        
+        Recall that an analytic ring <m>A</m> consists of a pair <m>(A^{\triangleright}, \Mod_A)</m> where <m>A^{\triangleright}</m> is some underlying condensed ring
+        and <m>\Mod_A</m> is a full subcategory of <m>\Mod_{A^{\triangleright}}</m> subject to some restrictions (<xref ref="def-analytic-ring"/>).
+        Define the category <m>\QCoh</m> of <term>analytic quasicoherent sheaves</term> to consist of pairs <m>(A, M)</m> where <m>A \in \AnRing</m>, <m>M \in \Mod_A</m>;
+        with a morphism <m>(B, N) \to (A, M)</m> consisting of a morphism <m>A \to B</m> in <m>\AnRing</m> and an isomorphism <m>M \otimes_A B \cong N</m>.
+        This gives a category fibered in groupoids over <m>\AnRing^{\op}</m>.
+    <remark xml:id="rem-no-flatness">
+      <p>
+        With notation as in <xref ref="prop-solid-rational-localization"/>, the base extension functor <m>\bullet \otimes_A B \colon \Mod_A \to \Mod_B</m>
+        is almost never exact (even when <m>A</m> is a Huber pair, or even sheafy), because of examples as in <xref ref="exa-base-extension-not-flat"/>.
+      </p>
+      <p>
+        Since we want to think of <m>\Mod_A</m> as the category of quasicoherent sheaves on <m>\Spa A</m>, this means that we cannot treat the category of quasicoherent sheaves
+        on solid analytic rings as a sheaf for any reasonable topology, even the one generated by standard binary coverings.
+        However, what is true is that the <em>derived</em> category of quasicoherent sheaves is a sheaf for this topology, and even some richer topologies,
+        <em>provided</em> that we understand derived categories using the language of <term>stable <m>\infty</m>-categories</term>. 
+        More on this in a moment!
+      </p>
+    </remark>
+
+        As noted in <xref ref="rem-no-flatness"/>, we cannot prove an analogue of <xref ref="lem-descent-standard-covering"/>
+        for <m>\Mod_A</m> instead of its derived category because the base extension functors are not exact.
+        On the other hand, working at the derived category provides some technical advantages apart from resolving this issue,
+        as one can see by comparing the proof of Zariski descent for quasicoherent sheaves on schemes versus for the derived categories:
+        in the derived setting essential surjectivity is formal, whereas in the underived setting it requires some nontrivial argument.
+      </p>
+      <p>
+        The tradeoff is that one has to be careful about what a derived category is; the classical definition,
+        where one takes the homotopy category of complexes and inverts quasi-isomorphisms (see for example <xref ref="bib-Stacks"/>, tag 05RR), 
+        is too crude because it loses the information of
+        <em>how</em> two complexes are related; specifically, this obstructs the formation of limits and colimits.
+        The language of <m>\infty</m>-categories is better suited to retain this extra information,
+        and it is in this language that one can actually formulate a statement to the effect that <m>D(\QCoh)</m> is a sheaf for the adic topology.
+      </p>
+      <p>
+        To make the issue more explicit, note that 
+              <p>
+        By contrast, we do not get a glueing statement in fixed amplitude: for example in the equivalence
+        <men xml:id="eq-glueing-equivalence-qcoh">
+          \calD(\Mod_A) \to \calD(\Mod_{A \left\langle f/g \right\rangle}) \times_{\calD(\Mod_{A \left\langle f/g, g/f \right\rangle})} \calD(\Mod_{A \left\langle g/f \right\rangle})
+        </men>
+        glueing complexes supported in
+        degrees <m>\leq 0</m> in general only yields a complex supported in degrees <m>\leq 1</m>.
+        We will revisit this point in <xref ref="thm-pseudocoherent-descent-with-amplitude"/>.
+      </p>
+    <lemma xml:id="lem-covering-by-local">
+      <statement>
+        <p>
+          Let <m>A \to A_1, A \to A_2</m> be a standard binary covering of a Huber ring <m>A</m>.
+          Let <m>h\colon A^m \to A^n</m> be a morphism in <m>\Mod_A</m> such that the induced maps <m>h_1\colon A_1^m \to A_1^n</m>, <m>h_2\colon A_2^m \to A_2^n</m> are surjective.
+          Then <m>h</m> is surjective.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Since the covering is defined by a pair of elements <m>f,g \in A</m> which generate the unit ideal,
+          the image of the map <m>\Spec(A_1 \oplus A_2) \to \Spec(A)</m> includes all maximal ideals.
+          The claim then follows from Nakayama's lemma applied after taking global sections.
+        </p>
+      </proof>
+    </lemma>
+ provided that <m>B \otimes_A C = B \otimes^L_A C</m>.
+        Otherwise, <m>C \to B \otimes_A^L C</m> can be interpreted as an idempotent morphism of derived analytic rings;
+        indeed, the whole discussion of idempotent morphisms can and should be viewed in this language, but to keep the exposition manageable
+        we will not do this.
+            <definition xml:id="def-absolutely-flat-rings">
+      <p>
+        A morphism <m>A \to B</m> in <m>\Ring</m> is <term>absolutely flat</term> (or <term>weakly étale</term>) if <m>A \to B</m>
+        and <m>B \otimes_A B \to B</m> are both flat. In particular, <m>B \otimes_A^L B \to B</m> is flat.
+      </p>
+      <p>
+        For instance, any étale morphism is absolutely flat.
+        Also, any colimit of absolutely flat morphisms is absolutely flat;
+        in particular, localization at any multiplicative subset (which need not be of finite type) is absolutely flat.
+      </p>
+      <p>
+        The <term>pro-étale topology</term> on <m>\Ring^{\op}</m>, as considered by Bhatt<ndash/>Scholze <xref ref="bib-Bhatt-Scholze-proetale"/>,
+        is the topology generated by finite disjoint unions and morphisms which are both faithfully flat and absolutely flat.
+        This includes more coverings than the Zariski topology and the étale topology, but fewer than the fpqc topology.
+      </p>
+    </definition>
+    <p>
+      Modeling <xref ref="def-absolutely-flat-rings"/> in analytic rings, we obtain the following definition.
+    </p>
+    <definition>
+      <p>
+        A morphism <m>A \to B</m> of analytic rings is <term>absolutely flat</term>
+        if <m>A \to B</m> and <m>B \to B \otimes_A B</m> are both flat.
+        Any idempotent morphism is absolutely flat. In addition, for any finite family <m>\{A \to A_i\}</m> of absolutely flat morphisms,
+        <m>A \to B = \bigoplus_i A_i</m> is absolutely flat.
+      </p>
+    </definition>
+    <definition>
+      <p>
+        The <term>pro-étale topology</term> on <m>\AnRing^{\op}</m> is generated by finite families of absolutely flat morphisms <m>\{\AnSpec A_i \to \AnSpec A\}_{i \in I}</m>
+        such that for <m>B := \bigoplus_i A_i</m>, the <term>Cech<ndash/>Alexander complex</term>
+        <men xml:id="eq-proetale-topology">
+          0 \to A^{\triangleright} \to B^{\triangleright} \to B^{\triangleright} \otimes^L_A B^{\triangleright} \to B^{\triangleright} \otimes^L_A B^{\triangleright} \otimes^L_A B^{\triangleright} \to \cdots
+        </men>
+        to be exact. For example, any covering for the idempotent topology is also a covering for the pro-étale topology.
+      </p>
+    </definition>
+    <remark>
+      <p>
+        <xref ref="thm-gaga-discrete"/> suggests some common aspects of different flavors of GAGA theorems.
+        Notably, we must distinguish between quasicoherent sheaves on the scheme <m>\PP^1_A</m>, which are all colimits of coherent sheaves,
+        and quasicoherent sheaves on the analytic space <m>\PP^1_{\underline{A}}</m>, which are built out of condensed <m>\underline{A}</m>-modules
+        and therefore need not be colimits of coherent sheaves.
+      </p>
+    </remark>
+    <lemma xml:id="cor-analytic-Huber-exact-seq">
+      <statement>
+        <p>
+          Let <m>A</m> be a solid analytic ring. Then the sequences
+          <md>
+            <mrow>
+              0 \to A[T] \to A\langle T \rangle \oplus A\langle T^{-1} \rangle[T] \to A \langle T^{\pm} \rangle \to 0
+            </mrow>
+            <mrow>
+              0 \to A[T^{\pm}] \to A\langle T \rangle[T^{-1}] \oplus A\langle T^{-1} \rangle[T] \to A\langle T^{\pm} \rangle \to 0
+            </mrow>
+          </md>
+          are exact.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Apply <xref ref="eq-sheafy-exact-sequence"/> to the rings <m>A[T], A[T^{\pm}]</m> and the elements <m>f=T, g=1</m>.
+        </p>
+      </proof>
+    </lemma>
+    <proposition xml:id="prop-gaga-P1-Huber">
+      <statement>
+        <p>
+          For any solid analytic ring <m>A</m>, the restriction functor
+          <me>
+            \Mod_{A[T]} \times_{\Mod_{A[T^{\pm}]}} \Mod_{A[T^{-1}]} \to
+            \Mod_{A \langle T \rangle} \times_{\Mod_{A\langle T^{\pm} \rangle}} \Mod_{A\langle T^{-1} \rangle}
+          </me>
+          is an equivalence of categories, and the restriction functor
+          <me>
+            \calD(\Mod_{A[T]}) \times_{\calD(\Mod_{A[T^{\pm}]})} \calD(\Mod_{A[T^{-1}]}) \to
+            \calD(\Mod_{A \langle T \rangle}) \times_{\calD(\Mod_{A\langle T^{\pm} \rangle})} \calD(\Mod_{A\langle T^{-1} \rangle})
+          </me>
+          is an equivalence of stable <m>\infty</m>-categories.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We treat the second case, the first case being similar.
+          By applying <xref ref="cor-analytic-Huber-exact-seq"/>, 
+          we get equivalences
+          <md>
+            <mrow>
+              \calD(\Mod_{A[T]}) \to \calD(\Mod_{A\langle T \rangle}) \times_{\calD(\Mod_{A \langle T,T^{-1} \rangle})} \calD(\Mod_{A \langle T^{-1} \rangle[T]})
+            </mrow>
+            <mrow>
+              \calD(\Mod_{A[T^{-1}]}) \to \calD(\Mod_{A\langle T \rangle}[T^{-1}]) \times_{\calD(\Mod_{A \langle T,T^{-1} \rangle})} \calD(\Mod_{A \langle T^{-1} \rangle})
+            </mrow>
+            <mrow>
+              \calD(\Mod_{A[T^{\pm}]}) \to \calD(\Mod_{A\langle T \rangle}[T^{-1}]) \times_{\calD(\Mod_{A \langle T,T^{-1} \rangle})} \calD(\Mod_{A \langle T^{-1} \rangle[T]})
+            </mrow>
+          </md>.
+          Combining these yields the claim.
+        </p>
+      </proof>
+    </proposition>
+    <definition>
+      <p>
+        For <m>A</m> a solid analytic ring, 
+      </p>
+    </definition>
+    <remark>
+      <p>
+        <xref ref="prop-gaga-P1-Huber"/> asserts that pullback of derived categories of quasicoherent sheaves from <m>\PP^1_A</m>
+        to its solid adic analogue is an equivalence of stable <m>\infty</m>-categories.
+        Using <xref ref="subsec-descent-for-complexes"/>, we can recover more familiar forms of relative GAGA for <m>\PP^1</m>,
+        such as for perfect complexes. When <m>A^{\triangleright}</m> is a strongly noetherian Huber ring, we even
+        recover the usual GAGA theorem for coherent sheaves on <m>\PP^1</m>.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        The proof of <xref ref="prop-gaga-P1-Huber"/> may be surprising in that we actually prove something about <em>affine</em> subspaces of <m>\PP^1</m>.
+        However, in the usual setup of GAGA for coherent sheaves, the corresponding statement about an affine subspace is actually a formal consequence of the statement for
+        <m>\PP^1</m> due to the ampleness of <m>\calO(1)</m>.
+      </p>
+    </remark>
+    <lemma>
+      <title>Generic Schwartz lemma</title>
+      <statement>
+        <p>
+          Let <m>A</m> be an arbitrary analytic ring and fix <m>S \in \Prof</m>.
+          Then for any trace class morphism <m>f\colon A[\underline{S}] \to A[\underline{S}]</m>,
+          <m>\cone(f-1)</m> is isomorphic in <m>\calD(\Mod_{A})</m> to
+          a complex of the form <m>A^{\triangleright n}[-1] \to A^{n}[0]</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We may assume <m>S</m> is infinite as otherwise there is nothing to check.
+          Define a map <m>g\colon P \to \ZZ[\underline{S}]</m> as in <xref ref="def-construct-map-P-to-monoid"/>.
+          Using <xref ref="lem-diagram-p-to-bd-S"/> as in the proof of <xref ref="lem-identify-solidification-of-free"/>,
+          we obtain an identification <m>P \otimes_{\ZZ} A \cong A[\underline{S}]</m>. 
+          As in the proof of <xref ref="lem-trace-class"/>, we may lift to a setting where <m>A^{\triangleright}</m> is represented by a topological ring
+          which is liquid with respect to some topologically nilpotent unit <m>q</m>.
+          Now using the fact that <m>A^{\circ \circ}</m> is open in <m>A^{\triangleright}(*)</m>,
+          we can imitate the proof of <xref ref="lem-trace-class"/>.
+        </p>
+      </proof>
+    </lemma>
+    <remark>
+      <p>
+        It should be possible to adapt <xref ref="lem-trace-class-liquid"/> to the case of an arbitrary analytic ring <m>A</m> as follows.
+        As <m>S_i</m> runs through finite quotients of <m>S</m> in <m>\Prof</m>, we should obtain a sequence of maps
+        <m>A \to A[\underline{S_i}]^\vee \otimes A[\underline{S}]</m> whose differences with the given map
+        <m>A \to A[\underline{S}]^\vee \otimes A[\underline{S}]</m> form a null sequence in <m>\iHom_A(A, A[\underline{S}]^\vee \otimes A[\underline{S}])</m>;
+        that is, there should be an <m>A</m>-linear map <m>A[\underline{\NN_\infty}] \to \iHom_A(A, A[\underline{S}]^\vee \otimes A[\underline{S}])</m>
+        such that <m>[i]</m> maps to an element in the image of <m>\iHom_A(A, A[\underline{S_i}]^\vee \otimes A[\underline{S}])</m>
+        and <m>[\infty]</m> maps to the originally chosen element of <m>\iHom_A(A, A[\underline{S}]^\vee \otimes A[\underline{S}])</m>.
+        One can then proceed as before.
+      </p>
+      <p>
+        This would then yield an analogue of <xref ref="thm-gaga-liquid"/> for an <em>arbitrary</em> analytic ring.
+      </p>
+    </remark>
+           that 
+          every object of <m>\Mod_{A\left\langle f_1/g, \dots, f_n/g\right\rangle}</m> is <m>\left\{\tfrac{f_1}{g},\dots,\tfrac{f_n}{g}\right\}</m>-liquid.
+
+    <example xml:id="exa-solid-affine-line">
+      <p>
+        Let <m>R</m> be the solid analytic ring whose underlying ring is the discrete ring <m>\underline{\ZZ[T]}</m>;
+        we describe the effect of liquefying this analytic ring with respect to <m>T</m>.
+        The underlying ring is already <m>T</m>-liquid because its topology is discrete;
+        however, there is a nontrivial effect of liquefaction on modules.
+        To see this, 
+        Let <m>R = \underline{\ZZ}[T] = \underline{\ZZ[T]}</m> be the (discrete) polynomial ring over <m>\ZZ</m>, 
+        take <m>S = \{1,T\}</m>, and consider the category <m>\Mod_{R \liquid S}</m>.
+        To compute the <m>S</m>-liquefaction of <m>R</m>, we first note that <m>R</m> is already solid, 
+        so we need only worry about the <m>T</m>-liquefaction
+        and we may compute it in <m>\Ab_\solid</m>: it is the functor <m>\ZZ\langle T \rangle</m> given by
+        <men xml:id="eq-solid-affine-line">
+          \prod_I \ZZ_\solid \mapsto \colim_S \prod_{S} \ZZ
+        </men>
+        where <m>S</m> runs over subsets of <m>I \times \NN</m> whose projections in both directions have finite fibers.
+        By contrast, <m>\ZZ_\solid[T]</m> is the functor <m>\prod_I \ZZ_\solid \mapsto \bigoplus_I \ZZ[T]</m>;
+        this amounts to restricting <xref ref="eq-solid-affine-line"/> to finite subsets <m>S</m>
+        (which only has an effect when <m>I</m> is infinite).
+      </p>
+      <p>
+        To see better what is going on here, look what happens when we tensor with <m>\ZZ_{p \solid}</m>;
+        in <m>\CAb_\solid</m> we get the topological ring <m>\underline{\ZZ_p \langle T \rangle}</m>
+        corresponding to the Tate algebra in one variable (i.e., the <m>p</m>-adic completion of <m>\ZZ[T]</m>),
+        which is larger than the polynomial ring <m>\underline{\ZZ_p[T]}</m>.
+        This corresponds to the general fact that derived <m>f</m>-completion commutes with <m>g</m>-liquefaction.
+      </p>
+    </example>
+        <p>
+          To construct
+        </p>
+        <p>
+          Since <m>T^m q</m> is power-bounded in <m>\colim_m A^{\triangleright}[T]_{\liquid T^m q}</m> for every <m>m</m>
+          (<xref ref="lem-liquid-to-power-bounded"/>),
+          we have well-defined maps
+          <md>
+            <mrow>
+              i\colon A^{\triangleright} \to (P \otimes A^{\triangleright}) \otimes_A \colim_m A^{\triangleright}[T]_{\liquid T^m q}, 
+              \qquad &amp; 1 \to \sum_n q^{-n} [n] \otimes (Tq)^n
+            </mrow>
+            <mrow>
+              e\colon (P \otimes A^{\triangleright}) \otimes_A \colim_m A^{\triangleright}[T]_{\liquid T^m q} \to A^{\triangleright}, \qquad &amp;[m] \otimes T^n \mapsto
+              \begin{cases} 1 &amp; m = n \\ 0 &amp; m \neq n
+              \end{cases}
+            </mrow>
+          </md>
+          which compose as in <xref ref="def-reflexive-dualizable"/>; this yields the claim as in <xref ref="eq-dual-functor"/>.
+        </p>
+    <example xml:id="exa-solid-affine-line">
+      <p>
+        Let <m>R</m> be the solid condensed ring associated to the discrete topological ring <m>\ZZ[T]</m>.
+        In <m>\Ab_\solid</m>, this corresponds to the functor 
+        <me>
+          \prod_\NN \ZZ \mapsto \left( \bigoplus_\NN \ZZ \right)[T] = \bigoplus_\NN \ZZ[T]
+        </me>.
+        We now consider the effect of liquefying with respect to <m>T</m>. This might look like it should have no effect because
+        null sequences in <m>\ZZ</m> are eventually zero, but this is not the case!
+        For instance, <m>T</m> is power-bounded in the liquefaction (<xref ref="lem-liquid-to-power-bounded"/>) but not in <m>R</m>.
+      </p>
+      <p>
+        What one gets is actually the solid condensed ring <m>\ZZ\langle T \rangle</m> described in <xref ref="exa-solid-Tate-algebra"/>
+        which is <em>not</em> associated to a topological ring. See <xref ref="sec_solid_completion"/> for more discussion of the behavior of this object.
+      </p>
+      <p>
+        To check that <m>\ZZ[T] \to \ZZ \langle T \rangle</m> becomes an isomorphism upon <m>T</m>-liquefaction, note that the <m>T</m>-liquefaction of
+        <m>\ZZ[T]</m> is still solid; so it suffices to check that <m>\Hom_{\CAb}(\ZZ\langle T \rangle, M) \to \Hom_{\CAb}(\ZZ[T], M)</m> is an isomorphism
+        whenever <m>M</m> is solid.  
+      </p>
+    </example>
+
+    <proposition xml:id="prop-solid-rational-localization">
+      <statement>
+        <p>
+          Let <m>A^{\triangleright}</m> be a solid condensed ring and choose <m>f_1,\dots,f_n,g \in A^{\triangleright}(*)</m>.
+          Then there is a homomorphism <m>A^{\triangleright} \to A^{\triangleright} \left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle</m> of solid condensed rings which is initial for the properties that:
+          <ul>
+            <li>
+              <m>g</m> is invertible in <m>A^{\triangleright} \left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle</m>;
+            </li>
+            <li>
+              <m>f_1/g, \dots, f_n/g</m> are power-bounded in <m>A^{\triangleright} \left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle</m>.
+            </li>
+          </ul>
+          Moreover, for any solid analytic ring <m>A</m> with underlying ring <m>A^{\triangleright}</m>,
+          the map <m>A^{\triangleright} \to A^{\triangleright} \left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle</m> upgrades uniquely to a 
+          morphism <m>A \to A\left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle</m> of solid analytic rings 
+          (that is, we are taking <m>A\left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle^\triangleright = A^{\triangleright}\left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle</m>)
+          which is initial for the additional property that 
+          every object of <m>\Mod_{A\left\langle f_1/g, \dots, f_n/g\right\rangle}</m> is <m>\left\{\tfrac{f_1}{g},\dots,\tfrac{f_n}{g}\right\}</m>-liquid.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          For the first assertion, take
+          <men xml:id="eq-formula-rational-localization">
+            A^{\triangleright} \left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle := 
+            \frac{A^{\triangleright}[T_1,\dots,T_n]_{\liquid T_1,\dots,T_n}}{(f_1-gT_1,\dots,f_n-gT_n)}
+          </men>.
+          <men>
+            A^{\triangleright} \left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle := 
+            \frac{A^{\triangleright}\left[ \tfrac{1}{g} \right][T_1,\dots,T_n]_{\liquid \{T_1,\dots,T_n\}}}{(f_1-gT_1,\dots,f_n-gT_n)}
+          </men>.
+          For the second assertion, it suffices to note that the construction in <xref ref="eq-formula-rational-localization"/> starts with the object
+          <m>A^{\triangleright} \in \Mod_A</m> and then progresses through a sequence of steps that maintain membership in <m>\Mod_A</m>:
+          adjunction of <m>\tfrac{1}{g}</m> (which can be viewed as passage to the free module <m>A^{\triangleright}[T]</m>
+          and then quotienting by the ideal <m>1-gT</m>); adjunction of the variables <m>T_1,\dots,T_n</m>; liquefaction
+          with respect to <
+          m>T_1,\dots,T_n</m>; and quotienting by the ideal <m>(f_1-gT_1,\dots,f_n-gT_n)</m>. 
+        </p>
+      </proof>
+    </proposition>
+          For <m>M = A[\underline{S}]</m>, we have by <xref ref="lem-identify-solidification-of-free"/>
+          <me>
+            M \cong A \otimes_\solid \ZZ[\underline{S}]_\solid \cong A \otimes_\solid \prod_\NN \underline{\ZZ} = \prod_\NN A
+          </me>
+          and
+          <me>
+            \iHom_{\underline{\ZZ}}(P, M) = \iHom_{\CAb_\solid}(P_\solid, M) = \prod_J \bigoplus_\NN \underline{\ZZ}
+          </me>;
+          this proves the claim in this case because the formation of <m>M \otimes^L_A A^{\triangleright}[T]_{\liquid T}</m> is compatible
+          with infinite products.
+          We deduce the general case by noting that both sides of the claimed isomorphism are compatible with colimits
+          (using <xref ref="prop-internally-projective"/>).
+        </p>
+        <p>
+          See also <xref ref="lem-tensor-with-liquid-T-general"/> for an alternate proof that also yields a somewhat more general result.
+
+          For each <m>m</m>, we get a map
+          <me>
+            M \otimes_{A^{\triangleright}} A^{\triangleright}[T]_{\liquid T^m q} \to \iHom_{\underline{\ZZ}}(P_m, M)
+          </me>
+          taking <m>x \otimes \sum_n a_n T^n</m> to <m>[n] \mapsto a_n q^{-\lfloor n/m \rfloor} x</m>.
+          Since <m>\iHom_{\underline{\ZZ}}(P_m, M) \in \Mod_A</m> this map formally promotes to the tensor product taken in <m>\Mod_A</m>
+          rather than in <m>\Mod_{A^{\triangleright}}</m>.
+        </p>
+        <p>
+          In the other direction, note that in <xref ref="eq-tensor-with-liquid-T-transition"/>,
+          the exponent <m>\lfloor n/m \rfloor - \lfloor n/(m+1) \rfloor</m> is bounded below by some linear function of <m>n</m>.
+          Consequently, for each <m>m</m> we get a map 
+          <me>
+           \iHom_{\underline{\ZZ}}(P_m, M) \to M \otimes_A A^{\triangleright}[T]_{\liquid T^{m+1} q}
+          </me>.
+          The composition of these two maps is easily seen to induce the identity on <m>\iHom_{\underline{\ZZ}}(P_m, M)</m>.
+        </p>
+        <p>
+          The claim is now that on one hand the left-hand side of <xref ref="eq-tensor-with-liquid-T-general"/> is in fact underived,
+          and on the other hand the two maps described above compose to the identity in both directions.
+          Taking these claims together, and using the fact that the right-hand side is an exact functor of <m>M</m> by <xref ref="prop-internally-projective"/>,
+          we may formally reduce to the case <m>M = A[\underline{S}]</m> with <m>S \in \Prof</m>.
+          As in the proof of <xref ref="lem-tensor-with-liquid-T"/>, we may further reduce to the <q>universal</q> case 
+          <me>
+            A = (\underline{\ZZ[q^\pm]}, \Mod_{\underline{\ZZ[q^\pm]}\liquid q})
+          </me>.
+          Note that here we are topologizing <m>\ZZ[q^\pm]</m> with the <em>discrete</em> topology, so its associated condensed ring is already <m>q</m>-liquid;
+          this differs from the situation considered in <xref ref="def-initial-base-ring"/> in which <m>q</m> was forced to be topologically nilpotent.
+        </p>
+        <p>
+          In this setting, we can compute directly that 
+          <me>
+            \colim_m A[\underline{S}] \otimes^L_{A^{\triangleright}} A^{\triangleright}[T]_{\liquid T^m q} \cong
+            \colim_m A[\underline{S}][T]_{\liquid T^m q}
+          </me>
+          where the colimit is required for similar reasons as above.
+
+    <example xml:id="eq-liquefaction-idempotent">
+      <p>
+        Equip <m>\ZZ[q]</m> with the discrete topology. Then the morphism <m>\underline{\ZZ[q]} \to \underline{\ZZ[q]}_{\liquid q}</m>
+        gives rise to an idempotent morphism of discrete analytic rings.
+      </p>
+      <p>
+        To see that <m>\underline{\ZZ[q]} \to \underline{\ZZ[q]}_{\liquid q}</m> is flat, we may argue as in <xref ref="eq-sequence-space-idempotent"/>:
+        form the exact sequence
+        <me>
+          0 \to \underline{\ZZ[q]} \otimes \underline{\ZZ[q]}_{\liquid q} \stackrel{\times (q \otimes 1 - 1 \otimes q)}{\to} 
+          \underline{\ZZ[q]} \otimes \underline{\ZZ[q]}_{\liquid q} \to \underline{\ZZ[q]}_{\liquid q} \to 0
+        </me>,
+        then observe that for any <m>M \in \Mod_{\underline{\ZZ[q]}}</m>, <m>M \otimes_{\underline{\ZZ[q]}} \underline{\ZZ[q]} \otimes \underline{\ZZ[q]}_{\liquid q} \cong 
+        M \otimes \underline{\ZZ[q]}_{\liquid q}</m>
+        injects into <m>M \otimes (\underline{\ZZ[q]}_{\liquid q} \oplus \prod_{n \lt 0} \ZZ q^{n})</m>
+        on which multiplication by <m>q \otimes 1 - 1 \otimes q = (1 \otimes q)(q \otimes q^{-1} - 1)</m> is an isomorphism.
+      </p>
+      <p>
+        To see that <m>\underline{\ZZ[q]}_{\liquid q} \otimes_{\underline{\ZZ[q]}} \underline{\ZZ[q]}_{\liquid q} \cong \underline{\ZZ[q]}</m>,
+        use the explicit description of <m>\underline{\ZZ[q]}_{\liquid q}</m> given in <xref ref="prop-initial-analytic"/> to see that 
+        <me>
+          (\underline{\ZZ[q]}_{\liquid q} \otimes \underline{\ZZ[q]}_{\liquid q})_{\liquid \{q \otimes 1, 1 \otimes q\}}/(q \otimes 1 - 1 \otimes q) 
+          \cong \underline{\ZZ[q]}_{\liquid q}
+        </me>.
+      </p>
+    </example>
+    <remark xml:id="rem-liquefaction-idempotent">
+      <p>
+        By base extension from <xref ref="eq-liquefaction-idempotent"/>, 
+        we deduce that for any analytic ring <m>A</m> and any <m>q \in A^{\triangleright}(*)</m>,
+        the morphism 
+        <me>
+          A \to (A^{\triangleright}_{\liquid q}, \Mod_{A^{\triangleright}_{\liquid q}} \times_{\Mod_{A^{\triangleright}}} \Mod_A)
+        </me> 
+        is idempotent.
+        This applies in particular for <m>q=1</m>, in which case we may write <m>A^{\triangleright}_{\solid}</m> for <m>A^{\triangleright}_{\liquid q}</m>.
+        However, as per <xref ref="rem-idempotent-module-category"/>, if we replace the module category with its subcategory of <m>q</m>-liquid objects
+        then we only get a weakly idempotent morphism.
+      </p>
+    </remark>
+    <example xml:id="exa-rational-localization-is-idempotent-general">
+      <p>
+        We reprise <xref ref="exa-rational-localization-is-idempotent"/>, but now allowing <m>A</m> be a general (not necessarily solid) analytic ring.
+        We may factor <m>A^{\triangleright} \to B^{\triangleright}</m> as 
+        <me>
+          A^{\triangleright} \to A^{\triangleright}[\tfrac{1}{g}] \to A^{\triangleright}[\tfrac{1}{g}]_{\liquid f_1/g} \to \cdots \to A^{\triangleright}[\tfrac{1}{g}]_{\liquid f_1/g,\dots,f_n/g}
+        </me>.
+        Combining <xref ref="eq-Zariski-localization-idempotent"/> with <xref ref="eq-liquefaction-idempotent"/>,
+        we deduce that
+        <me>
+          A \to (B^{\triangleright}, \Mod_{B^{\triangleright}} \times_{\Mod_{A^{\triangleright}}} \Mod_A)
+        </me>
+        is idempotent.
+      </p>
+      <p>
+        Beware that the target is not guaranteed to be equal to <m>B</m> because the modules are not required to be liquid with respect to
+        <m>f_1/g,\dots,f_n/g</m>. However, we do know that this is true when <m>A</m> is a solid analytic ring
+        (<xref ref="cor-tensor-with-liquid-T"/>).
+      </p>
+    </example>
+      <p>
+        Note that these conclusions can be improved to cover more general analytic rings; see <xref ref="exa-rational-localization-is-idempotent-general"/>.
+      </p>
+    <definition>
+      <p>
+        For <m>R</m> a commutative ring, an <term>abstract norm function</term> on <m>R</m> is a function <m>N \colon |\PP^1_R| \to [0, \infty]</m>
+        subject to the following conditions.
+        <ul>
+          <li>
+            For <m>0_R \colon \Spec R \to \PP^1_R</m> the zero section, <m>N \circ 0_R = 0</m>.
+          </li>
+          <li>
+            For <m>r\colon \PP^1_R \to \PP^1_R</m> the inversion map, 
+            <m>N \circ |r| = 1/N</m>.
+            (Combined with the first point, this implies that <m>N\circ 1_R = 1</m> and <m>N\circ \infty_R = \infty</m>.)
+          </li>
+          <li>
+            For <m>X \subseteq \PP^1_R \times_R \PP^1_R \times_R \PP^1_R</m> the Zariski closure of the graph of the multiplication map
+            <m>\mu\colon \AAA^1_R \times_R \AAA^1_R \to \AAA^1_R</m>,
+            <m>(N \times N \times N)|_X \colon X \to [0,\infty]^3</m> factors through the closure of the graph of the multiplication map
+            <m>[0,\infty) \times [0,\infty) \to [0, \infty)</m>.
+          </li>
+          <li>
+            For <m>X \subseteq \PP^1_R \times_R \PP^1_R \times_R \PP^1_R</m> the Zariski closure of the graph of the addition map
+            <m>\sigma\colon \AAA^1_R \times_R \AAA^1_R \to \AAA^1_R</m>,
+            <m>(N \times N \times N)|_X \colon X \to [0,\infty]^3</m> factors through the closure of the graph of the addition map
+            <m>[0,\infty) \times [0,\infty) \to [0, \infty)</m>.
+          </li>
+        </ul>
+      </p>
+    </definition>
+    <remark>
+      <p>
+        When <m>R</m> is a field, the data of an abstract norm function on <m>R</m> is the same as the data of a multiplicative norm on <m>R</m>.
+        In general, since we have not imposed any structural restriction on <m>N</m>, the whole definition degenerates: the data is just that of
+        a multiplicative norm on each residue field of <m>R</m>.
+      </p>
+      <p>
+        We would like to refine this definition by upgrading <m>N</m> to a <q>geometric</q> map <m>\PP^1_R \to [0, \infty]</m>,
+        but it is not obvious how to embed both source and target into a common category where such a map could live.
+        We will eventually consider the category of <term>analytic stacks</term> where this takes place;
+        for the moment we will work with <m>\Fun(\AnRing^{\op}, \Set)</m>, but eventually we will want to specify a topology on <m>\AnRing</m> and consider only the sheaves for this topology.
+      </p>
+    </remark>
+    <lemma xml:id="lem-tensor-with-liquid-T">
+      <statement>
+        <p>
+          Let <m>A</m> be a solid analytic ring. Then for any <m>M \in \Mod_{A}</m>,
+          <me>
+            M \otimes^L_A A^{\triangleright} \langle T \rangle \cong \iHom_{\underline{\ZZ}}(P, M)
+          </me>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By rewriting 
+          <me>
+            M \otimes^L_A A^{\triangleright} \langle T \rangle 
+            \cong M \otimes^L_A A^{\triangleright} \otimes^L_{\underline{\ZZ}\solid} \underline{\ZZ} \langle T \rangle
+          </me>
+          we reduce to the case <m>A = (\underline{\ZZ}, \Mod_{\underline{\ZZ} \solid})</m>.
+          For <m>M = A = \underline{\ZZ}</m>,
+          we may apply <xref ref="rem-adjoin-top-nilpotent"/> to transfer to the case
+          <m>M = A = \underline{\ZZ((q))}</m> and then apply the discussion in <xref ref="def-solid-Tate"/>.
+          For general <m>M</m>, we may replace <m>A</m> with the square-zero extension <m>M \oplus A</m> and repeat the argument.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-tensor-with-liquid-T-is-liquid">
+      <statement>
+        <p>
+          Let <m>A</m> be a solid analytic ring.
+          Then for any <m>M \in \Mod_A</m>, <m>M \otimes_A A^{\triangleright} \langle T \rangle</m> is <m>T</m>-liquid.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By <xref ref="lem-tensor-with-liquid-T"/>, <m>M \otimes_A A^{\triangleright} \langle T \rangle \cong \iHom_{\CAb}(P, M)</m>.
+          The claim is then that <m>\Delta_T^*</m> is a bijection on 
+          <me>
+            \iHom_{CAb}(P, \iHom_{\CAb}(P, M)) = \iHom_{\CAb}(P \otimes P, M)
+          </me>;
+          as this statement makes no reference to the <m>A</m>-module structure on <m>M</m>, we may check it for <m>A = \underline{\ZZ}</m>.
+          In that case, we formally reduce first to the case <m>M = \prod_I \underline{\ZZ}</m>, then by compatibility with products to the case
+          <m>M = \underline{\ZZ}</m>; unwinding, this just comes down to the tautology that <m>A^{\triangleright}[T]_{\liquid T}</m> is
+          <m>T</m>-liquid.
+        </p>
+        <p>
+          See also <xref ref="lem-tensor-with-liquid-T-is-liquid-general"/> for an alternate proof that applies to a somewhat more general setting.
+        </p>
+      </proof>
+    </lemma>
+    <corollary xml:id="cor-tensor-with-liquid-T-is-liquid">
+      <statement>
+        <p>
+          Let <m>A \to B</m> be a rational localization of solid analytic rings corresponding to parameters
+          <m>f_1,\dots,f_n,g\in A^{\triangleright}(*)</m> which generate the unit ideal.
+          Assume further that <m>A</m> admits a topologically nilpotent unit.
+          Then 
+          <me>
+            \Mod_B = \Mod_{B^{\triangleright}} \times_{\Mod_{A^{\triangleright}}} \Mod_A
+          </me>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We may check this after first replacing <m>A</m> with <m>A[1/g]</m>, in which case we reduce to the case where the parameters defining
+          the rational localization have the form <m>h,1</m>. In this case we may apply <xref ref="lem-tensor-with-liquid-T-is-liquid"/> 
+          to conclude.
+        </p>
+      </proof>
+    </corollary>
+    <definition>
+      <p>
+        We would like to define a <term>quasicoherent sheaf</term> on <m>\AnRing^{\op}</m> to be a sheaf locally
+        for the adic topology of the form <m>M \otimes_A B</m> for some <m>M \in \Mod_A</m>.
+        However, this tensor product is in general derived.
+      </p>
+      <p>
+        Define a <term>quasicoherent sheaf</term> on <m>\AnSpec A</m> to be a sheaf of condensed abelian groups on <m>\AnRing^{\op}_{\solid/A}</m>
+        equipped with the structure of an <m>\calO</m>-module (for <m>\calO</m> the structure sheaf, as in <xref ref="thm-solid-sheafy"/>)
+        which is locally associated to a module. That is, for <m>\calF</m> to be quasicoherent, there must exist a covering family of loose rational localizations
+        <m>\{A \to B_i\}</m> such that <m>\calF|_{\AnSpec B_i} \in \Mod_{B_i}</m> for each <m>i</m>.
+        Let <m>\LQCoh_A</m> be the category of loose quasicoherent sheaves on <m>\AnSpec A</m>. 
+      </p>
+    </definition>
+    <p>
+      To prove that <m>\Mod_A \to \LQCoh_A</m> is essentially surjective, it is convenient to first prove glueing in the derived category.
+      Before getting too far into the categorical weeds, let us formulate the main glueing lemma for a two-term covering.
+    </p>
+    <proposition xml:id="prop-module-to-sheaf">
+      <statement>
+        <p>
+          Let <m>A</m> be a solid analytic ring and fix <m>M \in A</m>.
+          Let <m>\calC</m> be the subcategory of <m>\AnRing^{\op}_{\solid/A}</m> consisting of loose rational
+          localizations of <m>A</m>. Then the functor
+          <m>B \mapsto M \otimes^L_A B^{\triangleright}</m>
+          (here using <xref ref="thm-localization-is-flat"/> to see that the tensor product is underived)
+          is a sheaf <m>\tilde{M}</m> of condensed abelian groups on <m>\calC</m> for the loose adic topology.
+          Moreover, <m>H^i(\calC, \tilde{M}) = 0</m> for <m>i \gt 0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The claim follows from <xref ref="thm-solid-sheafy"/> by tensoring with <m>M</m>.
+        </p>
+      </proof>
+    </proposition>
+      <p>
+        Recall that by <xref ref="lem-tensor-with-liquid-T-is-liquid"/>,
+        the base extension functor <m>\bullet \otimes_A A^{\triangleright}[T]_{\liquid T}</m> carries <m>\Mod_A</m>
+        into <m>\Mod_{A\langle T \rangle}</m>, without needing to liquefy with respect to <m>T</m>.
+        This means that we can pull back quasicoherent sheaves from <m>\PP^1_A</m> to <m>\PP^1_{A \solid}</m>.
+      </p>
+    <lemma xml:id="lem-tensor-with-liquid-T-general">
+      <statement>
+        <p>
+          Let <m>A</m> be an analytic ring which is liquid with respect to some unit <m>q \in A^{\circ}</m>
+          and which admits a topologically nilpotent unit (not necessarily equal to <m>q</m>).
+          Then for any <m>M \in \Mod_{A}</m>, we have a functorial isomorphism
+          <men xml:id="eq-tensor-with-liquid-T-general">
+            M \otimes^L_A A^{\triangleright} \langle T \rangle^\dagger_q \cong \colim_m \iHom_{\underline{\ZZ}}(P_m, M)
+          </men>
+          where for each positive integer <m>m</m>, <m>P_m</m> denotes a copy of the sequence space <m>P</m>
+          and the transition maps are induced by
+          <men xml:id="eq-tensor-with-liquid-T-transition">
+            P_{m+1} \to P_m, \qquad [n] \mapsto q^{\lfloor n/m \rfloor - \lfloor n/(m+1) \rfloor} [n]
+          </men>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          For <m>M = A</m>, this follows from <xref ref="lem-dagger-as-liquefaction"/>.
+          In the general case, replace <m>A</m> with the square-zero extension <m>A \oplus M</m> and apply the previous case.
+        </p>
+      </proof>
+    </lemma>
+    <p>
+      We must now address a subtlety that arose previously in the solid case
+      (<xref ref="cor-tensor-with-liquid-T-is-liquid"/>):
+      the definition of a rational localization includes a choice of module category
+      which in principle could obstruct the construction of quasicoherent sheaves.
+    </p>
+    <lemma xml:id="lem-tensor-with-liquid-T-is-liquid-general">
+      <statement>
+        <p>
+          Let <m>A</m> be an analytic ring which is liquid with respect to some unit <m>q \in A^{\circ}</m>.
+          Then for any <m>M \in \Mod_A</m>,
+          <m>M \otimes_A A^{\triangleright} \langle T \rangle^\dagger_q</m> is <m>T^{m}q</m>-liquid for every positive integer <m>m</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We check the case <m>m=1</m>, as the general case reduces to it by adjoining <m>q^{1/m}</m> to <m>A</m>.
+          By <xref ref="rem-adjoin-top-nilpotent-liquid"/>, we may further assume that <m>A</m> admits a topologically nilpotent unit.
+          By <xref ref="lem-tensor-with-liquid-T-general"/>, <m>M \otimes_A A^{\triangleright} \langle T \rangle \cong \colim_m \iHom_{\CAb}(P_m, M)</m>.
+          The claim is then that <m>\Delta_{Tq}^*</m> is a bijection on 
+          <me>
+            \colim_m \iHom_{CAb}(P, \iHom_{\CAb}(P_m, M)) = \colim_m \iHom_{\CAb}(P \otimes P_m, M)
+          </me>.
+          Now note that for each <m>m</m>, <m>1-\Delta_{Tq}</m> acts on <m>P \otimes P_m</m> via the product of shifts in <em>opposite</em> directions,
+          so <m>\Delta_{Tq}</m> admits the inverse <m>\sum_n (1-\Delta_{Tq})^n</m>.
+        </p>
+      </proof>
+    </lemma>
+    <corollary xml:id="cor-tensor-with-liquid-T-is-liquid-general">
+      <statement>
+        <p>
+          Let <m>A</m> be an analytic ring which is liquid with respect to some unit <m>q \in A^{\circ}</m>.
+          Choose <m>f_1,\dots,f_n,g \in A^{\triangleright}(*)</m> generating the unit ideal and set
+          <me>
+            B^\dagger := A \left \langle \frac{f_1}{g}, \dots, \frac{f_n}{g} \right\rangle^\dagger_q
+          </me>.
+          Then
+          <me>
+            \Mod_{B^\dagger} = \Mod_{B^{\dagger \triangleright}} \times_{\Mod_{A^{\triangleright}}} \Mod_A
+          </me>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Using <xref ref="lem-tensor-with-liquid-T-is-liquid-general"/>, this follows as in the proof of <xref ref="cor-tensor-with-liquid-T-is-liquid"/>.
+        </p>
+      </proof>
+    </corollary>
+          
+          Set <m>Q := \coker(h)</m>. Let <m>\overline{Q}</m> be the quotient of <m>Q</m> by its torsion subgroup; by
+          <xref ref="lem-submodule-free-over-PID"/> again, <m>\overline{Q}</m> is again a free <m>\ZZ</m>-module,
+          so the target <m>\bigoplus_J \ZZ</m> admits a splitting with <m>\overline{Q}</m> as a direct summand.
+          This now transposes to a decomposition of the source <m>\prod_J \ZZ_\solid</m> as a product into two factors,
+          each itself a product of copies of <m>\ZZ_\solid</m>, and we can replace the source with one of these factors
+          (discarding the dual of <m>\overline{Q}</m>) in such a way that we now have a new sequence as in <xref ref="eq-sandwich-free-module"/>, but
+          now <m>Q</m> is a torsion <m>\ZZ</m>-module.
+        <p>
+          Let <m>D</m> be the divisible closure of the image of <m>h</m> within <m>\bigoplus_J \ZZ</m>.
+          By <xref ref="lem-submodule-free-over-PID"/>, <m>D</m> is also a free <m>\ZZ</m>-module.
+          By <xref ref="prop-solid-internal-hom"/>, the dual of <m>D</m> is a product of copies of <m>\ZZ_\solid</m>
+          through which <m>g</m> factors, as then does the map <m>\prod_J \ZZ_\solid \to M</m>
+          since <m>M \to \prod_I \ZZ_\solid</m> is injective.
+          We can thus replace the source <m>\prod_J \ZZ_\solid</m> with this product;
+          at this point, <m>h</m> is still injective but now <m>Q := \coker(h)</m> is torsion.
+        </p>
+        <p>
+          Now dualizing the sequence
+          <men xml:id="eq-length-1-resolution-of-solid">
+            0 \to \bigoplus_I \ZZ \stackrel{h}{\to} \bigoplus_J \ZZ \to Q \to 0
+          </men>
+          and invoking <xref ref="lem-hom-from-torsion-vanishes"/> yields
+          <men xml:id="eq-hom-from-torsion-sequence">
+            0 = \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid
+          </men>.
+          At this point, we know that in <xref ref="eq-sandwich-free-module"/>, the first map is surjective, the second map is injective,
+          and the composition is also injective. Consequently the first map <m>\prod_I \ZZ_\solid \to M</m> is an isomorphism, proving the claim.
+        </p>
+    <lemma xml:id="lem-prod-Z-is-free">
+      <statement>
+        <p>
+          For any set <m>I</m>, <m>\prod_I \ZZ</m> is a free <m>\ZZ</m>-module.
+          (Note that here we are taking the product in the category of discrete <m>\ZZ</m>-modules, not in the solid category.)
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Choose a set of elements <m>B</m> in <m>\prod_I \ZZ</m> lifting a basis of the <m>\FF_2</m>-vector space
+          <m>\prod_I \ZZ/2\ZZ</m>. Then any relation among elements of <m>B</m> is infinitely 2-divisible and hence
+          vanishes; we deduce that the map <m>\bigoplus_B \ZZ \to \prod_I \ZZ</m> is an isomorphism.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-split-off-free-sub">
+      <statement>
+        <p>
+          Let <m>Q</m> be a <m>\ZZ</m>-module. Then <m>Q</m> admits a splitting as <m>Q' \oplus Q''</m>
+          such that <m>Q'</m> is free and <m>\Hom_{\ZZ}(Q'', \ZZ) = 0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Set <m>K := \Hom_{\ZZ}(Q, \ZZ)</m>.
+          We then have a natural evaluation map <m>Q \to \prod_K \ZZ</m>; let <m>Q'</m> be its image.
+          By <xref ref="lem-prod-Z-is-free"/>, the target <m>\prod_K \ZZ</m> is a free <m>\ZZ</m>-module, as then by
+          <xref ref="lem-submodule-free-over-PID"/> is <m>Q'</m>; we can thus split 
+          <m>Q</m> as the sum of <m>Q'</m> plus a complementary summand <m>Q''</m>.
+          From the split exact sequence
+          <me>
+            0 \to Q' \to Q \to Q'' \to 0
+          </me>
+          we obtain the split exact sequence
+          <me>
+            0 \to \Hom_\ZZ(Q'', \ZZ) \to K \to \Hom_\ZZ(Q', \ZZ) \to 0
+          </me>
+          in which the right map is also injective (because by construction any morphism <m>Q \to \ZZ</m>
+          factors through <m>Q'</m>). Consequently, <m>\Hom_{\ZZ}(Q'', \ZZ) = 0</m>.
+        </p>
+      </proof>
+    </lemma>
+      <p>
+        By the same token, if <m>Q,Q'</m> are two <m>\ZZ</m>-modules
+        with <m>|Q|, |Q'| \leq \kappa</m> and <m>\Hom_{\ZZ}(Q, \ZZ) = \Hom_{\ZZ}(Q', \ZZ) = 0</m>, then
+        any morphism <m>Q \to Q'</m> that induces an isomorphism 
+        <m>\iExt^1_{\ZZ_\solid}(Q'_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>
+        is itself an isomorphism.
+        To begin with, if one of <m>Q</m> or <m>Q'</m> is zero, then the other is both free
+        (by <xref ref="prop-Whitehead-for-solid"/>) and has no nonzero maps to <m>\ZZ</m>, and hence must be zero.
+        Next, <m>\iExt^1_{\ZZ_\solid}(\bullet, \ZZ_\solid)</m> is right exact because
+        <m>iExt^2_{\ZZ_\solid}(\bullet, \ZZ_\solid)</m> is identically zero, so we may apply the previous case to
+        <m>\coker(Q \to Q')</m> to deduce that <m>Q \to Q'</m> is surjective.
+        Finally, by <xref ref="lem-hom-from-torsion-vanishes"/> we have
+        <m>\iHom_{\ZZ_\solid}(Q'_\solid, \ZZ_\solid) = 0</m>, so we may apply the first case to
+        <m>\ker(Q \to Q')</m> to deduce that <m>Q \to Q'</m> is injective.
+      </p>
+        <p>  
+          By <xref ref="cor-length-1-resolution-of-solid"/>, we can find an exact sequence of the form
+          <me>
+            0 \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid \to N \to 0
+          </me>.
+          As in the proof of <xref ref="lem-subobject-of-finitely-generated"/>
+          (applied to the image of <m>g</m>),
+          after removing a summand of <m>N</m> of the form <m>\prod_K \ZZ_\solid</m>,
+          we can ensure that the dual morphism <m>h\colon \bigoplus_I \ZZ \to \bigoplus_J \ZZ</m> of <m>g</m>
+          is injective and that its cokernel <m>Q</m> satisfies <m>\Hom_\ZZ(Q, \ZZ) = 0</m>.
+          At this point, the sequence <xref ref="eq-hom-from-torsion-sequence"/> continues
+          <me>
+            0 \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid \to \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}\left(\prod_J \ZZ_\solid, \ZZ_\solid\right) = 0
+          </me>
+          where the last term vanishes because <m>\prod_J \ZZ_\solid</m> is projective in <m>\Mod_{\ZZ_\solid}</m>.
+          We conclude that our original <m>N</m> splits as a product of copies of <m>\ZZ_\solid</m> plus <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>.
+        </p>
+    <lemma xml:id="lem-divisible-closure-finitely-generated">
+      <statement>
+        <p>
+          Let <m>M</m> be a finitely generated <m>\ZZ</m>-submodule of <m>\prod_\NN \ZZ</m>.
+          Then the divisible closure of <m>M</m> in <m>\prod_\NN \ZZ</m> is also finitely generated.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Choose a basis of <m>M</m> and record the elements of this basis as a semi-infinite matrix of integers
+          (with finitely many columns and countably many rows). We can then perform elementary row and column operations
+          on this matrix without changing the isomorphism class of either <m>M</m> or its divisible closure.
+          In particular, we can put the matrix into Hermite normal form, from which the claim is evident.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-countable-sub-of-product-is-free">
+      <statement>
+        <p>
+          Let <m>M</m> be a <m>\ZZ</m>-submodule of <m>\prod_I \ZZ</m> for some index set <m>I</m>
+          with <m>|M| \leq \aleph_0</m>.
+          Then <m>M</m> is free.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By hypothesis, we can find a surjection <m>\bigoplus_J \ZZ \to M</m> with <m>|J| \leq \aleph_0</m>.
+          There is nothing to check if <m>J</m> is finite, as then we can project from <m>I</m> onto some finite index
+          set and then apply <xref ref="lem-submodule-free-over-PID"/>.
+          We may thus assume that <m>J = \NN</m>.
+        </p>
+        <p>
+          Let <m>F_n</m> be the divisible closure in <m>M</m> of the image of <m>\bigoplus_{\{0,\dots,n-1\}} \ZZ</m>.
+          Since <m>F_n</m> is contained in the divisible closure of the image of <m>\bigoplus_{\{0,\dots,n-1\}} \ZZ</m>
+          in <m>\prod_I \ZZ</m>, which by <xref ref="lem-divisible-closure-finitely-generated"/> is finitely generated,
+          so then is <m>F_n</m>.
+        </p>
+        <p>
+          For each <m>n \gt 0</m>, <m>F_n/F_{n-1}</m> is finitely generated (by the previous paragraph)
+          and torsion-free (since <m>M/F_{n-1}</m> is by construction), hence free.
+          for each <m>n \gt 0</m>.
+          In particular, we can choose a splitting <m>F_n \cong F_{n-1} \oplus (F_n/F_{n-1})</m>.
+          Combining these splittings yields a coherent sequence of isomorphisms
+          <me>
+            F_n \cong F_0 \oplus (F_1/F_0) \oplus \cdots \oplus (F_n/F_{n-1})
+          </me>,
+          and taking colimits yields an isomorphism
+          <me>
+            M \cong F_0 \oplus (F_1/F_0) \oplus \cdots
+          </me>
+          which shows that <m>M</m> is free.
+        </p>
+      </proof>
+    </lemma>
+    <remark>
+      <p>
+        The cardinality condition in <xref ref="lem-countable-sub-of-product-is-free"/>
+        is needed because the product <m>\prod_\NN \ZZ</m> is <em>not</em> a free <m>\ZZ</m>-module.
+        To see this, suppose to the contrary that <m>\prod_\NN \ZZ \cong \bigoplus_I \ZZ</m> for some <m>I</m>,
+        necessarily with <m>|I| = 2^{\aleph_0}</m>.
+        The image of <m>\bigoplus_\NN \ZZ \to \prod_\NN \ZZ</m> would then be contained in <m>\bigoplus_J \ZZ</m>
+        for some countable subset <m>J</m> of <m>I</m> (namely, the union of the supports of the images of each generator
+        of <m>\bigoplus_\NN \ZZ</m> in <m>\bigoplus_I \ZZ</m>). This would in turn imply that 
+        the divisible subgroup of <m>\left( \prod_\NN \ZZ \right) / \left( \bigoplus_\NN \ZZ \right)</m>
+        is countable (as this quotient would be contained in the product of the torsion-free group <m>\bigoplus_{I \setminus J} \ZZ</m>
+        with a countable group), but this is manifestly false: the map
+        <me>
+          \left( \prod_\NN \ZZ \right) / \left( \bigoplus_\NN \ZZ \right) \to \left( \prod_\NN \ZZ \right) / \left( \bigoplus_\NN \ZZ \right),
+          \qquad (a_n)_n \mapsto (n! a_n)_n
+        </me>
+        is injective, its domain is uncountable, and its image is contained in the divisible subgroup of the codomain.
+      </p>
+    </remark>
+    <lemma xml:id="lem-split-off-free-sub">
+      <statement>
+        <p>
+          Let <m>Q</m> be a <m>\ZZ</m>-module with <m>|Q| \leq \aleph_0</m>. 
+          Then <m>Q</m> admits a splitting as <m>Q' \oplus Q''</m>
+          such that <m>Q'</m> is free and <m>\Hom_{\ZZ}(Q'', \ZZ) = 0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Set <m>K := \Hom_{\ZZ}(Q, \ZZ)</m>.
+          We then have a natural evaluation map <m>Q \to \prod_K \ZZ</m>; let <m>Q'</m> be its image,
+          which by <xref ref="lem-countable-sub-of-product-is-free"/> is free. We can then split 
+          <m>Q</m> as the sum of <m>Q'</m> plus a complementary summand <m>Q''</m>.
+          From the split exact sequence
+          <me>
+            0 \to Q' \to Q \to Q'' \to 0
+          </me>
+          we obtain the split exact sequence
+          <me>
+            0 \to \Hom_\ZZ(Q'', \ZZ) \to K \to \Hom_\ZZ(Q', \ZZ) \to 0
+          </me>
+          in which the right map is also injective (because by construction any morphism <m>Q \to \ZZ</m>
+          factors through <m>Q'</m>). Consequently, <m>\Hom_{\ZZ}(Q'', \ZZ) = 0</m>.
+        </p>
+      </proof>
+    </lemma>
+    <p>
+      We have the following analogue of <xref ref="lem-submodule-free-over-PID"/>.
+    </p>
+    <proposition xml:id="lem-subobject-of-finitely-generated">
+      <statement>
+        <p>
+          For any <m>I</m> with <m>|I| \leq \aleph_0</m>,
+          any finitely generated subobject of <m>\prod_I \ZZ_\solid</m> is itself a product of copies of <m>\ZZ_\solid</m>. 
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Let <m>M</m> be a finitely generated subobject of <m>\prod_I \ZZ_\solid</m>. By definition, it sits in a sequence
+          <men xml:id="eq-sandwich-free-module">
+            \prod_J \ZZ_\solid \to M \to \prod_I \ZZ_\solid
+          </men>
+          where the first map is surjective and the second map is injective.
+        </p>
+        <p>
+          Let <m>g\colon \prod_J \ZZ_\solid \to \prod_I \ZZ_\solid</m> be the composition.
+          By taking duals (<xref ref="prop-solid-internal-hom"/>), we get a map <m>h \colon \bigoplus_I \ZZ \to \bigoplus_J \ZZ</m>;
+          note that we are now considering <em>discrete</em> <m>\ZZ</m>-modules, so we may write <m>\ZZ</m> instead of <m>\ZZ_\solid</m>
+          and reason in terms of discrete <m>\ZZ</m>-modules.
+        </p>
+        <p>
+          By <xref ref="lem-submodule-free-over-PID"/>, <m>\ima(h)</m> is also a free <m>\ZZ</m>-module, so the source
+          <m>\bigoplus_I \ZZ</m> splits as <m>\ker(h)</m> plus a submodule isomorphic to <m>\ima(h)</m>, and both factors are free.
+          This splitting transposes to a decomposition of the target <m>\prod_I \ZZ_\solid</m> as a product of two factors,
+          each itself a product of copies of <m>\ZZ_\solid</m>. The point is that we can replace the target <m>\prod_I \ZZ_\solid</m> with a smaller
+          target (discarding the dual of <m>\ker(h)</m>) in such a way that <m>M</m> still embeds as a subobject, but the map <m>h</m> is now injective.
+        </p>
+        <p>
+          Now set <m>Q := \coker(h)</m>; dualizing the sequence
+          <me>
+            0 \to \bigoplus_I \ZZ \stackrel{h}{\to} \bigoplus_J \ZZ \to Q \to 0
+          </me>
+          yields the new exact sequence
+          <me>
+            0 \to \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid
+          </me>.
+          <me>
+             0 \to \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \prod_J \ZZ_\solid \to M \to 0
+          </me>.
+          <me>
+             0 \to \iHom_{\ZZ_\solid}(M, \ZZ_\solid) \to \bigoplus_J \ZZ \to ?
+          </me>.
+          
+          Fix a splitting of <m>Q</m> according to <xref ref="lem-split-off-free-sub"/>.
+          We may then lift this splitting of <m>Q</m>
+          to a splitting of <m>\bigoplus_J \ZZ</m> as the free module <m>Q'</m> plus a complementary summand.
+          This transposes to a decomposition of <m>\prod_J \ZZ_\solid</m> as a product of two factors,
+          one of which is the dual of <m>Q'</m>.
+          This factor is contained in <m>\ker(g)</m>, so we may replace <m>\prod_J \ZZ_\solid</m> with the other
+          factor without changing the image of <m>g</m>, and therefore without changing <m>M</m>.
+          In so doing, we replace <m>Q</m> with <m>Q''</m>, and thus reduce to the case where <m>Q' = 0</m>
+          and hence <m>\Hom_{\ZZ}(Q, \ZZ) = 0</m>.
+        </p>
+        <p>
+          At this point, the first term in <xref ref="eq-hom-from-torsion-sequence"/> vanishes
+          by <xref ref="lem-hom-from-torsion-vanishes"/>.
+          Hence in <xref ref="eq-sandwich-free-module"/>, the composition <m>g</m> is injective
+          and the map <m>\prod_J \ZZ_\solid \to M</m> is surjective, hence an isomorphism.
+        </p>
+      </proof>
+    </proposition>
+        <p>
+          We check the second assertion first.
+          For the second assertion, we apply <m>\iExt^i(\bullet, N)</m> to the diagram in <xref ref="lem-diagram-p-to-bd"/> to obtain
+          <figure>
+            <image>
+              <latex-image>
+                \xymatrix{
+                  \iExt^i_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right) \ar[r] \ar^{c^*}[d] &amp; \iExt^i_{\CAb}\left( P \otimes \prod_\NN^{\bd} \underline{\ZZ}, N\right) \ar^{\Delta^* \otimes \id}[d] \\
+                  \iExt^i_{\CAb}\left(P, N\right) \ar[r] &amp; \iExt^i_{\CAb}\left( P \otimes \prod_\NN^{\bd} \underline{\ZZ}, N\right) 
+                }
+              </latex-image>
+            </image>
+          </figure>
+          where now both rows are split injections.
+          By applying Hom-tensor adjunction to write
+          <me>
+            \iExt_{\CAb}^i\left( P \otimes \prod_\NN^{\bd} \underline{\ZZ}, N\right) = \iExt^i_{\CAb}\left( P, \iHom_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right)\right)
+          </me>
+          and invoking <xref ref="prop-solid-category"/> to see that <m>\iHom_{\CAb}(\prod_\NN^{\bd} \underline{\ZZ}, N)</m> is solid, we deduce that the
+          right column is an isomorphism.
+          Consequently, the upper composition is an injection, so we have an injection
+          <me>
+            \iExt^i_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right) \stackrel{c^*}{\to} \iExt^i_{\CAb}\left(P, N\right) = 0
+          </me>
+          where the right equality follows from <xref ref="prop-internally-projective"/>.
+        </p>
+        
+                and the induced map <m>\iExt^1_{\ZZ_\solid}(T_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> 
+        is an isomorphism because <m>\bigoplus_B \ZZ</m> is projective in <m>\Ab_\solid</m>.
+
+        
+        , then choose a subset <m>B</m> of <m>Q</m>
+        which forms a basis of <m>Q \otimes_{\ZZ} \QQ</m> as a <m>\QQ</m>-vector space.
+        We then get a tautological morphism <m>\bigoplus_B \ZZ \to Q</m> whose cokernel <m>T</m> is a torsion group,
+        and the induced map <m>\iExt^1_{\ZZ_\solid}(T_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> 
+        is an isomorphism because <m>\bigoplus_B \ZZ</m> is projective in <m>\Ab_\solid</m>.
+        
+        torsion abelian groups.
+        To see this, start with a general <m>Q</m>
+        , then choose a subset <m>B</m> of <m>Q</m>
+        which forms a basis of <m>Q \otimes_{\ZZ} \QQ</m> as a <m>\QQ</m>-vector space.
+        We then get a tautological morphism <m>\bigoplus_B \ZZ \to Q</m> whose cokernel <m>T</m> is a torsion group,
+        and the induced map <m>\iExt^1_{\ZZ_\solid}(T_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> 
+        is an isomorphism because <m>\bigoplus_B \ZZ</m> is projective in <m>\Ab_\solid</m>.
+      (compare <xref ref="exa-extension-solid-Q"/>).
+        Choose a subset <m>B</m> of <m>Q</m> which maps to a <m>\QQ</m>-basis of <m>Q \otimes_\ZZ \QQ</m>.
+        We then obtain a short exact sequence
+        <me>
+          0 \to F \to Q \to T \to 0
+        </me>
+        in which <m>F \cong \bigoplus_B \ZZ</m> is a free module and <m>T</m> is a torsion abelian group. We then have
+        <me>
+          0 \to \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \iHom_{\ZZ_\solid}(F_\solid, \ZZ_\solid) \to 
+          \iExt^1_{\ZZ_\solid}(T_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to 0
+        </me>
+        where once again exactness on the left follows from <xref ref="lem-hom-from-torsion-vanishes"/>.
+      </p>
+      <p>
+        By <xref ref="cor-length-1-resolution-of-solid"/>.
+              
+         by rescaling, we may ensure that <m>B</m> consists oelements of <m>Q</m>
+        Form the exact sequence
+        <me>
+          0 \to T \to Q \to Q \otimes_\ZZ \QQ \to Q \otimes_\ZZ (\QQ/\ZZ) \to 0
+        </me>
+        in which <m>T</m> is the torsion subgroup of <m>Q</m>.
+        We split this sequence up into two short exact sequences by inserting <m>Q/T</m>.
+        Applying <xref ref="lem-hom-from-torsion-vanishes"/> to the first of the sequences yields
+        <me>
+          0 \to \iExt^1_{\ZZ_\solid}((Q/T)_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to 
+          \iExt^1_{\ZZ_\solid}(T_\solid, \ZZ_\solid)  \to 0
+        </me>;
+        splicing together with the result of applying <m>R\iHom_{\ZZ_\solid}(\bullet, \ZZ_\solid)</m> to the second sequence,
+        and recalling that <m>\iHom_{\ZZ_\solid}((Q/T)_\solid, \ZZ_\solid) \cong \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>, we obtain a long exact sequence
+        <md>
+          <mrow>
+            0 \to \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}((Q \otimes_\ZZ (\QQ/\ZZ))_\solid, \ZZ_\solid) \to 
+          </mrow>
+          <mrow>
+           \iExt^1_{\ZZ_\solid}((Q \otimes_\ZZ \QQ)_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to 
+          \iExt^1_{\ZZ_\solid}(T_\solid, \ZZ_\solid)  \to 0
+          </mrow>
+        </md>.
+        Combining with <xref ref="exa-extension-solid-Q"/>,
+        we see that <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> is an extension
+        of <m>\iExt^1_{\ZZ_\solid}(T_\solid, \ZZ_\solid)</m> (which when <m>T</m> is countable is profinite by  <xref ref="prop-ext-as-pontryagin-dual"/>)
+        by a product of copies of <m>\widehat{\ZZ}_\solid/\ZZ_\solid</m>.
+      </p>
+    <p>
+      We then have the following analogue of <xref ref="lem-submodule-free-over-PID"/>.
+    </p>
+    <proposition xml:id="lem-subobject-of-finitely-generated">
+      <statement>
+        <p>
+          For any <m>I</m> with <m>|I| \leq \aleph_0</m>,
+          any finitely generated subobject of <m>\prod_I \ZZ_\solid</m> is itself a product of copies of <m>\ZZ_\solid</m>. 
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Let <m>M</m> be a finitely generated subobject of <m>\prod_I \ZZ_\solid</m>. By definition, it sits in a sequence
+          <men xml:id="eq-sandwich-free-module">
+            \prod_J \ZZ_\solid \to M \to \prod_I \ZZ_\solid
+          </men>
+          where the first map is surjective and the second map is injective.
+        </p>
+        <p>
+          Let <m>g\colon \prod_J \ZZ_\solid \to \prod_I \ZZ_\solid</m> be the composition.
+          By taking duals (<xref ref="prop-solid-internal-hom"/>), we get a map <m>h \colon \bigoplus_I \ZZ \to \bigoplus_J \ZZ</m>;
+          note that we are now considering <em>discrete</em> <m>\ZZ</m>-modules, so we may write <m>\ZZ</m> instead of <m>\ZZ_\solid</m>
+          and reason in terms of discrete <m>\ZZ</m>-modules.
+        </p>
+        <p>
+          By <xref ref="lem-submodule-free-over-PID"/>, <m>\ima(h)</m> is also a free <m>\ZZ</m>-module, so the source
+          <m>\bigoplus_I \ZZ</m> splits as <m>\ker(h)</m> plus a submodule isomorphic to <m>\ima(h)</m>, and both factors are free.
+          This splitting transposes to a decomposition of the target <m>\prod_I \ZZ_\solid</m> as a product of two factors,
+          each itself a product of copies of <m>\ZZ_\solid</m>. The point is that we can replace the target <m>\prod_I \ZZ_\solid</m> with a smaller
+          target (discarding the dual of <m>\ker(h)</m>) in such a way that <m>M</m> still embeds as a subobject, but the map <m>h</m> is now injective.
+        </p>
+        <p>
+          Now set <m>Q := \coker(h)</m>; dualizing the sequence
+          <me>
+            0 \to \bigoplus_I \ZZ \stackrel{h}{\to} \bigoplus_J \ZZ \to Q \to 0
+          </me>
+          yields the new exact sequence
+          <me>
+            0 \to \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid
+          </me>.
+          <me>
+             0 \to \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \prod_J \ZZ_\solid \to M \to 0
+          </me>.
+          <me>
+             0 \to \iHom_{\ZZ_\solid}(M, \ZZ_\solid) \to \bigoplus_J \ZZ \to ?
+          </me>.
+          
+          Fix a splitting of <m>Q</m> according to <xref ref="lem-split-off-free-sub"/>.
+          We may then lift this splitting of <m>Q</m>
+          to a splitting of <m>\bigoplus_J \ZZ</m> as the free module <m>Q'</m> plus a complementary summand.
+          This transposes to a decomposition of <m>\prod_J \ZZ_\solid</m> as a product of two factors,
+          one of which is the dual of <m>Q'</m>.
+          This factor is contained in <m>\ker(g)</m>, so we may replace <m>\prod_J \ZZ_\solid</m> with the other
+          factor without changing the image of <m>g</m>, and therefore without changing <m>M</m>.
+          In so doing, we replace <m>Q</m> with <m>Q''</m>, and thus reduce to the case where <m>Q' = 0</m>
+          and hence <m>\Hom_{\ZZ}(Q, \ZZ) = 0</m>.
+        </p>
+        <p>
+          At this point, the first term in <xref ref="eq-hom-from-torsion-sequence"/> vanishes
+          by <xref ref="lem-hom-from-torsion-vanishes"/>.
+          Hence in <xref ref="eq-sandwich-free-module"/>, the composition <m>g</m> is injective
+          and the map <m>\prod_J \ZZ_\solid \to M</m> is surjective, hence an isomorphism.
+        </p>
+      </proof>
+    </proposition>
+    <p>
+      We then have the following analogue of <xref ref="lem-submodule-free-over-PID"/>.
+    </p>
+    <proposition xml:id="lem-subobject-of-finitely-generated">
+      <statement>
+        <p>
+          For any <m>I</m> with <m>|I| \leq \aleph_0</m>,
+          any finitely generated subobject of <m>\prod_I \ZZ_\solid</m> is itself a product of copies of <m>\ZZ_\solid</m>. 
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Let <m>M</m> be a finitely generated subobject of <m>\prod_I \ZZ_\solid</m>. By definition, it sits in a sequence
+          <men xml:id="eq-sandwich-free-module">
+            \prod_J \ZZ_\solid \to M \to \prod_I \ZZ_\solid
+          </men>
+          where the first map is surjective and the second map is injective.
+        </p>
+        <p>
+          Let <m>g\colon \prod_J \ZZ_\solid \to \prod_I \ZZ_\solid</m> be the composition.
+          By taking duals (<xref ref="prop-solid-internal-hom"/>), we get a map <m>h \colon \bigoplus_I \ZZ \to \bigoplus_J \ZZ</m>;
+          note that we are now considering <em>discrete</em> <m>\ZZ</m>-modules, so we may write <m>\ZZ</m> instead of <m>\ZZ_\solid</m>
+          and reason in terms of discrete <m>\ZZ</m>-modules.
+        </p>
+        <p>
+          By <xref ref="lem-submodule-free-over-PID"/>, <m>\ima(h)</m> is also a free <m>\ZZ</m>-module, so the source
+          <m>\bigoplus_I \ZZ</m> splits as <m>\ker(h)</m> plus a submodule isomorphic to <m>\ima(h)</m>, and both factors are free.
+          This splitting transposes to a decomposition of the target <m>\prod_I \ZZ_\solid</m> as a product of two factors,
+          each itself a product of copies of <m>\ZZ_\solid</m>. The point is that we can replace the target <m>\prod_I \ZZ_\solid</m> with a smaller
+          target (discarding the dual of <m>\ker(h)</m>) in such a way that <m>M</m> still embeds as a subobject, but the map <m>h</m> is now injective.
+        </p>
+        <p>
+          Now set <m>Q := \coker(h)</m>; dualizing the sequence
+          <me>
+            0 \to \bigoplus_I \ZZ \stackrel{h}{\to} \bigoplus_J \ZZ \to Q \to 0
+          </me>
+          yields the new exact sequence
+          <me>
+            0 \to \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid
+          </me>.
+          <me>
+             0 \to \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \prod_J \ZZ_\solid \to M \to 0
+          </me>.
+          <me>
+             0 \to \iHom_{\ZZ_\solid}(M, \ZZ_\solid) \to \bigoplus_J \ZZ \to ?
+          </me>.
+          
+          Fix a splitting of <m>Q</m> according to <xref ref="lem-split-off-free-sub"/>.
+          We may then lift this splitting of <m>Q</m>
+          to a splitting of <m>\bigoplus_J \ZZ</m> as the free module <m>Q'</m> plus a complementary summand.
+          This transposes to a decomposition of <m>\prod_J \ZZ_\solid</m> as a product of two factors,
+          one of which is the dual of <m>Q'</m>.
+          This factor is contained in <m>\ker(g)</m>, so we may replace <m>\prod_J \ZZ_\solid</m> with the other
+          factor without changing the image of <m>g</m>, and therefore without changing <m>M</m>.
+          In so doing, we replace <m>Q</m> with <m>Q''</m>, and thus reduce to the case where <m>Q' = 0</m>
+          and hence <m>\Hom_{\ZZ}(Q, \ZZ) = 0</m>.
+        </p>
+        <p>
+          At this point, the first term in <xref ref="eq-hom-from-torsion-sequence"/> vanishes
+          by <xref ref="lem-hom-from-torsion-vanishes"/>.
+          Hence in <xref ref="eq-sandwich-free-module"/>, the composition <m>g</m> is injective
+          and the map <m>\prod_J \ZZ_\solid \to M</m> is surjective, hence an isomorphism.
+        </p>
+      </proof>
+    </proposition>
+
+    <p>
+      On a related note, we have the following.
+    </p>
+    <lemma xml:id="lem-liquid-to-power-bounded">
+      <statement>
+        <p>
+          Let <m>R</m> be a condensed commutative ring.
+          If <m>R \in \Mod_{R \liquid g}</m> for some <m>g \in R(*)</m>, then <m>g</m> is universally power-bounded.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We algebraize the statement that if the sequence <m>([n])_n</m> in <m>P \otimes R</m> is summable against <m>g</m>,
+          then the sequence <m>(g^n [n])_n</m> is summable against <m>1</m> and hence is a null sequence.
+          Start with the map <m>P \otimes P \otimes R \to P \otimes R</m>
+          which carries <m>[m] \otimes [n] \otimes r</m> to <m>[n] \otimes r</m> if <m>m \leq n</m> and <m>0</m> otherwise.
+          Since <m>R</m> is <m>g</m>-liquid, this map admits an inverse image <m>h\colon P \otimes P \otimes R \to P \otimes R</m>
+          under <m>(\id \otimes \Delta_g)^*</m>. Now pull back <m>h</m> along the map <m>P \otimes R \to P \otimes P \otimes R</m>
+          taking <m>[n] \otimes r</m> to <m>[n] \otimes [0] \otimes r</m>, and then along the map <m>\Delta \otimes \id</m>;
+          the result is a map <m>P \otimes R \to P \otimes R</m> which does indeed take <m>[n]</m> to <m>g^n [n]</m>.
+        </p>
+      </proof>
+    </lemma>
+
+      <p>
+        We say that <m>g \in R(*)</m> is <term>universally power-bounded</term> if there is an element of <m>\Hom_{\CAb}(P, P \otimes R)</m> taking <m>[n]</m> to <m>g^n[n]</m> for all <m>n \in \NN</m>;
+        the corresponding element of <m>\Hom_R(P \otimes R, P \otimes R)</m> is then a ring homomorphism.
+        If <m>R</m> is a topological ring, this implies that for every topological <m>R</m>-module <m>M</m> and every null sequence <m>(m_n)_n</m> in <m>M</m>,
+        <m>(g^n m_n)_n</m> is also a null sequence.
+      </p>
+      <p>
+        If <m>g</m> is topologically nilpotent, then it is also universally power-bounded.
+        Moreover, both properties are <q>integrally closed</q> in <m>R(*)</m>:
+        if <m>g \in R(*)</m> and <m>g^n</m> is universally power-bounded (resp. topologically nilpotent), then so is <m>g</m>.
+      </p>
+
+        Since we are assuming that <m>A^{\triangleright}</m> is solid as a condensed abelian group, 
+        by <xref ref="rem-f-solidification-versus-fg"/> and <xref ref="lem-liquid-to-power-bounded"/>,
+        this is equivalent to the condition given in <xref ref="def-R-topologically-nilpotent"/>.
+
+      <p>
+        In fact, it is not even necessary to specify that <m>q \in A^{\triangleright}(*)^\times</m> is power-bounded,
+        as this is forced by <xref ref="lem-liquid-to-power-bounded"/>.
+      </p>
+
+        <p>
+          To see that <m>\Mod_{R \liquid f} \subseteq \Mod_{R \liquid f^n}</m>,
+          we algebraize the statement that a null sequence <m>(m_0, m_1, \dots)</m> is summable against <m>f^n</m>
+          if and only if its <m>n</m>-fold expansion <m>(m_0,\dots,0,m_1, 0,\dots,0,m_2,\dots)</m> is summable against <m>f</m>, in which case the sums coincide.
+          This corresponds to the fact that <m>g_1 \circ \Delta_{f} = \Delta_{f^n} \circ g_2</m> where 
+          <md>
+            <mrow>
+              g_1 \colon P \otimes R \to P \otimes R, \qquad [mn-i] \mapsto f^i [m] \quad (m \gt 0; i=0,\dots,n-1)
+            </mrow>
+            <mrow>
+              g_2 \colon P \otimes R \to P \otimes R, \qquad [mn] \mapsto [m], [mn+i] \mapsto [\infty] \quad (m \gt 0; i=1,\dots,n-1)
+            </mrow>
+          </md>
+          and so
+          <md>
+            <mrow>
+              g_1^*(m_0,m_1,\dots) &amp;= (m_0, f^{n-1} m_1, \dots, f m_1, m_1, f^{n-1} m_2, \dots)
+            </mrow>
+            <mrow>
+              g_2^*(m_0,m_1,\dots) &amp;= (m_0,\dots,0,m_1, 0,\dots,0,m_2,\dots)
+            </mrow>
+            <mrow>
+              (g_1 \circ \Delta_{f} = \Delta_{f^n} \circ g_2)^*(m_0, m_1, \dots) &amp; = (m_0-f^n m_1, 0,\dots,0, m_1-f^n m_2, \dots)
+            </mrow>
+          </md>.
+          The maps <m>g_1</m> and <m>g_2</m> are split surjections, so <m>g_1^*</m> and <m>g_2^*</m> is a split injection.
+          For any <m>M \in \Mod_{R \liquid f}</m>,
+          since <m>\Delta_f^*</m> is an isomorphism on <m>\iHom_{\CAb}(P, M)</m>,
+          tracing around the square as in <xref ref="lem-replace-bounded-with-P-solid"/>
+          shows that <m>\Delta_{f^n}^*</m> is also an isomorphism.
+        </p>
+          
+          However, we cannot do much with this because <m>h_g^*</m> is not itself surjective.
+          if and only if the sequence <m>(m_0, g m_1, g^2 m_2, \dots)</m> (which is a null sequence because <m>g</m> is universally power-bounded)
+          is summable against <m>f</m>.
+          This corresponds to the fact that <m>h_g \circ \Delta_{f} = \Delta_{fg} \circ h_g</m> where 
+          <m>h_g\colon P \otimes R \to P \otimes R</m> is the map <m>[n] \mapsto g^n [n]</m> (which exists because <m>g</m> is universally power-bounded).
+          While <m>h_g</m> is not surjective, we can fix this by replacing it with <m>h_g \oplus \lambda\colon P \oplus P \to P</m>
+          for
+          <me>
+            \lambda\colon P \to P, \qquad [0] \to [\infty], [n+1] \mapsto [n]
+          </me>.
+          We then have <m>(h_g \oplus \lambda) \circ (\Delta_{f} \oplus \Delta_f) = \Delta_{fg} \circ (h_g \oplus \lambda)</m>.
+          Since <m>(\Delta_f \oplus \Delta_f)^*</m> is an isomorphism on <m>\iHom_{\CAb}(P \oplus P, M)</m> and <m>h_g \oplus \lambda</m>
+          is a split surjection,
+          tracing around the square as in <xref ref="lem-replace-bounded-with-P-solid"/>
+          shows that <m>\Delta_{fg}^*</m> is also an isomorphism.        </p>
+        <p>
+          We algebraize the statement that a null sequence <m>(m_0, m_1, \dots)</m> is summable against <m>fg</m>
+          if and only if the sequence <m>(m_0, g m_1, g^2 m_2, \dots)</m> (which is a null sequence because <m>g</m> is universally power-bounded)
+          is summable against <m>f</m>.
+          This corresponds to the fact that <m>h_g \circ \Delta_{f} = \Delta_{fg} \circ h_g</m> where 
+          <m>h_g\colon P \otimes R \to P \otimes R</m> is the map <m>[n] \mapsto g^n [n]</m> (which exists because <m>g</m> is universally power-bounded).
+          While <m>h_g</m> is not surjective, we can fix this by replacing it with <m>h_g \oplus \lambda\colon P \oplus P \to P</m>
+          for
+          <me>
+            \lambda\colon P \to P, \qquad [0] \to [\infty], [n+1] \mapsto [n]
+          </me>.
+          We then have <m>(h_g \oplus \lambda) \circ (\Delta_{f} \oplus \Delta_f) = \Delta_{fg} \circ (h_g \oplus \lambda)</m>.
+          Since <m>(\Delta_f \oplus \Delta_f)^*</m> is an isomorphism on <m>\iHom_{\CAb}(P \oplus P, M)</m> and <m>h_g \oplus \lambda</m>
+          is a split surjection,
+          tracing around the square as in <xref ref="lem-replace-bounded-with-P-solid"/>
+          shows that <m>\Delta_{fg}^*</m> is also an isomorphism.
+        </p>
+    <proposition xml:id="cor-liquid-top-nilpotent-unit">
+      <statement>
+        <p>
+          Let <m>R</m> be a condensed commutative ring.
+          Let <m>\varpi_1,\varpi_2 \in R(*)</m> be two topologically nilpotent units.
+          Then <m>\Mod_{R \liquid \varpi_1} = \Mod_{R \liquid \varpi_2}</m>;
+          consequently, both of these equal <m>\Mod_{R \liquid S}</m> where <m>S</m> is the entire set of topologically nilpotent elements of <m>R</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By symmetry it suffices to check that <m>\Mod_{R \liquid \varpi_1} \subseteq \Mod_{R \liquid \varpi_2}</m>.
+          Since <m>\varpi_2</m> is topologically nilpotent, there exists a positive integer <m>n</m> such that <m>\varpi_3 := \varpi_2^n \varpi_1^{-1}</m>
+          is also topologically nilpotent. By <xref ref="rem-f-solidification-versus-fg"/>
+          we have <m>\Mod_{R \liquid \varpi_1} \subseteq \Mod_{R \liquid \varpi_1 \varpi_3} = \Mod_{R \liquid \varpi_2^n}</m>;
+          by <xref ref="lem-f-solidification-versus-fn"/>, the latter equals <m>\Mod_{R \liquid \varpi_2}</m>.
+        </p>
+      </proof>
+    </proposition>
+    <theorem xml:id="thm-localization-is-flat">
+      <statement>
+        <p>
+          Let <m>A</m> be a solid analytic ring and choose <m>f_1,\dots,f_n,g \in A^{\triangleright}(*)</m>
+          (not necessarily generating the unit ideal). 
+          Then <m>A\to A\left\langle \tfrac{f_1}{g},\dots,\tfrac{f_n}{g} \right\rangle</m>
+          is flat, that is, base extension along this morphism defines an exact functor <m>\Mod_{A} \to \Mod_{A\langle \tfrac{f_1}{g},\dots,\tfrac{f_n}{g} \rangle}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Since the construction of <m>A\left\langle \tfrac{f_1}{g},\dots,\tfrac{f_n}{g} \right\rangle</m>
+          factors through <m>A[1/g]</m>, we first note that <m>A \to A[1/g]</m> is flat
+          (either by <xref ref="lem-flat-mult-f"/> or simply by writing 
+          <m>A^{\triangleright}[1/g] = \colim (A^{\triangleright} \stackrel{\times g}{\to} A^{\triangleright} \stackrel{\times g}{\to} \cdots)</m>).
+          We may thus assume hereafter that <m>g</m> is invertible, or even that <m>g=1</m>.
+        </p>
+        <p>
+          We then note that <m>A\left\langle f_1,\dots,f_n\right\rangle</m> can be factored as a sequence of rational localizations with parameters <m>f_i,1</m>
+          for <m>i=1,\dots,n</m>. We thus reduce to the case <m>n = 1</m>.
+        </p>
+        <p>
+          Finally, we apply <xref ref="lem-flat-mult-f-v2"/> to see that the sequence
+          <me>
+            0 \to A^{\triangleright}\langle T \rangle \stackrel{\times T-f}{\to} A^{\triangleright}\langle T \rangle 
+            \to A^{\triangleright} \langle f \rangle \to 0
+          </me>
+          remains exact upon tensoring with any <m>M \in \Mod_A</m>. 
+        </p>
+      </proof>
+    </theorem>
+      <p>        
+        While <xref ref="thm-localization-is-flat"/> is analogous to the flatness of Zariski localizations in commutative algebra,
+        it has no real counterpart elsewhere in analytic geometry.
+        For instance, it is not true that rational localizations of Huber rings are always flat even in the algebraic sense;
+        in cases where this does hold (e.g., for classical affinoid algebras) one still does not get an exact base extension functor on complete
+        topological modules. The latter is perhaps not so surprising because taking a tensor product of topological modules in the condensed setting does
+        not necessarily return a topological module; this is the same issue arising in <xref ref="rem-rational-subspace-derived"/>.
+      </p>
+    <definition xml:id="def-idempotent-morphism">
+      <p>
+        A morphism <m>A \to B</m> of analytic rings is <term>idempotent</term> if it is flat
+        (meaning that <m>\otimes_A B^{\triangleright}\colon \Mod_A \to \Mod_A</m> is exact <em>and</em> factors through <m>\Mod_B</m>) and
+        the map <m>B^{\triangleright} \otimes_A B^{\triangleright} \to B^{\triangleright}</m> 
+        (equivalently <m>B^{\triangleright} \otimes^L_A B^{\triangleright} \to B^{\triangleright}</m>) is an isomorphism.
+        If only the second condition holds (for the underived tensor product), then we say <m>A \to B</m> is <term>weakly idempotent</term>.
+      </p>
+    </definition>
+    <remark xml:id="rem-idempotent-module-category">
+      <p>
+        In <xref ref="def-idempotent-morphism"/>,
+        the condition that <m>\bullet \otimes_A B^{\triangleright}\colon \Mod_A \to \Mod_A</m> factors through <m>\Mod_B</m>
+        amounts to saying that <m>\Mod_B</m> is the category of <m>B^{\triangleright}</m>-module objects of <m>\Mod_A</m>,
+        rather than something smaller.
+      </p>
+      <p>
+        By contrast, the definition of a weakly idempotent morphism <m>A \to B</m> depends on the underlying morphism <m>A^\triangleright \to B^{\triangleright}</m>
+        and the category <m>\Mod_A</m> (via its symmetric monoidal product <m>\otimes_A</m>), but not on <m>\Mod_B</m>.
+      </p>
+    </remark>
+          <me>
+            \AnSpec B \mapsto \Mod_{B^{\triangleright}} \times_{\Mod_{A^{\triangleright}}} \Mod_A
+          </me> 
+          is a sheaf of categories for the idempotent topology on <m>\AnRing^{\op}/A</m>;
+          and the assignment
+          <me>
+            \AnSpec B \mapsto \Mod_{B^{\triangleright}} \times_{\Mod_{A^{\triangleright}}} \Mod_A
+          </me> 
+          is a sheaf of categories for the idempotent topology on <m>\AnRing^{\op}/A</m>;
+          and the assignment
+  <subsection>
+    <title>The flat topology</title>
+    <p>
+      We compare the previous discussion with the following definition in algebraic geometry.
+    </p>
+    <definition>
+      <p>
+        A morphism <m>A \to B</m> of analytic rings is <term>faithfully flat</term> if <m>A \to B</m> is flat and
+        <m>\Mod_A \to \Mod_B</m> is faithful (every nonzero object has nonzero image).
+      </p>
+      <p>
+        The <term>flat topology</term> (or <term>fpqc topology</term>)
+        on <m>\AnRing^{\op}</m> is generated by finite families of flat morphisms <m>\{\AnSpec A_i \to \AnSpec A\}_{i \in I}</m>
+        such that <m>A \to B := \bigoplus_i A_i</m> is faithfully flat.
+        For example, any covering for the idempotent topology is also a covering for the flat topology.
+      </p>
+    </definition>
+    <example>
+      <p>
+        For any analytic ring <m>A</m>, <m>A \to A[T]</m> is a covering for the flat topology.
+        For <m>A</m> solid, by <xref ref="exa-rational-localization-is-idempotent"/>, 
+        <m>A[T] \to A[T]_{\liquid T}</m> is flat, so
+        <m>A \to A[T]_{\liquid T}</m> is also a covering for the flat topology.
+      </p>
+    </example>
+    <example>
+      <p>
+        Let <m>A</m> be an analytic ring. Fix a finite étale morphism <m>A^{\triangleright} \to B^{\triangleright}</m>;
+        then <m>B^{\triangleright}</m> is finite projective as an <m>A^{\triangleright}</m>-module, so <m>B^{\triangleright} \in \Mod_A</m>.
+        We promote <m>B^{\triangleright}</m> to an analytic ring <m>B</m> by taking <m>\Mod_B</m> to be the <m>B^{\triangleright}</m>-module 
+        objects in <m>\Mod_A</m>.
+        Then <m>A \to B</m> is flat.
+      </p>
+      <p>
+        Now suppose that <m>A^{\triangleright} \to B^{\triangleright}</m> is also faithfully flat.
+        Then <m>A \to B</m> is faithfully flat.
+      </p>
+    </example>
+    <lemma xml:id="lem-idempotent-covering-is-flat">
+      <statement>
+        <p>
+          Any covering for the idempotent topology on <m>\AnRing^{\op}</m> is also a covering for the flat topology.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          For <m>M \in \Mod_A</m> nonzero, tensoring with <xref ref="eq-idempotent-topology"/> shows that 
+          <m>M \otimes_A B^{\triangleright}</m> is nonzero.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-faithfully-flat-cech-alexander">
+      <statement>
+        <p>
+          A flat morphism <m>A \to B</m> of analytic rings is faithfully flat if and only if the <term>Čech<ndash/>Alexander complex</term>
+          <men xml:id="eq-proetale-topology">
+            0 \to A^{\triangleright} \to B^{\triangleright} \to B^{\triangleright} \otimes^L_A B^{\triangleright} \to B^{\triangleright} \otimes^L_A B^{\triangleright} \otimes^L_A B^{\triangleright} \to \cdots
+          </men>
+          is exact. 
+        </p>
+      </statement>
+      <proof>
+        <p>
+          If <m>A \to B</m> is faithfully flat, then we can deduce the exactness of <xref ref="eq-proetale-topology"/> from the corresponding sequence
+          with <m>A \to B</m> replaced by <m>B \to B \otimes_A B</m>. The latter is formally true because <m>B \to B \otimes_A B</m> is split by the
+          multiplicative map.
+        </p>
+        <p>
+          Conversely, if <xref ref="eq-proetale-topology"/> is exact, then for <m>M \in \Mod_A</m> nonzero, tensoring with <xref ref="eq-proetale-topology"/>
+          shows that <m>M \otimes_A B^{\triangleright}</m> is nonzero.
+        </p>
+      </proof>
+    </lemma>
+    <theorem xml:id="thm-sheaf-absolutely-flat">
+      <statement>
+        <p>
+          Let <m>A \to B</m> be a faithfully flat morphism of analytic rings. 
+          Then <m>\calD(\Mod_A)</m> is isomorphic (via base extension) to the limit of the diagram
+          <me>
+            \Mod_B \to \Mod_{B \otimes_A B} \rightrightarrows \Mod_{B \otimes_A B \otimes_A B} \to \cdots
+          </me>.
+          Moreover, <m>\calD(\Mod_A)</m> is isomorphic (via base extension) to the limit of the diagram
+          <me>
+            \calD(\Mod_B) \to \calD(\Mod_{B \otimes_A B}) \rightrightarrows \calD(\Mod_{B \otimes_A B \otimes_A B}) \to \cdots
+          </me>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          It suffices to prove the second statement.
+          The limit can be interpreted as the derived <m>\infty</m>-category of modules over the simplicial analytic ring 
+          <me>
+            F \colon [0] \mapsto B, [1] \mapsto B \otimes B, \dots
+          </me>.
+          Again, the base extension functor from <m>A</m> to <m>F</m> admits a right adjoint (restriction of scalars),
+          and using <xref ref="eq-proetale-topology"/> we see that the unit of the adjunction is an equivalence on <m>\calD(\Mod_A)</m>.
+          The counit is an equivalence for formal reasons: it can be interpreted as base extension from <m>B</m> to <m>B \otimes_A B</m>
+          and then back to <m>B</m> via the multiplication map.
+        </p>
+      </proof>
+    </theorem>
+  </subsection>
+  <subsection>
+    <theorem xml:id="thm-localization-is-flat">
+      <statement>
+        <p>
+          Let <m>A</m> be a solid analytic ring and choose <m>f_1,\dots,f_n,g \in A^{\triangleright}(*)</m>
+          (not necessarily generating the unit ideal). 
+          Then <m>A\to A\left\langle \tfrac{f_1}{g},\dots,\tfrac{f_n}{g} \right\rangle</m>
+          is flat, that is, base extension along this morphism defines an exact functor <m>\Mod_{A} \to \Mod_{A\langle \tfrac{f_1}{g},\dots,\tfrac{f_n}{g} \rangle}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Since the construction of <m>A\left\langle \tfrac{f_1}{g},\dots,\tfrac{f_n}{g} \right\rangle</m>
+          factors through <m>A[1/g]</m>, we first note that <m>A \to A[1/g]</m> is flat
+          (either by <xref ref="lem-flat-mult-f"/> or simply by writing 
+          <m>A^{\triangleright}[1/g] = \colim (A^{\triangleright} \stackrel{\times g}{\to} A^{\triangleright} \stackrel{\times g}{\to} \cdots)</m>).
+          We may thus assume hereafter that <m>g</m> is invertible, or even that <m>g=1</m>.
+        </p>
+        <p>
+          We then note that <m>A\left\langle f_1,\dots,f_n\right\rangle</m> can be factored as a sequence of rational localizations with parameters <m>f_i,1</m>
+          for <m>i=1,\dots,n</m>. We thus reduce to the case <m>n = 1</m>.
+        </p>
+        <p>
+          Finally, we apply <xref ref="lem-flat-mult-f-v2"/> to see that the sequence
+          <me>
+            0 \to A^{\triangleright}\langle T \rangle \stackrel{\times T-f}{\to} A^{\triangleright}\langle T \rangle 
+            \to A^{\triangleright} \langle f \rangle \to 0
+          </me>
+          remains exact upon tensoring with any <m>M \in \Mod_A</m>. 
+        </p>
+      </proof>
+    </theorem>
+    <theorem xml:id="thm-localization-is-flat-liquid">
+      <statement>
+        <p>
+          For <m>A</m> an analytic ring and <m>q \in A^{\gas}</m> a unit,
+          choose <m>f_1,\dots,f_n,g \in A^{\triangleright}(*)</m>
+          (not necessarily generating the unit ideal). 
+          Then
+          <m>A\to A\left\langle \tfrac{f_1}{g},\dots,\tfrac{f_n}{g} \right\rangle^\dagger_q</m>
+          is flat, that is, base extension along this morphism defines an exact functor 
+          <m>\Mod_{A} \to \Mod_{A\left\langle \tfrac{f_1}{g},\dots,\tfrac{f_n}{g} \right\rangle^\dagger_q}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Using <xref ref="lem-flat-mult-f-liquid"/>, we may adapt the proof of <xref ref="thm-localization-is-flat"/>.
+        </p>
+      </proof>
+    </theorem>
+  </subsection>
+    <corollary xml:id="rem-localization-is-underived">
+      <statement>
+        <p>
+          Let <m>R</m> be a solid condensed ring and suppose that <m>f_1,\dots,f_n,g \in R(*)</m> generate the unit ideal.
+          Then <m>R\left\langle \tfrac{f_1}{g},\dots,\tfrac{f_n}{g} \right\rangle</m>
+          is resolved by the Koszul complex over <m>R[1/g]\langle T_1,\dots,T_n\rangle</m> 
+          defined by the elements <m>f_i - g T_i</m> for <m>i=1,\dots,n</m>.
+          Moreover, if <m>f_1,\dots,f_n,g</m> generate the unit ideal, then we may replace <m>R[1/g]</m> with <m>R</m> with the same result.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By <xref ref="lem-sheafy-exact-sequence-v2"/>, 
+          we may check the exactness of the augmented Koszul complex locally on the terms of a standard binary covering
+          defined by parameters of the form <m>f,1</m> or <m>f,1-f</m>. By this plus <xref ref="prop-standard-binary-coverings-Huber"/>,
+          we are reduced to working locally with respect to a refinement of the covering defined by <xref ref="lem-standard-rational-covering"/> using the parameters
+          <m>f_1,\dots,f_n,g</m>. If we end up in the situation where <m>\tfrac{f_1}{g}, \dots, \tfrac{f_n}{g} \in R^{\circ}</m>, then the Koszul complex
+          is in fact split exact. Otherwise, there exists an index <m>i</m> for which <m>\tfrac{g}{f_i}, \tfrac{f_1}{f_i}, \dots, \tfrac{f_n}{f_i} \in R^{\circ}</m>;
+          we handle <m>\tfrac{g}{f_i}</m> using <xref ref="lem-flat-mult-f"/> and the other terms using <xref ref="lem-flat-mult-f-v2"/>.
+        </p>
+      </proof>
+    </corollary>
+          
+          
+           we need to check that the rational localization of Huber rings defined by the elements <m>f_1,\dots,f_n,g \in A^{\triangleright}</m>
+          (which generate the unit ideal) is resolved by the Koszul complex defined by <m>f_1 - g T_1, \dots, f_n - g T_n</m> in
+          <m>A^{\triangleright}\langle T_1,\dots,T_n \rangle</m>, as then <xref ref="rem-localization-is-underived"/> will imply that the rational localization
+          of Huber rings coincides with the rational localization of condensed rings.
+          Since <m>A</m> is sheafy we may check this locally. By applying <xref ref="lem-standard-rational-covering"/> to the rational
+          covering defined by <m>f_1,\dots,f_n,g</m>, we reduce to checking the claim for a rational localization in a standard binary covering
+          generated by <m>1,f</m> for some <m>f \in A^{\circ}</m>. That is, we need to show that if <m>f \in A^\circ</m>, 
+          then the multiplication maps by <m>1-fT</m> and <m>f-T</m> in <m>A^{\triangleright} \langle T \rangle</m> are strict inclusions;
+          this can be seen by working in terms of graded rings, as in <xref ref="bib-Kedlaya-AWS"/>, Lemma 1.8.2.
+          (The ultimate point is that in any univariate polynomial ring, an element cannot be a zero divisor if either its constant coefficient or its leading coefficient is a unit.)
+        </p>
+        <p>
+          We first need to check that <m>A \to A_i^\dagger</m> is idempotent; the key point is to check that <m>A_i^\dagger \otimes_A^L A_i^\dagger</m>
+          is underived. This follows by adapting the proof of... using
+          <xref ref="lem-sheafy-exact-sequence-v1-liquid"/> in place of <xref ref="lem-sheafy-exact-sequence"/>,
+          <xref ref="lem-flat-mult-f"/>, and <xref ref="lem-flat-mult-f-v2"/>.
+        </p>
+
+      <p>
+        
+        We can also identify the solidification of a general object <m>M \in \CAb</m> with
+        <me>
+          \iExt^1_{\CAb}(\coker(\Delta)/\underline{\ZZ}, M)
+        </me>;
+        taking instead
+        <men xml:id="eq-derived-solidification">
+          R\iHom_{\CAb}(\coker(\Delta)/\underline{\ZZ}, M)[-1]
+        </men>
+        (concentrated in degrees <m>-1</m> and <m>0</m> by <xref ref="eq-resolve-cofinite-mod-Z"/>) 
+        yields the derived solidification (see <xref ref="rem-R-module-derived-solidification"/>).
+      </p>
+rem-express-solidification-using-cof
+    <p>
+      We apply the explicit formula for derived solidification <xref ref="eq-derived-solidification"/> in the following manner.
+    </p>
+    <lemma xml:id="lem-top-group-no-derived-solidification">
+      <statement>
+        <p>
+          For any sequential topological abelian group <m>M</m>, the derived solidification of <m>\underline{M}</m> is concentrated in degree <m>0</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By <xref ref="rem-express-solidification-using-cof"/>, this is equivalent to the assertion that
+          <me>
+            \iHom_{\CAb}(\coker(\Delta)/\underline{\ZZ}, \underline{M}) = 0
+          </me>.
+          This in turn is equivalent to the assertion that <m>S \in \Prof</m>,
+          <me>
+            \Hom_{\CAb}(\coker(\Delta)/\underline{\ZZ} \otimes \ZZ[\underline{S}], \underline{M}) = 0
+          </me>.
+          To check this, note that a morphism <m>\coker(\Delta)/\underline{\ZZ} \otimes \ZZ[\underline{S}] \to \underline{M}</m>
+          corresponds to a morphism <m>\ZZ[\underline{\NN_\infty \times S}] \to \underline{M}</m>
+          whose restrictions to <m>\ZZ[\underline{\{\infty\} \times S}]</m>
+          and to the preimage of <m>(\ima(\Delta) \oplus \ZZ) \otimes \ZZ[\underline{S}]</m>
+          vanish.
+          Since <m>\prod_\NN \underline{\ZZ}</m> is represented by a sequential topological abelian group,
+          a morphism <m>\ZZ[\underline{\NN_\infty \times S}] \to \underline{M}</m> corresponds to a continuous map <m>f</m>
+          from <m>\NN_\infty \times S</m> to <m>M</m>;
+          we may thus check the claimed vanishing in the case where <m>S</m> is a singleton.
+        </p>
+        <p>
+          At this point, the condition that the restriction to <m>\ZZ[\underline{\{\infty\}}]</m> vanishes implies that
+          <m>f(\infty) = 0</m>.
+          The condition that the restriction to <m>\ima(\Delta)</m> vanishies implies that <m>f(n) = f(n+1)</m>
+          for all <m>n \in \NN</m>. By continuity, we deduce that <m>f</m> is identically zero.
+        </p>
+      </proof>
+    </lemma>
+    <remark>
+      <p>
+        Since <m>P</m> is represented by a sequential topological abelian group (<xref ref="def-internally-projective-object"/>),
+        <xref ref="lem-top-group-no-derived-solidification"/> implies that the underived and derived solidifications of <m>P</m> coincide.
+        This can also be seen from <xref ref="rem-express-solidification-using-cof"/>: it suffices to check that
+        <m>\iExt^1_{\CAb}(P, M) = 0</m> for any <m>M \in \CAb_\solid</m>, 
+        but since any extension of <m>M</m> by <m>P</m> is again solid (by <xref ref="prop-solid-category"/>) we may apply <xref ref="prop-internally-projective"/> and adjunction to see that any such extension splits.
+        (See <xref ref="rem-liquefaction-kills-ext1"/> for the same observation in a more general setting.)
+      </p>
+    </remark>
+        If <m>M</m> is concentrated in degrees <m>[a,b]</m>, then by <xref ref="eq-resolve-cofinite-mod-Z"/> 
+        its derived solidification is concentrated in degrees <m>[a-1,b]</m>.
+          the promotion to the derived coalescence follows from <xref ref="rem-liquefaction-kills-ext1"/>.
+      <p>
+        which means that if <m>M</m> is concentrated in degrees <m>[a,b]</m>, then its derived <m>f</m>-coalescence is concentrated in degrees <m>[a-1,b]</m>.
+        In particular, for <m>M \in \Mod_R</m> the derived <m>f</m>-coalescence is concentrated in degrees <m>-1</m> and <m>0</m>,
+        with the term in degree <m>-1</m> being <m>\iHom_R(\coker(\Delta_f)/R, M)</m>;
+        this makes it clear that this term is nonzero for instance when <m>M = \coker(\Delta_f)/R</m>.
+      </p>
+      <p>
+        The existence of the resolution <xref ref="eq-resolve-coker-mod-R-liquefaction"/> has the following important consequence for the construction of analytic rings.
+        Let <m>R_0 = (R_0^{\triangleright}, \Mod_{R_0})</m> be an analytic ring,
+        choose <m>f \in R_0(*)</m>, and let <m>\Mod_{R_1} := \Mod_{R_0 \liquid f}</m> be the full subcategory of <m>f</m>-coalescent objects in <m>\Mod_{R_0}</m>.
+        Then the underived <m>f</m>-coalescence <m>R_1^{\triangleright}</m> of <m>R_0^{\triangleright}</m> has the property that for any <m>M \in \Mod_{R_1}</m>,
+        <m>\Ext^1_{R_0^{\triangleright}}(R_1^\triangleright, M) = 0</m>: for any exact sequence in <m>\Mod_{R_0^{\triangleright}}</m> of the form
+        <me>
+          0 \to M \to M' \to R_1^{\triangleright} \to 0
+        </me>
+        we have <m>M' \in \Mod_{R_1}</m> by <xref ref="prop-liquefaction"/>, so any splitting of the pullback sequence
+        <me>
+          0 \to M \to M' \times_{R_1^{\triangleright}} R_0^{\triangleright} \to R_0^{\triangleright} \to 0
+        </me>
+        (which exists because <m>R_0^{\triangleright}</m> is projective as a module over itself)
+        extends by adjunction to a splitting of the original sequence.
+        By replacing <m>M</m> with <m>\iHom_{R_0^{\triangleright}}(R_0^{\triangleright} \otimes \ZZ[\underline{S}], M)</m>,
+        we formally upgrade this conclusion to assert that <m>\iExt^1_{R_0^{\triangleright}}(R_1^\triangleright, M) = 0</m>.
+      </p>
+      <p>
+        From this, we see that <m>R_1^{\triangleright}</m> is also the derived <m>f</m>-coalescence of <m>R_0^{\triangleright}</m>.
+        That is, the issue
+        raised in <xref ref="rem-pre-analytic-to-analytic"/> does not arise in this context,
+        and so <m>R_1 = (R_1^{\triangleright}, \Mod_{R_1})</m> is itself an analytic ring. 
+      </p>
+      <p>
+        By similar logic, starting from the fact that <m>P</m> is internally projective in <m>\CAb</m> (<xref ref="prop-internally-projective"/>),
+        we may see that the derived <m>f</m>-coalescence of <m>P \otimes R_0^{\triangleright}</m> equals <m>P \otimes R_1^{\triangleright}</m> placed in degree 0,
+        which is again internally projective in <m>\Mod_{R_1}</m>.
+      </p>
+    <lemma>
+      <statement>
+        <p>
+          Let <m>A</m> be a sheafy solid analytic ring and choose <m>f,g \in A^{\triangleright}(*)</m> generating the unit ideal.
+          Then the base extension functor
+          <men xml:id="eq-derived-base-extension-functor-loose">
+            D(\Mod_A) \to D(\Mod_{A \left\langle f/g \right\rangle}) \times_{D(\Mod_{A \left\langle f/g, g/f \right\rangle})} D(\Mod_{A \left\langle g/f \right\rangle})
+          </men>
+          is an equivalence of categories.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Each of the functors from <m>D(\Mod_A)</m> to one of the other categories has a right adjoint (restriction of scalars), so the same is true of
+          the base extension. It thus remains to establish that the unit and the counit of this adjunction are equivalences.
+          To simplify notation, let us rewrite <xref ref="eq-derived-base-extension-functor"/> as
+          <me>
+            D(\Mod_A) \to D(\Mod_{A_1}) \times_{D(\Mod_{A_{12}})} D(\Mod_{A_{2}})
+          </me>.
+        </p>
+        <p>
+          To check the unit, note that by <xref ref="lem-sheafy-exact-sequence"/>, the sequence <xref ref="eq-sheafy-exact-sequence"/> is exact.
+          For any <m>M \in D(\Mod_A)</m>, we may take the (derived) tensor product of this sequence with <m>M</m> to obtain a morphism from the mapping cone of
+          <me>
+            M \otimes_A A_1 \oplus M \otimes_A A_2 \to M \otimes_A A_{12}
+          </me>
+          to <m>M</m> in <m>D(\Mod_A)</m> which inverts the adjunction.
+        </p>
+        <p>
+          For the counit, we first apply the universal property of localization to see that the multiplication maps
+          <men xml:id="eq-double-base-extension">
+            A_{S_1} \otimes^L_A A_{S_2} \to A_{S_1 \cup S_2}
+          </men>
+          are isomorphisms for any subsets <m>S_1, S_2</m> of <m>\{1,2\}</m>. Using these isomorphisms, we see that if we start with <m>M_i \in \Mod_{A_i}</m>
+          and ismoorphisms <m>M_i \otimes_{A_i} A_{12} \cong M_{12}</m>, the counit is a map from <m>(M_1 \times_{M_{12}} M_2) \otimes^L_A A_i \in \Mod_{A_i}</m>
+          to <m>M_i \otimes^L_A A_i</m> and then to <m>M_i</m>, and using <xref ref="eq-double-base-extension"/> we can produce inverses to both factors.
+        </p>
+      </proof>
+    </lemma>
+      <p>
+        By analogy with <xref ref="def-loose-rational-localization"/>, we define also the 
+        associated <term>loose dagger localization</term> by taking the same morphism of underlying rings,
+        but with the induced module category.
+        This will be an idempotent morphism.
+      </p>
+        <p>
+          We then apply the previous case and <xref ref="prop-standard-binary-coverings-Huber"/>
+          to work locally on <m>A</m>, and thereby reduce to the case where (without loss of generality) <m>A = A^{\triangleright}\left\langle \tfrac{f}{g} \right\rangle^\dagger_q</m>.
+          In that case, <m>A^{\triangleright} \left\langle \tfrac{g}{f} \right\rangle^\dagger_q = A^{\triangleright}\left\langle \tfrac{f}{g}, \tfrac{g}{f} \right\rangle^\dagger_q</m>
+          and the sequence in question is split exact.
+        </p>
+          This further reduces to mapping <m>\underline{\ZZ}[q^{\pm}]\langle U \rangle[T]/(T^m q - U)</m> to <m>R[T]_{\liquid T^{m+1} q}</m>.
+          To do this, we first reduce to the universal case <m>R = \underline{\ZZ((r))}[q^{\pm}]</m>;
+          then apply <xref ref="lem-liquefaction-is-Tate-algebra"/> to equate <m>R \langle T \rangle</m> with <m>R[T]_{\liquid T}</m>;
+          and finally apply <xref ref="eq-dagger-transition"/> to obtain
+          <me>
+            (T^m q)^n = (T^{m+1} q)^{\lfloor \frac{nm}{m+1} \rfloor} T^{nm-(m+1)\lfloor \frac{nm}{m+1}\rfloor} q^{n - \lfloor \frac{nm}{m+1}\rfloor}
+          </me>
+          and note that the exponent of <m>T</m> is at most <m>m</m> while the exponent of <m>q</m> is at least <m>\tfrac{n}{m+1} - 1</m>.
+        <p>
+          
+          To produce the map from left to right, we first observe that the target belongs to <m>\Mod_{R[T]\liquid q}</m>;
+          it thus suffices to map <m>\underline{\ZZ}[q^{\pm}]\langle T \rangle^\dagger_q</m> to <m>\colim_m R[T]_{\liquid T^m q}</m>.
+          By hypothesis, <m>R</m> is an algebra over <m>R = \underline{\ZZ((r))}[q^{\pm}]</m>;
+          by <xref ref="lem-liquefaction-is-Tate-algebra"/> we may equate <m>\underline{\ZZ((r))}[q^{\pm}] \langle U \rangle</m> with <m>\underline{\ZZ((r))}[q^{\pm}][U]_{\liquid U}</m>.
+          We thus obtain a map from <m>\underline{\ZZ}[q^{\pm}]\langle U \rangle[T]/(T^m q - U)</m> to <m>R[T]_{\liquid T^m q}</m>.
+          To produce the map from right to left, we show that <m>R[T]_{\liquid T^m q}</m> maps to
+          <m>R \otimes_{\liquid q} \underline{\ZZ}[q^{\pm}]\langle U \rangle[T]/(T^{m+1} q - U)</m>.
+          Since the claim is universal in <m>R</m>, it suffices to work at the level of global sections:
+          a global section of <m>R[T]_{\liquid T^m q}</m> can be written as <m>\sum_n r_n T^n</m> with <m>r_n \in R(*)</m>
+          such that <m>r_n q^{-\lfloor \frac{n}{m} \rfloor}</m> is a null sequence.
+          By rewriting this as <m>r_n q^{-\lfloor \frac{n}{m+1} \rfloor}</m> times <m>q^{\lfloor \frac{n}{m} \rfloor - \lfloor \frac{n}{m+1} \rfloor}</m>
+          and noting that the exponent is at least <m>\tfrac{n}{m(m+1)} - 1</m>, we see that the sum can be formed in 
+          <m>R \otimes_{\liquid q} \underline{\ZZ}[q^{\pm}]\langle U \rangle[T]/(T^{m+1} q - U)</m>.
+        </p>

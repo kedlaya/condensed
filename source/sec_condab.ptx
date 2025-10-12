@@ -57,6 +57,7 @@
         Applying the functor <m>\Top \to \CSet</m>, we obtain a homomorphism in <m>\CAb</m>, which therefore has a cokernel <m>\underline{\RR}/\underline{\RR}_{\disc}</m>.
         Explicitly, for <m>S \in \Prof</m>, <m>\underline{\RR}(S)</m> consists of continuous maps <m>S \to \RR</m> while <m>\underline{\RR}_{\disc}(S)</m> consists of locally constant functions <m>S \to \RR</m>.
         In this case, we showed in <xref ref="exa-quotient-of-r-by-discrete"/> that there is no sheafification required: <m>(\underline{\RR}/\underline{\RR}_{\disc})(S) = \underline{\RR}(S)/\underline{\RR}_{\disc}(S)</m>.
+        See <xref ref="rem-no-sheafification-when-left-solid"/> for another explanation of this observation.
       </p>
     </example>
     <definition xml:id="def-free-condensed-ab">
@@ -117,6 +118,8 @@
       <p>
         Any <m>X \in \Set</m> is projective as an object of <m>\CSet</m>;
         by adjunction, <m>\ZZ[\underline{X}]</m> is projective in <m>\CAb</m>.
+        In particular, for any singleton <m>* \in \Prof</m>, the functor <m>\CAb \to \Ab</m>
+        given by evaluation at <m>*</m> is exact.
       </p>
       <p>
         By contrast, for <m>X \in \Prof</m>, the objects <m>\ZZ[\underline{X}]</m> in <m>\CAb</m> form a collection of compact generators,
@@ -253,6 +256,17 @@
         which has dense image; this statement will later be upgraded to say this map induces an isomorphism of solidifications (<xref ref="cor-replace-prod-with-bounded-solid"/>).
       </p>
     </remark>
+    <remark xml:id="rem-null-null-sequences">
+      <p>
+        As a counterpart to <xref ref="rem-coord-map"/>, we note that if <m>X \in \CAb</m> is <em>not</em> represented by a topological space,
+        then an element of <m>\Hom_{\CAb}(P, \underline{X})</m> need not be uniquely determined by its images under the coordinate maps.
+        That is because we can reanalyze the product of the coordinate maps as a pullback along the morphism <m>\ZZ[\NN_{\disc}] \to \ZZ[\NN_{\infty}]/\ZZ[\infty]</m>
+        of topological groups, which is surjective on underlying groups but does not correspond to a surjection in <m>\CAb</m>.
+        The kernel of the joint coordinate maps constitutes of objects which we might call <term>null null sequences</term>
+        as they cannot be studied using the coordinate maps; we will handle them by rewriting a few standard series manipulations from analysis
+        into a more algebraic framework (<xref ref="rem-infinite-series"/>).
+      </p>
+    </remark>
   </subsection>
   <subsection>
     <title>Projectivity of the sequence space</title>
@@ -326,7 +340,7 @@
         Let <m>S_\infty</m> be the fiber of <m>S</m> above <m>\infty</m>;
         we obtain a diagram of the form
         <figure>
-          <image>
+          <image width="50%">
             <latex-image>
               \xymatrix{
                \ZZ[\underline{S}]/\ZZ[\underline{S}_\infty] \ar[r] \ar[d]  &amp; N' \ar[d] \\
@@ -344,7 +358,7 @@
         restricts to an isomorphism over <m>\NN</m>.
         After pulling back the previous diagram to obtain
         <figure>
-          <image>
+          <image width="50%">
             <latex-image>
               \xymatrix{
                \ZZ[\underline{S'}]/\ZZ[\underline{S_\infty}] \ar[r] \ar[d]  &amp; N' \ar[d] \\
@@ -400,7 +414,7 @@
           For <m>n \in \NN_\infty</m>, let <m>S_n</m> denote the fiber of <m>S \to \NN_\infty</m> over <m>n</m>;
           we again obtain a diagram of the form
           <figure>
-            <image>
+            <image width="50%">
               <latex-image>
                 \xymatrix{
                  \ZZ[\underline{S}]/\ZZ[\underline{S}_\infty] \ar[r] \ar[d]  &amp; N' \ar[d] \\

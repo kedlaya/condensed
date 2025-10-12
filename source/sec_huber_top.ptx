@@ -15,7 +15,7 @@
     <title>Whither the Zariski topology?</title>
     <p>
       As a warmup, let us think carefully about how one might arrive at the Zariski topology on an affine scheme,
-      or better as a Grothendieck topology on the category of affine schemes, given that one wants to end up reconstructing the usual theory of schemes.
+      or better the correspondng Grothendieck topology on the category of affine schemes, given that one wants to end up reconstructing the usual theory of schemes.
     </p>
     <remark>
       <p>
@@ -62,7 +62,7 @@
           \Spec R = \Proj_R \Sym_R(L_0) \to \Proj_R \Sym_R(R \oplus R) = \PP^1_R
         </me>,
         take the fiber product with the inclusion of one of the basic open subsets <m>\Spec R[T]</m> corresponding to dehomogenizing <m>\Sym_R(R \oplus R) \cong R[T_0, T_1]</m>
-        (i.e., mapping one variable to <m>T</m> and the other to 1), and then project via <m>\PP^1_R \to \Spec R</m>.
+        (i.e., mapping one variable to <m>T</m> and the other to <m>1</m>), and then project via <m>\PP^1_R \to \Spec R</m>.
       </p>
     </example>
     <remark>
@@ -162,7 +162,7 @@
       <p>
         For Huber pairs (or more generally solid analytic rings), we will want there to be a covering of the analytic projective line by two subspaces defined by the conditions
         <m>|s_0| \leq |s_1|</m> and <m>|s_1| \leq |s_0|</m>, corresponding in complex geometry to the covering of the Riemann sphere by the closed unit disc and its reciprocal.
-        As for schemes (<xref ref="prop-standard-binary-coverings"/>), this desire turns out to force the entire topology of adic spectra (<xref ref="prop-standard-binary-coverings-Huber"/>).
+        As for schemes (<xref ref="prop-standard-binary-coverings"/>), this desire ends up completely dictating the topology of adic spectra (<xref ref="prop-standard-binary-coverings-Huber"/>).
       </p>
     </remark>
     <p>
@@ -269,7 +269,7 @@
       <p>
         The distinction between rational localizations and weak rational localizations collapses 
         when <m>A^{\triangleright}</m> contains a topologically nilpotent unit, 
-        or more generally if <m>A^{\circ \circ}</m> generates the unit ideal of <m>A</m>.
+        or more generally when <m>A^{\circ \circ}</m> generates the unit ideal of <m>A</m>.
         An example where the two concepts differ would be with <m>A^{\triangleright} = \ZZ[x,y]</m> with the <m>(x,y)</m>-adic topology and the parameters <m>x,y</m>.
       </p>
       <p>
@@ -459,13 +459,21 @@
           thanks to <xref ref="lem-standard-rational-covering"/>, we are free to start with a covering of <m>\Spa A</m>
           by the sets <m>U_i = U(\tfrac{f_1,\dots,f_n}{f_i})</m> for <m>i=1,\dots,n</m> for some elements <m>f_1,\dots,f_n \in A^{\triangleright}</m> generating the unit ideal.
           We can then proceed by induction on <m>n</m>, with induction step as in the proof of <xref ref="prop-standard-binary-coverings"/>.
-          As for the base cases,  note that <m>n=1</m> is trivial.
+          As for the base cases, note that <m>n=1</m> is trivial.
           For <m>n=2</m>, choose <m>a_1, a_2 \in A^{\triangleright}</m> with <m>a_1 f_1 + a_2 f_2 = 1</m>,
           then pass to the terms of the standard binary covering defined by <m>a_1 f_1</m>; on each term, at least one of <m>f_1</m> or <m>f_2</m> is a unit
           and so we are considering a standard Laurent covering.
         </p>
       </proof>
     </proposition>
+    <remark>
+      <p>
+        For Tate Huber pairs, one can further refine <xref ref="prop-standard-binary-coverings-Huber"/> to say that only standard Laurent coverings are needed.
+        Namely, given <m>f,q \in A^{\triangleright}</m> with <m>q</m> a topologically nilpotent unit, the subspace
+        <m>U(\tfrac{1-f}{f}) = U(\tfrac{1}{f})</m> contains <m>U(\tfrac{1}{fq^n})</m> for <m>n</m> sufficiently large; so we can refine any standard binary covering
+        by a composition of standard Laurent coverings.
+      </p>
+    </remark>
     <remark>
       <p>
         <xref ref="prop-standard-binary-coverings-Huber"/> suggests that to topologize the category of analytic rings,

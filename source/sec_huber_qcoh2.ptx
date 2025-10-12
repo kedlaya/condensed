@@ -28,15 +28,9 @@
       <p>
         <xref ref="thm-sheaf-qcoh-for-adic"/> is compatible with various categorical properties.
         For instance, the bounded-above and bounded-below derived categories are also subsheaves for the adic topology.
-        More precisely, from the proof of <xref ref="lem-descent-standard-covering"/>, we see that
-        complexes with amplitude in a fixed range <m>[a, \infty)</m> also form a subsheaf for the adic topology.
-      </p>
-      <p>
-        By the same token, complexes with amplitude in a fixed range <m>(-\infty, b]</m> also form a subsheaf for the loose adic topology.
-        However, we cannot make the same argument for the adic topology: the passage from the right-hand
-        side of <xref ref="eq-derived-base-extension-functor"/> to the left-hand side may increase <m>b</m> to <m>b+1</m>.
-      </p>
-      <p>
+        However, we cannot argue that complexes in a fixed range <m>[a, \infty)</m> or <m>(-\infty, b]</m> also form a subsheaf for the adic topology:
+        the argument in <xref ref="lem-descent-standard-covering-loose"/> includes a step that disturbs the left end of the range
+        (taking the derived tensor product with <m>M</m>) and a step that disturbs the right end of the range (taking the mapping cone).
       </p>
     </remark>
     <definition xml:id="def-pseudocoherent">
@@ -233,9 +227,9 @@
     <theorem xml:id="thm-pseudocoherent-descent">
       <statement>
         <p>
-          For <m>A</m> a sheafy solid analytic ring, the category of pseudocoherent complexes of <m>A^{\triangleright}</m>-modules admits descent for the adic topology and the loose adic topology.
+          For <m>A</m> a sheafy solid analytic ring, the category of pseudocoherent complexes of <m>A^{\triangleright}</m>-modules admits descent for the adic topology.
           In particular (by <xref ref="rem-adjoin-top-nilpotent"/> and <xref ref="prop-sheafy-by-localizations-are-Huber"/>), 
-          for <m>A</m> a sheafy Huber pair, the category of pseudocoherent complexes of <m>A^{\triangleright}</m>-modules admits descent for the adic topology and the loose adic topology.
+          for <m>A</m> a sheafy Huber pair, the category of pseudocoherent complexes of <m>A^{\triangleright}</m>-modules admits descent for the adic topology.
         </p>
       </statement>
       <proof>
@@ -251,7 +245,7 @@
       </proof>
     </theorem>
     <p>
-      So far we have not yet said anything about amplitudes; we address that next.      
+      So far we have not yet said anything about amplitudes; we address that next.
     </p>
     <lemma xml:id="lem-coker-killed-locally">
       <statement>
@@ -288,7 +282,9 @@
       <proof>
         <p>
           This follows by combining <xref ref="thm-pseudocoherent-descent"/> with <xref ref="rem-subsheaves-of-qcoh"/>
-          and <xref ref="lem-coker-killed-locally"/>. 
+          and <xref ref="lem-coker-killed-locally"/>. More precisely, when glueing along a two-term covering, the 
+          amplitude of the result is initially in <m>(-\infty, 1]</m> because of the mapping cone used in <xref ref="lem-descent-standard-covering-loose"/>,
+          but we may use <xref ref="lem-coker-killed-locally"/> to eliminate the term in degree <m>1</m>.
         </p>
       </proof>
     </theorem>
@@ -336,7 +332,7 @@
     <remark>
       <p>
         <xref ref="thm-pseudocoherent-descent"/>, <xref ref="thm-pseudocoherent-descent-with-amplitude"/>, and <xref ref="cor-perfect-complexes"/>
-        were known previously when <m>A</m> is a Tate Huber ring; see <xref ref="bib-Andreychev"/>.
+        were known previously when <m>A</m> is a sheafy Tate Huber ring; see <xref ref="bib-Andreychev"/>.
       </p>
     </remark>
   </subsection>
@@ -351,6 +347,11 @@
       <p>
         A morphism <m>A \to B</m> of analytic rings is <term>idempotent</term> if 
         the map <m>B^{\triangleright} \otimes^L_A B^{\triangleright} \to B^{\triangleright}</m> is an isomorphism.
+        An equivalent condition is that the composition
+        <men xml:id="eq-idempotent-composition">
+          B^{\triangleright} \otimes^L_A B^{\triangleright} \to B^{\triangleright} \to B^{\triangleright} \otimes^L_A B^{\triangleright}
+        </men>,
+        where the second map is <m>b \mapsto b \otimes 1</m>, is an isomorphism.
       </p>
     </definition>
     <example xml:id="exa-discrete-idempotent">
@@ -371,8 +372,13 @@
           C^{\triangleright} \otimes^L_B C^{\triangleright} = (C^{\triangleright} \otimes^L_A C^{\triangleright}) \otimes_{B^{\triangleright} \otimes^L_A B^{\triangleright}} B^{\triangleright}
         </me>.
       </p>
+    </remark>
+    <remark>
       <p>
-        If <m>A \to B</m> is idempotent, then for any morphism <m>A \to C</m>, <m>C \to B \otimes_A C</m> is idempotent.
+        If <m>A \to B</m> is idempotent, then for any morphism <m>A \to C</m>, <m>C \to B \otimes_A C</m> is idempotent
+        provided that <m>B \otimes_A C = B \otimes^L_A \otimes C</m>. When this fails (as in <xref ref="rem-localization-is-idempotent"/>), 
+        it is the morphism <m>C \to B \otimes^L_A C</m> that should be regarded as being idempotent,
+        by interpreting the target as a derived ring in a suitable sense (<xref ref="rem-more-homotopical-rings"/>).
       </p>
     </remark>
     <example xml:id="eq-Zariski-localization-idempotent">
@@ -394,6 +400,30 @@
         (provided that it is underived).
       </p>
     </example>
+    <remark xml:id="rem-localization-is-idempotent">
+      <p>
+        In <xref ref="exa-rational-localization-is-idempotent"/>, if we drop the condition that <m>A</m> is sheafy 
+        but require that <m>A \to B</m> coincide with the associated derived rational localization (<xref ref="rem-not-flat"/>), then <m>A \to B</m> is still idempotent;
+        that is, <xref ref="eq-idempotent-composition"/> is still an isomorphism.
+      </p>
+      <p>
+        Let us work this out in the special case where <m>B = A \langle f \rangle</m> for some <m>f \in A^{\triangleright}</m>,
+        the general case being similar.
+        In this case <m>B^{\triangleright}</m> is represented by the Koszul complex associated to the element <m>T-f</m>
+        of <m>A^{\triangleright} \langle T \rangle</m>, and so 
+        <m>B^{\triangleright} \otimes^L_A B^{\triangleright}</m> is represented by the Koszul complex associated to the elements <m>T-f,U-f</m>
+        of <m>A^{\triangleright} \langle T,U \rangle</m>. The Koszul complex does not change if we replace the sequence with <m>T-U,T-f</m>;
+        it thus suffices to observe that the sequence
+        <me>
+          0 \to A^{\triangleright}\langle T,U \rangle \stackrel{\times T-U}{\to} A^{\triangleright}\langle T,U \rangle \stackrel{U \mapsto T}{\to} A^{\triangleright}\langle T \rangle \to 0
+        </me>
+        is <em>split</em> exact.
+      </p>
+      <p>
+        For instance, by <xref ref="cor-flat-mult-f-v2"/>, the morphisms <m>A \to A \langle f \rangle</m> and <m>A \to A \langle f^{-1} \rangle</m>
+        are idempotent. However, by <xref ref="rem-not-flat"/>, the morphism <m>A \to A \langle f^{\pm} \rangle</m> is not necessarily idempotent.
+      </p>
+    </remark>
     <example xml:id="exa-completion-is-idempotent">
       <p>
         Let <m>A</m> be a solid analytic ring, choose <m>f \in A(*)</m>, and let <m>B</m> denote the derived <m>f</m>-completion of <m>A</m>;
@@ -426,7 +456,7 @@
         it just means take the module category to be all of <m>\Mod_P</m>.)
       </p>
       <p>
-        To see that <m>P \otimes_{\underline{\ZZ[q]}} P \cong P</m>, first apply <xref ref="eq-tensor-product-of-profinite"/> and <xref ref="rem-tensor-free-ab-flat"/> to write
+        To see that <m>P \otimes_{\underline{\ZZ[q]}}^L P \cong P</m>, first apply <xref ref="eq-tensor-product-of-profinite"/> and <xref ref="rem-tensor-free-ab-flat"/> to write
         <me>
           \ZZ[\underline{\NN_\infty}] \otimes^L_{\underline{\ZZ}} \ZZ[\underline{\NN_\infty}] \cong \ZZ[\underline{\NN_\infty \times \NN_\infty}]
         </me>.
@@ -456,7 +486,8 @@
     <remark>
       <p>
         We have deliberately been a bit careless in stating <xref ref="def-idempotent-topology"/>: the tensor products 
-        <m> A_i^{\triangleright} \otimes^L_A A_j^{\triangleright}</m> and so on need not be underived. 
+        <m> A_i^{\triangleright} \otimes^L_A A_j^{\triangleright}</m> and so on need not be underived
+        (as in <xref ref="rem-localization-is-idempotent"/>).
         A correct formulation would require disambiguating what object of <m>\calD(\Mod_A)</m> is meant by <xref ref="eq-idempotent-topology"/>.
       </p>
     </remark>
@@ -488,178 +519,5 @@
         as well as analogous statements for perfect and pseudocoherent complexes.
       </p>
     </example>
-  </subsection>
-  <subsection>
-    <title>Material to be removed</title>
-    <lemma xml:id="lem-sheafy-exact-sequence-v2">
-      <statement>
-        <p>
-          Let <m>A</m> be a solid analytic ring. Then for any <m>f \in A(*)</m>,
-          for <m>g \in \{1, 1-f\}</m>, for any <m>M \in \Mod_A</m>, the sequence
-          <me>
-            0\to M \to M \otimes_A A^{\triangleright} \left\langle \tfrac{f}{g} \right\rangle \oplus 
-            M \otimes_A A^{\triangleright} \left\langle \tfrac{g}{f} \right\rangle \to 
-            M \otimes_A A^{\triangleright} \left\langle \tfrac{f}{g}, \tfrac{g}{f} \right\rangle \to 0
-          </me>
-          is exact.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          Since the map in <xref ref="lem-solid-split-laurent-poly-ring"/> (taking <m>R := A^{\triangleright}</m>) is an isomorphism,
-          it remains an isomorphism after tensoring with <m>A</m>.
-          Meanwhile, by <xref ref="cor-flat-mult-f-v2"/>, the sequences used in the proof of <xref ref="lem-sheafy-exact-sequence-v1"/>
-          remain exact after tensoring with <m>M</m>, so we may emulate the argument therein.
-        </p>
-      </proof>
-    </lemma>
-    <definition xml:id="def-loose-rational-localization">
-      <p>
-        Let <m>A \to B</m> be a rational localization of solid analytic rings corresponding to parameters
-        <m>f_1,\dots,f_n,g\in A^{\triangleright}(*)</m> which generate the unit ideal.
-        We can then factor this map through <m>A \to B_0</m>
-        where
-        <me>
-          B_0 = (B^{\triangleright}, \Mod_{B^{\triangleright}} \times_{\Mod_{A^{\triangleright}}} \Mod_A)
-        </me>;
-        we call the map <m>A \to B_0</m> the <term>loose rational localization</term> defined by <m>f_1,\dots,f_n,g</m>.
-      </p>
-      <p>
-        Define the <term>loose adic topology</term> on <m>\AnRing^{\op}</m> as the Grothendieck topology
-        generated by coverings by families of loose rational localizations <m>A \to A_{i,0}</m> arising from
-        sequences <m>f_1,\dots,f_n \in A^{\triangleright}(*)</m> generating the unit ideal.
-      </p>
-    </definition>
-    <p>
-      We start with the following generalization of <xref ref="lem-sheafy-exact-sequence"/>.
-    </p>
-    <lemma xml:id="lem-general-mod-exact-on-binary-covering">
-      <statement>
-        <p>
-          For <m>A</m> a solid analytic ring, for <m>f,g \in A^{\triangleright}(*)</m> which generate the unit ideal,
-          for any <m>A \in \Mod_A</m>, the sequence
-          <me>
-            0 \to M \to M \otimes_A A^{\triangleright} \left\langle \frac{f}{g} \right\rangle
-            \oplus M \otimes_A A^{\triangleright} \left\langle \frac{g}{f} \right\rangle \to
-            M \otimes_A A^{\triangleright} \left\langle \frac{f}{g}, \frac{g}{f} \right\rangle \to 0
-          </me>
-          is exact.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          In the case where <m>g=1</m> or <m>g=1-f</m> this was already established in <xref ref="lem-sheafy-exact-sequence-v2"/>.
-          By this plus <xref ref="prop-standard-binary-coverings-Huber"/>,
-          we may check the general case locally with respect to a refinement of the binary covering defined by <m>f,g</m>.
-          In particular, we may assume without loss of generality that <m>A = A^{\triangleright} \left\langle \frac{f}{g} \right\rangle</m>,
-          in which case also <m>A^{\triangleright} \left\langle \frac{g}{f} \right\rangle = A^{\triangleright} \left\langle \frac{f}{g}, \frac{g}{f} \right\rangle</m>
-          and so the sequence in question is split exact.
-        </p>
-      </proof>
-    </lemma>
-    <lemma xml:id="lem-mod-to-qcoh-fully-faithful">
-      <statement>
-        <p>
-          For <m>A</m> a solid analytic ring, for <m>f,g \in A^{\triangleright}(*)</m> which generate the unit ideal,
-          the map
-          <me>
-            \Mod_A \to \Mod_{A \left\langle f/g \right\rangle_0} \times_{\Mod_{A \left\langle f/g, g/f \right\rangle_0}} \Mod_{A \left\langle g/f \right\rangle_0}            
-          </me>
-          is fully faithful.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          This is immediate from <xref ref="lem-general-mod-exact-on-binary-covering"/>.
-        </p>
-      </proof>
-    </lemma>
-    <p>
-      Before continuing, it will be helpful to make a corresponding statement for derived categories.
-    </p>
-    <theorem xml:id="thm-mod-to-qcoh-equivalence">
-      <statement>
-        <p>
-          The categories <m>\Mod_A</m> form a stack for the loose adic topology on <m>\AnRing^{\op}</m>.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          Usiny <xref ref="prop-standard-binary-coverings-Huber"/>, 
-          this reduces to <xref ref="lem-mod-to-qcoh-equivalence"/>.
-        </p>
-      </proof>
-    </theorem>
-    <remark xml:id="rem-univ-injective-but-not-flat">
-      <p>
-        The truth of <xref ref="thm-mod-to-qcoh-equivalence"/> may seem surprising in light of the fact that tensoring with even a loose rational localizations
-        is not an exact morphism (<xref ref="exa-localization-not-flat"/>). The point is that loose rational localizations are at least universally
-        injective (<xref ref="cor-flat-mult-f-v2"/>) and this is sufficient for descent of modules (compare <xref ref="bib-Stacks"/>, tag 08WE for the case of modules over discrete rings).
-        However, the failure of base extension along a loose rational localization 
-        to be flat is a compelling argument to introduce derived categories at this point.
-      </p>
-    </remark>
-    <lemma xml:id="lem-mod-to-qcoh-equivalence">
-      <statement>
-        <p>
-          For <m>A</m> a sheafy solid analytic ring, for <m>f,g \in A^{\triangleright}(*)</m> which generate the unit ideal,
-          the map
-          <me>
-            \Mod_A \to \Mod_{A \left\langle f/g \right\rangle_0} \times_{\Mod_{A \left\langle f/g, g/f \right\rangle_0}} \Mod_{A \left\langle g/f \right\rangle_0}            
-          </me>
-          is an equivalence of categories.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          By <xref ref="lem-mod-to-qcoh-fully-faithful"/>, the functor is fully faithful.
-          To check essential surjectivity, we may apply <xref ref="lem-descent-standard-covering-loose"/> to an element
-          of the target category to obtain a complex concentrated in degrees 0 and 1.
-          However, we can then apply <xref ref="lem-mod-to-qcoh-fully-faithful"/> again to see that the cohomology in degree 1 vanishes.
-        </p>
-      </proof>
-    </lemma>
-    <remark>
-      <p>
-        The issues raised in <xref ref="rem-univ-injective-but-not-flat"/> and <xref ref="rem-no-sheaf-derived-category"/> become more acute
-        when we switch from the loose adic topology back to the adic topology, where
-        <xref ref="lem-mod-to-qcoh-equivalence"/> no longer applies: the base extension along a rational localization
-        includes an analytic completion step which is not exact. So the best we can hope to assert is that some sort of derived
-        category of <m>\Mod_A</m> is a stack for the adic topology, but this is obstructed in the same manner
-        as in <xref ref="rem-no-sheaf-derived-category"/>.
-      </p>
-      <p>
-        As a first step, we can at least formulate the analogue of <xref ref="lem-descent-standard-covering-loose"/>.
-        A complete resolution will have to wait until we introduce the <m>\infty</m>-categorical analogue of the
-        derived category of <m>\Mod_A</m>.
-      </p>
-    </remark>
-    <lemma xml:id="lem-descent-standard-covering">
-      <statement>
-        <p>
-          Let <m>A</m> be a solid analytic ring and choose <m>f,g \in A^{\triangleright}(*)</m> generating the unit ideal.
-          Then the base extension functor
-          <men xml:id="eq-derived-base-extension-functor">
-            D(\Mod_A) \to D(\Mod_{A \left\langle f/g \right\rangle}) \times_{D(\Mod_{A \left\langle f/g, g/f \right\rangle})} D(\Mod_{A \left\langle g/f \right\rangle})
-          </men>
-          is an equivalence of categories.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          The proof of <xref ref="lem-descent-standard-covering-loose"/> carries over.
-        </p>
-      </proof>
-    </lemma>
-      <p>
-        To see that <m>\underline{\ZZ[q]} \to P</m> is flat, we may argue as in <xref ref="lem-flat-mult-f"/>:
-        form the exact sequence
-        <me>
-          0 \to \underline{\ZZ[q]} \otimes P \stackrel{\times (q-[1])}{\to} \underline{\ZZ[q]} \otimes P \to P \to 0
-        </me>,
-        then observe that for any <m>M \in \Mod_{\underline{\ZZ[q]}}</m>, <m>M \otimes_{\underline{\ZZ[q]}} \underline{\ZZ[q]} \otimes P \cong M \otimes P</m>
-        injects into <m>M \otimes (P \oplus \prod_{n \lt 0} \ZZ[n])</m>
-        on which multiplication by <m>q-[1] = [1](1 - q[-1])</m> is an isomorphism.
-      </p>
   </subsection>
 </section>

@@ -56,8 +56,8 @@
     <lemma xml:id="cor-replace-prod-with-bounded-solid">
       <statement>
         <p>
-          The map <m>\left( \prod_\NN^{\bd} \underline{\ZZ} \right)_\solid \to \left( \prod_\NN \underline{\ZZ} \right)_\solid</m> is an isomorphism.
-          (By <xref ref="lem-top-group-no-derived-solidification"/>, this holds also at the level of derived solidifications.)
+          The map <m>\left( \prod_\NN^{\bd} \underline{\ZZ} \right)_\solid \to \left( \prod_\NN \underline{\ZZ} \right)_\solid</m> is an isomorphism,
+          and likewise at the level of derived solidifications.
         </p>
       </statement>
       <proof>
@@ -95,7 +95,7 @@
         Let <m>\Delta\colon \ZZ[\NN] \to \ZZ[\NN]</m> denote the map <m>[n] \mapsto [n]-[n+1]</m>.
         We then obtain a commutative diagram
         <figure>
-          <image>
+          <image width="50%">
             <latex-image>
               \xymatrix{
                \ZZ[\NN] \otimes \ZZ[\NN] \ar[r] \ar^{\Delta \otimes \id}[d]  &amp;\ZZ[\NN] \ar@{=}[d] \\
@@ -113,7 +113,7 @@
       <m>\ZZ[\underline{\NN_\infty \times \NN_\infty}] \cong \ZZ[\underline{\NN_\infty}] \otimes \ZZ[\underline{\NN_\infty}]</m>,
       we promote the previous diagram to a new diagram:
         <figure>
-          <image>
+          <image width="50%">
             <latex-image>
               \xymatrix{
                 P \otimes P \ar[r] \ar^{\Delta \otimes \id}[d] &amp; P \ar@{=}[d] \\
@@ -130,7 +130,7 @@
         <p>
           There exists a commutative diagram in <m>\CAb</m> of the form
           <figure>
-            <image>
+            <image width="50%">
               <latex-image>
                 \xymatrix{
                   P \otimes \prod_\NN^{\bd} \underline{\ZZ} \ar[r] \ar^{\Delta \otimes \id}[d] &amp; P \ar^{c}[d] \\
@@ -146,7 +146,7 @@
         <p>
           By imitating the construction of the diagram from <xref ref="def-diagram-for-Delta"/>, we obtain a diagram of the form
           <figure>
-            <image>
+            <image width="50%">
               <latex-image>
                 \xymatrix{
                   P \otimes \prod_\NN^{\bd} \underline{\ZZ} \ar[r] \ar^{\Delta \otimes \id}[d] &amp; \prod_\NN^{\bd}  \underline{\ZZ} \ar@{=}[d] \\
@@ -166,7 +166,7 @@
             P \otimes \prod_\NN^{\bd} \underline{\ZZ} \to \prod_\NN^{\bd} \underline{\ZZ}
           </men>
           factors through <m>c</m>. The splitting of the resulting top row will be guaranteed by the fact that since <m>c</m> is injective,  
-           the composition <m>P \to P \otimes \prod_\NN^{\bd} \underline{\ZZ} \to P</m> will again be the identity.
+          the composition <m>P \to P \otimes \prod_\NN^{\bd} \underline{\ZZ} \to P</m> will again be the identity.
         </p>
         <p> 
           More precisely, we will show that that the formula
@@ -202,15 +202,15 @@
     <lemma xml:id="lem-replace-bounded-with-P-solid">
       <statement>
         <p>
-          The map <m>c_\solid\colon P_\solid \to \left(\prod_\NN^{\bd} \underline{\ZZ} \right)_\solid</m> is an isomorphism in <m>\CAb</m>.
-          (By <xref ref="lem-top-group-no-derived-solidification"/>, this holds also at the level of derived solidifications.)
+          The map <m>c_\solid\colon P_\solid \to \left(\prod_\NN^{\bd} \underline{\ZZ} \right)_\solid</m> is an isomorphism in <m>\CAb</m>,
+          and likewise at the level of derived solidifications.
         </p>
       </statement>
       <proof>
         <p>
           We solidify the diagram in <xref ref="lem-diagram-p-to-bd"/> to obtain
           <figure>
-            <image>
+            <image width="50%">
               <latex-image>
                 \xymatrix{
                   \left(P \otimes \prod_\NN^{\bd} \underline{\ZZ}\right)_\solid \ar[r] \ar^{\Delta \otimes \id}[d] &amp; P_\solid \ar^{c_\solid}[d] \\
@@ -242,9 +242,8 @@
     <proposition xml:id="cor-solidification-of-P">
       <statement>
         <p>
-          The map <m>c_\solid \colon P_\solid \to \prod_{\NN} \underline{\ZZ}</m> is an isomorphism.
-          (Note that the target is solid by <xref ref="lem-delta-pullback-on-Rhom"/> and <xref ref="prop-solid-category"/>.
-          By <xref ref="lem-top-group-no-derived-solidification"/>, this holds also at the level of derived solidifications.)
+          The map <m>c_\solid \colon P_\solid \to \prod_{\NN} \underline{\ZZ}</m> is an isomorphism, and likewise at the level of derived solidifications.
+          (Note that the target is solid by <xref ref="lem-delta-pullback-on-Rhom"/> and <xref ref="prop-solid-category"/>.)
         </p>
       </statement>
       <proof>
@@ -261,7 +260,9 @@
       </statement>
       <proof>
         <p>
-          This is straightforward if <m>I</m> is finite, and follows from  <xref ref="prop-internally-projective"/> with <xref ref="cor-solidification-of-P"/> if <m>I</m> is countable.
+          This is straightforward if <m>I</m> is finite, and follows from  <xref ref="prop-internally-projective"/> with <xref ref="cor-solidification-of-P"/> 
+          (specifically the isomorphism at the level of derived solidifications)
+          if <m>I</m> is countable.
         </p>
       </proof>
     </corollary>
@@ -284,9 +285,9 @@
     </corollary>
     <remark>
       <p>
-        In principle one could use the explicit description of <m>\ZZ[\underline{\NN}_\infty]</m> from <xref ref="exa-module-ring-topological-space"/>
+        In principle one could use the explicit description of <m>\ZZ[\underline{\NN_\infty}]</m> from <xref ref="exa-module-ring-topological-space"/>
         to recover the isomorphism <m>P_\solid \cong \prod_{\NN} \underline{\ZZ}</m>.
-        We leave this as a challenge for the motivated reader.
+        We will do something similar later; see <xref ref="prop-initial-analytic"/>.
       </p>
     </remark>
   </subsection>
@@ -352,7 +353,7 @@
         <p>
           There exists a commutative diagram in <m>\CAb</m> of the form
           <figure>
-            <image>
+            <image width="50%">
               <latex-image>
                 \xymatrix{
                   P \otimes \ZZ[\underline{S}] \ar[r] \ar^{\Delta \otimes \id}[d] &amp; P \ar^{g}[d] \\
@@ -368,7 +369,7 @@
         <p>
           We first construct a diagram
           <figure>
-            <image>
+            <image width="50%">
               <latex-image>
                 \xymatrix{
                   P \otimes \ZZ[\underline{S}] \ar[r] \ar^{\Delta \otimes \id}[d] &amp; \ZZ[\underline{S}] \ar@{=}[d] \\
@@ -394,9 +395,10 @@
       <statement>
         <p>
           For any infinite <m>S \in \Prof</m> and any morphism <m>g\colon P \to \ZZ[\underline{S}]</m>
-          constructed as in <xref ref="def-construct-map-P-to-monoid"/>, the induced map <m>g_\solid\colon P_\solid \cong \ZZ[\underline{S}]_\solid</m> is an isomorphism;
-          consequently, by <xref ref="cor-solidification-of-P"/> we obtain an isomorphism <m>\ZZ[\underline{S}]_\solid \cong \prod_\NN \underline{\ZZ}</m>.
-          (By <xref ref="lem-top-group-no-derived-solidification"/>, this holds also at the level of derived solidifications.)
+          constructed as in <xref ref="def-construct-map-P-to-monoid"/>, the induced map <m>g_\solid\colon P_\solid \cong \ZZ[\underline{S}]_\solid</m> is an isomorphism,
+          and likewise at the level of derived solidifications.
+          Consequently, by <xref ref="cor-solidification-of-P"/> we obtain an isomorphism <m>\ZZ[\underline{S}]_\solid \cong \prod_\NN \underline{\ZZ}</m>,
+          and likewise at the level of derived solidifications.
         </p>
       </statement>
       <proof>
@@ -406,7 +408,7 @@
         </p>
       </proof>
     </lemma>
-    <remark>
+    <remark xml:id="rem-no-sheafification-when-left-solid">
       <p>
         <xref ref="lem-identify-solidification-of-free"/> has the consequence that for any exact sequence
         <me>
@@ -415,13 +417,12 @@
         in <m>\CAb</m> with <m>M_1</m> solid and any <m>S \in \Prof</m>,
         we have an exact sequence
         <me>
-          0 \to M_1(S) \to M(S) \to M_2(S) \to \Ext^1_{\CAb}(\ZZ[\underline{S}], M_1) = 0.
-        </me>
-        is exact.
-      </p>
-      <p>
-        This argument can be used to explain the empirical observations that in many natural examples, formation of cokernels of morphisms in <m>\CAb</m>,
-        which nominally happens in the category of sheaves of abelian groups on <m>\Prof</m>, can actually be computed in the category of presheaves on <m>\Prof</m>.
+          0 \to M_1(S) \to M(S) \to M_2(S) \to \Ext^1_{\CAb}(\ZZ[\underline{S}], M_1) = 0
+        </me>.
+        This can be used to explain the empirical observation that in many natural examples, 
+        formation of cokernels of morphisms in <m>\CAb</m>,
+        which nominally happens in the category of sheaves of abelian groups on <m>\Prof</m>, 
+        can actually be computed in the category of presheaves on <m>\Prof</m>.
         For instance, in the sequence
         <me>
           0 \to \RR_{\disc} \to \RR \to \RR/\RR_{\disc} \to 0

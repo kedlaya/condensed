@@ -263,7 +263,7 @@
       <statement>
         <p>
           Let <m>A^{\triangleright}</m> be a solid condensed ring.
-          Let <m>F \in \ZZ[x_1,\dots,x_n][T]</m> be a polynomial monic in <m>T</m> and congruent to some power of <m>T</m> modulo <m>(x_1,\dots,x_n)</m>.
+          Let <m>F \in \ZZ[x_1,\dots,x_n][T]</m> be a polynomial monic in <m>T</m> and belonging to the ideal <m>(x_1,\dots,x_n,T)</m>.
           Let <m>f_1,\dots,f_n,f \in A^{\triangleright}(*)</m> be such that <m>F(f_1,\dots,f_n,f) = 0</m>.
           If <m>f_1,\dots,f_n \in A^{\circ \circ}</m>, then <m>f \in A^{\circ \circ}</m>.
         </p>
@@ -274,7 +274,7 @@
           <me>
             \underline{\ZZ}\llbracket x_1 \rrbracket \otimes^L_\solid \cdots \otimes^L_\solid \underline{\ZZ}\llbracket x_n \rrbracket \cong \underline{\ZZ}\llbracket x_1,\dots,x_n \rrbracket,
           </me>
-          the conditions in question imply that we have a homomorphism <m>\underline{\ZZ}\llbracket x_1,\dots,x_n\rrbracket [T]/(F) \to A^{\triangleright}</m>
+          the conditions in question imply that we have a homomorphism <m>\underline{\ZZ}\llbracket x_1,\dots,x_n,T\rrbracket/(F) \to A^{\triangleright}</m>
           acting via <m>x_i \mapsto f_i, T \mapsto f</m>.
           We thus deduce that <m>f \in A^{\circ \circ}</m>.
         </p>
@@ -284,7 +284,7 @@
       <statement>
         <p>
           The subset <m>A^{\circ}</m> of <m>A^{\triangleright}(*)</m> is an integrally closed subring.
-          The subset <m>A^{\circ \circ}</m> of <m>A^{\triangleright}(*)</m> is a radical ideal of <m>A^{\circ}</m>.
+          The subset <m>A^{\circ \circ}</m> of <m>A^{\triangleright}(*)</m> is an integrally closed (in particular radical) ideal of <m>A^{\circ}</m>.
         </p>
       </statement>
       <proof>

@@ -494,9 +494,9 @@
     <lemma xml:id="lem-countable-sub-of-product-is-free">
       <statement>
         <p>
-          Let <m>M</m> be a subgroup of <m>\prod_I \ZZ</m> for some index set <m>I</m>
-          with <m>|I| \leq \aleph_0</m>.
-          Then <m>M</m> is free. (The cardinality restriction is needed on account of <xref ref="rem-infinite-product-not-free"/>.)
+          Let <m>M</m> be a subgroup of <m>\prod_I \ZZ</m> with <m>|M| \leq \aleph_0</m> for some index set <m>I</m>.
+          Then <m>M</m> is free. (The restriction <m>|M| \leq \aleph_0</m> is needed on account of <xref ref="rem-infinite-product-not-free"/>;
+          there is no restriction on <m>I</m>.)
         </p>
       </statement>
       <proof>
@@ -534,7 +534,7 @@
         <p>
           Let <m>Q</m> be an abelian group with <m>|Q| \leq \aleph_0</m>. 
           Let <m>Q^\vee := \Hom_\ZZ(Q,\ZZ)</m> be the (algebraic) dual group of <m>Q</m>,
-          let <m>Q^{\vee vee} := \Hom_\ZZ(Q^\vee, \ZZ)</m> be the double dual of <m>Q</m>,
+          let <m>Q^{\vee \vee} := \Hom_\ZZ(Q^\vee, \ZZ)</m> be the double dual of <m>Q</m>,
           and let <m>Q_0</m> be the kernel of the evaluation map <m>Q \to Q^{\vee \vee}</m>.
           Then <m>Q/Q_0</m> is free, so <m>Q</m> splits as a direct sum <m>Q_0 \oplus (Q/Q_0)</m>
           in which <m>\Hom_\ZZ(Q_0, \ZZ) = 0</m>.

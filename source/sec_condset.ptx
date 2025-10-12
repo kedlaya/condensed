@@ -194,7 +194,7 @@
           we may assume our covering is given by closed-open subsets of this form. 
           We can then choose a finite partition <m>\{V_i\}_{i \in I}</m>
           of <m>T</m> such that every <m>U_j</m> is a finite union of some of the <m>V_i</m>.
-          Similarly, the images of the <m>V_i</m> in <m>S</m> form a covering by closed-open subsets which is then refined by some finite partition;
+          We can further refine this partition to ensure that the images of the <m>V_i</m> in <m>S</m> form a covering by closed-open subsets which is then refined by some finite partition;
           since our desired conclusion may be checked locally on <m>S</m>, we may reduce to the case where each <m>V_i</m> surjects onto <m>S</m>.
         </p>
         <p>
@@ -461,17 +461,19 @@
     <corollary>
       <statement>
         <p>
-        For <m>n \in \NN</m>, let <m>X_n \to Y_n</m> be an epimorphism in <m>\CSet</m>.
-        Then <m>\prod_{n \in \NN} X_n \to \prod_{n \in \NN} Y_n</m> is also an epimorphism.
+          For <m>n \in \NN</m>, let <m>X_n \to Y_n</m> be an epimorphism in <m>\CSet</m>.
+          Then <m>\prod_{n \in \NN} X_n \to \prod_{n \in \NN} Y_n</m> is also an epimorphism.
         </p>
       </statement>
       <proof>
-        Apply <xref ref="prop-sequential-limits-of-surjections"/> to the inverse system
-        <me>
-          \prod_{n' \lt n+1} X_{n'} \times \prod_{n' \geq n+1} Y_{n'} \to \prod_{n' \lt n} X_{n'} \times \prod_{n' \geq n} Y_{n'}
-          \qquad (n=1,2,\dots)
-        </me>
-        and the identity map out of the last term.
+        <p>
+          Apply <xref ref="prop-sequential-limits-of-surjections"/> to the inverse system
+          <me>
+            \prod_{n' \lt n+1} X_{n'} \times \prod_{n' \geq n+1} Y_{n'} \to \prod_{n' \lt n} X_{n'} \times \prod_{n' \geq n} Y_{n'}
+            \qquad (n=1,2,\dots)
+          </me>
+          and the identity map out of the last term.
+        </p>
       </proof>
     </corollary>
     <remark>

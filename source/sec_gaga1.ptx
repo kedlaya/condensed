@@ -1,0 +1,369 @@
+﻿<section xml:id="sec_gaga1">
+  <title>Glueing and GAGA for <m>\PP^1</m>: nonarchimedean case</title>
+  <introduction>
+    <p>
+      In this section, we study the GAGA phenomenon for solid analytic rings,
+      focusing on the case of <m>\PP^1</m> where we can state all the results in language that we (mostly) already have.
+      We will return to the general case once we have the language of analytic stacks available to formulate the results more easily.
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This section is based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 15.
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection xml:id="subsec-analytification">
+    <title>Analytification</title>
+    <p>
+      We recall some ways in which schemes interact with other geometric objects.
+      This is a behavior we wish to maintain in the category of algebraic stacks.
+    </p>
+    <remark>
+      <p>
+        In the category <m>\LRS</m> of locally ringed spaces, the affine scheme <m>\Spec R</m> corresponding to <m>R \in \Ring</m> has the following universal property:
+        for every <m>X \in \LRS</m>, homomorphisms <m>R \to \Gamma(X, \calO_X)</m> correspond to morphisms <m>X \to \Spec R</m> via taking global sections.
+        In other words, <m>\Spec</m> is right adjoint to the global sections functor <m>\LRS \to \Ring^{\op}</m>.
+      </p>
+      <p>
+        Of course we can also construct other interesting objects in <m>\LRS</m>: topological manifolds, smooth (<m>C^{\infty}</m>) manifolds, real analytic manifolds,
+        complex analytic manifolds, complex analytic varieties, adic spaces, etc.
+        We can carry this further by replacing <m>\LRS</m> with our new category <m>\LCRS</m> of locally condensed ringed spaces.
+        In that category we have the solid adic spaces introduced in <xref ref="sec_huber_local"/>.
+      </p>
+      <p>
+        While the adjunction property of <m>\Spec</m> tells us exactly how these other objects map to affine schemes, it does not explain how they map to more general schemes.
+        In fact this is quite an interesting matter!
+      </p>
+    </remark>
+    <definition>
+      <p>
+        For <m>X</m> a scheme locally of finite type over <m>\CC</m>, an <term>analytification</term> of <m>X</m> is a complex analytic variety <m>X^{\an}</m>
+        equipped with a morphism <m>X^{\an} \to X</m> of locally ringed spaces, satisfying the following universal property:
+        for any complex analytic variety <m>Y</m>, any morphism <m>Y \to X</m> of locally ringed spaces factors uniquely through <m>X^{\an}</m>.
+      </p>
+    </definition>
+    <proposition>
+      <statement>
+        <p>
+          Every scheme locally of finite type <m>X</m> over <m>\CC</m> admits an analytification <m>X^{\an}</m>.
+          Moreover, the image of <m>X^{\an} \to X</m> consists of precisely the closed points of <m>X</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          For <m>X = \Spec \CC[T_1,\dots,T_n]</m>, the variety <m>X^{\an} = \CC^n</m> and the mapping <m>X^{\an} \to X</m> corresponding to the identification of <m>T_1,\dots,T_n</m>
+          with the coordinate functions on <m>\CC^n</m> does the trick.
+          We may then formally extend the conclusion to any closed subscheme of <m>X</m>, and then to any scheme locally of finite type over <m>\CC</m>.
+        </p>
+      </proof>
+    </proposition>
+    <theorem xml:id="thm-gaga-classical">
+      <title>GAGA</title>
+      <statement>
+        <p>
+          For <m>X</m> a proper scheme over <m>\CC</m>, pullback along <m>X^{\an} \to X</m> induces an exact equivalence of categories between coherent sheaves on <m>X</m> and <m>X^{\an}</m>,
+          which moreover preserves sheaf cohomology.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We will recover this statement later (<xref ref="thm-gaga-classical-v2"/>).
+        </p>
+      </proof>
+    </theorem>
+    <remark>
+      <p>
+        One can similarly study analytification, and prove a GAGA theorem, for schemes over a nonarchimedean field <m>K</m> using any of rigid analytic spaces, Berkovich spaces, or adic spaces.
+      </p>
+      <p>
+        In the context of analytic stacks, we will upgrade <xref ref="thm-gaga-classical"/> to a comparison of quasicoherent sheaves. This will amount to the statement that
+        <m>\PP^1_\CC</m> and its analytification become <em>isomorphic</em> when viewed as analytic stacks.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        In nonarchimedean geometry, one can build the analytic analogue of <m>\PP^1</m> by glueing together two closed unit discs along their boundary.
+        This works less well in complex geometry, but already in <m>p</m>-adic geometry there is a reason why one might want to change course.
+      </p>
+      <p>
+        This reason comes from de Rham cohomology: the cokernel of the derivation <m>\frac{d}{dT}</m> on the ring <m>\QQ_p \langle T \rangle</m>
+        is infinite-dimensional! For example, <m>\sum_{n=0}^\infty p^n T^{p^n}</m> represents a nonzero element of the cokernel.
+      </p>
+      <p>
+        By contrast, if one replaces the Tate algebra <m>\QQ_p \langle T \rangle</m> with the <term>dagger algebra</term> <m>\QQ_p \langle T \rangle^\dagger</m>,
+        meaning the subring consisting of those power series which converge on some disc of radius greater than 1 (depending on the particular series),
+        then the cokernel of <m>\frac{d}{dT}</m> becomes zero!
+      </p>
+      <p>
+        Of course one can achieve the same effect simply by working with open discs instead of closed discs.
+        The contrast between these approaches amounts to the distinction between <term>dagger spaces</term> and <term>Berkovich spaces</term>.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>
+      Quasicoherent sheaves on solid <m>\PP^1</m>
+    </title>
+    <p>
+      We look more closely at the solid analytification of <m>\PP^1</m>, where we can build on our previous analysis.
+      (One can treat <m>\PP^n</m> using similar techniques but slightly more notation.)
+    </p>
+    <definition>
+      <p>
+        For any analytic ring <m>A</m>, equip <m>A[T], A[T^{-1}], A[T^{\pm}]</m> with the induced analytic ring structures;
+        that is, 
+        <me>
+          \Mod_{A[T]} = \Mod_{A^{\triangleright}[T]} \times_{\Mod_{A^{\triangleright}}} \Mod_A
+        </me>
+        and so on.
+        Define the object <m>\PP^1_A \in \LCRS</m> by glueing
+        <m>\AnSpec A[T]</m> and <m>\AnSpec A[T^{-1}]</m> along <m>\AnSpec A[T^{\pm}]</m>.
+        This coincides with the fiber product <m>\AnSpec A \times_{\Spec \ZZ} \PP^1_{\ZZ}</m> in <m>\LCRS</m>.
+      </p>
+    </definition>
+    <definition>
+      <p>
+        For <m>A</m> a solid analytic ring, define the object <m>\PP^1_{A \solid} \in \LCRS</m> by glueing
+        <m>\AnSpec A\langle T \rangle</m> and <m>\AnSpec A\langle T^{-1} \rangle</m> along <m>\AnSpec A\langle T^{\pm} \rangle</m>.
+        Here <m>A \langle T \rangle</m> denotes the analytic ring
+        <me>
+          (A^{\triangleright} \langle T \rangle, \Mod_{A^{\triangleright} \langle T \rangle \liquid T} \times_{\Mod_{A^{\triangleright}}} \Mod_A)
+        </me>
+        and so on.
+        Using this, we obtain a natural morphism <m>\PP^1_{A\solid} \to \PP^1_{A}</m>.
+      </p>
+    </definition>
+    <lemma xml:id="lem-P1-covering">
+      <statement>
+        <p>
+          For any solid analytic ring <m>A</m>, the morphisms
+          <me>
+            A[T] \to A \langle T \rangle, \qquad A[T] \to A \langle T^{-1} \rangle [T]
+          </me>
+          form an idempotent covering.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We reduce to the case <m>A = \underline{\ZZ}_{\solid}</m>. In this case <m>A</m> is sheafy, so
+          we may apply <xref ref="exa-rational-localization-is-idempotent"/> to see that the two maps are idempotent, and we calculate directly that
+          <me>
+            0 \to \underline{\ZZ}[T] \to \underline{\ZZ} \langle T \rangle \oplus \underline{\ZZ} \langle T^{-1} \rangle [T] \to \underline{\ZZ} \langle T^{\pm} \rangle \to 0
+          </me>
+          is split exact by splitting 
+          <me>
+            \underline{\ZZ} \langle T^{-1} \rangle [T] = \underline{\ZZ} [T] \oplus T^{-1} \underline{\ZZ} \langle T^{-1} \rangle
+          </me>.
+        </p>
+      </proof>
+    </lemma>
+    <theorem xml:id="prop-compare-solid-P1-to-analytic">
+      <statement>
+        <p>
+          For <m>A</m> a sheafy solid analytic ring, pullback along <m>\PP^1_{A \solid} \to \PP^1_A</m> induces an equivalence of 
+          stable <m>\infty</m>-categories of quasicoherent sheaves.
+          Moreover, these equivalences are compatible with any combination of <q>bounded above</q>, <q>bounded below</q>, <q>compact</q>, <q>pseudocoherent</q>, <q>nuclear</q>, and <q>dualizable</q>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By <xref ref="lem-P1-covering"/>, 
+          pulling back the given covering of <m>\PP^1_A</m> yields idempotent coverings of the constituents of <m>\PP^1_{A \solid}</m>,
+          to which we may apply <xref ref="thm-idempotent-sheaf"/>. This yields the first assertion; the second then follows formally as in 
+          <xref ref="rem-subsheaves-of-qcoh"/>.
+        </p>
+      </proof>
+    </theorem>
+    <remark>
+      <p>
+        We will interpret <xref ref="prop-compare-solid-P1-to-analytic"/> later as the statement that
+        <m>\PP^1_{A \solid} \to \PP^1_A</m> is an isomorphism of analytic stacks.
+      </p>
+    </remark>
+    <p>
+      To recover more familiar forms of GAGA, we must bring in the scheme <m>\PP^1_{A^{\triangleright}(*)}</m> which receives a canonical map from <m>\PP^1_A</m>.
+    </p>
+    <theorem xml:id="thm-gaga-solid">
+      <statement>
+        <p>
+          For <m>A</m> a sheafy solid analytic ring, pullback along <m>\PP^1_{A} \to \PP^1_{A^{\triangleright}(*)}</m> induces equivalences of categories (or stable <m>\infty</m>-categories) as follows:
+          <ul>
+            <li>
+              pseudocoherent complexes on <m>\PP^1_{A^{\triangleright}(*)}</m> to discrete pseudocoherent complexes on <m>\PP^1_{A}</m>;
+            </li>
+            <li>
+              perfect complexes on <m>\PP^1_{A^{\triangleright}(*)}</m> to discrete perfect complexes on <m>\PP^1_{A}</m>;
+            </li>
+            <li>
+              vector bundles on <m>\PP^1_{A^{\triangleright}(*)}</m> to vector bundles on <m>\PP^1_{A}</m>.
+            </li>
+          </ul>
+          In addition, if <m>A^{\triangleright}(*)</m> is noetherian, we get an equivalence between coherent sheaves on <m>\PP^1_{A^{\triangleright}(*)}</m> 
+          and <m>\PP^1_A</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          By <xref ref="thm-pseudocoherent-descent"/>,
+          pullback of pseudocoherent complexes from <m>\Spec A[T]</m> to <m>\AnSpec A[T]</m>,
+          from <m>\Spec A[T^{-1}]</m> to <m>\AnSpec A[T^{-1}]</m>, and from <m>\Spec A[T^{\pm}]</m> to <m>\AnSpec A[T^{\pm}]</m>
+          yields equivalences of categories. Glueing these statements yields the first assertion. We deduce the assertions about perfect complexes and vector bundles similarly 
+          by applying <xref ref="thm-pseudocoherent-descent-with-amplitude"/>, <xref ref="cor-perfect-complexes"/>, and <xref ref="cor-vector-bundles"/>.
+        </p>
+        <p>
+          In the case where <m>A</m> is noetherian, coherent sheaves on <m>\PP^1_A</m> can be identified with pseudocoherent complexes concentrated in 
+          amplitudes <m>(-\infty, 0]</m> with vanishing cohomology in degrees <m>\lt 0</m>. We may thus reduce to the previous paragraph.
+        </p>
+      </proof>
+    </theorem>
+    <corollary xml:id="cor-solid-quasicoherent-by-ind">
+      <statement>
+        <p>
+          For <m>A</m> a sheafy solid analytic ring, pullback along <m>\PP^1_{A} \to \PP^1_{A^{\triangleright}(*)}</m> induces an equivalence of categories between
+          the stable <m>\infty</m>-category of complexes of quasicoherent sheaves on <m>\PP^1_{A^{\triangleright}(*)}</m> with amplitude in <m>(-\infty, 0]</m> and the stable <m>\infty</m>-category of 
+          ind-(discrete pseudocoherent) complexes on <m>\PP^1_{A}</m> with amplitude in <m>(-\infty, 0]</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The point is that every quasicoherent sheaf on <m>\PP^1_{A^{\triangleright}(*)}</m> is ind-coherent. 
+          We can thus deduce the claim from <xref ref="thm-gaga-solid"/>.
+        </p>
+      </proof>
+    </corollary>
+    <remark>
+      <p>
+        As per <xref ref="rem-quasicoherent-sheaves-general-analytic"/>, one can remove the sheafiness hypothesis in the preceding results
+        by working in a context where one can form derived rational localizations.
+      </p>
+    </remark>
+    <p>
+      We can now recover a more standard formulation of GAGA over a nonarchimedean field.
+    </p>
+    <definition>
+      <p>
+        Let <m>K</m> be a nonarchimedean field.
+        For <m>X</m> a scheme locally of finite type over <m>K</m>, an <term>analytification</term> of <m>X</m> is an adic space <m>X^{\an}</m>
+        over <m>K</m>
+        equipped with a morphism <m>X^{\an} \to X</m> of locally ringed spaces over <m>K</m>, satisfying the following universal property:
+        for any adic space <m>Y</m> over <m>K</m>, any morphism <m>Y \to X</m> of locally ringed spaces factors uniquely through <m>X^{\an}</m>.
+      </p>
+    </definition>
+    <proposition>
+      <statement>
+        <p>
+          Every scheme locally of finite type <m>X</m> over <m>K</m> admits an analytification <m>X^{\an}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Again, it suffices to check that for the affine space <m>X = \Spec K[T_1,\dots,T_n]</m>,
+          the ascending union of all closed polydiscs serves as an analytification; 
+          note that the resulting Huber rings are strongly noetherian and hence sheafy (<xref ref="rem-sheafy-for-Huber-ring"/>),
+          and so the resulting solid analytic rings are also sheafy (<xref ref="prop-sheafy-by-localizations-are-Huber"/>).
+          We may then formally extend the conclusion to any closed subscheme of <m>X</m>, and then to any scheme locally of finite type over <m>\CC</m>.
+        </p>
+      </proof>
+    </proposition>
+    <theorem xml:id="thm-gaga-classical-v3">
+      <title>Nonarchimedean GAGA</title>
+      <statement>
+        <p>
+          Let <m>K</m> be a nonarchimedean field.
+          For <m>X</m> a proper scheme over <m>K</m>, pullback along <m>X^{\an} \to X</m> induces an exact equivalence of categories between coherent sheaves on <m>X</m> and <m>X^{\an}</m>,
+          which moreover preserves sheaf cohomology.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          For <m>X = \PP^1_K \times_K \cdots \times_K \PP^1_K</m>, this follows from <xref ref="prop-compare-solid-P1-to-analytic"/> and <xref ref="thm-gaga-solid"/>
+          modulo one point: we need to know that the local rings of <m>X^{\an}</m> are coherent, in order to resolve coherent sheaves on <m>X^{\an}</m> into pseudocoherent complexes.
+          Since <m>X^{\an}</m> is a noetherian adic space this is okay.
+        </p>
+        <p>
+          We can then deduce the case <m>X = \PP^n_K</m> using a Segre embedding (or by imitating the proof of <xref ref="thm-gaga-liquid"/>);
+          deduce the case where <m>X</m> is projective over <m>K</m> by pushing forward along the closed immersion;
+          and deduce the case where <m>X</m> is proper over <m>K</m> using Chow's lemma.
+        </p>
+      </proof>
+    </theorem>
+    <remark>
+      <p>
+        One can similarly recover relative nonarchimedean GAGA (over some an affinoid ring), formal GAGA
+        (comparing a scheme to its formal completion), and so on.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>
+      Discrete <m>\PP^1</m>
+    </title>
+    <p>
+      We next return to the case of a discrete ring.
+    </p>
+    <lemma xml:id="lem-trace-class-discrete">
+      <title>Discrete Schwartz lemma</title>
+      <statement>
+        <p>
+          Let <m>A</m> be a discrete condensed ring and fix <m>S \in \Prof</m>.
+          Then for any trace class morphism <m>f\colon A[\underline{S}] \to A[\underline{S}]</m>,
+          <m>\cone(f-1)</m> is isomorphic in <m>\calD(\Mod_{A})</m> to
+          a complex of the form <m>A^{n}[-1] \to A^{n}[0]</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We have a canonical identification <m>A[\underline{S}]^\vee \cong \underline{\Cts(S, A})</m>;
+          in particular, any morphism <m>A \to A[\underline{S}]^\vee \otimes A[\underline{S}]</m> factors through 
+          <m>A \to A[\underline{S_i}]^\vee \otimes A[\underline{S}]</m> for some finite quotient <m>S_i</m> of <m>S</m>.
+          We then do not change <m>\cone(f-1)</m> if we replace <m>S</m> with <m>S_i</m> by projecting along <m>A[\underline{S}] \to A[\underline{S_i}]</m>:
+          more precisely, <m>f</m> acts on the exact sequence
+          <me>
+            0 \to \ker(A[\underline{S}] \to A[\underline{S_i}]) \to A[\underline{S}] \to A[\underline{S_i}] \to 0
+          </me>
+          and the action of <m>f</m> on the left is zero, so the induced action of <m>f-1</m> on the left is invertible.
+        </p>
+      </proof>
+    </lemma>
+    <theorem xml:id="thm-gaga-discrete">
+      <statement>
+        <p>
+          For <m>A</m> a discrete ring, pullback along <m>\PP^1_{\underline{A}} \to \PP^1_A</m> induces equivalences of categories (or stable <m>\infty</m>-categories) as follows:
+          <ul>
+            <li>
+              pseudocoherent complexes on <m>\PP^1_A</m> to discrete pseudocoherent complexes on <m>\PP^1_{\underline{A}}</m>;
+            </li>
+            <li>
+              perfect complexes on <m>\PP^1_A</m> to discrete perfect complexes on <m>\PP^1_{\underline{A}}</m>;
+            </li>
+            <li>
+              vector bundles on <m>\PP^1_A</m> to vector bundles on <m>\PP^1_{\underline{A}}</m>.
+            </li>
+          </ul>
+          In addition, if <m>A</m> is noetherian, we get an equivalence between coherent sheaves on <m>\PP^1_A</m> and <m>\PP^1_{\underline{A}}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Using <xref ref="lem-trace-class-discrete"/>, we obtain an analogue of <xref ref="thm-pseudocoherent-descent"/>;
+          we then argue as in <xref ref="thm-gaga-solid"/>.
+        </p>
+      </proof>
+    </theorem>
+    <corollary>
+      <statement>
+        <p>
+          For <m>A</m> a discrete ring, pullback along <m>\PP^1_{\underline{A}} \to \PP^1_A</m> induces an equivalence of categories between
+          the stable <m>\infty</m>-category of complexes of quasicoherent sheaves on <m>\PP^1_A</m> with amplitude in <m>(-\infty, 0]</m> and the stable <m>\infty</m>-category of 
+          ind-pseudocoherent complexes on <m>\PP^1_{\underline{A}}</m> with amplitude in <m>(-\infty, 0]</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          As in <xref ref="cor-solid-quasicoherent-by-ind"/>.
+        </p>
+      </proof>
+    </corollary>
+  </subsection>
+</section>

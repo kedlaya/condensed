@@ -3,14 +3,11 @@
   <introduction>
     <p>
       In this section, we indicate how the sheaf theory of Huber rings translates into the setting of solid analytic rings.
-      In the process, we patch a major technical complication
-      in the usual theory of adic spaces, namely the failure of <q>sheafiness</q> for general Huber rings,
-      at the expense of passing from Huber rings to solid analytic rings which may not be represented by topological rings.
     </p>
     <paragraphs>
       <title>Reference</title>
       <p>
-        This section is (loosely) based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lectures 9 and 10.
+        This section is (very loosely) based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lectures 9 and 10.
         See also <xref ref="bib-Kedlaya-AWS"/>, Lecture 1 (for the version of the story using Huber rings)
         and <xref ref="bib-Andreychev"/> (for the solid analogue).
       </p>
@@ -44,7 +41,7 @@
           <me>
             M \otimes^L_A A^{\triangleright}\langle T \rangle \to \prod_\NN M
           </me>
-        is injective.
+          is injective.
         </p>
       </statement>
       <proof>
@@ -210,38 +207,36 @@
         </p>
       </proof>
     </corollary>
-    <remark>
-      <p>
-        <xref ref="cor-flat-mult-f-v2"/> asserts that the morphisms <m>\times (T-f)</m> and <m>\times (1-fT)</m>
-        on <m>A^{\triangleright}\langle T \rangle</m> in <m>\Mod_A</m> are <term>universally injective</term>.
-        However, this is not true on <m>A^{\triangleright}\langle T^{\pm} \rangle</m>; see <xref ref="exa-local-sections-to-zero"/>.
-      </p>
-    </remark>
+    <p>
+      We note some limitations of the previous discussion.
+    </p>
     <example xml:id="exa-local-sections-to-zero">
       <p>
-        The following example is essentially that of Rost from <xref ref="bib-Huber2"/>, end of section 1.
+        By contrast with <xref ref="cor-flat-mult-f-v2"/>, the morphism <m>\times (T-f)</m> 
+        on <m>A^{\triangleright}\langle T^{\pm} \rangle</m> in <m>\Mod_A</m> is not necessarily injective, let alone universally injective.
+        The following example is essentially that of Rost from <xref ref="bib-Huber2"/>, end of section 1;
+        by replacing the base ring <m>\ZZ</m> with a nonarchimedean field one can make an example where <m>A</m> is a Tate Huber ring,
+        which then reproduces <xref ref="bib-Buzzard-Verberkmoes"/>, Proposition 12.
+      </p>
+      <p>
         Fix <m>c \in (0,1)</m>,
         let <m>A^{\triangleright}</m> be the completion of <m>\ZZ[f^{\pm},Z]/(Z^2)</m>
         for the submultiplicative norm 
         <me>
           \left| \sum_{n \in \ZZ} a_n f^n + \sum_{n \in \ZZ} b_n f^n Z \right| = \max_{n \in \ZZ} \{|a_n| c^{-|n|}, |b_n| c^{|n|}\}
         </me>,
-        and take <m>A^+</m> to be the elements of norm at most 1. Then <m>A = (A^{\triangleright}, A^+)</m> is a complete Huber ring
+        and take <m>A^+</m> to be the elements of norm at most <m>1</m>. Then <m>A = (A^{\triangleright}, A^+)</m> is a complete Huber ring
         and 
         <me>
           x := \sum_{n \in \ZZ} f^{-n} Z T^n
         </me>
         is a well-defined nonzero element of <m>A^{\triangleright} \langle T^{\pm} \rangle</m> such that <m>(T-f)x = 0</m>.
       </p>
-      <p>
-        One can similarly replace <m>\ZZ</m> with a nonarchimedean field to get an example where <m>A</m> is a Tate Huber ring.
-        This reproduces <xref ref="bib-Buzzard-Verberkmoes"/>, Proposition 12.
-      </p>
     </example>
     <remark xml:id="rem-not-flat">
       <p>
-        Note that <xref ref="cor-flat-mult-f-v2"/> does not imply that <m>A^{\triangleright} \langle f \rangle</m> is a flat object of <m>\Mod_A</m>
-        (i.e., tensoring with it is exact); this is not the case as can be seen from <xref ref="exa-localization-not-flat"/>.
+        <xref ref="cor-flat-mult-f-v2"/> does not imply that <m>A^{\triangleright} \langle f \rangle</m> is a flat object of <m>\Mod_A</m>
+        (meaning that tensoring with it is exact); indeed, the failure of flatness can be seen from <xref ref="exa-localization-not-flat"/>.
         Rather, we only conclude that the connecting homomorphism out of the first Tor group is always zero.
         In particular, we deduce that <m>A^{\triangleright} \langle T \rangle</m> is a universally injective
         (by <xref ref="cor-tensor-with-liquid-T"/>) but not flat object of <m>\Mod_A</m>;
@@ -259,7 +254,7 @@
         (in this case <m>A \to A \langle f^{\pm} \rangle</m>) to coincide with the corresponding derived rational localization.
       </p>
       <p>
-        We will have more to say about this point in <xref ref="sec_huber_qcoh"/>.
+        We will have more to say about this point in <xref ref="sec_huber_qcoh2"/>.
       </p>
     </remark>
   </subsection>
@@ -569,7 +564,7 @@
       <p>
         Note that <m>\PP^1_{\solid}</m> admits a natural map to <m>\PP^1_\ZZ</m>, induced by the maps <m>\AnSpec \ZZ[T]_\solid \to \Spec \ZZ[T]</m>,
         <m>\AnSpec \ZZ[T^{-1}]_\solid \to \Spec \ZZ[T^{-1}]</m>.
-        We will study this map later in the context of <term>analytification</term> (<xref ref="sec_gaga"/>).
+        We will study this map later in the context of <term>analytification</term> (<xref ref="sec_gaga1"/>).
       </p>
     </example>
     <example xml:id="exa-solid-Tate-curve">

@@ -27,60 +27,58 @@
         For this, we need to allow ourselves to form the <term>derived rational localization</term> with respect to a sequence <m>f_1,\dots,f_n,g</m>
         of parameters; this amounts to taking the Koszul complex associated to the ring <m>A^{\triangleright} \langle T_1,\dots,T_n \rangle</m>
         and the elements <m>f_1 - g T_1, \dots, f_n - g T_n</m>. To handle this correctly requires deriving not just modules but rings,
-        which we have already agreed not to do (<xref ref="rem-more-homotopical-rings"/>). We will thus result to assuming that all of the solid 
+        which we have already agreed not to do (<xref ref="rem-more-homotopical-rings"/>). We will thus resort to assuming that all of the solid 
         analytic rings in the following discussion are sheafy, but keep in mind that this restriction is not really essential.
       </p>
     </remark>
-    <lemma xml:id="lem-descent-standard-covering-loose">
-      <statement>
-        <p>
-          Let <m>A</m> be a sheafy solid analytic ring and choose <m>f,g \in A^{\triangleright}(*)</m> generating the unit ideal.
-          Then the base extension functor
-          <men xml:id="eq-derived-base-extension-functor-loose">
-            D(\Mod_A) \to D(\Mod_{A \left\langle f/g \right\rangle}) \times_{D(\Mod_{A \left\langle f/g, g/f \right\rangle})} D(\Mod_{A \left\langle g/f \right\rangle})
-          </men>
-          is an equivalence of categories.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          Each of the functors from <m>D(\Mod_A)</m> to one of the other categories has a right adjoint (restriction of scalars), so the same is true of
-          the base extension. It thus remains to establish that the unit and the counit of this adjunction are equivalences.
-          To simplify notation, let us rewrite <xref ref="eq-derived-base-extension-functor"/> as
-          <me>
-            D(\Mod_A) \to D(\Mod_{A_1}) \times_{D(\Mod_{A_{12}})} D(\Mod_{A_{2}}).
-          </me>
-        </p>
-        <p>
-          To check the unit, note that by <xref ref="lem-sheafy-exact-sequence"/>, the sequence <xref ref="eq-sheafy-exact-sequence"/> is exact.
-          For any <m>M \in D(\Mod_A)</m>, we may take the (derived) tensor product of this sequence with <m>M</m> to obtain a morphism from the mapping cone of
-          <me>
-            M \otimes_A A_1 \oplus M \otimes_A A_2 \to M \otimes_A A_{12}
-          </me>
-          to <m>M</m> in <m>D(\Mod_A)</m> which inverts the adjunction.
-        </p>
-        <p>
-          For the counit, we first apply the universal property of localization to see that the multiplication maps
-          <men xml:id="eq-double-base-extension">
-            A_{S_1} \otimes^L_A A_{S_2} \to A_{S_1 \cup S_2}
-          </men>
-          are isomorphisms for any subsets <m>S_1, S_2</m> of <m>\{1,2\}</m>. Using these isomorphisms, we see that if we start with <m>M_i \in \Mod_{A_i}</m>
-          and ismoorphisms <m>M_i \otimes_{A_i} A_{12} \cong M_{12}</m>, the counit is a map from <m>(M_1 \times_{M_{12}} M_2) \otimes^L_A A_i \in \Mod_{A_i}</m>
-          to <m>M_i \otimes^L_A A_i</m> and then to <m>M_i</m>, and using <xref ref="eq-double-base-extension"/> we can produce inverses to both factors.
-        </p>
-      </proof>
-    </lemma>
+    <remark xml:id="lem-descent-standard-covering-loose">
+      <p>
+        Let <m>A</m> be a sheafy solid analytic ring and choose <m>f,g \in A^{\triangleright}(*)</m> generating the unit ideal.
+        We give an argument that attempts to prove that the base extension functor
+        <men xml:id="eq-derived-base-extension-functor-loose">
+          D(\Mod_A) \to D(\Mod_{A \left\langle f/g \right\rangle}) \times_{D(\Mod_{A \left\langle f/g, g/f \right\rangle})} D(\Mod_{A \left\langle g/f \right\rangle})
+        </men>
+        is an equivalence of categories, but fails in a subtle way.
+      </p>
+      <p>
+        Each of the functors from <m>D(\Mod_A)</m> to one of the other categories has a right adjoint (restriction of scalars), so the same is true of
+        the base extension. It thus remains to establish that the unit and the counit of this adjunction are equivalences.
+        To simplify notation, let us rewrite <xref ref="eq-derived-base-extension-functor"/> as
+        <me>
+          D(\Mod_A) \to D(\Mod_{A_1}) \times_{D(\Mod_{A_{12}})} D(\Mod_{A_{2}})
+        </me>.
+      </p>
+      <p>
+        To check the unit, note that by <xref ref="lem-sheafy-exact-sequence"/>, the sequence <xref ref="eq-sheafy-exact-sequence"/> is exact.
+        For any <m>M \in D(\Mod_A)</m>, we may take the (derived) tensor product of this sequence with <m>M</m> to obtain a morphism from the mapping cone of
+        <me>
+          M \otimes_A A_1 \oplus M \otimes_A A_2 \to M \otimes_A A_{12}
+        </me>
+        to <m>M</m> in <m>D(\Mod_A)</m> which inverts the adjunction.
+      </p>
+      <p>
+        For the counit, we first apply the universal property of localization to see that the multiplication maps
+        <men xml:id="eq-double-base-extension">
+          A_{S_1} \otimes^L_A A_{S_2} \to A_{S_1 \cup S_2}
+        </men>
+        are isomorphisms for any subsets <m>S_1, S_2</m> of <m>\{1,2\}</m>. Using these isomorphisms, we see that if we start with <m>M_i \in \Mod_{A_i}</m>
+        and isomorphisms <m>M_i \otimes_{A_i} A_{12} \cong M_{12}</m>, the counit is a map from <m>(M_1 \times_{M_{12}} M_2) \otimes^L_A A_i \in \Mod_{A_i}</m>
+        to <m>M_i \otimes^L_A A_i</m> and then to <m>M_i</m>, and using <xref ref="eq-double-base-extension"/> we can produce inverses to both factors.
+      </p>
+      <p>
+        The subtle failure of this argument is the reference to <q>the</q> mapping cone. In fact any realization of a morphism in the derived category in terms of chain complexes gives rise
+        to a mapping cone, and any two of the mapping cones constructed in this way are isomorphic in the derived category, but <em>not canonically so</em>
+        (see <xref ref="bib-Stacks"/>, tag 014D); so we fail to produce a natural isomorphism between the unit and the identity functor.
+      </p>
+    </remark>
     <remark xml:id="rem-no-sheaf-derived-category">
       <p>
-        At this point, it is natural to ask whether <xref ref="lem-descent-standard-covering-loose"/> can be formulated for
-        a rational covering with more than two terms.
-        In fact one cannot hope to make such a statement directly, 
-        because the ordinary derived category of an abelian category does not have limits: one has to first lift
-        a given diagram up to the level of chain complexes, and it is not always possible to make consistent choices to do that.
-        This is not an issue for <xref ref="lem-descent-standard-covering-loose"/>: we are taking the limit of a contractible diagram, so we never get backed
-        into a corner when trying to reconcile our lifts. But already for a three-term covering the diagram is far from contractible:
+        We can reinterpret the failure of <xref ref="lem-descent-standard-covering-loose"/> in terms of the fact that the ordinary derived category of an abelian category does not have limits: 
+        one has to first lift a given diagram up to the level of chain complexes, and it is not always possible to make consistent choices to do that.
+        In <xref ref="lem-descent-standard-covering-loose"/>, we are taking the limit of a contractible diagram and so we don't see this issue until
+        we remember about the requirement of naturality.  However, already for a three-term covering the diagram is far from contractible:
           <figure>
-            <image>
+            <image width="50%">
               <latex-image>
                 \xymatrix{
                   A_1 \ar[r] \ar[dr] &amp; A_{12} \ar[dr] \\
@@ -91,6 +89,8 @@
             </image>
           </figure>
         and one cannot lift such a diagram in general from the derived category to the category of chain complexes.
+        So in this case one cannot hope to lift even an individual object of <m>D(\Mod_{A_1}) \times_{D(\Mod_{A_{12}})} D(\Mod_{A_{2}})</m>
+        without keeping track of some higher compatibilities among chain homotopies.
       </p>
     </remark>
   </subsection>
@@ -104,16 +104,16 @@
     <remark>
       <p>
         By way of motivation, we first recall the classical hierarchy of categories.
-        A category in the usual sense can also be called a <term><m>1</m>-category</term>: it has components at level 0
-        (the objects) and level 1 (the morphisms). 
+        A category in the usual sense can also be called a <term><m>1</m>-category</term>: it has components at level <m>0</m>
+        (the objects) and level <m>1</m> (the morphisms). 
       </p>
       <p>
-        If one seeks to put categories themselves into a category, the result is a <term><m>2</m>-category</term>: one has components at level 0 (the objects),
-        level 1 (the functors), and level 2 (the natural transformations). In particular, an equality between two given morphisms of objects is no longer
+        If one seeks to put categories themselves into a category, the result is a <term><m>2</m>-category</term>: one has components at level <m>0</m> (the objects),
+        level <m>1</m> (the functors), and level <m>2</m> (the natural transformations). In particular, an equality between two given morphisms of objects is no longer
         a property but a structure: one must specify the choice of a particular isomorphism between them, and this choice gets carried along when composing.
       </p>
       <p>
-        Another way to specify a 2-category is as a category enriched in <m>1</m>-categories: the morphisms between objects are not a set but rather a <m>1</m>-category.
+        Another way to specify a <m>2</m>-category is as a category enriched in <m>1</m>-categories: the morphisms between objects are not a set but rather a <m>1</m>-category.
         We may similarly define a <term>n</term>-category for any <m>n</m> by saying that a category enriched in <m>n</m>-categories is an <m>(n+1)</m>-category.
       </p>
       <p>
@@ -160,7 +160,7 @@
         across the simplex <m>\Delta^n</m>.
         Using the nerve construction, we may view every small category as a small <m>\infty</m>-category.
         We use that example to set language; we refer to elements of <m>[0]</m> as <term>objects</term> in the <m>\infty</m>-category,
-        elements of <m>[1]</m> as <term>morphisms</term> or <term>1-morphisms</term>, and so on.
+        elements of <m>[1]</m> as <term>morphisms</term> or <term><m>1</m>-morphisms</term>, and so on.
       </p>
       <p>
         An <term><m>\infty</m>-category</term> is the same thing but without the set-theoretic restrictions.
@@ -175,7 +175,7 @@
       <p>
         A <term>triangle</term> in a pointed <m>\infty</m>-category <m>\calC</m> is a diagram <m>\Delta^1 \times \Delta^1 \to \calC</m> of the form
         <figure>
-          <image>
+          <image width="50%">
             <latex-image>
               \xymatrix{
                 X \ar[r] \ar[d] &amp; Y \ar[d] \\
@@ -224,8 +224,8 @@
         are sensitive to how the <q>forgotten</q> homotopies fit together.
       </p>
       <p>
-        A better approach would be to view the chain complexes as objects in an <m>\infty</m>-category, where 1-morphisms are morphisms of chain complexes,
-        2-morphisms are chain homotopies between morphisms, and higher morphisms record higher compatibilies among chain homotopies.
+        A better approach would be to view the chain complexes as objects in an <m>\infty</m>-category, where <m>1</m>-morphisms are morphisms of chain complexes,
+        <m>2</m>-morphisms are chain homotopies between morphisms, and higher morphisms record higher compatibilies among chain homotopies.
         Taking the homotopy category of the result should then have the effect of inverting quasi-isomorphisms to get us back to the familiar setting.
       </p>
     </remark>
@@ -240,11 +240,11 @@
             An object of <m>N_{\dg}(\calC)</m> is an object of <m>\calC</m>.
           </li>
           <li>
-            A 1-morphism of <m>N_{\dg}(\calC)</m> is a pair of objects <m>X,Y \in \calC</m> together with a 0-cocycle in <m>\Hom_{\calC}(X,Y)</m>.
+            A <m>1</m>-morphism of <m>N_{\dg}(\calC)</m> is a pair of objects <m>X,Y \in \calC</m> together with a <m>0</m>-cocycle in <m>\Hom_{\calC}(X,Y)</m>.
           </li>
           <li>
-            A 2-morphism of <m>N_{\dg}(\calC)</m> is a triple of objects <m>X,Y,Z \in \calC</m>, a triple of 1-morphisms <m>f\colon X \to Y</m>,
-            <m>g\colon Y \to Z</m>, <m>h \colon X \to Z</m>, and a 1-cochain in <m>\Hom_{\calC}(X,Z)</m> with differential <m>(g\circ f) - h</m>.
+            A <m>2</m>-morphism of <m>N_{\dg}(\calC)</m> is a triple of objects <m>X,Y,Z \in \calC</m>, a triple of <m>1</m>-morphisms <m>f\colon X \to Y</m>,
+            <m>g\colon Y \to Z</m>, <m>h \colon X \to Z</m>, and a <m>1</m>-cochain in <m>\Hom_{\calC}(X,Z)</m> with differential <m>(g\circ f) - h</m>.
           </li>
         </ul>
         When <m>\calC</m> is the category of chain complexes of an additive category, <m>N_{\dg}(\calC)</m> is stable (<xref ref="bib-Lurie-HA"/>, Proposition 1.3.2.10).
@@ -288,32 +288,37 @@
       </statement>
       <proof>
         <p>
-          We check descent for a covering as in <xref ref="lem-standard-rational-covering"/>.
-          That is, given <m>f_1,\dots,f_n \in A^{\triangleright}</m> generating the unit ideal, set
+          By <xref ref="prop-standard-binary-coverings-Huber"/> it suffices to check glueing for a two-term covering,
+          for which the attempted proof in <xref ref="lem-descent-standard-covering-loose"/> becomes an actual proof.
+          However, to demonstrate this more forcefully, we opt to directly check descent for a covering as in <xref ref="lem-standard-rational-covering"/>.
+        </p>
+        <p>
+          Given <m>f_1,\dots,f_n \in A^{\triangleright}</m> generating the unit ideal, set
           <m>A_i := A \left\langle \tfrac{f_1}{f_i},\dots,\tfrac{f_n}{f_i} \right\rangle</m>
           and for any subset <m>S</m> of <m>\{1,\dots,n\}</m>, let <m>A_S</m> be the tensor product of <m>A_i</m> over <m>A</m> for <m>i</m> ranging over <m>S</m>.
           By <xref ref="thm-solid-sheafy"/>, we have an exact sequence
           <men xml:id="eq-exact-seq-general-covering">
             0 \to A \to \bigoplus_i A_i \to \bigoplus_{i \lt j} A_{ij} \to \cdots
           </men>.
-        </p>
-        <p>
           What we need to check is that <m>\calD(\QCoh_A)</m> is the limit of the diagram formed by the categories <m>\calD(\QCoh_{A_S})</m>
           for <m>S</m> running over all nonempty subsets of <m>\{1,\dots,n\}</m>, with an arrow <m>\calD(\QCoh_{A_S}) \to \calD(\QCoh_{A_T})</m> 
           whenever <m>S</m> is a subset of <m>T</m>. The point is that since we are now working with derived <m>\infty</m>-categories, 
           the functor from <m>\calD(\QCoh_A)</m> to the diagram again has a right adjoint
           given by taking a (finite) limit over the diagram, 
-          and we can argue as before. Namely, we see that the unit is an isomorphism by tensoring with <xref ref="eq-exact-seq-general-covering"/>,
+          and we can argue as in <xref ref="lem-descent-standard-covering-loose"/>. 
+          Namely, we see that the unit is an isomorphism by tensoring with <xref ref="eq-exact-seq-general-covering"/>,
           and we see that the counit is an isomorphism using the equality <xref ref="eq-double-base-extension"/>.
         </p>
       </proof>
     </theorem>
     <remark xml:id="rem-quasicoherent-sheaves-general-analytic">
       <p>
-        Since we are now working in terms of stable <m>\infty</m>-categories, it would also be straightforward (and ultimately desirable) to relax the hypothesis on <m>A</m>
-        in <xref ref="thm-sheaf-qcoh-for-adic"/> by viewing the derived localizations of <m>A</m> as ring objects in a suitable sense
+        Since we are now working in terms of stable <m>\infty</m>-categories, it is straightforward (and ultimately desirable) to relax the 
+        hypothesis
+        in <xref ref="thm-sheaf-qcoh-for-adic"/> that <m>A</m> must be sheafy,
+        by viewing the derived localizations of <m>A</m> as ring objects in a suitable sense
         (as per <xref ref="rem-more-homotopical-rings"/>).
-        We will not discuss this here.
+        However, we will not pursue this point further here.
       </p>
     </remark>
   </subsection>

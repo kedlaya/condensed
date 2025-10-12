@@ -248,23 +248,23 @@
           Start with the functor <m>\calA \to \Mod(\calB)</m> given by <m>M \mapsto h_{F(M)}</m>.
           In light of <xref ref="prop-formal-compact-generators"/>, we may define <m>F^*</m> as a left Kan extension:
           <me>
-            F^*(N) := \colim_{h_M \to N} h_{F(M)}.
-          </me>
+            F^*(N) := \colim_{h_M \to N} h_{F(M)}
+          </me>.
           (One could have guessed this formula from the fact that we are looking for a functor admitting a left adjoint, 
           so anyway it has to be compatible with colimits.)
         </p>
         <p>
           We must now exhibit a natural bijection
           <me>
-            \Hom_{\Mod(\calA)}(M, F_*(N)) \cong \Hom_{\Mod(\calB)}(F^*(M), N).
-          </me>
+            \Hom_{\Mod(\calA)}(M, F_*(N)) \cong \Hom_{\Mod(\calB)}(F^*(M), N)
+          </me>.
           Since both sides convert colimits in the first argument into limits, we may reduce to the case where <m>M \in \calA</m>.
           By <xref ref="prop-formal-compact-generators"/>, <m>M</m> is compact as an object of <m>\Mod_{\calA}</m>, so now both
           sides of the claimed bijection are compatible with colimits in <m>N</m>. We may thus reduce to the case where 
           also <m>N \in \calB</m>, in which case we are simply writing
           <me>
-            \Hom_{\Mod(\calA)}(h_M, h_N \circ F^{\op}) \cong \Hom_{\Mod(\calB)}(h_{F(M)}, h_N).
-          </me>
+            \Hom_{\Mod(\calA)}(h_M, h_N \circ F^{\op}) \cong \Hom_{\Mod(\calB)}(h_{F(M)}, h_N)
+          </me>.
           By Yoneda the right side is just <me>\Hom_{\calB}(F(M), N)</me>. Meanwhile, the left side consists of natural
           transformations from the functor <m>\Hom_{\calA}(\bullet, M)</m> to the functor <m>\Hom_{\calB}(F(\bullet), N)</m>.
           We can write one of these down by applying <m>F</m> and then postcomposing with <m>F(M) \to N</m>;
@@ -291,8 +291,8 @@
         in which row vectors have finite support but column vectors are unrestricted.
         Composition of morphisms is given by matrix multiplication:
         <me>
-          \prod_K \bigoplus_J R \times \prod_J \bigoplus_I R \to \prod_K \bigoplus_I R;
-        </me>
+          \prod_K \bigoplus_J R \times \prod_J \bigoplus_I R \to \prod_K \bigoplus_I R
+        </me>.
       </p>
       <p>
         We refer to the resulting module category <m>\Mod_{R^{\leq \kappa}_\solid}</m> 
@@ -430,7 +430,9 @@
     </remark>
     <proposition xml:id="prop-solidification-is-exact">
       <statement>
-        The functor <m>\bullet \otimes_R R_\solid \colon \Mod_R \to \Mod_{R_\solid}</m> is exact.
+        <p>
+          The functor <m>\bullet \otimes_R R_\solid \colon \Mod_R \to \Mod_{R_\solid}</m> is exact.
+        </p>
       </statement>
       <proof>
         Given an exact sequence <m>0 \to A \to B \to C \to 0</m>, we need to check that
@@ -591,7 +593,7 @@
         taking <m>\prod_I R_{\solid}</m> to <m>\prod_I S_{\solid}</m> (you can guess what happens to Hom sets).
         This fits into a 2-commutative diagram
         <figure>
-          <image>
+          <image width="50%">
             <latex-image>
             \xymatrix{
               R \ar[r] \ar[d] &amp; S \ar[d] \\

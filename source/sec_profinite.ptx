@@ -261,7 +261,7 @@
           given any maps <m>Y \to S_{n+1}</m>, <m>Z \to S_n</m> which yield the same composition <m>Y \to S_n</m>,
           we can fill in a map <m>Z \to S_{n+1}</m>; that is, we can fit a dashed arrow into the following diagram.
           <figure>
-            <image>
+            <image width="50%">
               <latex-image>
                 \xymatrix{
                   Y \ar[r] \ar[d] &amp; Z \ar[d] \ar@{-->}[dl] \\

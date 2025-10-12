@@ -2,7 +2,7 @@
   <title>Analytic rings</title>
   <introduction>
     <p>
-      In this section, we introduce the concept of a <term>analytic ring</term>, which in some sense gives the precise category of base rings over
+      In this section, we introduce the concept of an <term>analytic ring</term>, which in some sense gives the precise category of base rings over
       which one can do analytic geometry. This will correspond roughly to specifying an underlying condensed commutative ring and a category of <q>complete modules</q> over this ring.
       We have seen a few examples already coming from solid abelian groups, but using an analogue of solidification we will generate many more,
       including a key example associated to the real numbers.
@@ -98,22 +98,22 @@
         Similarly, for <m>M \in \Mod_R</m>, we have <m>M = R^{\triangleright} \otimes_{R^{\triangleright}} M</m>;
         since <m>R^{\triangleright} \otimes_{R^{\triangleright}} M</m> and <m>\hat{R}^{\triangleright} \otimes_{R^{\triangleright}} M</m>
         have the same analytic completion, we also have <m>M = \hat{R}^{\triangleright} \otimes_{R^{\triangleright}} M</m>.
-        Consequently, the <m>R^{\triangleright}</m>-module structure on <m>M</m> canonically promotes to a <m>\hat{R}^{\triangleright}</m>-module structure.
+        Consequently, the <m>R^{\triangleright}</m>-module structure on <m>M</m> canonically promotes to an <m>\hat{R}^{\triangleright}</m>-module structure.
       </p>
       <p>
         Continuing in this vein, for <m>M \in \Mod_{\hat{R}^{\triangleright}}, N \in \Mod_R</m> we have 
         <md>
           <mrow>
-             \Hom_{R^{\triangleright}}(M,N) &amp;= \Hom_{\hat{R}^{\triangleright}}(\hat{R}^{\triangleright} \otimes_{R^{\triangleright}} M,N)
+            \Hom_{R^{\triangleright}}(M,N) &amp;= \Hom_{\hat{R}^{\triangleright}}(\hat{R}^{\triangleright} \otimes_{R^{\triangleright}} M,N)
           </mrow>
           <mrow>
-              &amp;= \Hom_{\hat{R}^{\triangleright}}(\hat{R}^{\triangleright} \otimes_{R^{\triangleright}} \hat{R}^{\triangleright} \otimes_{\hat{R}^{\triangleright}} M,N)
+            &amp;= \Hom_{\hat{R}^{\triangleright}}(\hat{R}^{\triangleright} \otimes_{R^{\triangleright}} \hat{R}^{\triangleright} \otimes_{\hat{R}^{\triangleright}} M,N)
           </mrow>
           <mrow>
-              &amp;= \Hom_{\hat{R}^{\triangleright}}(\hat{R}^{\triangleright} \hat{\otimes}_{R^{\triangleright}} \hat{R}^{\triangleright} \otimes_{\hat{R}^{\triangleright}} M,N)
+            &amp;= \Hom_{\hat{R}^{\triangleright}}(\hat{R}^{\triangleright} \hat{\otimes}_{R^{\triangleright}} \hat{R}^{\triangleright} \otimes_{\hat{R}^{\triangleright}} M,N)
           </mrow>
           <mrow>
-              &amp;= \Hom_{\hat{R}^{\triangleright}}(\hat{R}^{\triangleright} \otimes_{\hat{R}^{\triangleright}} M,N)
+            &amp;= \Hom_{\hat{R}^{\triangleright}}(\hat{R}^{\triangleright} \otimes_{\hat{R}^{\triangleright}} M,N)
           </mrow>
           <mrow>
             &amp; = \Hom_{\hat{R}^{\triangleright}}(M,N)
@@ -128,29 +128,41 @@
         By the same logic with <m>M</m> replaced by <m>M \otimes \ZZ[\underline{S}]</m> for <m>S \in \Prof</m>,
         we see that also <m>\iHom_{R^{\triangleright}}(M,N) \cong \iHom_{\hat{R}^{\triangleright}}(M,N)</m>.
         However, note that it is not automatic that
-        <m>
-          \Ext^i_{R^{\triangleright}}(M,N) \cong \Ext^i_{\hat{R}^{\triangleright}}(M,N)
-        </m>
-        for <m>i \gt 0</m> (or the corresponding statement for internal Ext) <em>unless</em> we know that <m>\hat{R}^{\triangleright}</m> coincides with the <em>derived</em>
-        analytic completion of <m>R^{\triangleright}</m>.
+        <men xml:id="eq-compare-extensions-after-analytic-completion">
+          \iExt^i_{R^{\triangleright}}(M,N) \cong \iExt^i_{\hat{R}^{\triangleright}}(M,N)
+        </men>
+        for <m>i \gt 0</m> (or even the corresponding statement at the level of global sections).
+        When this holds, <m>\hat{R} := (\hat{R}^{\triangleright}, \Mod_{\hat{R}} := \Mod_R)</m> is an analytic ring.
       </p>
       <p>
-        Fortunately, this will be true in many circumstances (<xref ref="rem-liquefaction-kills-ext1"/>).
-        When this occurs, <m>\hat{R}^{\triangleright} \hat{\otimes}^L_{R^{\triangleright}} \hat{R}^{\triangleright} = \hat{R}^{\triangleright}</m>
-        and we can argue as above to see that for <m>M \in \Mod_{\hat{R}^{\triangleright}}, N \in \Mod_R</m> we have 
+        The condition <xref ref="eq-compare-extensions-after-analytic-completion"/> for all <m>i \geq 0</m> and all <m>M,N \in \Mod_R</m>
+        formally reduces to the case <m>M = \hat{R}^{\triangleright}</m> (by writing <m>M</m> as a suitable colimit).
+        It can also be interpreted as saying that
+        <m>\hat{R}^\triangleright</m> is also the <em>derived</em> analytic completion of <m>R^{\triangleright}</m>,
+        or that 
         <me>
-          R\Hom_{R^{\triangleright}}(M,N) = R\Hom_{\hat{R}^{\triangleright}}(M,N)
+          \hat{R}^{\triangleright} \hat{\otimes}^L_{R^{\triangleright}} \hat{R}^{\triangleright} = \hat{R}^{\triangleright}
         </me>.
-        In particular,
+        This condition will automatically satisfied in the examples we consider; see <xref ref="rem-liquefaction-kills-ext1"/>.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        Building on <xref ref="rem-pre-analytic-to-analytic"/>, we verify <xref ref="eq-compare-extensions-after-analytic-completion"/> 
+        for <m>M = \hat{R}^{\triangleright}, i=1</m>; in this case the claim is that <m>\iExt^1_{R^{\triangleright}}(\hat{R}^{\triangleright},N) = 0</m>. 
+        For any exact sequence in <m>\Mod_{R}</m> of the form
         <me>
-          \Ext^i_{R^{\triangleright}}(M,N) = \Ext^i_{\hat{R}^{\triangleright}}(M,N)
-        </me>;
-        by the same logic with <m>M</m> replaced by <m>M \otimes \ZZ[\underline{S}]</m> for <m>S \in \Prof</m>, we also have
-        <me>
-          \iExt^i_{R^{\triangleright}}(M,N) = \iExt^i_{\hat{R}^{\triangleright}}(M,N)
+          0 \to N \to N' \to \hat{R}^{\triangleright} \to 0
         </me>
-        so in particular <m>\iExt^i_{\hat{R}^{\triangleright}}(M,N) \in \Mod_R</m>.
-        We conclude the pair <m>\hat{R} := (\hat{R}^{\triangleright}, \Mod_{\hat{R}} := \Mod_R)</m> is an analytic ring.
+        we have <m>N' \in \Mod_{R}</m>. The pullback sequence
+        <me>
+          0 \to N \to N' \times_{\hat{R}^{\triangleright}} R^{\triangleright} \to R^{\triangleright} \to 0
+        </me>
+        (where the term in the middle is the fiber product, not the tensor product!)
+        is split because <m>R^{\triangleright}</m> is projective as a module over itself;
+        any splitting then extends by adjunction to a splitting of the original sequence.
+        This proves that <m>\Ext^1_{R^{\triangleright}}(\hat{R}^{\triangleright},N) = 0</m>; we deduce the claimed statement by 
+        replacing <m>N</m> with <m>\iHom_{R^{\triangleright}}(R^{\triangleright} \otimes \ZZ[\underline{S}], N)</m>.
       </p>
     </remark>
     <remark>
@@ -174,7 +186,7 @@
     <remark xml:id="rem-more-homotopical-rings">
       <p>
         For some applications, it is useful to extend the notion of an analytic ring to the case where the base is no longer a condensed commutative ring,
-        but a more homotopical object such as a <term>animated ring</term>, a <term>simplicial ring</term>, or an <term><m>E_\infty</m>-commutative ring</term>.
+        but a more homotopical object such as an <term>animated ring</term>, a <term>simplicial ring</term>, or an <term><m>E_\infty</m>-commutative ring</term>.
         We will not touch on these topics in these notes.
       </p>
     </remark>
@@ -209,8 +221,8 @@
         For <m>R</m> a condensed commutative ring,
         define the category of <term>solid <m>R</m>-modules</term> by
         <me>
-          \Mod_{R\solid} := \Mod_R(\CAb_\solid) = \Mod_R \times_{\CAb} \CAb_\solid.
-        </me>
+          \Mod_{R\solid} := \Mod_R(\CAb_\solid) = \Mod_R \times_{\CAb} \CAb_\solid
+        </me>.
         By <xref ref="prop-solid-category"/>, <m>(R, \Mod_{R \solid})</m> is a pre-analytic ring.
       </p>
       <p>
@@ -268,7 +280,7 @@
         if <m>\Delta^*</m> induces an isomorphism on <m>\iHom_{\CAb}(P, M) = \iHom_R(P \otimes R, M)</m>.
         It is again equivalent to consider <m>R\iHom_R(P \otimes R, M)</m> as by <xref ref="prop-internally-projective"/>, 
         we have <m>\iExt_R^i(P \otimes R, M) = 0</m> for <m>i \gt 0</m>.
-        Let <m>\Mod_{R \liquid f}</m> denote the full subcategory of <m>f</m>-gaseous objects of <m>\Mod_R</m>;
+        Let <m>\Mod_{R \liquid f}</m> denote the full subcategory of <m>f</m>-coalescent objects of <m>\Mod_R</m>;
         we write <m>*_{R \liquid f}</m> instead of <m>*_{\Mod_{R \liquid f}}</m> for <m>* \in \{\Hom, \Ext^i, \iHom, \iExt^i\}</m>.
       </p>
       <p>
@@ -298,15 +310,9 @@
       <statement>
         <p>
           The embedding functor <m>\Mod_{R \liquid f} \to \Mod_R</m> admits a left adjoint called <term><m>f</m>-coalescence</term> 
-          (verb form: <term>to <m>f</m>-coalesce</term> or <term>to coalesce around <m>f</m></term>) and computed by
-          <me>
-            M \mapsto M_{\liquid f} := \iExt^1_R(\coker(\Delta_f)/R, M)
-          </me>.
+          (verb form: <term>to <m>f</m>-coalesce</term> or <term>to coalesce around <m>f</m></term>).
           Similarly, the embedding functor <m>D(\Mod_R) \to D(\Mod_R)_{\liquid f}</m> admits a left adjoint called <term>derived <m>f</m>-coalescence</term> 
-          (or <term>derived coalescence around <m>f</m></term>) and computed by
-          <me>
-            M \mapsto M_{\liquid f} := R\iHom_R(\coker(\Delta_f)/R, M)[-1]
-          </me>.
+          (or <term>derived coalescence around <m>f</m></term>).
           The restriction of this functor to <m>\Mod_{R\solid}</m> is also called <term><m>f</m>-solidification</term>
           (verb form: <term>to <m>f</m>-solidify</term> or <term>to solidify around <m>f</m></term>).
         </p>
@@ -319,50 +325,58 @@
     </proposition>
     <remark xml:id="rem-liquefaction-kills-ext1">
       <p>
-        As in <xref ref="eq-resolve-cofinite-mod-Z"/>, we have an internally projective resolution of <m>\coker(\Delta_f)/R</m> of length 1:
-        <men xml:id="eq-resolve-coker-mod-R-liquefaction">
-          0 \to P \otimes R \stackrel{\Delta_f}{\to} (P/\ZZ) \otimes R \to \coker(\Delta_f)/R \to 0
+        Picking up a thread from <xref ref="rem-exact-seq-for-P"/>,
+        we compare the split exact sequence
+        <men xml:id="eq-split-sequence-P-mod-Z">
+          0 \to R \to P \otimes R \to (P/\underline{\ZZ}) \otimes R \to 0
         </men>
-        which means that if <m>M</m> is concentrated in degrees <m>[a,b]</m>, then its derived <m>f</m>-coalescence is concentrated in degrees <m>[a-1,b]</m>.
-        In particular, for <m>M \in \Mod_R</m> the derived <m>f</m>-coalescence is concentrated in degrees <m>-1</m> and <m>0</m>,
-        with the term in degree <m>-1</m> being <m>\iHom_R(\coker(\Delta_f)/R, M)</m>;
-        this makes it clear that this term is nonzero for instance when <m>M = \coker(\Delta_f)/R</m>.
+        with the nonsplit exact sequences
+        <men xml:id="eq-resolve-coker-Deltaf-liquefaction">
+          0 \to P \otimes R \stackrel{\Delta_f}{\to} P \otimes R \to \coker(\Delta_f) \to 0
+        </men>
+        and
+        <men xml:id="eq-resolve-coker-mod-R-liquefaction">
+          0 \to P \otimes R \stackrel{\Delta_f}{\to} (P/\underline{\ZZ}) \otimes R \to \coker(\Delta_f)/R \to 0
+        </men>.
+        The latter gives an internally projective resolution of <m>\coker(\Delta_f)/R</m> of length <m>1</m>.
       </p>
       <p>
-        The existence of the resolution <xref ref="eq-resolve-coker-mod-R-liquefaction"/> has the following important consequence for the construction of analytic rings.
-        Let <m>R_0 = (R_0^{\triangleright}, \Mod_{R_0})</m> be an analytic ring,
-        choose <m>f \in R_0(*)</m>, and let <m>\Mod_{R_1} := \Mod_{R_0 \liquid f}</m> be the full subcategory of <m>f</m>-coalescent objects in <m>\Mod_{R_0}</m>.
-        Then the underived <m>f</m>-coalescence <m>R_1^{\triangleright}</m> of <m>R_0^{\triangleright}</m> has the property that for any <m>M \in \Mod_{R_1}</m>,
-        <m>\Ext^1_{R_0^{\triangleright}}(R_1^\triangleright, M) = 0</m>: for any exact sequence in <m>\Mod_{R_0^{\triangleright}}</m> of the form
+        Let us see what tensoring with <m>M \in \Mod_{R \liquid f}</m> does to these sequences.
+        For <xref ref="eq-split-sequence-P-mod-Z"/>, since the sequence is split we get for every <m>i \geq 0</m> an exact sequence
         <me>
-          0 \to M \to M' \to R_1^{\triangleright} \to 0
-        </me>
-        we have <m>M' \in \Mod_{R_1}</m> by <xref ref="prop-liquefaction"/>, so any splitting of the pullback sequence
+          0 \to \iExt^i_R((P/\underline{\ZZ}) \otimes R, M) \to \iExt^i_R(P \otimes R, M) \to \iExt^i_R(R, M) \to 0
+        </me>;
+        that is, the map <m>\iHom_R((P/\underline{\ZZ}) \otimes R, M) \to \iHom_R(P \otimes R, M)</m> is injective with cokernel <m>M</m>
+        and the map <m>\iExt^i_R((P/\underline{\ZZ}) \otimes R, M) \to \iExt^i_R(P \otimes R, M)</m> is an isomorphism for all <m>i \gt 0</m>.
+      </p>
+      <p>
+        For <xref ref="eq-resolve-coker-Deltaf-liquefaction"/>, <m>\Delta_f^*\colon \iExt^i_R(P \otimes R, M) \to \iExt^i_R(P \otimes R, M)</m>
+        is an isomorphism for all <m>i \geq 0</m>, so <m>\iExt^i_R(\coker(\Delta_f), M) = 0</m> for all <m>i \geq 0</m>.
+        In other words, the derived <m>f</m>-coalescence of <m>\coker(\Delta_f)</m> is zero in all degrees.
+      </p>
+      <p>
+        For <xref ref="eq-resolve-coker-mod-R-liquefaction"/>, we 
+        refactor <m>\Delta_f^*\colon \iExt^i_R((P/\underline{\ZZ}) \otimes R, M) \to \iExt^i_R(P \otimes R, M)</m>
+        as the isomorphism <m>\iExt^i_R((P/\underline{\ZZ}) \otimes R, M) \to \iExt^i_R((P/\underline{\ZZ}) \otimes R, M)</m>
+        followed by the pullback <m>\iExt^i_R((P/\underline{\ZZ}) \otimes R, M) \to \iExt^i_R(P \otimes R, M)</m> arising from <xref ref="eq-split-sequence-P-mod-Z"/>.
+        We deduce that <m>\iExt^1_R(\coker(\Delta_f)/R, M) = M</m> and <m>\iExt^i_R(\coker(\Delta_f)/R, M) = 0</m> for <m>i \neq 1</m>;
+        in particular, the derived <m>f</m>-coalescence of <m>\coker(\Delta_f)/R</m> is concentrated in degree <m>-1</m>.
+      </p>
+      <p>
+        Finally, using the exact sequence
         <me>
-          0 \to M \to M' \times_{R_1^{\triangleright}} R_0^{\triangleright} \to R_0^{\triangleright} \to 0
+          0 \to R \to \coker(\Delta_f) \to \coker(\Delta_f)/R \to 0 
         </me>
-        (which exists because <m>R_0^{\triangleright}</m> is projective as a module over itself)
-        extends by adjunction to a splitting of the original sequence.
-        By replacing <m>M</m> with <m>\iHom_{R_0^{\triangleright}}(R_0^{\triangleright} \otimes \ZZ[\underline{S}], M)</m>,
-        we formally upgrade this conclusion to assert that <m>\iExt^1_{R_0^{\triangleright}}(R_1^\triangleright, M) = 0</m>.
-      </p>
-      <p>
-        From this, we see that <m>R_1^{\triangleright}</m> is also the derived <m>f</m>-coalescence of <m>R_0^{\triangleright}</m>.
-        That is, the issue
-        raised in <xref ref="rem-pre-analytic-to-analytic"/> does not arise in this context,
-        and so <m>R_1 = (R_1^{\triangleright}, \Mod_{R_1})</m> is itself an analytic ring. 
-      </p>
-      <p>
-        By similar logic, starting from the fact that <m>P</m> is internally projective in <m>\CAb</m> (<xref ref="prop-internally-projective"/>),
-        we may see that the derived <m>f</m>-coalescence of <m>P \otimes R_0^{\triangleright}</m> equals <m>P \otimes R_1^{\triangleright}</m> placed in degree 0,
-        which is again internally projective in <m>\Mod_{R_1}</m>.
+        we deduce that the derived <m>f</m>-coalescence of <m>R</m> is concentrated in degree <m>0</m>.
+        We are thus in the favorable situation of <xref ref="rem-pre-analytic-to-analytic"/>, that is,
+        <m>(R_{\liquid f}, \Mod_{R \liquid f})</m> is an analytic ring.
       </p>
     </remark>
     <p>
       The operation of <m>f</m>-coalescence bears a strong formal resemblance to derived <m>f</m>-completion.
       This drives the next few remarks.
     </p>
-    <remark>
+    <remark xml:id="rem-analytify-element-which-ring">
       <p>
         If <m>S \to R</m> is a homomorphism of commutative ring objects in <m>\CAb</m>, then for any <m>f \in S</m>
         we have 
@@ -515,7 +529,7 @@
               g \colon P \otimes R \to P \otimes R, \qquad [m] \mapsto [m] + f [m+1] + \cdots + f^{n-1} [m+n-1]
             </mrow>
           </md>;
-          via the identification <m>P \cong \underline{\ZZ[x]}</m> (for the <m>x</m>-adic topology on the latter)
+          via the identification <m>P \cong \underline{\ZZ[x]}</m> (for a certain topology on the latter, as in <xref ref="def-internally-projective-object"/>)
           this corresponds to the factorization
           <md>
             <mrow>
@@ -535,18 +549,19 @@
     <definition xml:id="def-R-topologically-nilpotent">
       <p>
         Let <m>R</m> be a condensed commutative ring.
-        We say that <m>g \in R(*)</m> is <term>topologically nilpotent</term> if there is an element of <m>\Hom_{\CAb}(P, R)</m> taking <m>[n]</m> to <m>g^n</m>
-        for all <m>n \in \NN</m>. If <m>R</m> is a topological ring, this says that the powers of <m>g</m> form a null sequence.
+        We say that <m>g \in R(*)</m> is <term>topologically nilpotent</term> if there is a morphism <m>P \to R</m> of condensed commutative rings
+        taking <m>[1]</m> to <m>g</m>.
+        If <m>R</m> is a topological ring, this says that the powers of <m>g</m> form a null sequence.
+        (Otherwise, it is unclear whether the resulting morphism is uniquely determined by <m>g</m>; compare <xref ref="rem-null-null-sequences"/>.)
       </p>
       <p>
-        We say that <m>g \in R(*)</m> is <term>universally power-bounded</term> if there is an element of <m>\Hom_{\CAb}(P, P \otimes R)</m> taking <m>[n]</m> to <m>g^n[n]</m> for all <m>n \in \NN</m>;
-        the corresponding element of <m>\Hom_R(P \otimes R, P \otimes R)</m> is then a ring homomorphism.
+        We say that <m>g \in R(*)</m> is <term>universally power-bounded</term> if there is a morphism <m>P \to P \otimes R</m> of condensed commutative rings
+        taking <m>[1]</m> to <m>g[1]</m>.
         If <m>R</m> is a topological ring, this implies that for every topological <m>R</m>-module <m>M</m> and every null sequence <m>(m_n)_n</m> in <m>M</m>,
         <m>(g^n m_n)_n</m> is also a null sequence; this is in general strictly stronger than making the same assertion only for <m>M=R</m>.
       </p>
       <p>
-        If <m>g</m> is topologically nilpotent, then it is also universally power-bounded: we may tensor the map <m>\Hom_{\CAb}(P, R)</m> taking <m>[n]</m> to <m>g^n</m>
-        with the identity map on <m>P</m> to obtain a map <m>P \to P \otimes R</m> taking <m>[n]</m> to <m>g^n [n]</m>.
+        If <m>g</m> is topologically nilpotent, then it is also universally power-bounded.
         Moreover, both properties are <q>integrally closed</q> in <m>R(*)</m>:
         if <m>g \in R(*)</m> and <m>g^n</m> is universally power-bounded (resp. topologically nilpotent), then so is <m>g</m>.
       </p>
@@ -631,7 +646,7 @@
     <title>The gaseous real numbers</title>
     <p>
       We next introduce a key example that does not factor through solidification
-      (although we will not deploy it in earnest until <xref ref="sec_gaga"/>).
+      (although we will not deploy it in earnest until <xref ref="sec_gaga1"/>).
     </p>
     <definition xml:id="def-R-liquid">
       <p>
@@ -687,7 +702,9 @@
       <p>
         Let <m>\ZZ[\hat{q}]</m> be a copy of <m>P := \ZZ[\underline{\NN_\infty}]/\ZZ[\underline{\infty}]</m> viewed as an algebra over <m>\ZZ[q]</m> via <m>q^n \mapsto [n]</m>.
         Then set <m>A_0^{\triangleright} := \ZZ[\hat{q}][q^{-1}]</m>; this condensed ring is represented by the topological ring with underlying ring <m>\ZZ[q^{\pm}]</m>,
-        which is initial among condensed rings <m>R</m> equipped with a choice of a topologically nilpotent unit <m>q \in R(*)^\times</m>.
+        which is initial among condensed rings <m>R</m> equipped with a choice of a unit <m>q \in R(*)^\times</m>
+        and a morphism of condensed commutative rings <m>P \to R</m> taking <m>[1]</m> to <m>q</m>
+        (which witnesses that <m>q</m> is topologically nilpotent).
         By <xref ref="prop-liquefaction"/>, the pair <m>(A_0^{\triangleright}, \Mod_{A_0^{\triangleright} \liquid q})</m> is a pre-analytic ring.
       </p>
     </definition>
@@ -699,17 +716,17 @@
       <p>
         For <m>k=1,2,\dots</m>, define the topological ring
         <men xml:id="eq-universal-liquefaction-filtered">
-          A_k^{\triangleright} := \bigcup_{c, n \gt 0} \prod_{m \geq -n} \left(\ZZ \cap [-c(m+n)^{k-1}, c(m+n)^{k-1}] \right) q^m.
+          A_k^{\triangleright} := \bigcup_{c, n \gt 0} \prod_{m \geq -n} \left(\ZZ \cap [-c(m+n)^{k-1}, c(m+n)^{k-1}] \right) q^m
         </men>
         and set <m>A^{\triangleright} = \bigcup_k A_k^{\triangleright}</m>.
         That is, <m>A^{\triangleright}</m> consists of Laurent series whose coefficients grow polynomially in the exponent.
-        (The shift in the index <m>k</m> is to avoid overriding the definition of <m>A_0^{\triangleright}</m>.)
       </p>
       <p>
         For <m>S = \varprojlim_i S_i \in \Prof</m>, we similarly have
         <men xml:id="eq-universal-liquefaction-filtered-with-S">
-          A_k^{\triangleright}\otimes \ZZ[\underline{S}] := \bigcup_{c, n \gt 0} \varprojlim_i \bigoplus_{s \in S_i} \prod_{m \geq -n} \left(\ZZ \cap [-c(m+n)^{k-1}, c(m+n)^{k-1}] \right)[s] q^m.
+          A_k^{\triangleright}\otimes \ZZ[\underline{S}] := \bigcup_{c, n \gt 0} \varprojlim_i \prod_{m \geq -n} \ZZ[S_i]_{\leq c(m+n)^{k-1}} q^m
         </men>
+        where the subscript <m>\leq c(m+n)^{k-1}</m> means that we bound the sum of the absolute values of the coefficients accordingly.
       </p>
     </definition>
     <lemma xml:id="lem-filtration-on-universal-liquefaction">
@@ -743,23 +760,38 @@
           from which we infer that <m>\sum_{i=0}^\infty s_i q^i \in A_{k}^{\triangleright}</m>.
         </p>
         <p>
-          To prove the converse, we employ a trick introduced in <xref ref="rem-sum-null-against-f"/>.
+          To prove the converse, 
+          we employ a trick introduced in <xref ref="rem-sum-null-against-f"/>.
           Without loss of generality we may consider an element <m>t = \sum_{m=0}^\infty t_m q^m \in A_k^{\triangleright}</m>
-          such that for some <m>c\gt  0</m>, we have <m>|t_m|leq c(m+1)^{k-1}</m> for all <m>n</m>. If <m>k=1</m>, we write
+          such that for some <m>c\gt  0</m>, we have <m>|t_m| \leq c(m+1)^{k-1}</m> for all <m>m</m>. If <m>k=1</m>, we write
           <me>
             t = \sum_{m=0}^\infty (t_{2m} q^m + t_{2m+1}q^{m+1}) q^m
           </me>
           and the quantities <m>t_{2m} q^m + t_{2m+1}q^{m+1}</m> form a null sequence in <m>A_0^{\triangleright}</m>.
           If <m>k \gt 1</m>, set
           <me>
-            s_{i,j} := \left \lfloor \frac{t_{i+j} + j}{i+j+1} \right\rfloor,
-          </me>
-          so that <m>|s_{i,j}| \leq c(i+j+1)^{k-1}</m> and <m>t_m = \sum_{i=0}^m t_{i,m-i}</m>.
+            s_{i,j} := \left \lfloor \frac{t_{i+j} + j}{i+j+1} \right\rfloor
+          </me>,
+          so that <m>|s_{i,j}| \leq c(i+j+1)^{k-2} +1  \leq (c+1)(i+j+1)^{k-2}</m> and <m>t_m = \sum_{i=0}^m s_{i,m-i}</m>.
           Set <m>s_i := \sum_{j=0}^\infty s_{i,j} q^j</m>, so that
           <me>
             t = \sum_{i=0}^\infty s_i q^i = \sum_{i=0}^\infty (s_{2i} q^i + s_{2i+1}q^{i+1}) q^i
+          </me>.
+          It now suffices to check that as <m>i</m> varies,
+          the quantities <m>s_{2i} q^i + s_{2i+1}q^{i+1}</m> form a null sequence in <m>A_{k-1}^{\triangleright}</m>:
+          write
+          <me>
+            s_{2i+*} q^{i+*} = \sum_{j=i+*}^\infty s_{2i+*,j-i-*} q^j
           </me>
-          and the quantities <m>t_{2i} q^i + t_{2i+1}q^{i+1}</m> form a null sequence in <m>A_{k-1}^{\triangleright}</m>.
+          and then note that because <m>j \geq i</m>
+          <md>
+            <mrow>
+              |s_{2i+*,j-i-*}| &amp;\leq (c+1)(i+j+1)^{k-1}
+            </mrow>
+            <mrow>
+              &amp;\leq (c+1) (2j+1)^{k-1} \leq 2^{k-1} (c+1) (j+1)^{k-1}
+            </mrow>
+          </md>.
         </p>
       </proof>
     </lemma>
@@ -787,8 +819,8 @@
           For any <m>S \in \Prof</m> and any <m>M \in \Mod_{A_0^{\triangleright} \liquid q}</m>,
           <men xml:id="eq-compare-homs-from-universal-liquefaction">
             \Hom_{A_0^{\triangleright}}(A^{\triangleright} \otimes \ZZ[\underline{S}], M) \cong
-            \Hom_{A_0^{\triangleright}}(A_0^{\triangleright} \otimes \ZZ[\underline{S}], M).
-          </men>
+            \Hom_{A_0^{\triangleright}}(A_0^{\triangleright} \otimes \ZZ[\underline{S}], M)
+          </men>.
           Consequently, we have <m>\iHom_{A_0^{\triangleright}}(A^{\triangleright}, M) \cong \iHom_{A_0^{\triangleright}}(A_0^{\triangleright}, M)</m>.
         </p>
       </statement>
@@ -813,14 +845,18 @@
       <statement>
         <p>
           The (derived) <m>q</m>-coalescence of <m>A_0^{\triangleright}</m> equals <m>A^{\triangleright}</m>.
-          In particular, the pair <m>(A^{\triangleright},  \Mod_{A_0^{\triangleright} \liquid q})</m> is an analytic ring.
+          In particular, the pair <m>(A^{\triangleright}, \Mod_{A_0^{\triangleright} \liquid q})</m> is an analytic ring.
         </p>
       </statement>
       <proof>
         <p>
           For the underived coalescence, this follows directly from <xref ref="lem-compare-maps-from-universal-liquefaction"/>;
-          the promotion to the derived coalescence follows from <xref ref="rem-liquefaction-kills-ext1"/>.
-          Alternatively, see <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 14, timestamp 17:00.
+          for the derived coalescence, we must also apply <xref ref="rem-liquefaction-kills-ext1"/>.
+          Alternatively, one can give a more careful argument to directly ensure that
+          <me>
+            A^{\triangleright} \widehat{\otimes}_{A_0^{\triangleright}}^L A^{\triangleright} \cong A^{\triangleright}
+          </me>;
+          see <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 14, timestamp 17:00.
         </p>
       </proof>
     </proposition>

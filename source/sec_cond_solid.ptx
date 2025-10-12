@@ -115,7 +115,9 @@
       </ul>
       <p>
         We can thus use the object <m>P</m> to formulate and study an analogue of the property (of a topological abelian group)
-        that every null sequence is uniquely summable. We pick up this thread in <xref ref="sec_solid_to_condensed"/>.
+        that every null sequence is uniquely summable, even in the presence of null sequences which cannot be distinguished from the zero
+        sequence using the coordinate maps (<xref ref="rem-null-null-sequences"/>).
+        We pick up this thread in <xref ref="sec_solid_to_condensed"/>.
       </p>
     </remark>
     <remark xml:id="rem-exact-seq-for-P">
@@ -144,7 +146,8 @@
           0 \to P \stackrel{\Delta}{\to} P/\ZZ \to \coker(\Delta)/\ZZ \to 0
         </men>
         which (because <m>P/\ZZ \cong P</m>)
-        is an internally projective resolution of <m>\coker(\Delta)/\ZZ</m> of length <m>1</m>        
+        is an internally projective resolution of <m>\coker(\Delta)/\ZZ</m> of length <m>1</m>.
+        See <xref ref="rem-liquefaction-kills-ext1"/> for an application of this construction.
       </p>
     </remark>
   </subsection>
@@ -266,8 +269,7 @@
         but this is not equal to <m>M \otimes N</m>.
       </p>
       <p>
-        As usual for a functor defined as an adjoint, the definition does not give much direct control over the behavior of solidification on explicit objects,
-        even if we rephrase it using a nominally explicit formula (<xref ref="rem-express-solidification-using-cof"/>).
+        As usual for a functor defined as an adjoint, the definition does not give much direct control over the behavior of solidification on explicit objects.
         Instead, we will have to take more indirect steps to evaluate some solidifications.
       </p>
     </definition>
@@ -295,84 +297,36 @@
       <p>
         Using the exact sequence
         <me>
-          0 \to \ZZ \to \coker(\Delta) \to \coker(\Delta)/\ZZ \to 0
+          0 \to \underline{\ZZ} \to \coker(\Delta) \to \coker(\Delta)/\underline{\ZZ} \to 0
         </me>
-        we obtain the example <m>\coker(\Delta)/\ZZ</m> whose solidification is zero, but whose derived solidification consists of <m>\ZZ</m> in degree <m>-1</m>.
-        We can also identify the solidification of a general object <m>M \in \CAb</m> with
+        we obtain the example <m>\coker(\Delta)/\underline{\ZZ}</m> whose solidification is zero, but whose derived solidification consists of <m>\ZZ</m> in degree <m>-1</m>.
+        For <m>M \in \CAb</m> general, we obtain a canonical morphism
         <me>
-          \iExt^1_{\CAb}(\coker(\Delta)/\ZZ, M)
-        </me>;
-        taking instead
-        <men xml:id="eq-derived-solidification">
-          R\iHom_{\CAb}(\coker(\Delta)/\ZZ, M)[-1]
-        </men>
-        (concentrated in degrees <m>-1</m> and <m>0</m> by <xref ref="eq-resolve-cofinite-mod-Z"/>) 
-        yields the derived solidification (see <xref ref="rem-R-module-derived-solidification"/>).
-      </p>
-    </remark>
-    <p>
-      We apply the explicit formula for derived solidification <xref ref="eq-derived-solidification"/> in the following manner.
-    </p>
-    <lemma xml:id="lem-top-group-no-derived-solidification">
-      <statement>
-        <p>
-          For any sequential topological abelian group <m>M</m>, the derived solidification of <m>\underline{M}</m> is concentrated in degree <m>0</m>.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          By <xref ref="rem-express-solidification-using-cof"/>, this is equivalent to the assertion that
-          <me>
-            \iHom_{\CAb}(\coker(\Delta)/\underline{\ZZ}, \underline{M}) = 0
-          </me>.
-          This in turn is equivalent to the assertion that <m>S \in \Prof</m>,
-          <me>
-            \Hom_{\CAb}(\coker(\Delta)/\underline{\ZZ} \otimes \ZZ[\underline{S}], \underline{M}) = 0
-          </me>.
-          To check this, note that a morphism <m>\coker(\Delta)/\underline{\ZZ} \otimes \ZZ[\underline{S}] \to \underline{M}</m>
-          corresponds to a morphism <m>\ZZ[\underline{\NN_\infty \times S}] \to \underline{M}</m>
-          whose restrictions to <m>\ZZ[\underline{\{\infty\} \times S}]</m>
-          and to the preimage of <m>(\ima(\Delta) \oplus \ZZ) \otimes \ZZ[\underline{S}]</m>
-          vanish.
-          Since <m>\prod_\NN \underline{\ZZ}</m> is represented by a sequential topological abelian group,
-          a morphism <m>\ZZ[\underline{\NN_\infty \times S}] \to \underline{M}</m> corresponds to a continuous map <m>f</m>
-          from <m>\NN_\infty \times S</m> to <m>M</m>;
-          we may thus check the claimed vanishing in the case where <m>S</m> is a singleton.
-        </p>
-        <p>
-          At this point, the condition that the restriction to <m>\ZZ[\underline{\{\infty\}}]</m> vanishes implies that
-          <m>f(\infty) = 0</m>.
-          The condition that the restriction to <m>\ima(\Delta)</m> vanishies implies that <m>f(n) = f(n+1)</m>
-          for all <m>n \in \NN</m>. By continuity, we deduce that <m>f</m> is identically zero.
-        </p>
-      </proof>
-    </lemma>
-    <remark>
-      <p>
-        Since <m>P</m> is represented by a sequential topological abelian group (<xref ref="def-internally-projective-object"/>),
-        <xref ref="lem-top-group-no-derived-solidification"/> implies that the underived and derived solidifications of <m>P</m> coincide.
-        This can also be seen from <xref ref="rem-express-solidification-using-cof"/>: it suffices to check that
-        <m>\iExt^1_{\CAb}(P, M) = 0</m> for any <m>M \in \CAb_\solid</m>, 
-        but since any extension of <m>M</m> by <m>P</m> is again solid (by <xref ref="prop-solid-category"/>) we may apply <xref ref="prop-internally-projective"/> and adjunction to see that any such extension splits.
-        (See <xref ref="rem-liquefaction-kills-ext1"/> for the same observation in a more general setting.)
+          M = \iHom_{\CAb}(\underline{\ZZ}, M) \to \iExt^1_{\CAb}(\coker(\Delta)/\underline{\ZZ}, M)
+        </me>
+        which is an isomorphism if and only if <m>M \in \CAb_\solid</m>.
       </p>
     </remark>
     <remark xml:id="rem-R-module-derived-solidification">
       <p>
         We say that an object <m>C</m> in the derived category <m>D(\CAb)</m> is <term>solid</term> if its cohomology groups belong to <m>\CAb_\solid</m>.
-        It is equivalent (thanks to <xref ref="prop-internally-projective"/>) to require that <m>\Delta^*\colon R\iHom_{\CAb}(P, C) \to R\iHom_{\CAb}(P,C)</m> be an isomorphism.
-      </p>
-      <p>
-        Following <xref ref="eq-derived-solidification"/>, we define <term>derived solidification</term> on the derived category as the functor 
-        <m>M \mapsto  R\iHom_{\CAb}(\coker(\Delta)/\ZZ, M)[-1]</m>.
-        If <m>M</m> is concentrated in degrees <m>[a,b]</m>, then by <xref ref="eq-resolve-cofinite-mod-Z"/> 
-        its derived solidification is concentrated in degrees <m>[a-1,b]</m>.
+        It is equivalent (thanks to <xref ref="prop-internally-projective"/>) to require 
+        <me>
+          \Delta^*\colon R\iHom_{\CAb}(P, C) \to R\iHom_{\CAb}(P,C)
+        </me>
+        to be an isomorphism.
+        As in <xref ref="rem-express-solidification-using-cof"/>, we have a canonical morphism
+        <me>
+          C \to R\iHom_{\CAb}(\coker(\Delta)/\underline{\ZZ}, C)[-1]
+        </me>
+        which is an isomorphism if and only if <m>C</m> is solid.
+        The forgetful functor from the full subcategory of solid objects of <m>D(\CAb)</m> back to <m>D(\CAb)</m> again has a left adjoint, called <term>derived solidification</term>.
       </p>
       <p>
         Even when we start with a map <m>M \to N</m> in <m>\CAb</m>, there is a difference between saying that this map induces an isomorphism of solidifications
         versus an isomorphism of derived solidifications; the first is equivalent to having the natural isomorphism <m>\iHom_{\CAb}(N, \bullet) \cong \iHom^i_{\CAb}(M, \bullet)</m>
         of functors on <m>\CAb_\solid</m>, whereas the latter also includes the natural isomorphisms <m>\iExt^i_{\CAb}(N, \bullet) \cong \iExt^i_{\CAb}(M, \bullet)</m>
-        for all <m>i \gt 0</m> (or equivalently for <m>i=1</m> by <xref ref="eq-resolve-cofinite-mod-Z"/>).
+        for all <m>i \gt 0</m>.
       </p>
     </remark>
   </subsection>
@@ -445,8 +399,15 @@
     </corollary>
     <remark>
       <p>
+        By analogy with <xref ref="rem-express-solidification-using-cof"/>, we can apply <xref ref="prop-R-solid-is-zero"/>
+        to see that the derived solidification of <m>\underline{\RR}/\underline{\ZZ}</m> consists of <m>\underline{\ZZ}</m>
+        placed in degree <m>-1</m>.
+      </p>
+    </remark>
+    <remark>
+      <p>
         <xref ref="prop-R-solid-is-zero"/> and its corollaries also apply with <m>\underline{\RR}</m> replaced by <m>\underline{\QQ}</m> equipped with the archimedean topology.
-        By contrast, for the <m>p</m>-adic topology for some prime <m>p</m>, the solidification of <m>\underline{\QQ}</m> will end up being precisely <m>\underline{\QQ}_p</m>.
+        By contrast, for the <m>p</m>-adic topology for some prime <m>p</m>, the solidification of <m>\underline{\QQ}</m> will end up being precisely <m>\underline{\QQ_p}</m>.
       </p>
     </remark>
     <remark>
@@ -466,10 +427,12 @@
     </p>
     <lemma xml:id="lem-compare-hom-solid-con">
       <statement>
-        In <m>\CAb</m>, for any at most countable index sets <m>I,J</m>, we have
-        <me>
-          \Hom_{\CAb}\left(\prod_I \underline{\ZZ}, \prod_J \underline{\ZZ}\right) = \prod_J \bigoplus_I \ZZ
-        </me>.
+        <p>
+          In <m>\CAb</m>, for any at most countable index sets <m>I,J</m>, we have
+          <me>
+            \Hom_{\CAb}\left(\prod_I \underline{\ZZ}, \prod_J \underline{\ZZ}\right) = \prod_J \bigoplus_I \ZZ
+          </me>.
+        </p>
       </statement>
       <proof>
         <p>

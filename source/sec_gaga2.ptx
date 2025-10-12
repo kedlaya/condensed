@@ -1,0 +1,567 @@
+﻿<section xml:id="sec_gaga2">
+  <title>Glueing and GAGA for <m>\PP^1</m>: archimedean case and beyond</title>
+  <introduction>
+    <p>
+      In this section, we continue to study the GAGA phenomenon for analytic rings,
+      but now introducing new terminology to handle the archimedean case in parallel.
+      In particular, we recover the usual statement of GAGA over the complex numbers, and much more in the process.
+    </p>
+    <paragraphs>
+      <title>Reference</title>
+      <p>
+        This section is <em>very loosely</em> based on <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 15.
+        The definition of dagger spaces is original.
+      </p>
+    </paragraphs>
+  </introduction>
+  <subsection>
+    <title>
+      Dagger localization
+    </title>
+    <p>
+      In preparation to work over <m>\CC</m>, we revisit our development of solid adic spaces and quasicoherent sheaves thereupon.
+    </p>
+    <definition>
+      <p>
+        An analytic ring <m>A</m> is <term>Tate</term> if <m>A^{\gas}</m> contains a topologically nilpotent unit <m>q \in A(*)</m>;
+        remember that this is a condition on all objects of <m>\Mod_A</m> (namely that <m>\Mod_A \subseteq \Mod_{A^{\triangleright} \liquid q}</m>), 
+        not just the base ring <m>A^{\triangleright}</m>.
+        By <xref ref="cor-liquid-top-nilpotent-unit"/>, it follows that <m>A^{\gas}</m> contains <em>every</em> topologically nilpotent unit <m>q \in A(*)</m>.
+      </p>
+    </definition>
+    <remark>
+      <p>
+        We can put solid analytic rings and Tate analytic rings on a common footing by considering an analytic ring <m>A</m>
+        such that <m>A^{\gas}</m> contains a (fixed) unit <m>q \in A(*)</m>: 
+        a solid analytic ring corresponds to the case <m>q=1</m>
+        while a Tate analytic ring corresponds to the case where <m>q</m> is topologically nilpotent.
+        By <xref ref="lem-f-solidification-versus-fn"/>, this condition is invariant under replacing <m>q</m> with <m>q^m</m>
+        for any positive integer <m>m</m>.
+      </p>
+    </remark>
+    <remark xml:id="rem-adjoin-top-nilpotent-liquid">
+      <p>
+        By analogy with <xref ref="rem-adjoin-top-nilpotent"/>, at certain points we will need to 
+        consider a condensed ring <m>R</m> which not only has the property that <m>R \in \Mod_{R \liquid q}</m>
+        for some unit <m>q \in R(*)</m>, but also has the property that <m>R(*)</m> contains a topologically nilpotent unit <m>r</m>
+        which is not necessarily equal to <m>q</m>.
+        When this happens, by <xref ref="cor-liquid-top-nilpotent-unit"/> we will also have <m>R \in \Mod_{R \liquid r}</m>.
+      </p>
+      <p>
+        We can force ourselves into this situation by replacing <m>R</m> with <m>R \otimes_{\underline{\ZZ}[q^{\pm}] \liquid q} A^{\triangleright}</m>
+        where <m>A^{\triangleright}</m> is a copy of the ring described in <xref ref="def-initial-ring-liquefied"/>,
+        but with the label <m>q</m> replaced by <m>r</m>.
+      </p>
+    </remark>
+    <definition>
+      <p>
+        Define the <em>dagger Tate algebra</em> in the variables <m>T_1,\dots,T_n</m> over <m>\underline{\ZZ}[q^{\pm}]</m> by the formula
+        <me>
+          \underline{\ZZ}[q^{\pm}] \langle T_1, \dots, T_n \rangle^\dagger_q := \colim_m \frac{\underline{\ZZ}[q^{\pm}]\langle U_1,\dots,U_n \rangle[T_1,\dots,T_n]}{(T_1^m q - U_1, \dots, T_n^m q - U_m)}
+        </me>
+        where the transition map from <m>m</m> to <m>m+1</m> acts as <m>T_i \mapsto T_i</m>; this gives a well-defined map because
+        <men xml:id="eq-dagger-transition">
+          (T_i^m q)^{m+1} = q (T_i^{m+1} q)^m
+        </men>
+        and so <m>U_i^{m+1}</m> maps to <m>q U_i^m</m>.
+      </p>
+      <p>
+        For <m>R</m> a condensed ring and <m>q \in R(*)</m> a unit, set
+        <me>
+          R \langle T_1, \dots, T_n \rangle^\dagger_q := R \otimes_{\ZZ[q^{\pm}] \liquid q} \underline{\ZZ}[q^{\pm}] \langle T_1, \dots, T_n \rangle^\dagger_q
+        </me>.
+      </p>
+    </definition>
+    <p>
+      We have the following extension of <xref ref="lem-liquefaction-is-Tate-algebra"/> (which is the case <m>q=1</m>).
+    </p>
+    <lemma xml:id="lem-dagger-as-liquefaction">
+      <statement>
+        <p>
+          For <m>R</m> a condensed ring such that <m>R \in \Mod_{R \liquid q}</m> for some unit <m>q \in R(*)</m>
+          <em>and</em> <m>R(*)</m> contains a topologically nilpotent unit <m>r</m> (not necessarily equal to <m>q</m>),
+          <me>
+            R \langle T_1, \dots, T_n \rangle^\dagger_q \cong \colim_m R[T_1,\dots,T_n]_{\liquid T_1^m q, \dots, T_n^m q}
+          </me>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          To simplify notation we restrict to the case <m>n=1</m>, where the claim is that
+          <me>
+            R \langle T \rangle^\dagger_q \cong \colim_m R[T]_{\liquid T^m q}
+          </me>.
+          By hypothesis, <m>R</m> is an algebra over <m>R = \underline{\ZZ((r))}[q^{\pm}]</m>;
+          by <xref ref="lem-liquefaction-is-Tate-algebra"/> we may equate <m>\underline{\ZZ((r))}[q^{\pm}] \langle U \rangle</m> with <m>\underline{\ZZ((r))}[q^{\pm}][U]_{\liquid U}</m>.
+          This gives the desired comparisons.
+        </p>
+      </proof>
+    </lemma>
+    <definition>
+      <p>
+        For <m>A</m> an analytic ring and <m>q \in A^{\gas}</m> a unit, define
+        <men xml:id="eq-dagger-localization">
+          A^{\triangleright} \left \langle \frac{f_1,\dots,f_n}{g} \right\rangle^{\dagger}_q := 
+          \frac{A^{\triangleright} \left \langle T_1,\dots,T_n \right\rangle^\dagger_q}{(f_1 - g T_1, \dots, f_n - g T_n)}
+        </men>.
+        Set
+        <me>
+          S := \{ \tfrac{f_1^m}{g^m} q, \dots, \tfrac{f_n^m}{g^m} q \colon  m=1,2,\dots\}
+        </me>
+        and let <m>A\left \langle \frac{f_1,\dots,f_n}{g} \right\rangle^{\dagger}_q</m> denote the analytic ring
+        <me>
+          \left(A^{\triangleright} \left \langle \frac{f_1,\dots,f_n}{g} \right\rangle^{\dagger}_q, \Mod_{A^{\triangleright} \left \langle \frac{f_1,\dots,f_n}{g} \right\rangle^{\dagger}_q \liquid S}
+          \times_{\Mod_{A^{\triangleright}}} \Mod_A \right)
+        </me>.
+        When <m>q</m> is topologically nilpotent, the construction does not depend on <m>q</m> (by <xref ref="lem-dagger-as-liquefaction"/>
+        and <xref ref="cor-liquid-top-nilpotent-unit"/>)
+        and so we omit <m>q</m> from the notation.
+      </p>
+      <p>
+        When <m>f_1,\dots,f_n</m> generate the unit ideal, 
+        we call this construction the <term>dagger localization</term> of <m>A</m> with respect to <m>f_1,\dots,f_n,g</m>.
+        By calculating as in <xref ref="rem-localization-is-idempotent"/>, we see that <m>A \to A\left \langle \frac{f_1,\dots,f_n}{g} \right\rangle^{\dagger}_q</m> is an idempotent morphism
+        provided that the quotient in <xref ref="eq-dagger-localization"/> is resolved by the corresponding Koszul complex.
+      </p>
+    </definition>
+    <remark xml:id="rem-dagger-via-P">
+      <p>
+        Replacing the Tate algebra <m>R \langle T \rangle</m> with the dagger Tate algebra <m>R \langle T \rangle^\dagger_q</m>
+        is analogous to replacing the usual Tate algebra <m>K \langle T \rangle</m> over a nonarchimedean field, whose elements
+        represent holomorphic functions on the closed unit disc, with the dagger Tate algebra <m>K \langle T \rangle^\dagger</m>,
+        whose elements represent holomorphic functions on some disc of radius strictly greater than <m>1</m>.
+        The latter is more natural from the point of view of archimedean analysis; see for instance
+        the proof of <xref ref="thm-gaga-classical-v2"/>.
+      </p>
+      <p>
+        One feature we can take from this analogy is that <m>K \langle T \rangle^\dagger</m> can be equally well defined using
+        a colimit over closed discs or open discs. Correspondingly, when <m>q</m> is topologically nilpotent
+        we can also define <m>\underline{\ZZ}[q^{\pm}] \langle T \rangle^\dagger_q</m>
+        in terms of the sequence space <m>P</m> using the formula
+        <me>
+          \colim_m \frac{(\underline{\ZZ}[q^{\pm}] \otimes P)[T]}{(T^m q - [1])}
+        </me>,
+        where the transition map from <m>m</m> to <m>m+1</m> again acts as <m>T \mapsto T</m> (and similarly with more variables).
+        To compare the two constructions, we use the fact that
+        <me>
+          (T^m q)^n = (T^{m+1} q)^{\lfloor \frac{nm}{m+1} \rfloor} T^{nm-(m+1)\lfloor \frac{nm}{m+1}\rfloor} q^{n - \lfloor \frac{nm}{m+1}\rfloor}
+        </me>
+        to produce a map 
+        <me>
+          \frac{(\underline{\ZZ}[q^{\pm}] \otimes P)[T]}{(T^m q - [1])} \to \frac{\underline{\ZZ}[q^{\pm}]\langle U \rangle[T]}{(T^{m+1} q - U)}
+        </me>.
+      </p>
+    </remark>
+    <remark xml:id="prop-dagger-localizations-of-Tate">
+      <p>
+        Suppose that <m>A</m> is an analytic ring and <m>q \in A^{\gas}</m> is a topologically nilpotent unit.
+        Following <xref ref="rem-dagger-via-P"/>, we may see that for any <m>M \in \Mod_A</m>,
+        for each positive integer <m>m</m>,
+        <me>
+          M \otimes_A A^{\triangleright}[T_1,\dots,T_n]_{\liquid T_1^m q, \dots, T_n^m q}
+          \in \Mod_{A^{\triangleright}[T_1,\dots,T_n] \liquid T_1^{m+1} q, \dots, T_n^{m+1} q}
+        </me>.
+        From this it follows that for any dagger localization <m>A \to B</m>,
+        <me>
+          \Mod_B = \Mod_{B^\triangleright} \times_{\Mod_{A^{\triangleright}}} \Mod_A
+        </me>;
+        that is, in the context of dagger localizations of Tate analytic rings, there is no need to keep track of the analogue of the ring of integral elements 
+        in the definition of a Huber pair.
+      </p>
+    </remark>
+  </subsection>
+  <subsection>
+    <title>Interlude on <m>q</m>-coalescence</title>
+    <p>
+      We need some analogues of the results of <xref ref="sec_solid_to_condensed"/> where solid condensed modules over <m>\underline{\ZZ}</m>
+      are replaced by <m>q</m>-coalescent condensed modules over <m>\underline{\ZZ}[q^{\pm}]</m> (carrying the discrete topology).
+    </p>
+    <lemma xml:id="lem-identify-q-coalescence-base">
+      <statement>
+        <p>
+          The coordinate map
+          <me>
+            \underline{\ZZ}[q^{\pm}] \otimes P \to \prod_\NN \underline{\ZZ}[q^{\pm}]
+          </me>
+          induces an isomorphism
+          <men xml:id="eq-q-coalescence-base-as-series">
+            (\underline{\ZZ}[q^{\pm}] \otimes P)_{\liquid q} \cong \colim_{j \in \NN}
+            \prod_{n \in \NN} \bigoplus_{m=-j}^j \underline{\ZZ} q^{m+n}
+          </men>
+          including at the derived level over <m>\underline{\ZZ}[q^{\pm}]</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The map <m>h\colon \underline{\ZZ}[q^{\pm}] \otimes P \to \underline{\ZZ}[q^{\pm}] \otimes P</m> acting by <m>[n] \mapsto q^n[n]</m>
+          is an isomorphism and satisfies <m>h\circ \Delta_q = \Delta_1 \circ h</m>.
+          It is thus sufficient to give an isomorphism
+          <me>
+            (\underline{\ZZ}[q^{\pm}] \otimes P)_{\liquid 1} \cong \colim_{j \in \NN}
+            \prod_{n \in \NN} \bigoplus_{m=-j}^j \underline{\ZZ} q^m
+            = \bigoplus_{m \in \ZZ} \left(\prod_{n \in \NN} \underline{\ZZ}\right) q^m
+          </me>
+          at the derived level. Since <m>\underline{\ZZ}[q^{\pm}]</m> is projective in <m>\CAb</m>,
+          computing the derived <m>1</m>-coalescence is equivalent over <m>\underline{\ZZ}[q^{\pm}]</m> and over <m>\underline{\ZZ}</m>
+          (<xref ref="rem-analytify-element-which-ring"/>).
+          As the latter is just derived solidification of condensed abelian groups,
+          we then deduce the claim directly from <xref ref="cor-solid-embedding-exact"/>.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-compare-P-to-profinite-q-liquid">
+      <statement>
+        <p>
+          For any infinite <m>S \in \Prof</m>, for any morphism <m>g\colon P \to \ZZ[\underline{S}]</m> in <m>\CAb</m> 
+          as constructed in <xref ref="def-construct-map-P-to-monoid"/>,
+          the map
+          <me>
+            1\otimes g\colon \underline{\ZZ}[q^{\pm}] \otimes P \to \underline{\ZZ}[q^{\pm}] \otimes \ZZ[\underline{S}]
+          </me>
+          induces an isomorphism of <m>q</m>-coalescences and of derived <m>q</m>-coalescences over <m>\underline{\ZZ}[q^{\pm}]</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The proof of <xref ref="lem-identify-solidification-of-free"/> carries over.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-liquefy-times-P-q">
+      <statement>
+        <p>
+          For any <m>S \in \Prof</m>, the map
+          <me>
+            (\underline{\ZZ}[q^{\pm}][\underline{S}] \otimes P)_{\liquid q} \to \prod_n \underline{\ZZ}[q^{\pm}][\underline{S}]_{\liquid q} 
+          </me>
+          is an isomorphism; moreover, neither side changes when the <m>q</m>-coalescence is taken in the derived sense over <m>\underline{\ZZ}[q^{\pm}]</m>.
+        </p>
+      </statement>
+      <proof> 
+        <p>
+          If <m>S</m> is finite, then the claim follows immediately from <xref ref="lem-identify-q-coalescence-base"/>.
+          If <m>S</m> is infinite, we may apply <xref ref="lem-compare-P-to-profinite-q-liquid"/> to rewrite the map in question as
+          <me>
+            (\underline{\ZZ}[q^{\pm}] \otimes P \otimes P)_{\liquid q} \to \prod_n (\underline{\ZZ}[q^{\pm}] \otimes P)_{\liquid q} 
+          </me>
+          and then apply <xref ref="lem-identify-q-coalescence-base"/> again.
+        </p>
+      </proof>
+    </lemma>
+  </subsection>
+  <subsection>
+    <title>More on dagger localizations</title>
+    <lemma xml:id="lem-tensor-with-liquid-T-general">
+      <statement>
+        <p>
+          For <m>A</m> a Tate analytic ring and <m>M \in \Mod_A</m>,
+          the coordinate map 
+          <me>
+            M \otimes^L_A A^{\triangleright} \langle T \rangle^\dagger \to \prod_n M
+          </me>
+          is injective.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We fix <m>q \in A^{\gas}</m> a topologically unit and formally reduce to the case where <m>A = \underline{\ZZ}[q^{\pm}]_{\liquid q}</m>
+          (for the discrete topology on <m>\underline{\ZZ}[q^{\pm}]</m>). 
+          By virtue of <xref ref="rem-dagger-via-P"/>, it will suffice to check that for each positive integer <m>m</m>,
+          <me>
+            M \otimes^L_{\underline{\ZZ}[q^{\pm}] \liquid q} \frac{(\underline{\ZZ}[q^{\pm}] \otimes P)[T]}{(T^m q - [1])} \to \prod_n M
+          </me>
+          is injective. This formally reduces to the case <m>m=1</m>, that is, showing that
+          <me>
+            M \otimes^L_{\underline{\ZZ}[q^{\pm}] \liquid q} (\underline{\ZZ}[q^{\pm}] \otimes P) \to \prod_n M
+          </me>
+          is injective. We rewrite the left-hand side as
+          <md>
+            <mrow>
+              (M \otimes^L_{\underline{\ZZ}[q^{\pm}]} (\underline{\ZZ}[q^{\pm}] \otimes P) )_{\liquid q}
+              &amp;= (M \otimes^L P)_{\liquid q} 
+            </mrow>
+            <mrow>
+              &amp;= (M \otimes P)_{\liquid q}
+            </mrow>
+          </md>
+          using <xref ref="prop-internally-projective"/> to replace the derived tensor product with the underived one;
+          however, now we must treat the <m>q</m>-coalescence as being derived over <m>\ZZ[q^{\pm}]</m>.
+        </p>
+        <p>
+          We may further reduce to the case where <m>M</m> is the cokernel of some map 
+          <m>\underline{\ZZ}[q^{\pm}][\underline{S}_1]_{\liquid q} \to \underline{\ZZ}[q^{\pm}][\underline{S}_0]_{\liquid q}</m>
+          with <m>S_0, S_1 \in \Prof</m> (here using underived <m>q</m>-coalescences).
+          By combining <xref ref="lem-identify-q-coalescence-base"/> and <xref ref="lem-compare-P-to-profinite-q-liquid"/>, we deduce that:
+          <ul>
+            <li>
+              <m>(\underline{\ZZ}[q^{\pm}][\underline{S_i}] \otimes P)_{\liquid q}</m> is concentrated in degree <m>0</m>;
+            </li>
+            <li>
+              the coordinate map <m>c_i</m> from this object to <m>\prod_n \underline{\ZZ}[q^{\pm}][\underline{S_i}]_{\liquid q}</m> is injective;
+            </li>
+            <li>
+              if <m>S_i</m> is infinite, the image of the previous map is isomorphic to <m>\colim_{j \in \NN}
+              \prod_{n \in \NN} \bigoplus_{m=-j}^j \underline{\ZZ} q^{m+n}</m>.
+            </li>
+          </ul>
+          From this last point we may deduce that <m>\coker(c_1) \to \coker(c_0)</m> is injective; using the five lemma, we deduce the desired injectivity.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-flat-mult-f-liquid">
+      <statement>
+        <p>
+          For <m>A</m> a Tate analytic ring, <m>f \in A^{\triangleright}(*)</m>,
+          and <m>M \in \Mod_A</m>,
+          multiplication by either <m>f-T</m> or <m>1-fT</m> 
+          is an injective map on <m>M \otimes_A A^{\triangleright}[T]</m> and 
+          <m>M \otimes_A A^{\triangleright} \langle T \rangle^\dagger</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Using <xref ref="lem-tensor-with-liquid-T-general"/> in place of <xref ref="cor-tensor-with-liquid-T"/>,
+          we argue as in the proofs of <xref ref="lem-flat-mult-f"/> (for multiplication by <m>1-fT</m>)
+          and <xref ref="lem-flat-mult-f-v2"/> (for multiplication by <m>f-T</m>).
+        </p>
+      </proof>
+    </lemma>
+    <corollary xml:id="cor-flat-mult-f-liquid">
+      <statement>
+        <p>
+          For <m>A</m> a Tate analytic ring and <m>f \in A^{\triangleright}(*)</m>,
+          the sequences
+          <md>
+            <mrow>
+              0 \to A^{\triangleright}\langle T \rangle^\dagger \stackrel{\times (T-f)}{\to} A^{\triangleright}\langle T \rangle^\dagger 
+              \to A^{\triangleright} \langle f \rangle^\dagger \to 0
+            </mrow>
+            <mrow>
+              0 \to A^{\triangleright}\langle T \rangle^\dagger \stackrel{\times (1-fT)}{\to} A^{\triangleright}\langle T \rangle^\dagger
+              \to A^{\triangleright} \langle f^{-1} \rangle^\dagger \to 0
+            </mrow>
+          </md>
+          remain exact upon tensoring with any <m>M \in \Mod_A</m>. 
+          That is, the morphisms <m>\times (T-f)</m> and <m>\times (1-fT)</m>
+          on <m>A^{\triangleright}\langle T \rangle^\dagger_q</m> in <m>\Mod_A</m> are universally injective.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          This is immediate from <xref ref="lem-flat-mult-f-liquid"/>.
+        </p>
+      </proof>
+    </corollary>
+    <lemma xml:id="lem-liquid-split-laurent-poly-ring">
+      <statement>
+        <p>
+          For <m>A</m> a Tate analytic ring, the map
+          <me>
+            A^{\triangleright} \langle T \rangle^\dagger \oplus T^{-1} A^{\triangleright} \langle T^{-1} \rangle^\dagger
+            \to A^{\triangleright} \langle T^{\pm} \rangle^\dagger := A^{\triangleright} \langle T,U \rangle^\dagger / (TU-1)
+          </me>
+          is an isomorphism.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          As in <xref ref="lem-solid-split-laurent-poly-ring"/>.
+        </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-sheafy-exact-sequence-v1-liquid">
+      <statement>
+        <p>
+          For <m>A</m> a Tate analytic ring and <m>f,g \in A^{\triangleright}(*)</m> with <m>g \in \{1,1-f\}</m>,
+          the sequence
+          <men xml:id="eq-sheafy-exact-sequence-liquid">
+            0 \to K  \to A^{\triangleright}\left\langle \tfrac{f}{g} \right\rangle^\dagger \oplus 
+            A^{\triangleright} \left\langle \tfrac{g}{f} \right\rangle^\dagger \to 
+            A^{\triangleright}\left\langle \tfrac{f}{g}, \tfrac{g}{f} \right\rangle^\dagger \to 0
+          </men>
+          is exact for
+          <me>
+            K := \ker(\times (f-gT), A^{\triangleright} \langle T^{\pm} \rangle^\dagger
+          </me>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We follow the proof of <xref ref="lem-sheafy-exact-sequence-v1"/> using 
+          <xref ref="cor-flat-mult-f-liquid"/> in place of <xref ref="lem-flat-mult-f"/> and <xref ref="lem-flat-mult-f-v2"/>
+          and <xref ref="lem-liquid-split-laurent-poly-ring"/> in place of <xref ref="lem-solid-split-laurent-poly-ring"/>.
+        </p>
+      </proof>
+    </lemma>
+    <definition>
+      <p>
+        We say that a Tate analytic ring <m>A</m> is <term>dagger-sheafy</term> if for every dagger localization <m>A \to B</m>
+        and every <m>f \in B^{\triangleright}</m>, neither <m>T-f</m> nor <m>(1-f)T-f</m> is a zero divisor on <m>B^{\triangleright} \langle T^{\pm} \rangle^\dagger_q</m>.
+      </p>
+    </definition>
+    <theorem xml:id="thm-liquid-rational-idempotent-covering">
+      <statement>
+        <p>
+          For <m>A</m> a dagger-sheafy Tate analytic ring and
+          <m>f_1,\dots,f_n \in A^{\triangleright}(*)</m> generating the unit ideal,
+          set
+          <me>
+            A_{i}^\dagger := A\left\langle \tfrac{f_1}{f_i},\dots,\tfrac{f_n}{f_i} \right\rangle^\dagger
+            \quad (i=1,\dots,n)
+          </me>.
+          Then the family <m>\{A \to A_i^\dagger\}_i</m>
+          forms a covering for the idempotent topology on <m>\AnRing^{\op}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We need to check the exactness of <xref ref="eq-idempotent-topology"/>. 
+          Using <xref ref="prop-standard-binary-coverings-Huber"/>, we may reduce to some applications of <xref ref="lem-sheafy-exact-sequence-v1-liquid"/>.
+        </p>
+      </proof>
+    </theorem>
+    <theorem xml:id="thm-mod-to-qcoh-equivalence-liquid">
+      <statement>
+        <p>
+          With notation as in <xref ref="thm-liquid-rational-idempotent-covering"/>,
+          for <m>S \subseteq \{1,\dots,n\}</m> nonempty, let <m>A_S^\dagger</m>
+          denote the tensor product (in <m>\Mod_A</m>) of <m>A_i^\dagger</m> over all <m>i \in S</m>.
+          Then
+          <m>\calD(\Mod_A)</m> is the limit of the diagram formed by the stable <m>\infty</m>-categories <m>\calD(\Mod_{A_S^\dagger})</m>
+          over all <m>S</m>.
+          Similarly, <m>\Mod_A</m> is the limit of the diagram formed by the categories 
+          <m>\Mod_{A_S^{\dagger \triangleright}} \times_{\Mod_{A^\triangleright}} \Mod_A</m>
+          over all <m>S</m>.
+        </p>
+      </statement>
+      <proof>
+        This follows by combining <xref ref="thm-idempotent-sheaf"/> and <xref ref="thm-liquid-rational-idempotent-covering"/>.
+      </proof>
+    </theorem>
+  </subsection>
+  <subsection>
+    <title>Dagger spaces</title>
+    <p>
+      We now restrict to the setting of a Tate analytic ring,
+      where we can further introduce an analogue of solid adic spaces.
+    </p>
+    <definition xml:id="def-liquid-dagger-spectrum">
+      <p>
+        For <m>A</m> a Tate analytic ring, define the <term>valuative spectrum</term> <m>\Spv(A)</m>
+        as the set of valuations <m>v</m> on <m>A^{\triangleright}(*)</m> whose value on some (and hence any) topologically nilpotent unit <m>q</m>
+        is cofinal. That is, for any <m>a \in A^{\triangleright}(*)</m>, either <m>v(a) = 0</m> or there exists some positive integer <m>n</m>
+        such that <m>v(q^n) \lt v(a)</m>. This is again a spectral space (<xref ref="bib-Huber1"/>, Proposition 2.6(i)).
+        As in <xref ref="prop-standard-binary-coverings-Huber"/>, this topology is generated by compositions of standard binary coverings.
+      </p>
+      <p>
+        We define a presheaf <m>\calO</m> of condensed rings on <m>\Spv(A)</m> whose value on each rational subspace <m>U(\tfrac{f_1,\dots,f_n}{g})</m>
+        (for <m>f_1,\dots,f_n,g \in A^{\triangleright}(*)</m> generating the unit ideal)
+        the dagger localization <m>A \left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g} \right\rangle^{\dagger \triangleright}</m>.
+        Using <xref ref="thm-liquid-rational-idempotent-covering"/>, we see that <m>\calO</m> is a sheaf; we thus obtain an object of <m>\LCRS</m>, which we call the
+        <term>dagger spectrum</term> of <m>A</m>.
+      </p>
+      <p>
+        A <term>dagger space</term> is an object of <m>\LCRS</m> locally of this form.
+        For example, let <m>\PP^1_{A \liquid}</m> be the space obtained by glueing
+        <m>\AnSpec A \langle T \rangle^\dagger</m> and <m>\AnSpec A \langle T^{-1} \rangle^\dagger</m> along <m>\AnSpec A \langle T^{\pm} \rangle^\dagger</m>.
+      </p>
+    </definition>
+  </subsection>
+  <subsection>
+    <title>
+      Dagger <m>\PP^1</m>
+    </title>
+    <theorem xml:id="prop-compare-Tate-P1-to-analytic">
+      <statement>
+        <p>
+          For <m>A</m> a dagger-sheafy Tate analytic ring, pullback along <m>\PP^1_{A \liquid} \to \PP^1_A</m> induces an equivalence of 
+          stable <m>\infty</m>-categories of derived categories of quasicoherent sheaves.
+          Moreover, these equivalences are compatible with any combination of <q>bounded above</q>, <q>bounded below</q>, <q>compact</q>, <q>pseudocoherent</q>, <q>nuclear</q>, and <q>dualizable</q>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          As in <xref ref="prop-compare-solid-P1-to-analytic"/>.
+        </p>
+      </proof>
+    </theorem>
+    <lemma xml:id="lem-trace-class-liquid">
+      <title>Schwartz lemma for Tate analytic rings</title>
+      <statement>
+        <p>
+          Let <m>A</m> be a Tate analytic ring and fix <m>S \in \Prof</m>.
+          Then for any trace class morphism <m>f\colon A[\underline{S}] \to A[\underline{S}]</m>,
+          <m>\cone(f-1)</m> is isomorphic in <m>\calD(\Mod_{A})</m> to
+          a complex of the form <m>A^{\triangleright n}[-1] \to A^{n}[0]</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          As in the proof of <xref ref="lem-trace-class"/>, we may lift to a setting where 
+          <m>A^{\triangleright}</m> is represented by a topological ring which is itself Tate.
+          Now using the fact that <m>A^{\circ \circ}</m> is open in <m>A^{\triangleright}(*)</m>,
+          we can imitate the proof of <xref ref="lem-trace-class"/>.
+        </p>
+      </proof>
+    </lemma>
+    <theorem xml:id="thm-gaga-liquid">
+      <statement>
+        <p>
+          For <m>A</m> a dagger-sheafy Tate analytic ring, pullback along <m>\PP^1_{A} \to \PP^1_{A^{\triangleright}(*)}</m> induces equivalences of categories (or stable <m>\infty</m>-categories) as follows:
+          <ul>
+            <li>
+              pseudocoherent complexes on <m>\PP^1_{A^{\triangleright}(*)}</m> to discrete pseudocoherent complexes on <m>\PP^1_{A}</m>;
+            </li>
+            <li>
+              perfect complexes on <m>\PP^1_{A^{\triangleright}(*)}</m> to discrete perfect complexes on <m>\PP^1_{A}</m>;
+            </li>
+            <li>
+              vector bundles on <m>\PP^1_{A^{\triangleright}(*)}</m> to vector bundles on <m>\PP^1_{A}</m>.
+            </li>
+          </ul>
+          In addition, if <m>A^{\triangleright}(*)</m> is noetherian, we get an equivalence between coherent sheaves on <m>\PP^1_{A^{\triangleright}(*)}</m> and <m>\PP^1_{A}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Using <xref ref="lem-trace-class-liquid"/>, we obtain an analogue of <xref ref="thm-pseudocoherent-descent"/>;
+          we then argue as in <xref ref="thm-gaga-solid"/>.
+        </p>
+      </proof>
+    </theorem>
+    <corollary>
+      <statement>
+        <p>
+          For <m>A</m> a Tate analytic ring, pullback along <m>\PP^1_{\underline{A}} \to \PP^1_A</m> induces an equivalence of categories between
+          the stable <m>\infty</m>-category of complexes of quasicoherent sheaves on <m>\PP^1_A</m> with amplitude in <m>(-\infty, 0]</m> and the stable <m>\infty</m>-category of 
+          ind-pseudocoherent complexes on <m>\PP^1_{\underline{A}}</m> with amplitude in <m>(-\infty, 0]</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          As in <xref ref="cor-solid-quasicoherent-by-ind"/>.
+        </p>
+      </proof>
+    </corollary>
+    <theorem xml:id="thm-gaga-classical-v2">
+      <title>GAGA</title>
+      <statement>
+        <p>
+          For <m>X</m> a proper scheme over <m>\CC</m>, pullback along <m>X^{\an} \to X</m> induces an exact equivalence of categories between coherent sheaves on <m>X</m> and <m>X^{\an}</m>,
+          which moreover preserves sheaf cohomology.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          As in <xref ref="thm-gaga-classical-v3"/>, we reduce to the case
+          <m>X = \PP^1_\CC \times_\CC \cdots \times_\CC \PP^1_\CC</m>, which we can then deduce from <xref ref="prop-compare-Tate-P1-to-analytic"/> and <xref ref="thm-gaga-liquid"/>
+          once we know that the local rings of <m>X^{\an}</m> are coherent.
+          This follows from a theorem of Frisch stating that the ring of holomorphic functions on a closed unit polydisc is noetherian 
+          <xref ref="bib-Frisch"/>.
+          (The dagger-sheafy condition is automatic because the condensed rings in question are represented by topological rings of holomorphic functions
+          on complex manifolds, and the vanishing of such functions is indeed a local condition.)
+        </p>
+      </proof>
+    </theorem>
+  </subsection>
+</section>
