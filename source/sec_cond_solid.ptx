@@ -353,14 +353,14 @@
           </men>
           defines an element <m>x \in \Hom_{\CAb}(P, \underline{\RR})</m>; we may thus apply the inverse of <m>\Delta^*</m> to get an element
           <m>y \in \Hom_{\CAb}(P, \underline{\RR}_\solid)</m>. Taking the first coordinate (i.e., restricting along <m>\ZZ \to \ZZ \cdot [1] \subset P</m>)
-          yields an element <m>z \in \underline{\RR}_\solid</m>.
+          yields an element <m>z \in \underline{\RR}_\solid(*)</m>.
         </p>
         <p>
           By formally rearranging <xref ref="eq-not-summable-null-sequence"/> as
           <me>
             1 + \left( \tfrac{1}{2} + \tfrac{1}{2} \right) + \left( \tfrac{1}{4} + \tfrac{1}{4} \right) + \left( \tfrac{1}{4} + \tfrac{1}{4} \right) + \cdots
           </me>
-          and invoking <xref ref="rem-infinite-series"/>, we deduce that <m>z = 1 + z</m>. We deduce that <m>0 = 1</m> in <m>\underline{\RR}_\solid</m>; since
+          and invoking <xref ref="rem-infinite-series"/>, we deduce that <m>z = 1 + z</m>. We deduce that <m>0 = 1</m> in <m>\underline{\RR}_\solid(*)</m>; since
           <m>\underline{\RR}_\solid</m> is a ring object in <m>\CAb</m> (because <m>\underline{\RR}</m> is), it follows that <m>\underline{\RR}_\solid = 0</m>.
         </p>
       </proof>

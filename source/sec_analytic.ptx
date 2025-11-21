@@ -341,7 +341,7 @@
         The latter gives an internally projective resolution of <m>\coker(\Delta_f)/R</m> of length <m>1</m>.
       </p>
       <p>
-        Let us see what tensoring with <m>M \in \Mod_{R \liquid f}</m> does to these sequences.
+        Let us see what taking internal Homs into <m>M \in \Mod_{R \liquid f}</m> does to these sequences.
         For <xref ref="eq-split-sequence-P-mod-Z"/>, since the sequence is split we get for every <m>i \geq 0</m> an exact sequence
         <me>
           0 \to \iExt^i_R((P/\underline{\ZZ}) \otimes R, M) \to \iExt^i_R(P \otimes R, M) \to \iExt^i_R(R, M) \to 0
@@ -408,116 +408,23 @@
     </remark>
   </subsection>
   <subsection>
-    <title>The core of an analytic ring</title>
+    <title>Coalescence around different elements</title>
     <p>
       We study the effect of coalescing with respect to different elements.
       This involves picking up the thread from <xref ref="rem-infinite-series"/>, now
       algebraizing various statements about summability of null sequences against <m>f</m>.
+      We will upgrade this discussion in <xref ref="subsec-core-of-an-analytic-ring"/>.
     </p>
-    <lemma xml:id="lem-f-liquid-to-scale-null">
-      <statement>
-        <p>
-          Let <m>R</m> be a condensed commutative ring and choose <m>f \in R(*)</m> and <m>M \in \Mod_{R \liquid f}</m>.
-          Then the map on <m>\iHom_R(R[T], M)</m> induced by <m>R[T] \stackrel{T \mapsto fT}{\to} R[T]</m> carries
-          <m>\iHom_R(P \otimes R, M)</m> into itself.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          For <m>S \in \Prof</m>, we must check that we get a map on <m>\Hom_{\CAb}(\ZZ[\underline{S}], \iHom_{\CAb}(P, M))</m>;
-          using Hom-tensor adjunction, we may rewrite this as <m>\Hom_{\CAb}(P, \Hom_{\CAb}(\ZZ[\underline{S}], M))</m>.
-          Since again <m>\Hom_{\CAb}(\ZZ[\underline{S}], M) \in \Mod_{R \liquid f}</m>,
-          we formally reduce to the case where <m>S</m> is a singleton.
-          The claimed statement now becomes the observation that for any null sequence <m>(m_0, m_1, \dots)</m> in <m>M</m>,
-          the inclusion <m>M \in \Mod_{R \liquid f}</m> means that the sequence <m>(m_0, f m_1, \dots)</m> is summable against 1,
-          and so must itself be a null sequence.
-        </p>
-      </proof>
-    </lemma>
-    <lemma xml:id="lem-from-f-liquid-to-fg-liquid">
-      <statement>
-        <p>
-          Let <m>R</m> be a condensed commutative ring and choose <m>f,g \in R(*)</m> and <m>M \in \Mod_{R \liquid f}</m>.
-          Suppose that the map on <m>\iHom_R(R[T], M)</m> induced by <m>R[T] \stackrel{T \mapsto gT}{\to} R[T]</m> carries
-          <m>\iHom_R(P \otimes R, M)</m> into itself. Then <m>M \in \Mod_{R \liquid fg}</m>.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          We algebraize the following statement: given a null sequence <m>(m_0, m_1, \dots)</m>,
-          if we know that <m>(m_0, f_1 m_1, \dots)</m> is again a null sequence and that every null sequence is summable against <m>g</m>,
-          we may conclude that the original sequence is summable against <m>fg</m>.
-        </p>
-        <p>
-          Let <m>h_g^* \colon \iHom_R(P \otimes R, M) \to \iHom_R(P \otimes R, M)</m> be the map induced by
-          <m>R[T] \stackrel{T \mapsto gT}{\to} R[T]</m>, whose existence has been assumed.
-          Note that the notation is mnemonic in nature: we are not assuming the existence of a map <m>h_g</m> on <m>P \times R</m>,
-          but <m>h_g^*</m> functions as the <q>virtual pullback</q> by such a nonexistent map.
-        </p>
-        <p>
-          We have an equality of maps on <m>\iHom_{\CAb}(P, M) \cong \iHom_R(P \otimes R, M)</m>:
-          <me>
-            \Delta_f^* \circ h_g^* = h_g^* \circ \Delta_{fg}^*
-          </me>:
-          both compositions have the effect
-          <me>
-            (m_0, m_1, \dots) \mapsto (m_0-fgm_1, gm_1-fg^2m_2, \dots).
-          </me>.
-          Next, define the map
-          <me>
-            \lambda\colon P \to P, \qquad [0] \to 0, [n+1] \mapsto [n]
-          </me>
-          and form the composition 
-          <me>
-            \lambda^* \oplus h_g^*\colon \iHom_R(P \otimes R, M) \to \iHom_R((P \oplus P) \otimes R, M)
-          </me>
-          where <m>\lambda^*\colon \iHom_{\CAb}(P, M) \to \iHom_{\CAb}(P, M)</m> is a genuine pullback.
-          The map <m> \lambda^* \oplus h_g^*</m> is a split injection:
-          we can first project from <m>\iHom_R((P \oplus P) \otimes R, M)</m> to <m>\iHom_R((P \oplus \ZZ) \otimes R, M)</m>
-          by restricting along <m>\ZZ \to \ZZ[0] \subset P</m>. The resulting composition
-          <m>\iHom_R(P \otimes R, M) \to \iHom_R((P \oplus \ZZ) \otimes R, M)</m> is now the pullback along a genuine map
-          <m>P \oplus \ZZ \to P</m> which is a split surjection, so the pullback is a split injection.
-        </p>
-        <p>
-          We now have an equality of maps on <m>\iHom_{\CAb}(P \oplus P, M) \cong \iHom_R((P \oplus P) \otimes R, M)</m>:
-          <me>
-            (\Delta_f^* \oplus \Delta_f^*) \circ (h_g^* \oplus \lambda^*) = (h_g^*\oplus \lambda^*) \circ \Delta_{fg}^*
-          </me>.
-          Since <m>(\Delta_f \oplus \Delta_f)^*</m> is an isomorphism and <m>h_g^* \oplus \lambda^*</m>
-          is a split injection,
-          tracing around the square as in <xref ref="lem-replace-bounded-with-P-solid"/> (but with the sense of arrows reversed)
-          shows that <m>\Delta_{fg}^*</m> is also an isomorphism.
-        </p>
-      </proof>
-    </lemma>
-    <lemma xml:id="lem-f-times-g-liquid">
-      <statement>
-        <p>
-          Let <m>R</m> be a condensed commutative ring and choose <m>f,g \in R(*)</m>. Then within <m>\Mod_R</m>,
-          we have an inclusion of full subcategories
-          <me>
-            \Mod_{R \liquid f} \cap \Mod_{R \liquid g} \subseteq \Mod_{R \liquid fg}
-          </me>.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          This follows by combining <xref ref="lem-f-liquid-to-scale-null"/> and <xref ref="lem-from-f-liquid-to-fg-liquid"/>.
-        </p>
-      </proof>
-    </lemma>
     <lemma xml:id="lem-f-solidification-versus-fn">
       <statement>
         <p>
           Let <m>R</m> be a condensed commutative ring and choose <m>f \in R(*)</m>.
-          For any positive integer <m>n</m>, <m>\Mod_{R \liquid f} = \Mod_{R \liquid f^n}</m>.
+          For any positive integer <m>n</m>, <m>\Mod_{R \liquid f^n} \subseteq \Mod_{R \liquid f}</m>.
         </p>
       </statement>
       <proof>
         <p>
-          The fact that <m>\Mod_{R \liquid f} \subseteq \Mod_{R \liquid f^n}</m> follows from <xref ref="lem-f-times-g-liquid"/>.
-          To see that <m>\Mod_{R \liquid f^n} \subseteq \Mod_{R \liquid f}</m>,
-          we algebraize the statement that a null sequence <m>(m_0, m_1, \dots)</m> is summable against <m>f</m>
+          We algebraize the statement that a null sequence <m>(m_0, m_1, \dots)</m> is summable against <m>f</m>
           if and only if the decimated sequences <m>(m_i, m_{i+n}, \dots)</m> for <m>i=0,\dots,n-1</m> are summable against <m>f^n</m>, in which case the original sum
           coincides with the sum of <m>f^i</m> times the sum of the <m>i</m>-th decimated sequence for <m>i=1,\dots,n-1</m>.
           This corresponds to the fact that <m>\tilde{\Delta}_{f^n} = \Delta_{f} \circ g = g \circ \Delta_{f}</m> where 
@@ -546,101 +453,124 @@
         </p>
       </proof>
     </lemma>
-    <definition xml:id="def-R-topologically-nilpotent">
-      <p>
-        Let <m>R</m> be a condensed commutative ring.
-        We say that <m>g \in R(*)</m> is <term>topologically nilpotent</term> if there is a morphism <m>P \to R</m> of condensed commutative rings
-        taking <m>[1]</m> to <m>g</m>.
-        If <m>R</m> is a topological ring, this says that the powers of <m>g</m> form a null sequence.
-        (Otherwise, it is unclear whether the resulting morphism is uniquely determined by <m>g</m>; compare <xref ref="rem-null-null-sequences"/>.)
-      </p>
-      <p>
-        We say that <m>g \in R(*)</m> is <term>universally power-bounded</term> if there is a morphism <m>P \to P \otimes R</m> of condensed commutative rings
-        taking <m>[1]</m> to <m>g[1]</m>.
-        If <m>R</m> is a topological ring, this implies that for every topological <m>R</m>-module <m>M</m> and every null sequence <m>(m_n)_n</m> in <m>M</m>,
-        <m>(g^n m_n)_n</m> is also a null sequence; this is in general strictly stronger than making the same assertion only for <m>M=R</m>.
-      </p>
-      <p>
-        If <m>g</m> is topologically nilpotent, then it is also universally power-bounded.
-        Moreover, both properties are <q>integrally closed</q> in <m>R(*)</m>:
-        if <m>g \in R(*)</m> and <m>g^n</m> is universally power-bounded (resp. topologically nilpotent), then so is <m>g</m>.
-      </p>
-    </definition>
-    <lemma xml:id="rem-f-solidification-versus-fg">
+    <lemma xml:id="lem-from-f-liquid-to-fg-liquid">
       <statement>
         <p>
-          Let <m>R</m> be a condensed commutative ring and choose <m>f \in R(*)</m>.
-          Suppose that <m>g \in R(*)</m> is topologically nilpotent (or more generally universally power-bounded). 
-          We then have an inclusion <m>\Mod_{R \liquid f} \subseteq \Mod_{R \liquid fg}</m>.
+          Let <m>R</m> be a condensed ring and choose <m>f,g \in R(*)</m>.
+          Suppose that there exists an <m>R</m>-algebra morphism <m>h_g \colon P \otimes R \to P \otimes R</m> taking <m>[n]</m> to <m>g^n [n]</m>.
+          (For example, this holds when <m>R</m> is a topological ring and <m>g</m> is topologically nilpotent.)
         </p>
       </statement>
       <proof>
         <p>
-          The universally power-bounded property implies that the hypothesis of <xref ref="lem-from-f-liquid-to-fg-liquid"/> is satisfied
-          by every object of <m>\Mod_R</m>, so in particular for objects of <m>\Mod_{R \liquid f}</m>.
+          We would like to algebraize the following logic.
+          Given a null sequence <m>(m_0, m_1, \dots)</m>,
+          if we can rescale by powers of <m>g</m> to get another null sequence
+          <m>(m_0, g m_1, g^2 m_2, \dots)</m>, 
+          and we know that every null sequence is summable against <m>f</m>,
+          we may conclude that the original sequence is summable against <m>fg</m>.
+        </p>
+        <p>
+          We next encounter a subtlety in the argument that can already be seen in terms of null sequences. 
+          The strategy is to invert the function
+          <men xml:id="eq-difference-by-fg">
+            (m_0, m_1, \dots) \mapsto (m_0 - fg m_1, m_1 - fg m_2, \dots),
+          </men>
+          which symbolically is achieved by 
+          <me>
+            (m_0, m_1, \dots) \mapsto \left( \sum_{n=0}^\infty (fg)^n m_n, \sum_{n=0}^\infty (fg)^n m_{n+1}, \dots \right) 
+          </me>;
+          however, composing the map
+          <men xml:id="eq-rescale-by-g">
+            (m_0, m_1, \dots) \mapsto (m_0, g m_1, g^2 m_2, \dots)
+          </men>
+          with the map
+          <me>
+            (m_0, m_1, \dots) \mapsto \left(\sum_{n=0}^\infty f^n m_n, \sum_{n=0}^\infty f^n m_{n+1}, \dots \right)
+          </me>
+          gives 
+          <me>
+            (m_0, m_1, \dots) \mapsto \left( \sum_{n=0}^\infty (fg)^n m_n, g \sum_{n=0}^\infty (fg)^n m_{n+1}, g^2 \sum_{n=0}^\infty (fg)^n m_{n+2}, \dots \right)
+          </me>
+          where the term in position <m>n</m> is the term we want but multiplied by <m>g^n</m>.
+          In other words, we cannot perform the operation <xref ref="eq-difference-by-fg"/> by first rescaling by <m>g</m> as in <xref ref="eq-rescale-by-g"/>,
+          then performing <m>(m_0,m_1,\dots) \mapsto (m_0-fm_1, m_1-fm_2)</m>; rather, this executes <xref ref="eq-difference-by-fg"/> plus rescaling by <m>g</m>. 
+        </p>
+        <p>
+          We may resolve this by working in terms of two-dimensional arrays.
+          To wit, to execute <xref ref="eq-difference-by-fg"/>, we first expand <m>(m_0, m_1, \dots)</m> into a two-dimensional array
+          and rescale <em>columns</em> by powers of <m>g</m> to get
+          <me>
+            \begin{pmatrix}
+              m_0 \amp gm_1 \amp g^2m_2 \amp  \\
+              m_1 \amp gm_2 \amp g^2m_3 \amp \cdots \\
+              m_2 \amp gm_3 \amp g^2m_4 \amp  \\
+              \amp \vdots \amp \amp \ddots 
+            \end{pmatrix}
+          </me>;
+          difference <em>rows</em> by <m>f</m> to get 
+          <me>
+            \begin{pmatrix}
+              m_0-fgm_1 \amp gm_1-fg^2m_2 \amp g^2m_2-fg^3m_3 \amp  \\
+              m_1-fgm_2 \amp gm_2-fg^2m_3 \amp g^2m_3-fg^2m-4 \amp \cdots \\
+              m_2-fgm_3 \amp gm_3-fg^2m_4 \amp g^2m_4-fg^2m_5 \amp  \\
+              \amp \vdots \amp \amp \ddots 
+            \end{pmatrix}
+          </me>;
+          and finally project onto the first column, noting that this operation is a section of the first one.
+        </p>
+        <p>
+          We now translate these steps into operations on condensed modules, and ultimately on condensed rings.
+          The expansion into a two-dimensional array should give a map <m>\Hom_{\CAb}(P, R) \to \Hom_{\CAb}(P \otimes P, R)</m>;
+          this is pullback by the map <m>+_P\colon P \otimes P \to P</m> induced by the addition map <m>\NN_\infty \times \NN_\infty \to \NN_\infty</m>.
+          The rescaling by <m>g</m> is pullback by the given <m>R</m>-algebra map <m>h_g\colon P \otimes R \to P \otimes R</m>,
+          or more precisely by <m>\id \otimes h_g</m> to indicate that we are rescaling the columns. 
+          Differencing the rows is pullback by <m>\id \otimes \Delta_f</m>.
+          Finally, projecting onto the first column is pullback by the first injection <m>\iota_1 \colon P = P \otimes \ZZ \to P \otimes P</m>.
+          Undoing the pullbacks (which reverses the order of composition), we end up with a putative equality
+          <men xml:id="eq-break-down-fg-pullback">
+            \Delta_{fg} = +_P \circ (\id \otimes (h_g \circ \Delta_f)) \circ \iota_1
+          </men>
+          of morphisms <m>P \to P \otimes R</m>.
+        </p>
+        <p>
+          At this point, we still need to verify <xref ref="eq-break-down-fg-pullback"/>: we can directly verify that both sides act by
+          <m>[n] \mapsto [n] - fg[n+1]</m>,
+          but this is only sufficient when <m>R</m> is a topological ring. Fortunately, we may check the equality in the universal case where
+          <m>R = P[T]</m>, <m>f = T</m>, and <m>g = [1]</m>, where an argument by elements suffices, and then specialize to the case at hand.
+        </p>
+        <p>
+          Now we transpose <xref ref="eq-break-down-fg-pullback"/> to get
+          <me>
+            \Delta_{fg}^* = \iota_1^* \circ (\id \otimes (\Delta_f^* \circ h_g^*)) \circ +_P^*
+          </me>.
+          Given that <m>\Delta_f^*</m> is invertible on <m>\Hom_{\CAb}(P, M)</m>, and using the fact that 
+          the maps <m>\iota_1^*</m> and <m>(\id \otimes h_g^*) \circ +_P^*</m> split each other, we obtain
+          <me>
+            (\Delta_{fg}^*)^{-1} = \iota_1^* \circ (\id \otimes (\Delta_f^*)^{-1} \circ h_g^*)) \circ +_P^*
+          </me>,
+          which proves the claim.
         </p>
       </proof>
     </lemma>
-    <corollary xml:id="cor-liquid-top-nilpotent-unit">
+    <corollary xml:id="cor-liquid-top-nilpotent-unit-topological">
       <statement>
         <p>
-          Let <m>R</m> be a condensed commutative ring.
-          Suppose that <m>f \in R(*)</m> is a unit and <m>g \in R(*)</m> is topologically nilpotent.
-          We then have an inclusion <m>\Mod_{R \liquid f} \subseteq \Mod_{R \liquid g}</m>.
+          Let <m>R</m> be a topological ring and suppose that <m>f,g \in R^\times</m> are both topologically nilpotent units.
+          Then <m>\Mod_{\underline{R} \liquid f} = \Mod_{\underline{R} \liquid g}</m>.
         </p>
       </statement>
       <proof>
         <p>
-          Since <m>g</m> is topologically nilpotent, so is <m>g^n f^{-1}</m>.
-          By <xref ref="rem-f-solidification-versus-fg"/> and <xref ref="lem-f-solidification-versus-fn"/>,
+          It suffices to prove that <m>\Mod_{\underline{R} \liquid f} \subseteq \Mod_{\underline{R} \liquid g}</m>.
+          For this, note that there exists a positive integer <m>n</m> such that <m>g^n f^{-1}</m> is topologically nilpotent.
+          By <xref ref="lem-from-f-liquid-to-fg-liquid"/> and <xref ref="lem-f-solidification-versus-fn"/>, we have 
           <me>
-            \Mod_{R \liquid f} \subseteq \Mod_{R \liquid f(g^n f^{-1}} = \Mod_{R \liquid g^n} = \Mod_{R \liquid g}
+            \Mod_{R \liquid f} \subseteq \Mod_{R \liquid f(g^n f^{-1})} = \Mod_{R \liquid g^n} \subseteq \Mod_{R \liquid g}
           </me>.
         </p>
       </proof>
     </corollary>
-    <p>
-      We may summarize the previous discussion as follows.
-    </p>
-    <definition xml:id="def-corona">
-      <p>
-        For <m>R</m> an analytic ring, an element <m>f \in R^{\triangleright}(*)</m> is <term>gaseous</term>
-        if <m>\Mod_R = \Mod_{R \liquid f}</m>.
-        Define the <term>gaseous core</term> (or more commonly just the <term>core</term>) of <m>R</m>, denoted <m>R^{\gas}</m>, to be the set of gaseous elements of <m>R^{\triangleright}(*)</m>.
-      </p>
-    </definition>
-    <proposition>
-      <p>
-        For <m>R</m> an analytic ring, the core <m>R^{\gas}</m> has the following properties.
-        <ol>
-          <li>
-            <m>R^{\gas}</m> is a multiplicative subset of <m>R(*)</m> containing <m>0</m>.
-          </li>
-          <li>
-            <m>R^{\gas}</m> is <q>integrally closed</q>: if <m>f^n \in R^{\gas}</m> for some <m>f \in R(*)</m> and some positive integer <m>n</m>,
-            then <m>f \in R^{\gas}</m>.
-          </li>
-          <li>
-            <m>R^{\gas}</m> is a <q>module</q>: for any <m>f \in R^{\gas}</m> and any universally power-bounded <m>g \in R(*)</m> we have <m>fg \in R^{\gas}</m>.
-          </li>
-          <li>
-            If <m>R^{\gas}</m> contains any unit of <m>R(*)</m>, then it contains every topologically nilpotent element of <m>R(*)</m>.
-          </li>
-        </ol>
-      </p>
-      <proof>
-        <p>
-          This follows by combining <xref ref="lem-f-times-g-liquid"/>, <xref ref="lem-f-solidification-versus-fn"/>,
-          <xref ref="rem-f-solidification-versus-fg"/>, and <xref ref="cor-liquid-top-nilpotent-unit"/>.
-        </p>
-      </proof>
-    </proposition>
-    <remark>
-      <p>
-        In general, there is no reason to expect the core of an analytic ring to have any meaningful additive structure.
-        This changes if we restrict attention to <em>solid</em> analytic rings; see <xref ref="prop-solid-integral-elements"/>.
-      </p>
-     </remark>
   </subsection>
   <subsection>
     <title>The gaseous real numbers</title>
@@ -650,7 +580,7 @@
     </p>
     <definition xml:id="def-R-liquid">
       <p>
-        By <xref ref="cor-liquid-top-nilpotent-unit"/>,
+        By <xref ref="cor-liquid-top-nilpotent-unit-topological"/>,
         the category <m>\Mod_{\underline{\RR} \liquid f}</m> is the same for any two choices of <m>f \in (0,1)</m>.
         We denote it also as <m>\Mod_{\underline{\RR} \liquid}</m>.
       </p>
@@ -696,13 +626,14 @@
   <subsection>
     <title>The initial analytic ring</title>
     <p>
-      For some calculations, it is helpful to describe a <q>universal</q> version of coalescence.
+      For some calculations, it is helpful to describe a <q>universal</q> version of coalescence
+      with respect to a topologically nilpotent element.
     </p>
     <definition xml:id="def-initial-base-ring">
       <p>
-        Let <m>\ZZ[\hat{q}]</m> be a copy of <m>P := \ZZ[\underline{\NN_\infty}]/\ZZ[\underline{\infty}]</m> viewed as an algebra over <m>\ZZ[q]</m> via <m>q^n \mapsto [n]</m>.
-        Then set <m>A_0^{\triangleright} := \ZZ[\hat{q}][q^{-1}]</m>; this condensed ring is represented by the topological ring with underlying ring <m>\ZZ[q^{\pm}]</m>,
-        which is initial among condensed rings <m>R</m> equipped with a choice of a unit <m>q \in R(*)^\times</m>
+        Let <m>A_0^{\triangleright}</m> be a copy of <m>P := \ZZ[\underline{\NN_\infty}]/\ZZ[\underline{\infty}]</m> viewed as an algebra over <m>\ZZ[q]</m> via <m>q^n \mapsto [n]</m>.
+        This condensed ring is represented by the topological ring with underlying ring <m>\ZZ[q]</m>,
+        which is initial among condensed rings <m>R</m> equipped with a choice of an element <m>q \in R(*)</m>
         and a morphism of condensed commutative rings <m>P \to R</m> taking <m>[1]</m> to <m>q</m>
         (which witnesses that <m>q</m> is topologically nilpotent).
         By <xref ref="prop-liquefaction"/>, the pair <m>(A_0^{\triangleright}, \Mod_{A_0^{\triangleright} \liquid q})</m> is a pre-analytic ring.
@@ -716,7 +647,7 @@
       <p>
         For <m>k=1,2,\dots</m>, define the topological ring
         <men xml:id="eq-universal-liquefaction-filtered">
-          A_k^{\triangleright} := \bigcup_{c, n \gt 0} \prod_{m \geq -n} \left(\ZZ \cap [-c(m+n)^{k-1}, c(m+n)^{k-1}] \right) q^m
+          A_k^{\triangleright} := \bigcup_{c \gt 0} \prod_{m=0}^\infty \left(\ZZ \cap [-c(m+1)^{k-1}, c(m+1)^{k-1}] \right) q^m
         </men>
         and set <m>A^{\triangleright} = \bigcup_k A_k^{\triangleright}</m>.
         That is, <m>A^{\triangleright}</m> consists of Laurent series whose coefficients grow polynomially in the exponent.
@@ -724,50 +655,60 @@
       <p>
         For <m>S = \varprojlim_i S_i \in \Prof</m>, we similarly have
         <men xml:id="eq-universal-liquefaction-filtered-with-S">
-          A_k^{\triangleright}\otimes \ZZ[\underline{S}] := \bigcup_{c, n \gt 0} \varprojlim_i \prod_{m \geq -n} \ZZ[S_i]_{\leq c(m+n)^{k-1}} q^m
+          A_k^{\triangleright}\otimes \ZZ[\underline{S}] := \bigcup_{c \gt 0} \varprojlim_i \prod_{m=0}^\infty \ZZ[S_i]_{\leq c(m+1)^{k-1}} q^m
         </men>
-        where the subscript <m>\leq c(m+n)^{k-1}</m> means that we bound the sum of the absolute values of the coefficients accordingly.
+        where the subscript <m>\leq c(m+1)^{k-1}</m> means that we bound the sum of the absolute values of the coefficients accordingly.
       </p>
     </definition>
-    <lemma xml:id="lem-filtration-on-universal-liquefaction">
+    <lemma xml:id="lem-filtration-on-universal-liquefaction1">
       <statement>
         <p>
-          For <m>k=1,2,\dots</m> and <m>S \in \Prof</m>, a power series in <m>\ZZ((q)) \otimes \ZZ[\underline{S}]</m> belongs to <m>A_k^{\triangleright} \otimes \ZZ[\underline{S}]</m> if and only if
-          it can be written as <m>\sum_{i=0}^\infty s_i q^i</m> where <m>(s_i)_i</m> is a null sequence in <m>A_{k-1}^{\triangleright} \otimes \ZZ[\underline{S}]</m>.
+          For <m>S \in \Prof</m> and <m>k \geq 2</m>,
+          any null sequence <m>(s_i)_i</m> in <m>A_{k-1}^{\triangleright} \otimes \ZZ[\underline{S}]</m>
+          is summable against <m>q</m> in <m>A_{k}^{\triangleright} \otimes \ZZ[\underline{S}]</m>.
         </p>
       </statement>
       <proof>
         <p>
           We treat the case <m>S = \{*\}</m> in detail, the general case being similar but with more notation.
-          Given a null sequence <m>(s_i)_i</m> in <m>A_{k-1}^{\triangleright}</m>,
-          for some fixed <m>n,c</m> we have <m>s_i = \sum_{m \geq -n} s_{i,m} q^m</m> where we have
-          <m>|s_{i,m}| \leq c(m+n)^{k-2}</m> for all <m>i,m</m> if <m>k \gt 1</m>,
-          and for <m>k =1</m> we instead have that only finitely many of the <m>s_{i,m}</m> are nonzero.
+          Given a null sequence <m>(s_i)_i</m> in <m>A_{k-1}^{\triangleright}</m> with <m>k \geq 2</m>,
+          for some fixed <m>c</m> we have <m>s_i = \sum_{m=0}^\infty s_{i,m} q^m</m> where
+          <m>|s_{i,m}| \leq c(m+1)^{k-2}</m> for all <m>i,m</m>.
           Now write
           <md>
             <mrow>
-              \sum_{i=0}^\infty s_i q^i &amp;= \sum_{i=0}^\infty \sum_{m \geq -n} s_{i,m} q^{m+i}
+              \sum_{i=0}^\infty s_i q^i &amp;= \sum_{i=0}^\infty \sum_{m=0}^\infty s_{i,m} q^{m+i}
             </mrow>
             <mrow>
-              &amp;= \sum_{j \geq -n} \left( \sum_{i=0}^{j+n} s_{i,j-i} \right) q^j
+              &amp;= \sum_{j=0}^\infty \left( \sum_{i=0}^{j} s_{i,j-i} \right) q^j
             </mrow>
           </md>.
-          If <m>k=1</m> it is obvious that the resulting series has bounded coefficients and so belongs to <m>A_0^{\triangleright}</m>. Otherwise,
-          since <m>|s_{i,j-i}| \leq c(j+n-i)^k</m> for all <m>i,j</m>, we have 
+          Since <m>|s_{i,j-i}| \leq c(j-i+1)^{k-2}</m> for all <m>i,j</m>, we have 
           <me>
-            \left| \sum_{i=0}^{j+n} s_{i,j-i} \right| \leq c(j+n+1)^{k-1} 
+            \left| \sum_{i=0}^{j} s_{i,j-i} \right| \leq c \sum_{i=0}^j (j-i+1)^{k-2} \leq c(j+1)^{k-1} 
           </me>
           from which we infer that <m>\sum_{i=0}^\infty s_i q^i \in A_{k}^{\triangleright}</m>.
         </p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-filtration-on-universal-liquefaction2">
+      <statement>
         <p>
-          To prove the converse, 
-          we employ a trick introduced in <xref ref="rem-sum-null-against-f"/>.
-          Without loss of generality we may consider an element <m>t = \sum_{m=0}^\infty t_m q^m \in A_k^{\triangleright}</m>
+          For <m>S \in \Prof</m> and <m>k \geq 1</m>,
+          if a power series in <m>\ZZ\llbracket q \rrbracket \otimes \ZZ[\underline{S}]</m> belongs to <m>A_k^{\triangleright} \otimes \ZZ[\underline{S}]</m>,
+          then it can be written as <m>\sum_{i=0}^\infty s_i q^i</m> where <m>(s_i)_i</m> is a null sequence in <m>A_{k-1}^{\triangleright} \otimes \ZZ[\underline{S}]</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We again treat the case <m>S = \{*\}</m> in detail, the general case being similar but with more notation.
+          For this, we employ a trick introduced in <xref ref="rem-sum-null-against-f"/>.
+          By hypothesis, we start with an element <m>t = \sum_{m=0}^\infty t_m q^m \in A_k^{\triangleright}</m>
           such that for some <m>c\gt  0</m>, we have <m>|t_m| \leq c(m+1)^{k-1}</m> for all <m>m</m>. If <m>k=1</m>, we write
           <me>
             t = \sum_{m=0}^\infty (t_{2m} q^m + t_{2m+1}q^{m+1}) q^m
           </me>
-          and the quantities <m>t_{2m} q^m + t_{2m+1}q^{m+1}</m> form a null sequence in <m>A_0^{\triangleright}</m>.
+          and then observe that the quantities <m>t_{2m} q^m + t_{2m+1}q^{m+1}</m> form a null sequence in <m>A_0^{\triangleright}</m>.
           If <m>k \gt 1</m>, set
           <me>
             s_{i,j} := \left \lfloor \frac{t_{i+j} + j}{i+j+1} \right\rfloor
@@ -783,15 +724,19 @@
           <me>
             s_{2i+*} q^{i+*} = \sum_{j=i+*}^\infty s_{2i+*,j-i-*} q^j
           </me>
-          and then note that because <m>j \geq i</m>
+          and then note that because <m>j \geq i</m>,
           <md>
             <mrow>
-              |s_{2i+*,j-i-*}| &amp;\leq (c+1)(i+j+1)^{k-1}
+              |s_{2i+*,j-i-*}| &amp;\leq (c+1)(i+j+1)^{k-2}
             </mrow>
             <mrow>
-              &amp;\leq (c+1) (2j+1)^{k-1} \leq 2^{k-1} (c+1) (j+1)^{k-1}
+              &amp;\leq (c+1) (2j+1)^{k-2} \leq 2^{k-2} (c+1) (j+1)^{k-2}
             </mrow>
           </md>.
+          The point is that this expression includes a constant <m>2^{k-2} (c+1)</m> that is independent of <m>i</m>,
+          so our sequence <m>s_{2i} q^i + s_{2i+1}q^{i+1}</m> is both <m>q</m>-adically null and
+          is constrained to a fixed term in the union over <m>c</m> in <xref ref="eq-universal-liquefaction-filtered"/>;
+          this makes it a null sequence in <m>A_{k-1}^{\triangleright}</m>.
         </p>
       </proof>
     </lemma>
@@ -804,7 +749,7 @@
       <proof>
         <p>
           For <m>S = \varprojlim_i S_i \in \Prof</m>, we may apply 
-          <xref ref="lem-filtration-on-universal-liquefaction"/> to see that the action of <m>\Delta^*</m> on 
+          <xref ref="lem-filtration-on-universal-liquefaction1"/> and <xref ref="lem-filtration-on-universal-liquefaction2"/> to see that the action of <m>\Delta_q^*</m> on 
           <me>
             \Hom_{\CAb}(P \otimes \ZZ[\underline{S}], A^{\triangleright}) = \Hom_{\CAb}(P, \iHom_{\CAb}(\ZZ[\underline{S}], A^{\triangleright}))
           </me>
@@ -827,7 +772,7 @@
       <proof>
         <p>
           By replacing <m>M</m> with <m>\iHom_{\CAb}(\ZZ[\underline{S}], M)</m> and applying Hom-tensor adjunction, we reduce to the case <m>S = \{*\}</m>. 
-          From <xref ref="lem-filtration-on-universal-liquefaction"/>, we see that for <m>k \geq 0</m>,
+          From <xref ref="lem-filtration-on-universal-liquefaction1"/> and <xref ref="lem-filtration-on-universal-liquefaction2"/>, we see that for <m>k \geq 0</m>,
           <men xml:id="eq-compare-level-of-universal-liquefaction">
             \Hom_{A_0^{\triangleright}}(A_{k+1}^{\triangleright}, M) \cong
             \Hom_{A_0^{\triangleright}}(A_k^{\triangleright}, M)
@@ -895,6 +840,157 @@
         For instance, we can start with <m>\RR[T]</m> and coalesce around some <m>q \in (0,1)</m> and <m>T</m>.
       </p>
     </remark>
+  </subsection>
+ <subsection xml:id="subsec-core-of-an-analytic-ring">
+    <title>The core of an analytic ring</title>
+    <p>
+      We continue the study of coalescence with respect to different elements, but
+      now with the additional tool available of the initial analytic ring.
+    </p>
+    <lemma xml:id="lem-f-times-g-liquid">
+      <statement>
+        <p>
+          Let <m>R</m> be a condensed commutative ring and choose <m>f,g \in R(*)</m>. Then within <m>\Mod_R</m>,
+          we have an inclusion of full subcategories
+          <me>
+            \Mod_{R \liquid f} \cap \Mod_{R \liquid g} \subseteq \Mod_{R \liquid fg}
+          </me>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We may reduce to the universal case <m>R = \underline{\ZZ}[f,g]_{\liquid g}</m>.
+          While <m>R</m> is not a topological ring,
+          we do have an <m>R</m>-algebra morphism <m>h_g \colon P \otimes R \to P \otimes R</m> taking <m>[n]</m> to <m>g^n [n]</m>
+          (since we have this on <m>P \otimes \underline{\ZZ}[f,g]</m> and then we can coalesce around <m>f</m>).
+          We may thus deduce the claim from <xref ref="lem-from-f-liquid-to-fg-liquid"/>.
+        </p>
+      </proof>
+    </lemma>
+    <corollary xml:id="cor-core-integrally-closed">
+      <statement>
+        <p>
+          Let <m>R</m> be a condensed commutative ring and choose <m>f \in R(*)</m>. Then within <m>\Mod_R</m>,
+          for every positive integer <m>n</m> we have an equality of full subcategories
+          <me>
+            \Mod_{R \liquid f} = \Mod_{R \liquid f^n}
+          </me>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          The inclusion <m>\Mod_{R \liquid f^n} \subseteq \Mod_{R \liquid f}</m> is <xref ref="lem-f-solidification-versus-fn"/>.
+          For the reverse inclusion, we induct on <m>n</m>: the case <m>n=1</m> is vacuous, while for <m>n \gt 1</m> we apply 
+          <xref ref="lem-f-times-g-liquid"/> with <m>g = f^{n-1}</m> to complete the induction.
+        </p>
+      </proof>
+    </corollary>
+    <definition xml:id="def-R-topologically-nilpotent">
+      <p>
+        Let <m>R</m> be a condensed commutative ring.
+        We say that <m>g \in R(*)</m> is <term>topologically nilpotent</term> if there is a morphism <m>P \to R</m> of condensed commutative rings
+        taking <m>[1]</m> to <m>g</m>.
+        If <m>R</m> is a topological ring, this says that the powers of <m>g</m> form a null sequence;
+        otherwise, it is unclear whether the resulting morphism is uniquely determined by <m>g</m> (compare <xref ref="rem-null-null-sequences"/>).
+      </p>
+      <p>
+        We say that <m>g \in R(*)</m> is <term>universally power-bounded</term> if there is a morphism <m>P \to P \otimes R</m> of condensed commutative rings
+        taking <m>[1]</m> to <m>g[1]</m>.
+        If <m>R</m> is a topological ring, this implies that for every topological <m>R</m>-module <m>M</m> and every null sequence <m>(m_n)_n</m> in <m>M</m>,
+        <m>(g^n m_n)_n</m> is also a null sequence; this is in general strictly stronger than making the same assertion only for <m>M=R</m>.
+        If <m>R</m> is not a topological ring, it is again unclear whether the morphism <m>P \to P \otimes R</m> is uniquely determined by <m>g</m>.
+      </p>
+      <p>
+        If <m>g</m> is topologically nilpotent, then it is also universally power-bounded.
+        Moreover, both properties are <q>integrally closed</q> in <m>R(*)</m>:
+        if <m>g \in R(*)</m> and <m>g^n</m> is universally power-bounded (resp. topologically nilpotent), then so is <m>g</m>.
+      </p>
+    </definition>
+    <lemma xml:id="rem-f-solidification-versus-fg">
+      <statement>
+        <p>
+          Let <m>R</m> be a condensed commutative ring and choose <m>f,g \in R(*)</m> such that <m>g</m> is topologically nilpotent.
+          Then <m>\Mod_{R \liquid f} \subseteq \Mod_{R \liquid fg}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          We may reduce to the universal case <m>R = P[f], g = [1]</m>.
+          In this case, by <xref ref="prop-initial-analytic"/>, <m>R</m> is a topological ring,
+          so we may apply <xref ref="lem-from-f-liquid-to-fg-liquid"/> to conclude.
+        </p>
+      </proof>
+    </lemma>
+    <p>
+      We can now upgrade <xref ref="cor-liquid-top-nilpotent-unit-topological"/> as follows.
+    </p>
+    <corollary xml:id="cor-liquid-top-nilpotent-unit">
+      <statement>
+        <p>
+          Let <m>R</m> be a condensed commutative ring.
+          Suppose that <m>f \in R(*)</m> is a unit and <m>g \in R(*)</m> is topologically nilpotent.
+          We then have an inclusion <m>\Mod_{R \liquid f} \subseteq \Mod_{R \liquid g}</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Since <m>g</m> is topologically nilpotent, so is <m>g^n f^{-1}</m> for some positive integer <m>n</m>.
+          By <xref ref="rem-f-solidification-versus-fg"/> and <xref ref="lem-f-solidification-versus-fn"/>,
+          <me>
+            \Mod_{R \liquid f} \subseteq \Mod_{R \liquid f(g^n f^{-1})} = \Mod_{R \liquid g^n} = \Mod_{R \liquid g}
+          </me>.
+        </p>
+      </proof>
+    </corollary>
+    <definition xml:id="def-corona">
+      <p>
+        For <m>R</m> an analytic ring, an element <m>f \in R^{\triangleright}(*)</m> is <term>gaseous</term>
+        if <m>\Mod_R = \Mod_{R \liquid f}</m>.
+        Define the <term>gaseous core</term> (or more commonly just the <term>core</term>) of <m>R</m>, denoted <m>R^{\gas}</m>, to be the set of gaseous elements of <m>R^{\triangleright}(*)</m>.
+      </p>
+    </definition>
+    <p>
+      We may summarize the previous discussion as follows.
+    </p>
+    <proposition>
+      <p>
+        For <m>R</m> an analytic ring, the core <m>R^{\gas}</m> has the following properties.
+        <ol>
+          <li>
+            <m>R^{\gas}</m> is a multiplicative subset of <m>R(*)</m> containing <m>0</m>.
+          </li>
+          <li>
+            <m>R^{\gas}</m> is <q>integrally closed</q>: if <m>f^n \in R^{\gas}</m> for some <m>f \in R(*)</m> and some positive integer <m>n</m>,
+            then <m>f \in R^{\gas}</m>.
+          </li>
+          <li>
+            <m>R^{\gas}</m> is a <q>module</q>: for any <m>f \in R^{\gas}</m> and any topologically nilpotent <m>g \in R(*)</m>, we have <m>fg \in R^{\gas}</m>.
+          </li>
+          <li>
+            If <m>R^{\gas}</m> contains any unit of <m>R(*)</m>, then it contains every topologically nilpotent element of <m>R(*)</m>.
+          </li>
+        </ol>
+      </p>
+      <proof>
+        <p>
+          This follows by combining <xref ref="lem-f-times-g-liquid"/>, <xref ref="lem-f-solidification-versus-fn"/>,
+          <xref ref="rem-f-solidification-versus-fg"/>, and <xref ref="cor-liquid-top-nilpotent-unit"/>.
+        </p>
+      </proof>
+    </proposition>
+    <remark>
+      <p>
+        For <m>R</m> a topological ring, we can extend <xref ref="lem-from-f-liquid-to-fg-liquid"/> to the case where <m>g</m> is universally power-bounded.
+        However, it is not clear how to extend this conclusion to condensed rings; there is no obvious construction of a <q>universal</q>
+        example of a universally power-bounded element of a condensed ring.
+      </p>
+    </remark>
+    <remark>
+      <p>
+        In general, there is no reason to expect the core of an analytic ring to have any meaningful additive structure.
+        This changes if we restrict attention to <em>solid</em> analytic rings; see <xref ref="prop-solid-integral-elements"/>.
+      </p>
+     </remark>
   </subsection>
   <subsection>
     <title>A remark on terminology</title>

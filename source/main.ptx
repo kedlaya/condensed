@@ -38,7 +38,6 @@
       \DeclareMathOperator{\bd}{bd}
       \DeclareMathOperator{\cof}{cof}
       \DeclareMathOperator{\coker}{coker}
-      \DeclareMathOperator{\colim}{colim}
       \DeclareMathOperator{\cond}{cond}
       \DeclareMathOperator{\cone}{cone}
       \DeclareMathOperator{\Cts}{Cts}
@@ -63,6 +62,8 @@
       \DeclareMathOperator{\Spec}{Spec}
       \DeclareMathOperator{\spect}{sp}
       \DeclareMathOperator{\Sym}{Sym}
+
+      \newcommand{\colim}{\operatorname*{colim}}
 
       \DeclareMathOperator{\Ab}{\mathbf{Ab}}
       \DeclareMathOperator{\AnRing}{\mathbf{AnRing}}

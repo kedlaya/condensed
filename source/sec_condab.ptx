@@ -64,7 +64,7 @@
       <p>
         There is an obvious forgetful functor <m>\CAb \to \CSet</m>.
         This has a left adjoint <m>X \mapsto \ZZ[X]</m>
-        where <m>\ZZ[X]</m> denotes the sheafification of the sheaf <m>S \mapsto \ZZ[X(S)]</m>
+        where <m>\ZZ[X]</m> denotes the sheafification of the presheaf <m>S \mapsto \ZZ[X(S)]</m>
         (and <m>\ZZ[X(S)]</m> denotes the free <m>\ZZ</m>-module on the set <m>X(S)</m>).
         The sheafification is already needed for trivial reasons: the empty set needs to go to 0 rather than to <m>\ZZ[X(\emptyset)] \cong \ZZ</m>.
       </p>
@@ -343,7 +343,7 @@
           <image width="50%">
             <latex-image>
               \xymatrix{
-               \ZZ[\underline{S}]/\ZZ[\underline{S}_\infty] \ar[r] \ar[d]  &amp; N' \ar[d] \\
+               \ZZ[\underline{S}]/\ZZ[\underline{S_\infty}] \ar[r] \ar[d]  &amp; N' \ar[d] \\
                P \ar[r] &amp; N
               }
             </latex-image>

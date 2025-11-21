@@ -256,15 +256,12 @@
         with <m>|I| \leq \kappa</m>. We will pick up on this point in <xref ref="cor-length-1-resolution-of-solid"/>.
       </p>
     </remark>
-    <p>
-      For a countable torsion group, we can make the construction from <xref ref="exa-generate-finitely-presented"/> a bit more explicit.
-      (We do not know whether the cardinality hypothesis is needed here, but see <xref ref="rem-torsion-group-as-sequential-limit"/>.)
-    </p>
     <proposition xml:id="prop-ext-as-pontryagin-dual">
       <statement>
         <p>
           For <m>Q</m> a countable torsion abelian group, <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> is the limit of 
           <m>\Ext^1_\ZZ(T, \ZZ)_\solid</m> as <m>T</m> runs over finite subgroups of <m>Q</m>.
+          (We do not know whether the cardinality hypothesis is needed here, but see <xref ref="rem-torsion-group-as-sequential-limit"/>.)
         </p>
       </statement>
       <proof>
@@ -279,12 +276,12 @@
           in which the inclusions <m>T_n \to T_{n+1}</m> are induced by inclusions <m>I_n \to I_{n+1}</m>, <m>J_n \to J_{n+1}</m>.
           When we dualize the resulting sequences to obtain
           <me>
-            0 \to \prod_{J_n} \ZZ_\solid \to \prod_{I_n} \ZZ_\solid \to \Ext^1_\ZZ((T_n)_\solid, \ZZ_\solid) \to 0,
+            0 \to \prod_{J_n} \ZZ_\solid \to \prod_{I_n} \ZZ_\solid \to \Ext^1_\ZZ(T_n, \ZZ)_\solid \to 0,
           </me>
           we get an inverse system of these sequences in which the transition maps in the left and middle columns are surjective.
           In particular there is no <m>R^1</m> term on the left, so for <m>I = \bigcup_n I_n</m>, <m>J = \bigcup_n J_n</m> we get an exact sequence
           <me>
-            0 \to \prod_J \ZZ_\solid \to \prod_I \ZZ_\solid \to \lim_n \Ext^1_\ZZ((T_n)_\solid, \ZZ_\solid) \to 0
+            0 \to \prod_J \ZZ_\solid \to \prod_I \ZZ_\solid \to \lim_n \Ext^1_\ZZ(T_n, \ZZ)_\solid \to 0
           </me>.
           Comparing with <xref ref="eq-hom-from-torsion-sequence"/> again yields the desired comparison.
         </p>
@@ -305,7 +302,7 @@
         <men xml:id="eq-present-ext-Z-mod-n">
           0 \to \ZZ_\solid \stackrel{\times n}{\to} \ZZ_\solid \to \iExt^1_{\ZZ_\solid}((\ZZ/n\ZZ)_\solid, \ZZ_\solid) \to 0
         </men>
-        to compute that <m>\iExt^1_{\ZZ_\solid}((\ZZ/n\ZZ)_\solid, \ZZ_\solid) = \cong (\ZZ/n\ZZ)_\solid</m>.
+        to compute that <m>\iExt^1_{\ZZ_\solid}((\ZZ/n\ZZ)_\solid, \ZZ_\solid) \cong (\ZZ/n\ZZ)_\solid</m>.
         Now note that if <m>n'</m> is a multiple of <m>n</m>, then the inclusion of <m>\ZZ/n\ZZ</m> into <m>\ZZ/n' \ZZ</m> via multiplication by <m>n'/n</m>
         corresponds to the map between exact sequences as in <xref ref="eq-present-Z-mod-n"/> which acts on the first copy of <m>\ZZ</m> as the identity
         and on the second copy as multiplication by <m>n'/n</m>.
@@ -313,8 +310,8 @@
         as multiplication by <m>n'/n</m> and on the second copy as the identity.
         We conclude that 
         <me>
-          \iExt^1_{\ZZ_\solid}((\QQ/\ZZ)_\solid, \ZZ_\solid) \cong \lim_n (\ZZ/n\ZZ)_\solid,
-        </me>
+          \iExt^1_{\ZZ_\solid}((\QQ/\ZZ)_\solid, \ZZ_\solid) \cong \lim_n (\ZZ/n\ZZ)_\solid
+        </me>,
         which we recognize as the solid analogue of the profinite completion of the integers and therefore denote also as <m>\widehat{\ZZ}_\solid</m>.
       </p>
     </example>
@@ -353,7 +350,7 @@
           0 \to T_0 \to Q \to Q \otimes_{\ZZ} \QQ \to T_1 \to 0
         </me>
         in which <m>T_0</m> and <m>T_1</m> are both torsion groups.
-        This allows us to reduce the computation of <m>\iExt^1_{\ZZ_\solid}(Q, \ZZ_\solid)</m> to cases where <m>Q</m> is either a torsion group or a <m>\QQ</m>-vector space.
+        This allows us to reduce the computation of <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> to cases where <m>Q</m> is either a torsion group or a <m>\QQ</m>-vector space.
       </p>
     </remark>
     <p>
@@ -425,7 +422,7 @@
       </p>
       <p>
         However, when we write <m>Q[p^n]</m> as a non-sequential colimit of finite torsion groups,
-        it is not clear whether this colimit transforms into a limit via <m>\iExt^1</m>. This does hold for <m>n=1</m>, though,
+        it is not clear whether this colimit transforms into a limit via <m>\iExt^1_{\ZZ_\solid}</m>. This does hold for <m>n=1</m>, though,
         as in this case <m>Q[p]</m> is a free module over <m>\ZZ/p\ZZ</m> and so the coproduct transforms into a product.
       </p>
     </remark>
@@ -614,7 +611,7 @@
           By <xref ref="cor-length-1-resolution-of-solid"/>, these are precisely the finitely presented objects.
         </p>
         <p>
-          By the same token, since the objects <m>\prod_I \ZZ</m> with <m>|I| \leq \kappa</m> are compact generators of <m>\Ab_\solid</m>,
+          By the same token, since the objects <m>\prod_I \underline{\ZZ}</m> with <m>|I| \leq \kappa</m> are compact generators of <m>\Ab_\solid</m>,
           we deduce that every object is a colimit of finitely presented objects.
         </p>
         <p>

@@ -139,7 +139,7 @@
               </latex-image>
             </image>
           </figure>
-          in which both rows are split surjections.
+          in which the rows are compatibly split surjections (that is, the splittings can be chosen to again form a commuting square with the same columns).
         </p>
       </statement>
       <proof>
@@ -165,7 +165,7 @@
           <men xml:id="eq-Delta-top-row">
             P \otimes \prod_\NN^{\bd} \underline{\ZZ} \to \prod_\NN^{\bd} \underline{\ZZ}
           </men>
-          factors through <m>c</m>. The splitting of the resulting top row will be guaranteed by the fact that since <m>c</m> is injective,  
+          factors through <m>c</m>. The compatible splitting of the resulting top row will be guaranteed by the fact that since <m>c</m> is injective,  
           the composition <m>P \to P \otimes \prod_\NN^{\bd} \underline{\ZZ} \to P</m> will again be the identity.
         </p>
         <p> 
@@ -219,7 +219,7 @@
               </latex-image>
             </image>
           </figure>
-          where again rows are split surjections. 
+          where again the rows are compatibly split surjections. 
         </p>
         <p>
           We check that the left vertical arrow in the diagram is an isomorphism.
@@ -233,9 +233,8 @@
         </p>
         <p>
           At this point we conclude that <m>c_\solid</m> is a split surjection.
-          Since the top row is also surjective,
-          tracing clockwise from <m>\left( \prod_\NN^{\bd} \underline{\ZZ} \right)_\solid</m> back to <m>P_\solid</m> yields a surjection whose postcomposition
-          with <m>c_\solid</m> is the identity map. That surjection must therefore be an isomorphism, which proves that <m>c_\solid</m> is also injective.
+          We now use the fact that rows are <em>compatibly</em> split to see that tracing clockwise from <m>P_\solid</m>
+          (using the chosen splitting in the bottom row) is the identity, which means that <m>c_\solid</m> is also injective.
         </p>
       </proof>
     </lemma>
@@ -362,7 +361,7 @@
               </latex-image>
             </image>
           </figure>
-          in which both rows are split surjections.
+          in which the rows are compatibly split surjections.
         </p>
       </statement>
       <proof>

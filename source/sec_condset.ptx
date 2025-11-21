@@ -219,7 +219,7 @@
         Let <m>F \in \Fun(\Prof^{\op}, \Set)</m> be the functor taking <m>S</m> to the quotient
         of the group of continuous maps <m>S \to \RR</m> by the subgroup of locally constant maps.
         It is clear that this is compatible with finite disjoint unions.
-        To check compatibility with a surjection <m>T \to \RR</m>, we must check that if <m>f\colon T \to \RR</m>
+        To check compatibility with a surjection <m>T \to S</m>, we must check that if <m>f\colon T \to \RR</m>
         is continuous and the two maps <m>f_1, f_2\colon T \times_S T \to \RR</m> differ by a locally constant map,
         then <m>f</m> can be written as a locally constant map plus a map that factors through <m>S</m> (which will then
         necessarily be continuous); this follows from <xref ref="lem-difference-on-product-is-locally-constant"/>.
@@ -449,9 +449,9 @@
       <proof>
         <p>
           As per <xref ref="rem-surjection-of-sheaves"/>, we need to know that for any <m>S\in \Prof</m> and any <m>y \in Y(S)</m>,
-          we can find a surjection <m>T \to S</m> in <m>\Prof</m> such that <m>y</m> lifts to some <m>x \in Y(T)</m>.
+          we can find a surjection <m>T \to S</m> in <m>\Prof</m> such that <m>y</m> lifts to some <m>x \in X(T)</m>.
           To begin with, <m>X_1 \to Y</m> is an epimorphism and so we can find a surjection <m>T_1 \to S</m> in <m>\Prof</m> such that <m>y</m>
-          lifts to some <m>x_1 \in X_1(T_1)</m>. We can then find a surjection <m>T_2 \to T_2</m> such that <m>x_1</m> lifts to some <m>x_2 \in X_2(T_2)</m>.
+          lifts to some <m>x_1 \in X_1(T_1)</m>. We can then find a surjection <m>T_2 \to T_1</m> such that <m>x_1</m> lifts to some <m>x_2 \in X_2(T_2)</m>.
           Repeating, we obtain an inverse system <m>\varprojlim_{n \in \NN} T_n</m> in <m>\Prof</m>
           such that <m>y</m> admits a compatible sequence of lifts to <m>X_n(T_n)</m> for each <m>n</m>. 
           This inverse system formally admits a limit <m>T \in \Prof</m> such that <m>y</m> lifts to some <m>x \in X(T)</m>.
