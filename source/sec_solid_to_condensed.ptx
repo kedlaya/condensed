@@ -32,9 +32,9 @@
     <definition xml:id="def-strict-factorization">
       <p>
         Note that <m>\prod_\NN \underline{\ZZ}</m> admits the subobject
-        <me>
+        <md>
           \prod_\NN^{\bd} \underline{\ZZ} := \colim_{n \in \NN} \prod_\NN \underline{\{-n,\dots,n\}}
-        </me>.
+        </md>.
         In terms of evaluations at <m>S \in \Prof</m>, <m>\left(\prod_\NN \underline{\ZZ}\right)(S)</m> consists of continuous maps <m>S \to \prod_\NN \ZZ</m>,
         or equivalently families of continuous maps <m>S \to \ZZ</m> indexed by <m>\NN</m>. Each of these maps has bounded image, but
         <m>\left( \prod_\NN^{\bd} \underline{\ZZ} \right)(S)</m> picks out the families with <em>uniformly</em> bounded image.
@@ -42,9 +42,9 @@
       <p>
         From the explicit description of <m>\ZZ[\NN_\infty]</m> (<xref ref="exa-module-ring-topological-space"/>),
         we can factor <m>c\colon P \to \prod_\NN \underline{\ZZ}</m> through <m>\prod_\NN^{\bd} \underline{\ZZ}</m> to yield a sequence of inclusions
-        <men xml:id="eq-p-to-product">
+        <md number="yes" xml:id="eq-p-to-product">
           P \stackrel{c}{\to} \prod_\NN^{\bd} \underline{\ZZ} \to \prod_\NN \underline{\ZZ}
-        </men>.
+        </md>.
         Namely, <m>\Hom_{\CAb}(P, \prod_\NN \underline{\ZZ}) = \prod_\NN \Hom_{\CAb}(P, \underline{\ZZ})</m> consists of infinite families of null sequences in <m>\ZZ</m>,
         while <m>\Hom_{\CAb}(P, \prod_\NN^{\bd} \underline{\ZZ})</m> picks out those families whose images are uniformly bounded.
         The sequences corresponding to the factors of the map <m>c</m> only take values in <m>\{0,1\}</m>, so they form a family of the latter form.
@@ -63,21 +63,21 @@
       <proof>
         <p>
           By analogy with the construction of <m>\prod_\NN^{\bd} \underline{\ZZ}</m>, we define
-          <me>
+          <md>
             \prod_\NN^{\bd} \underline{\RR} := \colim_{n \in \NN} \prod_\NN \underline{[-n,n]}
-          </me>;
+          </md>;
           we will construct an isomorphism (at the level of topological abelian groups)
-          <me>
+          <md>
             \left( \prod_\NN \underline{\ZZ}\right) / \left( \prod_\NN^{\bd} \underline{\ZZ} \right) \cong \left( \prod_\NN \underline{\RR} \right) / \left( \prod_\NN^{\bd} \underline{\RR} \right)
-          </me>.
+          </md>.
           Since the right-hand side carries an evident <m>\underline{\RR}</m>-module structure, so does the left-hand side. 
           By <xref ref="cor-solid-R-module-is-zero-monomorphism"/>, this will yield the claim.
         </p>
         <p>
           The proposed isomorphism is formally equivalent to the claim that
-          <me>
+          <md>
             \left( \prod_\NN^{\bd} \underline{\RR} \right) / \left( \prod_\NN^{\bd} \underline{\ZZ} \right) \cong \left( \prod_\NN \underline{\RR} \right) / \left( \prod_\NN \underline{\ZZ} \right)
-          </me>;
+          </md>;
           we get this isomorphism of abelian groups because <m>\RR/\ZZ</m> is compact.
         </p>
       </proof>
@@ -162,17 +162,17 @@
         </p>
         <p>
           To get what we need, we must verify that the top row
-          <men xml:id="eq-Delta-top-row">
+          <md number="yes" xml:id="eq-Delta-top-row">
             P \otimes \prod_\NN^{\bd} \underline{\ZZ} \to \prod_\NN^{\bd} \underline{\ZZ}
-          </men>
+          </md>
           factors through <m>c</m>. The compatible splitting of the resulting top row will be guaranteed by the fact that since <m>c</m> is injective,  
           the composition <m>P \to P \otimes \prod_\NN^{\bd} \underline{\ZZ} \to P</m> will again be the identity.
         </p>
         <p> 
           More precisely, we will show that that the formula
-          <men xml:id="eq-bilinear-map-from-P">
+          <md number="yes" xml:id="eq-bilinear-map-from-P">
             \left( \sum_n c_n [n], (d_n)_n \right) \mapsto \sum_n c_n d_n [n]
-          </men>
+          </md>
           defines a continuous bilinear map <m>P \times\prod_\NN^{\bd} \underline{\ZZ} \to P </m>
           at the level of topological abelian groups. 
           Composing <xref ref="eq-bilinear-map-from-P"/> with <m>c</m> will then yield the map <xref ref="eq-Delta-top-row"/>
@@ -225,10 +225,10 @@
           We check that the left vertical arrow in the diagram is an isomorphism.
           By Yoneda's lemma, it suffices to check that this arrow induces an isomorphism after taking internal Homs into any <m>N \in \CAb_\solid</m>.
           To see this, we apply Hom-tensor adjunction to write
-          <me>
+          <md>
             \iHom_{\CAb}\left( P \otimes \prod_\NN^{\bd} \underline{\ZZ}, N\right) 
             = \iHom_{\CAb}\left( P, \iHom_{\CAb}\left(\prod_\NN^{\bd} \underline{\ZZ}, N\right)\right)
-          </me>
+          </md>
           and then invoke <xref ref="prop-solid-category"/> to see that <m>\iHom_{\CAb}(\prod_\NN^{\bd} \underline{\ZZ}, N)</m> is solid.
         </p>
         <p>
@@ -275,9 +275,9 @@
         <p>
           This is a consequence of <xref ref="cor-prod-internally-projective"/>:
           we have an exact functor <m>\CAb_\solid \to \Ab_\solid</m> taking <m>X</m> to the functor 
-          <me>
+          <md>
             \prod_I \ZZ_\solid \mapsto \Hom_{\CAb_\solid}\left(\prod_I \underline{\ZZ}, X\right)
-          </me>
+          </md>
           and the composition <m>\Ab_\solid \to \CAb_\solid \to \Ab_\solid</m> is an equivalence.
         </p>
       </proof>
@@ -321,9 +321,9 @@
       <p>
         Define <m>T = T_1 \sqcup T_2 \sqcup \cdots</m> and fix a bijection <m>\NN \cong T</m>.
         We then define the map 
-        <me>
+        <md>
           g\colon P \cong \ZZ[\underline{T_\infty}]/\ZZ[\underline{\infty}] \to \ZZ[\underline{S}]
-        </me>
+        </md>
         to act on <m>T_0</m> via <m>i_0</m>,
         and on <m>T_n</m> for <m>n \gt 0</m> via the difference between <m>T_n \stackrel{i_n}{\to} S</m>
         and <m>T_n \to S_{n-1} \stackrel{j_{n-1}}{\to} S</m>, or equivalently via <m>(j_n \circ \pi_n - j_{n-1} \circ \pi_{n-1}) \circ i_n</m>.
@@ -410,22 +410,22 @@
     <remark xml:id="rem-no-sheafification-when-left-solid">
       <p>
         <xref ref="lem-identify-solidification-of-free"/> has the consequence that for any exact sequence
-        <me>
+        <md>
           0 \to M_1 \to M \to M_2 \to 0
-        </me>
+        </md>
         in <m>\CAb</m> with <m>M_1</m> solid and any <m>S \in \Prof</m>,
         we have an exact sequence
-        <me>
+        <md>
           0 \to M_1(S) \to M(S) \to M_2(S) \to \Ext^1_{\CAb}(\ZZ[\underline{S}], M_1) = 0
-        </me>.
+        </md>.
         This can be used to explain the empirical observation that in many natural examples, 
         formation of cokernels of morphisms in <m>\CAb</m>,
         which nominally happens in the category of sheaves of abelian groups on <m>\Prof</m>, 
         can actually be computed in the category of presheaves on <m>\Prof</m>.
         For instance, in the sequence
-        <me>
+        <md>
           0 \to \RR_{\disc} \to \RR \to \RR/\RR_{\disc} \to 0
-        </me>
+        </md>
         the term <m>\RR_{\disc}</m> is solid, so <m>\RR(S) \to (\RR/\RR_{\disc})(S)</m> is surjective for <m>S \in \Prof</m>;
         we previously established this by a direct argument (<xref ref="exa-quotient-of-r-by-discrete"/>).
       </p>

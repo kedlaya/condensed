@@ -138,17 +138,17 @@
       <p>
         We obtain a symmetric monoidal tensor product <m>\otimes</m> with unit <m>\ZZ[*]</m> by sheafifying the pointwise tensor product.
         For <m>X,Y \in \CSet</m>, we have a natural identification
-        <men xml:id="eq-tensor-product-of-profinite">
+        <md number="yes" xml:id="eq-tensor-product-of-profinite">
           \ZZ[X] \otimes \ZZ[Y] \cong \ZZ[X \times Y]
-        </men>.
+        </md>.
         Using the tensor product, we may define the internal Hom functor <m>\iHom_{\CAb}</m> so as to satisfy Hom-tensor adjunction:
-        <me>
+        <md>
           \Hom_{\CAb}(P, \iHom_{\CAb}(M, N)) \cong \Hom_{\CAb}(P \otimes M, N)
-        </me>.
+        </md>.
         In particular, for <m>S \in \Prof</m>,
-        <men xml:id="eq-expression-of-internal-hom-sections">
+        <md number="yes" xml:id="eq-expression-of-internal-hom-sections">
           \iHom_{\CAb}(M,N)(S) = \Hom_{\CAb}(M \otimes \ZZ[\underline{S}], N)
-        </men>.
+        </md>.
       </p>
     </definition>
     <remark>
@@ -182,9 +182,9 @@
         </md>
         for the <term>compact-open topology</term> on <m>\Cts(S, X)</m> (see <xref ref="bib-Rotman-top"/>, Theorem 11.1 for the last equality).
         In other words,
-        <men xml:id="eq-ihom-S-to-X">
+        <md number="yes" xml:id="eq-ihom-S-to-X">
           \iHom_{\CAb}(\ZZ[\underline{S}], \underline{X}) = \underline{\Cts(S, X)}
-        </men>.
+        </md>.
         The same logic applies when <m>S \in \Top^{\seq}</m> is locally compact: by <xref ref="prop-cset-to-top-left-adjoint"/> and <xref ref="prop-sequential"/>,
         we still have <m>\Hom_{\CSet}(\underline{S \times T}, \underline{X}) = \Cts(S \times T, X)</m>,
         and when <m>S</m> is locally compact we again have <m>\Cts(S \times T, X) = \Cts(T, \Cts(S, X))</m>.
@@ -436,13 +436,13 @@
           then <m>S' \to S \to \NN_\infty \times T'</m> is a surjection which restricts to a homeomorphism over <m>\NN \times T'</m>.
           We may thus pull back the previous diagram along
            <xref ref="prop-relative-free-module"/> to identify 
-          <me>
+          <md>
             \ZZ[\underline{S'}]/\ZZ[\underline{S_\infty}] \cong \ZZ[\underline{\NN_\infty \times T'}]/\ZZ[\underline{\{\infty\} \times T'}] \cong P \otimes \ZZ[\underline{T'}]
-          </me>,
+          </md>,
           and then obtain the map <m>P \otimes \ZZ[\underline{T'}] \to N'</m> that we were looking for by writing
-          <me>
+          <md>
             P \otimes \ZZ[\underline{T}'] \cong \ZZ[\underline{S'}]/\ZZ[\underline{S_\infty}] \to \ZZ[\underline{S}]/\ZZ[\underline{S_\infty}] \to N'
-          </me>.
+          </md>.
         </p>
       </proof>
     </proposition>

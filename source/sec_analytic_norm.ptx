@@ -24,9 +24,9 @@
       <p>
         If <m>R</m> carries a submultiplicative seminorm <m>|\bullet|</m>, then for any <m>\rho \geq 0</m>,
         we can define a submultiplicative seminorm on <m>R[T]</m> by the formula
-        <me>
+        <md>
           \left| \sum_i x_i T^i \right|_\rho = \sum_i |x|_i \rho^i.
-        </me>
+        </md>
         If the seminorm on <m>R</m> is nonarchimedean, we can replace the summation with the supremum in this definition
         to recover the <term><m>\rho</m>-Gauss seminorm</term>. The terminology arises from the fact that if the original seminorm on <m>R</m> is both nonarchimedean
         and multiplicative, then adapting the proof of Gauss's lemma on integer polynomials shows that the <m>\rho</m>-Gauss seminorm is again multiplicative.
@@ -67,9 +67,9 @@
       <p>
         In general the norm need not be multiplicative. However, in this case multiplicativity can be deduced from the formally weaker condition that
         <m>|x| |x^{-1}| = 1</m> for all <m>x \in R^\times</m>: this condition implies that for <m>x \in R^\times, y \in R</m>, 
-        <me>
+        <md>
           |xy| \leq |x| |y| \leq |x| |x^{-1}| |xy| = |xy|
-        </me>;
+        </md>;
         hence <m>|xy| = |x| |y|</m> when <m>x</m> is nonzero, and obviously also when <m>x =0</m>.
       </p>
       <p>
@@ -175,9 +175,9 @@
       <p>
         For <m>R</m> a ring equipped with a submultiplicative seminorm <m>|\bullet|_R</m>,
         define the associated <term>spectral seminorm</term> by the formula
-        <me>
+        <md>
           |x|_{\spect,R} = \lim_{n \to \infty} |x^n|_R^{1/n}
-        </me>;
+        </md>;
         it is an elementary exercise to verify that the limit exists (and actually equals the infimum). By construction,
         <m>|\bullet|_{\spect,R}</m> is a power-multiplicative seminorm.
       </p>
@@ -192,9 +192,9 @@
       <statement>
         <p>
           For <m>R</m> a commutative Banach ring, for every <m>x \in R</m> we have
-          <me>
+          <md>
             |x|_{\spect,R} = \sup\{\alpha(x)\colon \alpha \in \calM(R)\}
-          </me>.
+          </md>.
           (By compactness, the supremum is necessarily achieved.)
         </p>
       </statement>
@@ -257,9 +257,9 @@
           </li>
           <li>
             For <m>\rho_1, \rho_2 \in (0, \infty)</m>, the composition
-            <me>
+            <md>
               \AnSpec R_{\leq \rho_1} \times_R \AnSpec R_{\leq \rho_2} \to \AnSpec R[T] \times_R \AnSpec R[T] \stackrel{\mu}{\to} \AnSpec R[T]
-            </me>,
+            </md>,
             where <m>\mu</m> is the multiplication map,
             factors through <m>\AnSpec R_{\leq \rho_1 \rho_2} \to \AnSpec R[T]</m>.
           </li>
@@ -273,11 +273,11 @@
     <example>
       <p>
         For any analytic ring <m>R</m>, we get a norm function on <m>R</m> by taking
-        <me>
+        <md>
           R_{\leq \rho} = \begin{cases} \AnSpec R[T] &amp; \rho \geq 1 \\
           \AnSpec R[T]_{(T)} &amp; \rho \lt 1
           \end{cases}
-        </me>.
+        </md>.
       </p>
     </example>
     <remark>

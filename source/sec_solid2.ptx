@@ -41,13 +41,13 @@
         Now consider a continuous map <m>\prod_I \ZZ \to \ZZ</m> of topological abelian groups. The inverse image of 0 must be open in <m>\prod_I \ZZ</m>, and contains the zero tuple,
         so for some finite subset <m>I_0 \subseteq I</m> it must contain the whole kernel of <m>\prod_I \ZZ \to \prod_{I_0} \ZZ</m>. But that makes the map a finite sum of coordinate
         projections; we conclude that
-        <me>
+        <md>
           \Hom_{\TopAb}\left(\prod_I \ZZ, \ZZ\right) = \bigoplus_I \ZZ
-        </me>
+        </md>
         and similarly
-        <me>
+        <md>
           \Hom_{\TopAb}\left(\prod_I \ZZ, \prod_J \ZZ\right) = \prod_J \bigoplus_I \ZZ
-        </me>.
+        </md>.
         This formally implies (by taking colimits) that there is a functor <m>\Ab_\solid \to \TopAb</m> taking <m>\prod_I \ZZ_\solid</m> to <m>\prod_I \ZZ</m>.
       </p>
       <p>
@@ -62,9 +62,9 @@
       <p>
         In <m>\Ab_\solid</m>, the object <m>\ZZ_\solid[T]</m> is the functor <m>\prod_I \ZZ_\solid \mapsto \left( \bigoplus_I \ZZ \right)[T] = \bigoplus_I \ZZ[T]</m>.
         We also have an object <m>\ZZ_\solid \langle T \rangle</m> which is the functor taking
-        <me>
+        <md>
           \prod_I \ZZ_\solid \mapsto \left( \prod_I \ZZ[T] \right) \cap \left( \bigoplus_I \ZZ \right) \llbracket T \rrbracket \subset \left( \prod_I \ZZ \right) \llbracket T \rrbracket
-        </me>;
+        </md>;
         that is, we have an <m>I \times \NN</m> matrix over <m>\ZZ</m> in which each row and column has finite support.
         The cokernel of the obvious map <m>\ZZ_\solid[T] \to \ZZ_\solid \langle T \rangle</m> is an object of <m>\Ab_{\solid}</m>
         whose restriction to <m>\Ab</m> is zero (because <m>\bigoplus_I = \prod_I</m> when <m>I</m> is finite), but which is not the zero object.
@@ -108,20 +108,20 @@
       <proof>
         <p>
           Since <m>\ZZ</m> is a principal ideal domain, using <xref ref="lem-submodule-free-over-PID"/> we may construct a free resolution of <m>A</m> of length 1:
-          <men xml:id="eq-free-res-whitehead">
+          <md number="yes" xml:id="eq-free-res-whitehead">
             0 \to \bigoplus_I \ZZ \to \bigoplus_J \ZZ \to A \to 0
-          </men>.
+          </md>.
           We may further ensure that <m>|I|, |J| \leq \kappa</m>.
         </p>
         <p>
           By <xref ref="prop-solidification-is-exact"/>, this remains exact under the passage from <m>\Ab</m> to <m>\Ab_\solid</m>:
-          <men xml:id="eq-solid-free-res-whitehead">
+          <md number="yes" xml:id="eq-solid-free-res-whitehead">
             0 \to \bigoplus_I \ZZ_\solid \to \bigoplus_J \ZZ_\solid\to A_{\solid} \to 0
-          </men>.
+          </md>.
           Applying the dual functor <m>\iHom_{\ZZ_\solid}(\bullet, \ZZ_\solid)</m> and using our hypothesis (and <xref ref="prop-solid-internal-hom"/>), we obtain the exact sequence
-          <me>
+          <md>
             0 \to \iHom_{\ZZ_\solid}(A_{\solid}, \ZZ_{\solid}) \to \prod_J \ZZ_{\solid} \to \prod_I \ZZ_{\solid} \to \iExt^1_{\ZZ_\solid}(A_{\solid}, \ZZ_{\solid}) = 0
-          </me>.
+          </md>.
           This splits because <m>\prod_I \ZZ_{\solid}</m> is projective (here we diverge from the classical setting).
           Consequently, applying <m>\iHom_{\ZZ_\solid}(\bullet, \ZZ_\solid)</m> recovers the sequence <xref ref="eq-solid-free-res-whitehead"/>,
           but with the additional information that this sequence is now split.
@@ -200,13 +200,13 @@
           Choose a surjection <m>\bigoplus_I \ZZ \to Q</m> with <m>|I| \leq \kappa</m> (e.g., by taking <m>I = \QQ</m> and the map
           to be the counit of the adjunction between sets and abelian groups). By <xref ref="lem-submodule-free-over-PID"/>,
           the kernel of this map is again a free module of rank at most <m>\kappa</m>; that is, we have an exact sequence of abelian groups
-          <men xml:id="eq-length-1-resolution-of-solid">
+          <md number="yes" xml:id="eq-length-1-resolution-of-solid">
             0 \to \bigoplus_I \ZZ \stackrel{h}{\to} \bigoplus_J \ZZ \to Q \to 0
-          </men>.
+          </md>.
           Passing from <m>\Ab</m> to <m>\Ab_\solid</m> and then taking duals (<xref ref="prop-solid-internal-hom"/>) yields a new exact sequence
-          <men xml:id="eq-hom-from-torsion-sequence">
+          <md number="yes" xml:id="eq-hom-from-torsion-sequence">
             0 \to \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid \to \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to 0
-          </men>
+          </md>
           where the final <m>0</m> occurs because <m>\prod_J \ZZ_\solid</m> is a projective object in <m>\Ab_\solid</m>.
         </p>
       </proof>
@@ -270,19 +270,19 @@
           then compare <xref ref="eq-hom-from-torsion-sequence"/> with the corresponding sequence obtained by taking algebraic duals.
           In the general case, write <m>Q</m> as a sequential union of torsion subgroups <m>T_n</m>;
           we can then choose presentations
-          <me>
+          <md>
             0 \to \bigoplus_{I_n} \ZZ \to \bigoplus_{J_n} \ZZ \to T_n \to 0
-          </me>
+          </md>
           in which the inclusions <m>T_n \to T_{n+1}</m> are induced by inclusions <m>I_n \to I_{n+1}</m>, <m>J_n \to J_{n+1}</m>.
           When we dualize the resulting sequences to obtain
-          <me>
+          <md>
             0 \to \prod_{J_n} \ZZ_\solid \to \prod_{I_n} \ZZ_\solid \to \Ext^1_\ZZ(T_n, \ZZ)_\solid \to 0,
-          </me>
+          </md>
           we get an inverse system of these sequences in which the transition maps in the left and middle columns are surjective.
           In particular there is no <m>R^1</m> term on the left, so for <m>I = \bigcup_n I_n</m>, <m>J = \bigcup_n J_n</m> we get an exact sequence
-          <me>
+          <md>
             0 \to \prod_J \ZZ_\solid \to \prod_I \ZZ_\solid \to \lim_n \Ext^1_\ZZ(T_n, \ZZ)_\solid \to 0
-          </me>.
+          </md>.
           Comparing with <xref ref="eq-hom-from-torsion-sequence"/> again yields the desired comparison.
         </p>
       </proof>
@@ -295,13 +295,13 @@
       </p>
       <p>
         For each <m>n</m>, use the exact sequence
-        <men xml:id="eq-present-Z-mod-n">
+        <md number="yes" xml:id="eq-present-Z-mod-n">
           0 \to \ZZ \stackrel{\times n}{\to} \ZZ \to \ZZ/n\ZZ \to 0
-        </men>
+        </md>
         to obtain the exact sequence
-        <men xml:id="eq-present-ext-Z-mod-n">
+        <md number="yes" xml:id="eq-present-ext-Z-mod-n">
           0 \to \ZZ_\solid \stackrel{\times n}{\to} \ZZ_\solid \to \iExt^1_{\ZZ_\solid}((\ZZ/n\ZZ)_\solid, \ZZ_\solid) \to 0
-        </men>
+        </md>
         to compute that <m>\iExt^1_{\ZZ_\solid}((\ZZ/n\ZZ)_\solid, \ZZ_\solid) \cong (\ZZ/n\ZZ)_\solid</m>.
         Now note that if <m>n'</m> is a multiple of <m>n</m>, then the inclusion of <m>\ZZ/n\ZZ</m> into <m>\ZZ/n' \ZZ</m> via multiplication by <m>n'/n</m>
         corresponds to the map between exact sequences as in <xref ref="eq-present-Z-mod-n"/> which acts on the first copy of <m>\ZZ</m> as the identity
@@ -309,9 +309,9 @@
         This then corresponds to the map between exact sequences as in <xref ref="eq-present-ext-Z-mod-n"/> which acts on the first copy of <m>\ZZ_\solid</m>
         as multiplication by <m>n'/n</m> and on the second copy as the identity.
         We conclude that 
-        <me>
+        <md>
           \iExt^1_{\ZZ_\solid}((\QQ/\ZZ)_\solid, \ZZ_\solid) \cong \lim_n (\ZZ/n\ZZ)_\solid
-        </me>,
+        </md>,
         which we recognize as the solid analogue of the profinite completion of the integers and therefore denote also as <m>\widehat{\ZZ}_\solid</m>.
       </p>
     </example>
@@ -322,33 +322,33 @@
       <p>
         Let us spell out <xref ref="exa-generate-finitely-presented"/> in the case <m>Q = \QQ</m>.
         Using the exact sequence
-        <me>
+        <md>
           0 \to \ZZ \to \QQ \to \QQ/\ZZ \to 0
-        </me>,
+        </md>,
         we obtain an exact sequence
-        <me>
+        <md>
           0 = \iHom_{\ZZ_\solid}(\QQ_\solid, \ZZ_\solid) \to \ZZ_\solid \to \iExt^1_{\ZZ_\solid}((\QQ/\ZZ)_\solid, \ZZ_\solid) \to \iExt^1_{\ZZ_\solid}(\QQ_\solid, \ZZ_\solid) \to 0
-        </me>
+        </md>
         where the first term vanishes by <xref ref="lem-hom-from-torsion-vanishes"/>.
         Using <xref ref="exa-extension-solid-Q-by-Z"/> to identify the middle term, this yields an isomorphism
-        <me>
+        <md>
           \iExt^1_{\ZZ_\solid}(\QQ_\solid, \ZZ_\solid) \cong \widehat{\ZZ}_\solid/\ZZ_\solid
-        </me>.
+        </md>.
       </p>
       <p>
         For <m>Q</m> a <m>\QQ</m>-vector space with <m>|Q| \leq \kappa</m>, by choosing a basis we can write
         <m>Q = \bigoplus_I \QQ</m> with <m>|I| \leq \kappa</m>. We then obtain
-        <me>
+        <md>
           \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \cong \prod_I \left(\widehat{\ZZ}_\solid/\ZZ_\solid \right)
-        </me>.
+        </md>.
       </p>
     </example>
     <remark xml:id="rem-reduce-to-torsion-and-Q">
       <p>
         For a general abelian group <m>Q</m> with <m>|Q| \leq \kappa</m>, we have a canonical exact sequence
-        <me>
+        <md>
           0 \to T_0 \to Q \to Q \otimes_{\ZZ} \QQ \to T_1 \to 0
-        </me>
+        </md>
         in which <m>T_0</m> and <m>T_1</m> are both torsion groups.
         This allows us to reduce the computation of <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> to cases where <m>Q</m> is either a torsion group or a <m>\QQ</m>-vector space.
       </p>
@@ -370,9 +370,9 @@
           The <q>if</q> assertion follows from <xref ref="exa-generate-finitely-presented"/>; we prove the <q>only if</q> assertion as follows.
           Let <m>M</m> be a finitely presented object of <m>\Ab_\solid</m>.
           By definition, we can find an exact sequence of the form
-          <men xml:id="eq-cor-solid-torsion-by-free">
+          <md number="yes" xml:id="eq-cor-solid-torsion-by-free">
             0 \to \prod_J \ZZ_\solid \stackrel{g}{\to} \prod_I \ZZ_\solid \to M \to 0
-          </men>.
+          </md>.
           By taking duals (<xref ref="prop-solid-internal-hom"/>) and noting that everything in sight is discrete, 
           we get a map <m>h \colon \bigoplus_I \ZZ \to \bigoplus_J \ZZ</m>.
         </p>
@@ -408,9 +408,9 @@
     <remark xml:id="rem-torsion-group-as-sequential-limit">
       <p>
         When <m>Q</m> is a torsion group that is not countable, we may still write it as a countable direct sum of Sylow subgroups:
-        <me>
+        <md>
           Q \cong \bigoplus_p Q[p^\infty]
-        </me>
+        </md>
         where <m>p</m> runs over primes. We may correspondingly split <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> as a direct sum of
         <m>\iExt^1_{\ZZ_\solid}(Q[p^\infty]_\solid, \ZZ_\solid)</m>.
       </p>
@@ -437,9 +437,9 @@
         In <xref ref="exa-generate-finitely-presented"/>, the group <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> may be further analyzed as follows.
         We have already seen in <xref ref="cor-length-1-resolution-of-solid"/> that if <m>\Hom_{\ZZ}(Q, \ZZ) = 0</m>, then <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>
         admits a projective resolution of length 1. If <m>\Hom_{\ZZ}(Q, \ZZ) = \ZZ</m>, then we obtain an exact sequence of the form
-        <me>
+        <md>
           0 \to Q_0 \to Q \to \ZZ \to 0
-        </me>
+        </md>
         which we can split to obtain a summand <m>Q_0</m> of <m>Q</m> with <m>\Hom_{\ZZ}(Q_0, \ZZ) = 0</m>;
         we then have  <m>\iExt^1_{\ZZ_\solid}((Q_0)_\solid, \ZZ_\solid) = \iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m>.
         By the same token, if <m>\Hom_{\ZZ}(Q, \ZZ)</m> is finitely generated, we can similarly split <m>Q</m> as a direct sum <m>Q_0 \oplus \ZZ^n</m>
@@ -464,10 +464,10 @@
         the divisible subgroup of <m>\left( \prod_\NN \ZZ \right) / \left( \bigoplus_\NN \ZZ \right)</m>
         is countable (as this quotient would be contained in the product of the torsion-free group <m>\bigoplus_{I \setminus J} \ZZ</m>
         with a countable group), but this is manifestly false: the map
-        <me>
+        <md>
           \left( \prod_\NN \ZZ \right) / \left( \bigoplus_\NN \ZZ \right) \to \left( \prod_\NN \ZZ \right) / \left( \bigoplus_\NN \ZZ \right),
           \qquad (a_n)_n \mapsto (n! a_n)_n
-        </me>
+        </md>
         is injective, its domain is uncountable, and its image is contained in the divisible subgroup of the codomain.
       </p>
     </remark>
@@ -515,13 +515,13 @@
           for each <m>n \gt 0</m>.
           In particular, we can choose a splitting <m>F_n \cong F_{n-1} \oplus (F_n/F_{n-1})</m>.
           Combining these splittings yields a coherent sequence of isomorphisms
-          <me>
+          <md>
             F_n \cong F_0 \oplus (F_1/F_0) \oplus \cdots \oplus (F_n/F_{n-1})
-          </me>,
+          </md>,
           and taking colimits yields an isomorphism
-          <me>
+          <md>
             M \cong F_0 \oplus (F_1/F_0) \oplus \cdots
-          </me>
+          </md>
           which shows that <m>M</m> is free.
         </p>
       </proof>
@@ -636,17 +636,17 @@
       </p>
       <p>
         Define <m>M \in \Ab_\solid</m> to make
-        <me>
+        <md>
           0 \to \iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid) \to \prod_J \ZZ_\solid \to M \to 0
-        </me>
+        </md>
         an exact sequence. Since this sequence splits, it dualizes to an exact sequence
-        <me>
+        <md>
           0 \to \iHom_{\ZZ_\solid}(M, \ZZ_\solid) \to \bigoplus_J \ZZ \to R \to 0
-        </me>
+        </md>
         where 
-        <me>
+        <md>
           R := \iHom_{\ZZ_\solid}(\iHom_{\ZZ_\solid}(Q_\solid, \ZZ_\solid), \ZZ_\solid) \cong \iHom_{\ZZ_\solid}\left(\prod_L \ZZ_\solid, \ZZ_\solid\right) \cong \bigoplus_L \ZZ
-        </me> 
+        </md> 
         is the solid double dual of <m>Q</m>.
       </p>
       <p>

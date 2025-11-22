@@ -271,9 +271,9 @@
       <proof>
         <p>
           Since 
-          <me>
+          <md>
             \underline{\ZZ}\llbracket x_1 \rrbracket \otimes^L_\solid \cdots \otimes^L_\solid \underline{\ZZ}\llbracket x_n \rrbracket \cong \underline{\ZZ}\llbracket x_1,\dots,x_n \rrbracket,
-          </me>
+          </md>
           the conditions in question imply that we have a homomorphism <m>\underline{\ZZ}\llbracket x_1,\dots,x_n,T\rrbracket/(F) \to A^{\triangleright}</m>
           acting via <m>x_i \mapsto f_i, T \mapsto f</m>.
           We thus deduce that <m>f \in A^{\circ \circ}</m>.

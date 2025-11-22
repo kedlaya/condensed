@@ -57,9 +57,9 @@
           </li>
           <li>
             for every surjection <m>T \to S</m> in <m>\Prof</m>, the diagram
-            <me>
+            <md>
               X(S) \to X(T) \rightrightarrows X(T \times_S T)
-            </me>
+            </md>
             is an equalizer.
           </li>
         </ul>
@@ -201,15 +201,15 @@
           At this point, for any <m>i,j \in I</m>, <m>V_i \times_S V_j</m> is nonempty and <m>f_1 - f_2</m> is constant on <m>V_i \times_S V_j</m>;
           let <m>c_{ij} \in X</m> denote this constant value.
           By the same token, for any <m>i,j,k \in I</m>, <m>V_i \times_S V_j \times_S V_k</m> is nonempty and so
-          <men xml:id="eq-difference-on-product-cocycle">
+          <md number="yes" xml:id="eq-difference-on-product-cocycle">
             c_{ik} = c_{ij} + c_{jk}
-          </men>.
+          </md>.
           Now choose an index <m>i_0 \in I</m> and define a locally constant function <m>g \colon T \to X</m>
           by specifying that <m>g(t_i) = c_{ii_0}</m> for all <m>t_i \in V_i</m>.
           By construction, for any <m>(t_i, t_j) \in V_i \times_S V_j</m>, using <xref ref="eq-difference-on-product-cocycle"/> we find that
-          <me>
+          <md>
               g(t_i) - g(t_j) = c_{ii_0} - c_{ji_0} = c_{ij} = f(t_i) - f(t_j)
-          </me>.
+          </md>.
           Consequently, <m>h := f - g</m> factors through <m>S</m>. 
         </p>
       </proof>
@@ -237,9 +237,9 @@
         <li>
           For <m>S = \{0,1\}^\NN</m>, we can produce a nontrivial element of <m>F(S)</m> using the 
           standard <q>middle third</q> representation in <m>\RR</m>:
-          <me>
+          <md>
             (s_1, s_2, \dots) \mapsto \sum_{n=1}^\infty (2s_n) 3^{-n}
-          </me>.
+          </md>.
           This defines a continuous map <m>S \to \RR</m> which is not locally constant.
         </li>
       </ul>
@@ -255,16 +255,16 @@
     <definition>
       <p>
         By a <term>free resolution</term> of an object <m>S \in \CHaus</m>, we will mean a coequalizer diagram of the form
-        <me>
+        <md>
           S_2 \rightrightarrows S_1 \to S
-        </me>
+        </md>
         in which <m>S_1, S_2 \in \Prof</m>.
       </p>
       <p>
         Given such a diagram, for any <m>X \in \CSet</m> we can define the evaluation <m>X(S)</m> as an equalizer:
-        <me>
+        <md>
           X(S) \to X(S_1) \rightrightarrows X(S_2)
-        </me>.
+        </md>.
         By construction, this reproduces the previous definition when <m>X \in \Prof</m>.
       </p>
     </definition>
@@ -328,9 +328,9 @@
       <p>
         The forgetful functor <m>\CHaus \to \Set</m> admits a left adjoint <m>\beta\colon \Set \to \CHaus</m> known as 
         <term>Stone-Čech compactification</term>. Concretely, this is the functor
-        <me>
+        <md>
           S \mapsto \MaxSpec \FF_2[S] \subset \Spec \FF_2[S]
-        </me>
+        </md>
         for the usual Zariski topology on <m>\Spec \FF_2[S]</m>; maximal ideals of <m>\FF_2[S]</m> are classically known as
         <term>ultrafilters</term> on the sets <m>S</m>.
       </p>
@@ -468,10 +468,10 @@
       <proof>
         <p>
           Apply <xref ref="prop-sequential-limits-of-surjections"/> to the inverse system
-          <me>
+          <md>
             \prod_{n' \lt n+1} X_{n'} \times \prod_{n' \geq n+1} Y_{n'} \to \prod_{n' \lt n} X_{n'} \times \prod_{n' \geq n} Y_{n'}
             \qquad (n=1,2,\dots)
-          </me>
+          </md>
           and the identity map out of the last term.
         </p>
       </proof>

@@ -31,10 +31,10 @@
         are the <m>\kappa</m>-small inverse systems,
         i.e., contravariant functors to <m>\calC</m> out of directed sets of cardinality <m> \leq \kappa</m>.
         The homsets are given by the formula
-        <me>
+        <md>
           \Hom_{\varprojlim_\kappa \calC}\left(\varprojlim_{i \in I} X_i, \varprojlim_{j \in J} Y_j\right) 
           = \varprojlim_{j \in J} \left( \varinjlim_{i \in I} \Hom_{\calC}(X_i, Y_j) \right)
-        </me>.
+        </md>.
         Another way to interpret <m>\varprojlim_\kappa \calC</m> is as the subcategory of <m>\Fun(\calC, \Set)^{\op}</m>
         consisting of cofiltered limits of representable functors.
       </p>

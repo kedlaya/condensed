@@ -44,9 +44,9 @@
       </p>
       <p>
         Equip <m>\QQ_p = \ZZ_p[1/p]</m> with its usual topology, which we can view as the direct limit topology on
-        <me>
+        <md>
           \colim \left( \ZZ_{p} \stackrel{\times p}{\to} \ZZ_{p} \stackrel{\times p}{\to} \cdots \right).
-        </me>
+        </md>
         This is also a ring object in <m>\CAb_\solid</m>.
       </p>
     </example>
@@ -77,22 +77,22 @@
       <p>
         Returning to <xref ref="exa-power-series-as-solid-rings"/>, note that in <m>\Ab_\solid</m> the rings <m>\ZZ[T]</m> and <m>\ZZ\llbracket T \rrbracket</m>
         correspond to the functors
-        <me>
+        <md>
           \prod_I \ZZ_\solid \mapsto \left( \bigoplus_I \ZZ \right)[T] = \bigoplus_I \ZZ[T], \qquad
           \prod_I \ZZ_\solid \mapsto \left( \bigoplus_I \ZZ \right) \llbracket T \rrbracket
-        </me>.
+        </md>.
         As in <xref ref="exa-solid-modules-with-underlying-zero"/>, we can insert in between the functor
-        <me>
+        <md>
           \prod_I \ZZ_\solid \mapsto \left( \prod_I \ZZ[T] \right) \cap \left( \bigoplus_I \ZZ \right) \llbracket T \rrbracket \subset \left( \prod_I \ZZ \right) \llbracket T \rrbracket
-        </me>.
+        </md>.
         This corresponds to a ring object in <m>\Ab_\solid</m>
         which we might call <m>\ZZ\langle T \rangle</m>, but which does <em>not</em> correspond to a topological ring.
       </p>
       <p>
         However, this example is extremely useful! For instance, we have
-        <me>
+        <md>
           \ZZ \langle T \rangle \otimes_\solid \ZZ \llbracket U \rrbracket \cong \ZZ \llbracket U \rrbracket\langle T \rangle
-        </me>
+        </md>
         where <m>\ZZ \llbracket U \rrbracket\langle T \rangle</m> means the <m>U</m>-adic completion of <m>\ZZ\llbracket U \rrbracket[T]</m>
         (or equivalently of <m>\ZZ[U,T]</m>). To see this, write <m>\ZZ \llbracket U \rrbracket</m> as <m>\prod_n \ZZ\cdot U^n</m>
         and recall that <m>\otimes_\solid</m> commutes with countable products.
@@ -101,14 +101,14 @@
     <example xml:id="exa-solid-Tate-algebra2">
       <p>
         By dividing by <m>U-p</m> in the previous example, we deduce that
-        <me>
+        <md>
           \ZZ \langle T \rangle \otimes_\solid \ZZ_p \cong \ZZ_p \langle T \rangle
-        </me>
+        </md>
         where <m>\ZZ_p\langle T \rangle</m> means the <m>p</m>-adic completion of <m>\ZZ[T]</m>, i.e., the usual Tate algebra in one variable over <m>\ZZ_p</m>.
         Similarly
-        <me>
+        <md>
           \ZZ \langle T \rangle \otimes_\solid \QQ_p \cong \QQ_p \langle T \rangle
-        </me>
+        </md>
         where now <m>\QQ_p \langle T \rangle</m> is the ring of rigid-analytic functions on the <em>closed</em> unit disc over <m>\QQ_p</m>.
       </p>
       <p>
@@ -149,9 +149,9 @@
       <p>
         Now note that <m>A \to B</m> is injective, but applying <m>\bullet \otimes_{A \solid} C</m> yields <m>C \to 0</m> which is not injective.
         In other words, 
-        <me>
+        <md>
           (B/A) \otimes^L_{A \solid} C \cong C[-1]
-        </me>.
+        </md>.
       </p>
     </example>
   </subsection>
@@ -181,21 +181,21 @@
       <statement>
         <p>
           Suppose that <m>M \in \Mod_R</m> is classically <m>f</m>-adically complete. Then
-          <men xml:id="eq-derived-completeness-criterion">
+          <md number="yes" xml:id="eq-derived-completeness-criterion">
             R\Hom_R(R_f, M) = 0
-          </men>.
+          </md>.
         </p>
       </statement>
       <proof>
         <p>
           Since <m>R_f</m> admits a projective resolution of length 1:
-          <me>
+          <md>
             0 \to R[T] \stackrel{\times 1-fT}{\to} R[T] \to R_f \to 0
-          </me>,
+          </md>,
           this amounts to verifying that
-          <me>
+          <md>
             \Hom_{R}(R_f, M) = 0 \qquad \text{and} \qquad \Ext^1_{R}(R_f, M) = 0
-          </me>.
+          </md>.
           The first of these is obvious because
           <md>
             <mrow>
@@ -206,14 +206,14 @@
             </mrow>
           </md>.
           For the second assertion, consider an extension in <m>\Mod_R</m> of the form
-          <me>
+          <md>
             0 \to M \to E \to R_f \to 0.
-          </me>
+          </md>
           For each <m>n \geq 0</m>, choose <m>e_n \in E</m> mapping to <m>f^{-n}</m> and set <m>\delta_n := f e_{n+1} - e_n \in M</m>. 
           Since <m>M</m> is classically <m>f</m>-complete, we may form the elements
-          <me>
+          <md>
             e'_n := e_n + \delta_n + f \delta_{n+1} + f^2 \delta_{n+2} + \cdots \in E
-          </me>
+          </md>
           which satisfy <m>fe'_{n+1} = e'_n</m>; we may thus split the map <m>R_f \to E</m> by mapping <m>f^{-n}</m> to <m>e'_n</m>.
         </p>
       </proof>
@@ -227,9 +227,9 @@
         <m>M \to \varprojlim_n M/f^n M</m> is an isomorphism,
         and <term>derived <m>f</m>-complete</term> if <m>R\Hom_{R_\solid}((R_f)_\solid, M) = 0</m>.
         As in the proof of <xref ref="lem-classical-to-derived-complete"/>, we have the exact sequence
-        <men xml:id="eq-resolution-of-Rf">
+        <md number="yes" xml:id="eq-resolution-of-Rf">
           0 \to R[T]_\solid \stackrel{\times (1-fT)}{\to} R[T]_\solid \to (R_f)_\solid \to 0
-        </men>;
+        </md>;
         hence <m>M</m> is derived <m>f</m>-complete if and only if <m>1-fT</m> acts isomorphically on <m>R\Hom_{R_\solid}(R[T]_\solid, M)</m>.
       </p>
       <p>
@@ -331,17 +331,17 @@
       <statement>
         <p>
           The functor 
-          <me>
+          <md>
             M \mapsto R\iHom_{R_\solid}((R_f/R)_\solid[-1], M)
-          </me> 
+          </md> 
           (interpreting <m>(R_f/R)_\solid</m> in the derived sense if <m>f</m> is a zero divisor on <m>R</m>)
           acts on the unbounded derived category of <m>\Mod_{R_\solid})</m>;
           its values are derived <m>f</m>-complete, and it is left adjoint to the full embedding of derived <m>f</m>-complete objects into the derived category.
           The functor also preserves <m>D^{\leq 0}(\Mod_{R_\solid})</m>;
           truncation to degree <m>0</m> yields 
-          <me>
+          <md>
             M \mapsto \iExt^1_{R_\solid}((R_f/R)_\solid, M)
-          </me>,
+          </md>,
           which is a left adjoint to the full embedding of derived <m>f</m>-complete objects into <m>\Mod_{R_\solid}</m>.
         </p>
       </statement>
@@ -353,15 +353,15 @@
         </p>
         <p>
           Using <xref ref="eq-resolution-of-Rf"/> we obtain a bounded free resolution 
-          <me>
+          <md>
             0 \to (R_\solid \oplus R[T]_\solid) \stackrel{\iota_0 \oplus (\times (1-fT))}{\to} R[T]_\solid \to 0
-          </me>
+          </md>
           of <m>R_\solid \to (R_f)_\solid</m>. Consequently, if <m>M</m> is concentrated in degrees in the range <m>[a, b]</m>,
           then its image is concentrated in degrees in the range <m>[a-1, b]</m>.
           To check that the output is derived <m>f</m>-complete, we use Hom-tensor adjunction to write
-          <me>
+          <md>
             R\iHom_{R_\solid}((R_f)_\solid, R\iHom_{R_\solid}((R_f/R)_\solid, M)) =  R\iHom_{R_\solid}((R_f \otimes^L_R R_f/R)_\solid, M)
-          </me>.
+          </md>.
           This vanishes because <m>R_f \otimes^L_R R_f/R = 0</m>.
         </p>
         <p>
@@ -412,9 +412,9 @@
         (in particular, the powers of <m>f</m> form a null sequence), then
         imposing the summability of all series <m>\sum_{n=0}^\infty a_n f^n</m> is formally equivalent
         to imposing the same condition only when the <m>a_n</m> form a null sequence: in the general case we may regroup terms to obtain
-        <me>
+        <md>
           \sum_{n=0}^\infty (a_{2n} f^n + a_{2n+1} f^{n+1}) f^n
-        </me>
+        </md>
         and now the terms form a null sequence.
       </p>
       <p>
@@ -500,9 +500,9 @@
             </mrow>
           </md>
           For any <m>x,y \in \NN</m>,
-          <me>
+          <md>
             h_1(x,y) + h_2(x,y) \leq \lfloor h(x,y)/2 \rfloor + \lfloor h(x,y)/2 \rfloor \leq h(x,y)
-          </me>.
+          </md>.
           We prove that <m>h_1</m> has finite fibers, the proof for <m>h_2</m> being analogous.
           It suffices to check that for any <m>N</m>, there are at most finitely many <m>x</m> for which <m>h(x) \leq N</m>.
           For each such <m>x</m>, there exists some <m>y</m> such that <m>h(x,y) \leq 2N+1</m>;
@@ -514,10 +514,10 @@
       <statement>
         <p>
           We have
-          <me>
+          <md>
             \left( \bigoplus_\NN R_\solid \right)^{\wedge}_{(f)} \otimes^L_{R_\solid} \left( \bigoplus_\NN R_\solid \right)^{\wedge}_{(f)}
             \cong \left( \bigoplus_{\NN \times \NN} R_\solid \right)^{\wedge}_{(f)}
-          </me>;
+          </md>;
           in particular the derived tensor product is concentrated in degree <m>0</m>.
         </p>
       </statement>
@@ -601,9 +601,9 @@
       <p>
         In <m>\Mod_{\QQ_{p\solid}}</m>, we have the object <m>\prod_\NN \QQ_{p \solid}</m> which is not the same as <m>\left( \prod_\NN \ZZ_{p \solid} \right)[1/p]</m>.
         Rather,
-        <men xml:id="eq-present-colim-of-Qpsolid-product">
+        <md number="yes" xml:id="eq-present-colim-of-Qpsolid-product">
           \prod_\NN \QQ_{p \solid} = \colim_h \left( \prod_{n \in \NN} p^{-h(n)} \ZZ_p \right)
-        </men>
+        </md>
         where <m>h</m> ranges over all functions <m>\NN \to \NN</m>; in particular this is a Frechet space.
       </p>
     </example>
@@ -627,9 +627,9 @@
             </mrow>
           </md>
           For any <m>x,y \in \NN</m>, we have either <m>x \geq y</m> or <m>y \leq x</m>, and so
-          <me>
+          <md>
             h_1(x,y) + h_2(x,y) \geq h(x,y)
-          </me>.
+          </md>.
         </p>
       </proof>
     </lemma>
@@ -637,24 +637,24 @@
       <statement>
         <p>
           We have
-          <me>
+          <md>
             \left( \prod_\NN \QQ_{p \solid} \right) \otimes^L_\solid \left( \prod_\NN \QQ_{p \solid} \right) 
             \cong \prod_{\NN \times \NN} \QQ_{p \solid}.
-          </me>
+          </md>
         </p>
       </statement>
       <proof>
         <p>
           From <xref ref="eq-present-colim-of-Qpsolid-product"/> we have formally
-          <me>
+          <md>
             \left( \prod_\NN \QQ_{p \solid} \right) \otimes^L_\solid \left( \prod_\NN \QQ_{p \solid} \right) 
             \cong
             \colim_{h_1, h_2} \left( \prod_{n \in \NN \times \NN} p^{-h_1(n)-h_2(n)} \ZZ_p \right).
-          </me>
+          </md>
           By <xref ref="lem-factor-function-with-finite-fibers-reverse"/>, this gives the same result as
-          <me>
+          <md>
             \colim_h  \left( \prod_{n \in \NN \times \NN} p^{-h(n)} \ZZ_p \right)
-          </me>
+          </md>
           where now <m>h \colon \NN \times \NN</m> ranges over all functions; from <xref ref="eq-present-colim-of-Qpsolid-product"/> this yields the claim.
         </p>
       </proof>
@@ -663,7 +663,7 @@
       <statement>
         <p>
           For any two Frechet spaces <m>M,N</m> over <m>\QQ_{p \solid}</m>,
-          <me>M \otimes^L_\solid N</me> is again a Frechet space (concentrated in degree <m>0</m>).
+          <md>M \otimes^L_\solid N</md> is again a Frechet space (concentrated in degree <m>0</m>).
         </p>
       </statement>
       <proof>

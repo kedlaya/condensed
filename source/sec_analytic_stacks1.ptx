@@ -143,9 +143,9 @@
         <p>
           We can write <m>S = \varprojlim_i S_i</m>, <m>S' = \varprojlim_i S'_i</m> as sequential inverse limits of finite sets with surjective transition maps,
           in such a way that <m>S' \to S</m> is induced by a family of morphisms <m>S' \to S</m>. We have 
-          <me>
+          <md>
             \Cts(S, \ZZ) = \colim_i \Cts(S_i, \ZZ) = \colim_i \bigoplus_{s \in S_i} \ZZ
-          </me>
+          </md>
           and similarly with <m>S</m> replaced by <m>S'</m>. Each morphism <m>\Cts(S_i, \ZZ) \to \Cts(S'_i, \ZZ)</m> is visibly flat: we may formally reduce to the case
           where <m>S_i</m> is a singleton, and then <m>\Cts(S'_i, \ZZ)</m> is free as a module over <m>\Cts(S_i, \ZZ) = \ZZ</m> and hence flat.
           By taking colimits on both sides, we deduce that <m>\Cts(S, \ZZ) \to \Cts(S', \ZZ)</m> is flat (<xref ref="bib-Stacks"/>, tags 05UT, 05UU).
@@ -175,13 +175,13 @@
         We can make this more concrete for <m>X \in \CHaus</m>. 
         In that case, apply <xref ref="rem-construct-profinite-cover"/> to construct a covering <m>S \to X</m> with <m>S \in \Prof</m>. Then
         the functor <m>\CSet \to \Shv^{\acc}(\Ring^{\op}, \Set)</m> takes <m>X</m> to the functor
-        <me>
+        <md>
           R \mapsto \Hom_{\Ring}(\Cts(S, \ZZ), R)) \rightrightarrows \Hom_{\Ring}(\Cts(S \times_X S, \ZZ), R))
-        </me>;
+        </md>;
         this is the limit of the diagram
-        <me>
+        <md>
           \Spec \Cts(S \times_X S, \ZZ) \rightrightarrows \Spec \Cts(S, \ZZ)
-        </me>.
+        </md>.
       </p>
       <p>
         For particular <m>X \in \CHaus</m>, we can make the description even more explicit by fixing a convenient covering <m>S \to X</m>.
@@ -224,9 +224,9 @@
     <definition>
       <p>
         Define the functor <m>\PP^1_\ZZ</m> on <m>\AnRing^{\op}</m> to carry <m>R \in \AnRing^{\op}</m> to the set of isomorphism classes of short exact sequences
-        <me>
+        <md>
           0 \to L_1 \to R^{\triangleright} \oplus R^{\triangleright} \to L_0 \to 0
-        </me>
+        </md>
         in <m>\Mod_R</m> with <m>L_0</m> invertible. Note that then <m>L_1</m> is also invertible and <m>L_0 \otimes^L_R L_1 \cong R^{\triangleright}</m>.
       </p>
     </definition>

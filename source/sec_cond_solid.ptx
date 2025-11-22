@@ -35,18 +35,18 @@
       <p>
         For any topological abelian group <m>M</m>, <m>\Hom_{\CAb}(P, \underline{M})</m> consists of null sequences (<xref ref="rem-coord-map"/>)
         and <m>\Delta^*</m> acts on these via
-        <me>
+        <md>
           (m_0, m_1, \dots) \mapsto (m_0-m_1, m_1-m_2, \dots)
-        </me>.
+        </md>.
       </p>
     </definition>
      <remark xml:id="rem-solid-intuition">
       <p>
         If <m>M</m> is an abelian group topologized by some nonarchimedean norm (so in particular the discrete topology is allowed), 
         then every null sequence is summable and so the action of <m>\Delta^*</m> on <m>\Hom_{\CAb}(P, \underline{M})</m> is inverted by the <q>telescoping</q> map
-        <me>
+        <md>
           (m_0, m_1, \dots) \mapsto \left(\sum_{n=0}^\infty m_n, \sum_{n=1}^\infty m_n, \dots\right)
-        </me>.
+        </md>.
         In particular, <m>\Delta^*</m> acts isomorphically on <m>\Hom_{\CAb}(P, \underline{M})</m>.
         We will use this observation as the basis for defining the solid property for condensed abelian groups <xref ref="def-solid-condensed"/>.
         For the moment, we observe that the property that every null sequence is uniquely summable is preserved under <em>arbitrary</em> products of topological abelian groups,
@@ -123,9 +123,9 @@
     <remark xml:id="rem-exact-seq-for-P">
       <p>
         By analogy with the split exact sequence
-        <me>
+        <md>
           0 \to \ZZ[x] \stackrel{\times 1-x}{\to} \ZZ[x] \stackrel{Q(x) \mapsto Q(1)}{\longrightarrow} \ZZ \to 0
-        </me>,
+        </md>,
         one might expect that <m>\coker(\Delta) \cong \underline{\ZZ}</m> via the map which sends <m>[n]</m> to <m>1</m> for all <m>n \in \NN</m>.
         But this map is not continuous for the discrete topology on <m>\ZZ</m>:
         the sequence <m>\{[n]\}_n</m> is a null sequence in <m>P</m>, so it cannot map to a nonzero constant sequence.
@@ -138,13 +138,13 @@
       </p>
       <p>
         We end up with a <em>nonsplit</em> exact sequence in <m>\CAb</m>:
-        <men xml:id="eq-resolve-cofinite-Z">
+        <md number="yes" xml:id="eq-resolve-cofinite-Z">
           0 \to P \stackrel{\Delta}{\to} P \to \coker(\Delta) \to 0
-        </men>.
+        </md>.
         This in turn induces an exact sequence
-        <men xml:id="eq-resolve-cofinite-mod-Z">
+        <md number="yes" xml:id="eq-resolve-cofinite-mod-Z">
           0 \to P \stackrel{\Delta}{\to} P/\ZZ \to \coker(\Delta)/\ZZ \to 0
-        </men>
+        </md>
         which (because <m>P/\ZZ \cong P</m>)
         is an internally projective resolution of <m>\coker(\Delta)/\ZZ</m> of length <m>1</m>.
         See <xref ref="rem-liquefaction-kills-ext1"/> for an application of this construction.
@@ -156,17 +156,17 @@
     <definition xml:id="def-solid-condensed">
       <p>
         An object <m>M \in \CAb</m> is <term>solid</term> if 
-        <men xml:id="eq-def-of-solid">
+        <md number="yes" xml:id="eq-def-of-solid">
           \Delta^*\colon \iHom_{\CAb}(P, M) \to \iHom_{\CAb}(P, M)
-        </men> 
+        </md> 
         is an isomorphism in <m>\CAb</m>. 
         Let <m>\CAb_\solid</m> denote the full subcategory of <m>\CAb</m> consisting of solid objects.
       </p>
       <p>
         We may also equate <xref ref="eq-def-of-solid"/> with the condition that
-        <men xml:id="eq-def-of-solid-derived-version">
+        <md number="yes" xml:id="eq-def-of-solid-derived-version">
           \Delta^*\colon R\iHom_{\CAb}(P, M) \to R\iHom_{\CAb}(P, M)
-        </men>
+        </md>
         is an isomorphism, as by <xref ref="prop-internally-projective"/> all of the higher Ext objects are automatically zero.
       </p>
       <p>
@@ -201,13 +201,13 @@
           </md>.
           The latter group consists of the continuous maps <m>f\colon \NN_\infty \times S \to \ZZ</m> which vanish on <m>\{\infty\} \times S</m>.
           The action of <m>\Delta^*</m> carries <m>f</m> to the map
-          <me>
+          <md>
             (n,s) \mapsto f(n,s) - f(n+1,s);
-          </me>
+          </md>
           it is inverted by the map taking <m>f</m> to
-          <me>
+          <md>
             (n,s) \mapsto f(n,s) + f(n+1,s) + \cdots
-          </me>
+          </md>
           where again continuity of the map ensures that the sum is finite.
         </p>
         <p>
@@ -262,9 +262,9 @@
       <p>
         Since <xref ref="prop-solid-category"/> does not include compatibility with tensor products, we instead define the <term>solid tensor product</term>
         on <m>\CAb_\solid</m> by the formula
-        <me>
+        <md>
           M \otimes_\solid N := (M \otimes N)_\solid.
-        </me>
+        </md>
         For example, for <m>M = N = \prod_\NN \underline{\ZZ}</m>, <m>M \otimes_\solid N = \prod_{\NN \times \NN} \underline{\ZZ}</m>
         but this is not equal to <m>M \otimes N</m>.
       </p>
@@ -277,33 +277,33 @@
       <p>
         Using <xref ref="eq-resolve-cofinite-Z"/>, we can make a number of formal observations about <xref ref="def-solid-condensed"/> and <xref ref="def-solidification-condensed"/>.
         To begin with, we may rewrite <xref ref="eq-def-of-solid-derived-version"/> as the statement that
-        <me>
+        <md>
           R\iHom_{\CAb}(\coker(\Delta), M) = 0.
-        </me>
+        </md>
         By <xref ref="eq-resolve-cofinite-Z"/> and <xref ref="prop-internally-projective"/>, this in turn is equivalent to
-        <me>
+        <md>
           \iHom_{\CAb}(\coker(\Delta), M) = 0, \qquad \iExt^1_{\CAb}(\coker(\Delta), M) = 0.
-        </me>
+        </md>
       </p>
       <p>
         Turning to solidification, note that <m>\Delta_\solid</m> induces an isomorphism on <m>\Hom_{\CAb_\solid}(P_\solid, M) = \Hom_{\CAb}(P,M)</m>
         for any <m>M \in \CAb_\solid</m>, so by Yoneda's lemma it is itself an isomorphism. Consequently,
-        <me>
+        <md>
           \coker(\Delta)_\solid = \coker(\Delta_\solid) = 0
-        </me>;
+        </md>;
         since <m>\Delta_\solid</m> also induces an isomorphism on <m>\Ext^i_{\CAb_\solid}(P_\solid, M) = \Ext^i_{\CAb}(P,M)</m>
         for any <m>i \gt 0</m>, the derived solidification of <m>\coker(\Delta)</m> also vanishes.
       </p>
       <p>
         Using the exact sequence
-        <me>
+        <md>
           0 \to \underline{\ZZ} \to \coker(\Delta) \to \coker(\Delta)/\underline{\ZZ} \to 0
-        </me>
+        </md>
         we obtain the example <m>\coker(\Delta)/\underline{\ZZ}</m> whose solidification is zero, but whose derived solidification consists of <m>\ZZ</m> in degree <m>-1</m>.
         For <m>M \in \CAb</m> general, we obtain a canonical morphism
-        <me>
+        <md>
           M = \iHom_{\CAb}(\underline{\ZZ}, M) \to \iExt^1_{\CAb}(\coker(\Delta)/\underline{\ZZ}, M)
-        </me>
+        </md>
         which is an isomorphism if and only if <m>M \in \CAb_\solid</m>.
       </p>
     </remark>
@@ -311,14 +311,14 @@
       <p>
         We say that an object <m>C</m> in the derived category <m>D(\CAb)</m> is <term>solid</term> if its cohomology groups belong to <m>\CAb_\solid</m>.
         It is equivalent (thanks to <xref ref="prop-internally-projective"/>) to require 
-        <me>
+        <md>
           \Delta^*\colon R\iHom_{\CAb}(P, C) \to R\iHom_{\CAb}(P,C)
-        </me>
+        </md>
         to be an isomorphism.
         As in <xref ref="rem-express-solidification-using-cof"/>, we have a canonical morphism
-        <me>
+        <md>
           C \to R\iHom_{\CAb}(\coker(\Delta)/\underline{\ZZ}, C)[-1]
-        </me>
+        </md>
         which is an isomorphism if and only if <m>C</m> is solid.
         The forgetful functor from the full subcategory of solid objects of <m>D(\CAb)</m> back to <m>D(\CAb)</m> again has a left adjoint, called <term>derived solidification</term>.
       </p>
@@ -348,18 +348,18 @@
       <proof>
         <p>
           The null sequence <m>\{2^{-\lfloor \log_2 n \rfloor}\}_n</m> in <m>\RR</m>, i.e.,
-          <men xml:id="eq-not-summable-null-sequence">
+          <md number="yes" xml:id="eq-not-summable-null-sequence">
             1, \tfrac{1}{2}, \tfrac{1}{2}, \tfrac{1}{4}, \tfrac{1}{4}, \tfrac{1}{4}, \tfrac{1}{4}, \dots
-          </men>
+          </md>
           defines an element <m>x \in \Hom_{\CAb}(P, \underline{\RR})</m>; we may thus apply the inverse of <m>\Delta^*</m> to get an element
           <m>y \in \Hom_{\CAb}(P, \underline{\RR}_\solid)</m>. Taking the first coordinate (i.e., restricting along <m>\ZZ \to \ZZ \cdot [1] \subset P</m>)
           yields an element <m>z \in \underline{\RR}_\solid(*)</m>.
         </p>
         <p>
           By formally rearranging <xref ref="eq-not-summable-null-sequence"/> as
-          <me>
+          <md>
             1 + \left( \tfrac{1}{2} + \tfrac{1}{2} \right) + \left( \tfrac{1}{4} + \tfrac{1}{4} \right) + \left( \tfrac{1}{4} + \tfrac{1}{4} \right) + \cdots
-          </me>
+          </md>
           and invoking <xref ref="rem-infinite-series"/>, we deduce that <m>z = 1 + z</m>. We deduce that <m>0 = 1</m> in <m>\underline{\RR}_\solid(*)</m>; since
           <m>\underline{\RR}_\solid</m> is a ring object in <m>\CAb</m> (because <m>\underline{\RR}</m> is), it follows that <m>\underline{\RR}_\solid = 0</m>.
         </p>
@@ -429,9 +429,9 @@
       <statement>
         <p>
           In <m>\CAb</m>, for any at most countable index sets <m>I,J</m>, we have
-          <me>
+          <md>
             \Hom_{\CAb}\left(\prod_I \underline{\ZZ}, \prod_J \underline{\ZZ}\right) = \prod_J \bigoplus_I \ZZ
-          </me>.
+          </md>.
         </p>
       </statement>
       <proof>

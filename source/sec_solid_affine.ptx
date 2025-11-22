@@ -40,9 +40,9 @@
       </p>
       <p>
         Equip <m>\QQ_p = \ZZ_p[1/p]</m> with its usual topology, which we can view as the direct limit topology on
-        <me>
+        <md>
           \colim \left( \ZZ_{p} \stackrel{\times p}{\to} \ZZ_{p} \stackrel{\times p}{\to} \cdots \right).
-        </me>
+        </md>
         This is also a ring object in <m>\TopAb_\solid</m>.
       </p>
     </example>
@@ -106,9 +106,9 @@
     <example>
       <p>
         By interpreting
-        <me>
+        <md>
           \ZZ((T^{-1})) = \ZZ\llbracket U \rrbracket[T]/(TU-1) = \coker(\times TU-1\colon \ZZ \llbracket U \rrbracket[T] \to \ZZ \llbracket U \rrbracket[T])
-        </me>
+        </md>
         we see that this object has <m>T</m>-solidification zero; the definition was carefully crafted to enforce this.
       </p>
     </example>

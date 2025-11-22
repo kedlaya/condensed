@@ -35,32 +35,32 @@
       <p>
         Let <m>A</m> be a sheafy solid analytic ring and choose <m>f,g \in A^{\triangleright}(*)</m> generating the unit ideal.
         We give an argument that attempts to prove that the base extension functor
-        <men xml:id="eq-derived-base-extension-functor-loose">
+        <md number="yes" xml:id="eq-derived-base-extension-functor-loose">
           D(\Mod_A) \to D(\Mod_{A \left\langle f/g \right\rangle}) \times_{D(\Mod_{A \left\langle f/g, g/f \right\rangle})} D(\Mod_{A \left\langle g/f \right\rangle})
-        </men>
+        </md>
         is an equivalence of categories, but fails in a subtle way.
       </p>
       <p>
         Each of the functors from <m>D(\Mod_A)</m> to one of the other categories has a right adjoint (restriction of scalars), so the same is true of
         the base extension. It thus remains to establish that the unit and the counit of this adjunction are equivalences.
         To simplify notation, let us rewrite <xref ref="eq-derived-base-extension-functor"/> as
-        <me>
+        <md>
           D(\Mod_A) \to D(\Mod_{A_1}) \times_{D(\Mod_{A_{12}})} D(\Mod_{A_{2}})
-        </me>.
+        </md>.
       </p>
       <p>
         To check the unit, note that by <xref ref="lem-sheafy-exact-sequence"/>, the sequence <xref ref="eq-sheafy-exact-sequence"/> is exact.
         For any <m>M \in D(\Mod_A)</m>, we may take the (derived) tensor product of this sequence with <m>M</m> to obtain a morphism from the mapping cone of
-        <me>
+        <md>
           M \otimes_A A_1 \oplus M \otimes_A A_2 \to M \otimes_A A_{12}
-        </me>
+        </md>
         to <m>M</m> in <m>D(\Mod_A)</m> which inverts the adjunction.
       </p>
       <p>
         For the counit, we first apply the universal property of localization to see that the multiplication maps
-        <men xml:id="eq-double-base-extension">
+        <md number="yes" xml:id="eq-double-base-extension">
           A_{S_1} \otimes^L_A A_{S_2} \to A_{S_1 \cup S_2}
-        </men>
+        </md>
         are isomorphisms for any subsets <m>S_1, S_2</m> of <m>\{1,2\}</m>. Using these isomorphisms, we see that if we start with <m>M_i \in \Mod_{A_i}</m>
         and isomorphisms <m>M_i \otimes_{A_i} A_{12} \cong M_{12}</m>, the counit is a map from <m>(M_1 \times_{M_{12}} M_2) \otimes^L_A A_i \in \Mod_{A_i}</m>
         to <m>M_i \otimes^L_A A_i</m> and then to <m>M_i</m>, and using <xref ref="eq-double-base-extension"/> we can produce inverses to both factors.
@@ -297,9 +297,9 @@
           <m>A_i := A \left\langle \tfrac{f_1}{f_i},\dots,\tfrac{f_n}{f_i} \right\rangle</m>
           and for any subset <m>S</m> of <m>\{1,\dots,n\}</m>, let <m>A_S</m> be the tensor product of <m>A_i</m> over <m>A</m> for <m>i</m> ranging over <m>S</m>.
           By <xref ref="thm-solid-sheafy"/>, we have an exact sequence
-          <men xml:id="eq-exact-seq-general-covering">
+          <md number="yes" xml:id="eq-exact-seq-general-covering">
             0 \to A \to \bigoplus_i A_i \to \bigoplus_{i \lt j} A_{ij} \to \cdots
-          </men>.
+          </md>.
           What we need to check is that <m>\calD(\QCoh_A)</m> is the limit of the diagram formed by the categories <m>\calD(\QCoh_{A_S})</m>
           for <m>S</m> running over all nonempty subsets of <m>\{1,\dots,n\}</m>, with an arrow <m>\calD(\QCoh_{A_S}) \to \calD(\QCoh_{A_T})</m> 
           whenever <m>S</m> is a subset of <m>T</m>. The point is that since we are now working with derived <m>\infty</m>-categories, 

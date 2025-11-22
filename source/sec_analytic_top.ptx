@@ -28,23 +28,23 @@
         Let <m>\calC, \calC'</m> be symmetric monoidal categories.
         Let <m>F \colon \calC \to \calC'</m> be a functor.
         Let <m>G \colon \calC' \to \calC</m> be a functor which comes with a specified natural transformation (but not an isomorphism)
-        <me>
+        <md>
           G(M_1 \otimes_{\calC'} M_2) \cong G(M_1) \otimes_{\calC} G(M_2)
           \qquad (M_1, M_2 \in \calC')
-        </me>.
+        </md>.
         Fix also a natural transformation <m>G \circ F \to \id_{\calC}</m>,
         e.g., by starting with an adjoint pair (in order).
       </p>
       <p>
         In this setting, the <term>projection formula</term> holds if the composition of natural transformations
-        <me>
+        <md>
           G(F(M) \otimes_{\calC'} M') \to G(F(M)) \otimes_{\calC} G(M') \to
           M  \otimes_{\calC} G(M') \qquad (M \in \calC, M' \in \calC')
-        </me>
+        </md>
         yields a natural isomorphism
-        <men xml:id="eq-projection-formula">
+        <md number="yes" xml:id="eq-projection-formula">
           G(F(M) \otimes_{\calC'} M') \cong M \otimes_{\calC} G(M') \qquad (M \in \calC, M' \in \calC')
-        </men>.
+        </md>.
       </p>
       <p>
         For stable <m>\infty</m>-categories, we make the same definition except (as usual)
@@ -58,9 +58,9 @@
         Then the adjoint pair <m>f^*\colon \Mod_A \to \Mod_B</m> (extension of scalars)
         and <m>f_*\colon \Mod_B \to \Mod_A</m> (restriction of scalars) satisfies the projection formula:
         this expands to the statement that for <m>M \in \Mod_A</m>, <m>N \in \Mod_B</m>, we have a natural isomorphism
-        <me>
+        <md>
           (M \otimes_A B) \otimes_B N \cong M \otimes_A N
-        </me>
+        </md>
         induced by the composition
         <md>
           <mrow>
@@ -89,22 +89,22 @@
         write <m>g</m> also for the resulting morphism <m>B \to B'</m>;
         and write <m>f'</m> for the resulting morphism <m>A' \to B'</m>.
         We can then interpret the comparison in <m>\Mod_{A'}</m>
-        <me>
+        <md>
           M \otimes_B B' \cong M \otimes_B (B \otimes_A A') \cong M \otimes_A A'
-        </me>
+        </md>
         as giving rise to a natural isomorphism
-        <me>
+        <md>
           f'_* g* \cong g^* f_*
-        </me>. This again holds at the derived level also.
+        </md>. This again holds at the derived level also.
       </p>
     </example>
     <definition xml:id="def-analytic-proper">
       <p>
         A morphism <m>f\colon \AnSpec B \to \AnSpec A</m> in <m>\AnRing^{\op}</m> is <term>proper</term>
         if the analytic ring structure on <m>B</m> is the one induced from <m>A</m>:
-        <me>
+        <md>
           \Mod_B = \Mod_{B^{\triangleright}} \times_{\Mod_{A^{\triangleright}}} \Mod_A
-        </me>.
+        </md>.
         By <xref ref="exa-projection-formula"/>, this is equivalent to requiring that 
         the adjoint pair <m>f^*\colon \calD(\Mod_A) \to \calD(\Mod_B)</m>
         and <m>f_*\colon \calD(\Mod_B) \to \calD(\Mod_A)</m> satisfies the projection formula.
@@ -112,9 +112,9 @@
       <p>
         It is evident that the collection of proper morphisms is stable under composition and base extension.
         Moreover, if we set
-        <me>
+        <md>
           B' := (B^{\triangleright}, \Mod_{B^{\triangleright}} \times_{\Mod_{A^{\triangleright}}} \Mod_A)
-        </me>,
+        </md>,
         then we get the unique factorization
         <m>\AnSpec B \to \AnSpec B' \to \AnSpec A</m>
         such that <m>\AnSpec B \to \AnSpec B'</m> is an isomorphism of underlying condensed rings and 
@@ -129,9 +129,9 @@
         write <m>g</m> also for the resulting morphism <m>\AnSpec B' \to \AnSpec B</m>,
         and write <m>f'</m> for the resulting morphism <m>\AnSpec B' \to \AnSpec A'</m>, we then have
         a natural isomorphism
-        <me>
+        <md>
           g^* f_! \cong f'_! g^*
-        </me>
+        </md>
         of functors <m>\calD(\Mod_B) \to \calD(\Mod_{A'})</m>.
       </p>
     </definition>
@@ -173,25 +173,25 @@
       <p>
         For any analytic ring <m>A</m> and any <m>g \in A^{\triangleright}</m>, 
         we claim that the morphism
-        <me>
+        <md>
           j\colon (A^{\triangleright}, \Mod_A) \to (A^{\triangleright}_{\liquid g}, \Mod_{A \liquid g})
-        </me>,
+        </md>,
         is an open immersion.
         To check this, we must produce the left adjoint <m>j_!</m> for <m>j^*</m>.
         Before we do, recall that <m>j_*</m> is the inclusion of module categories
         whereas by <xref ref="prop-formula-for-liquefaction"/>,
         <m>j^*</m> has the form
-        <me>
+        <md>
           M \mapsto R\iHom_{A^{\triangleright}}(A^{\triangleright}[-1] \to \coker(\Delta_g)[0], M)
-        </me>.
+        </md>.
         Since we want 
-        <me>
+        <md>
           \Hom_B(j_! M, N) \cong \Hom_C(M, j^* N)
-        </me>,
+        </md>,
         by tensor-Hom adjunction we satisfy the projection formula by taking
-        <me>
+        <md>
           j_! M = M \otimes_{A^{\triangleright}} (A^{\triangleright}[-1] \to \coker(\Delta_g)[0])
-        </me>.
+        </md>.
       </p>
     </example>
     <example xml:id="exa-liquefaction-inversion-is-open-immersion">
@@ -229,16 +229,16 @@
           </mrow>
         </md>.
         Consequently, we can write
-        <me>
+        <md>
           j_! M = M \otimes_{\underline{\ZZ[T]}} \underline{\ZZ}((T^{-1}))/\underline{\ZZ}[T]
-        </me>.
+        </md>.
       </p>
       <p>
         Similarly, in <xref ref="exa-liquefaction-inversion-is-open-immersion"/>, if we take
         <m>A = (\underline{\ZZ}[T], \Mod_{\underline{\ZZ}[T]\solid})</m>, <m>g = T</m>, we get
-        <me>
+        <md>
           j_! M = M \otimes_{\underline{\ZZ[T]}} \underline{\ZZ}\llbracket T \rrbracket/\underline{\ZZ}[T]
-        </me>.
+        </md>.
       </p>
     </example>
     <remark xml:id="rem-rational-localization-is-open-immersion">
@@ -266,9 +266,9 @@
         This follows by similar logic as in <xref ref="exa-liquefaction-is-open-immersion"/> once we recall
         from <xref ref="prop-derived-completion"/> that the right adjoint
         has the form
-        <me>
+        <md>
           M \mapsto R\iHom_{A^{\triangleright}}(A^{\triangleright} \to A^{\triangleright}_f, M)
-        </me>.
+        </md>.
       </p>
     </example>
     <p>
@@ -311,9 +311,9 @@
           </mrow>
         </md>
         so that we have a sequence of maps
-        <me>
+        <md>
           A \to B \to C \to D
-        </me>.
+        </md>.
         We analyze the various compositions as follows.
         <ul>
           <li>
@@ -348,9 +348,9 @@
       <p>
         A morphism <m>f\colon \AnSpec B \to \AnSpec A</m> in <m>\AnRing^{\op}</m> is <term><m>!</m>-able</term>
         (pronounced <q>shriekable</q>) if the factorization
-        <me>
+        <md>
           \AnSpec B \to \AnSpec B' \to \AnSpec A
-        </me>
+        </md>
         of <xref ref="def-analytic-proper"/> has the property that <m>\AnSpec B \to \AnSpec B'</m> is an open immersion 
         (recall that <m>\AnSpec B' \to \AnSpec A</m> is automatically proper).
         Note the analogy with the definition of a quasiprojective morphism of schemes.
@@ -448,18 +448,18 @@
         Let <m>f\colon Y = \AnSpec B \to X = \AnSpec A</m> be a morphism in <m>\AnRing^{\op}</m>.
         We say that <m>f</m> satisfies <term><m>*</m>-descent</term> if <m>f^*</m> defines an isomorphism 
         of <m>\calD(\Mod_A)</m> with the limit of
-        <me>
+        <md>
           \calD(\Mod_B) \rightrightarrows \calD(\Mod_{B \otimes_A B}) \cdots
-        </me>
+        </md>
         where the maps are all of the form <m>\bullet^*</m>.
       </p>
       <p>
         Suppose now that <m>f</m> is <m>!</m>-able.
         We similarly say that <m>f</m> satisfies <term><m>!</m>-descent</term> if <m>f^!</m> defines an isomorphism 
         of <m>\calD(\Mod_A)</m> with the limit of
-        <me>
+        <md>
           \calD(\Mod_B) \rightrightarrows \calD(\Mod_{B \otimes_A B}) \cdots
-        </me>
+        </md>
         where the maps are all of the form <m>\bullet^!</m>.
       </p>
       <p>

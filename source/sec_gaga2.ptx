@@ -56,20 +56,20 @@
     <definition>
       <p>
         Define the <em>dagger Tate algebra</em> in the variables <m>T_1,\dots,T_n</m> over <m>\underline{\ZZ}[q^{\pm}]</m> by the formula
-        <me>
+        <md>
           \underline{\ZZ}[q^{\pm}] \langle T_1, \dots, T_n \rangle^\dagger_q := \colim_m \frac{\underline{\ZZ}[q^{\pm}]\langle U_1,\dots,U_n \rangle[T_1,\dots,T_n]}{(T_1^m q - U_1, \dots, T_n^m q - U_m)}
-        </me>
+        </md>
         where the transition map from <m>m</m> to <m>m+1</m> acts as <m>T_i \mapsto T_i</m>; this gives a well-defined map because
-        <men xml:id="eq-dagger-transition">
+        <md number="yes" xml:id="eq-dagger-transition">
           (T_i^m q)^{m+1} = q (T_i^{m+1} q)^m
-        </men>
+        </md>
         and so <m>U_i^{m+1}</m> maps to <m>q U_i^m</m>.
       </p>
       <p>
         For <m>R</m> a condensed ring and <m>q \in R(*)</m> a unit, set
-        <me>
+        <md>
           R \langle T_1, \dots, T_n \rangle^\dagger_q := R \otimes_{\ZZ[q^{\pm}] \liquid q} \underline{\ZZ}[q^{\pm}] \langle T_1, \dots, T_n \rangle^\dagger_q
-        </me>.
+        </md>.
       </p>
     </definition>
     <p>
@@ -80,17 +80,17 @@
         <p>
           For <m>R</m> a condensed ring such that <m>R \in \Mod_{R \liquid q}</m> for some unit <m>q \in R(*)</m>
           <em>and</em> <m>R(*)</m> contains a topologically nilpotent unit <m>r</m> (not necessarily equal to <m>q</m>),
-          <me>
+          <md>
             R \langle T_1, \dots, T_n \rangle^\dagger_q \cong \colim_m R[T_1,\dots,T_n]_{\liquid T_1^m q, \dots, T_n^m q}
-          </me>.
+          </md>.
         </p>
       </statement>
       <proof>
         <p>
           To simplify notation we restrict to the case <m>n=1</m>, where the claim is that
-          <me>
+          <md>
             R \langle T \rangle^\dagger_q \cong \colim_m R[T]_{\liquid T^m q}
-          </me>.
+          </md>.
           By hypothesis, <m>R</m> is an algebra over <m>R = \underline{\ZZ((r))}[q^{\pm}]</m>;
           by <xref ref="lem-liquefaction-is-Tate-algebra"/> we may equate <m>\underline{\ZZ((r))}[q^{\pm}] \langle U \rangle</m> with <m>\underline{\ZZ((r))}[q^{\pm}][U]_{\liquid U}</m>.
           This gives the desired comparisons.
@@ -100,19 +100,19 @@
     <definition>
       <p>
         For <m>A</m> an analytic ring and <m>q \in A^{\gas}</m> a unit, define
-        <men xml:id="eq-dagger-localization">
+        <md number="yes" xml:id="eq-dagger-localization">
           A^{\triangleright} \left \langle \frac{f_1,\dots,f_n}{g} \right\rangle^{\dagger}_q := 
           \frac{A^{\triangleright} \left \langle T_1,\dots,T_n \right\rangle^\dagger_q}{(f_1 - g T_1, \dots, f_n - g T_n)}
-        </men>.
+        </md>.
         Set
-        <me>
+        <md>
           S := \{ \tfrac{f_1^m}{g^m} q, \dots, \tfrac{f_n^m}{g^m} q \colon  m=1,2,\dots\}
-        </me>
+        </md>
         and let <m>A\left \langle \frac{f_1,\dots,f_n}{g} \right\rangle^{\dagger}_q</m> denote the analytic ring
-        <me>
+        <md>
           \left(A^{\triangleright} \left \langle \frac{f_1,\dots,f_n}{g} \right\rangle^{\dagger}_q, \Mod_{A^{\triangleright} \left \langle \frac{f_1,\dots,f_n}{g} \right\rangle^{\dagger}_q \liquid S}
           \times_{\Mod_{A^{\triangleright}}} \Mod_A \right)
-        </me>.
+        </md>.
         When <m>q</m> is topologically nilpotent, the construction does not depend on <m>q</m> (by <xref ref="lem-dagger-as-liquefaction"/>
         and <xref ref="cor-liquid-top-nilpotent-unit"/>)
         and so we omit <m>q</m> from the notation.
@@ -138,18 +138,18 @@
         a colimit over closed discs or open discs. Correspondingly, when <m>q</m> is topologically nilpotent
         we can also define <m>\underline{\ZZ}[q^{\pm}] \langle T \rangle^\dagger_q</m>
         in terms of the sequence space <m>P</m> using the formula
-        <me>
+        <md>
           \colim_m \frac{(\underline{\ZZ}[q^{\pm}] \otimes P)[T]}{(T^m q - [1])}
-        </me>,
+        </md>,
         where the transition map from <m>m</m> to <m>m+1</m> again acts as <m>T \mapsto T</m> (and similarly with more variables).
         To compare the two constructions, we use the fact that
-        <me>
+        <md>
           (T^m q)^n = (T^{m+1} q)^{\lfloor \frac{nm}{m+1} \rfloor} T^{nm-(m+1)\lfloor \frac{nm}{m+1}\rfloor} q^{n - \lfloor \frac{nm}{m+1}\rfloor}
-        </me>
+        </md>
         to produce a map 
-        <me>
+        <md>
           \frac{(\underline{\ZZ}[q^{\pm}] \otimes P)[T]}{(T^m q - [1])} \to \frac{\underline{\ZZ}[q^{\pm}]\langle U \rangle[T]}{(T^{m+1} q - U)}
-        </me>.
+        </md>.
       </p>
     </remark>
     <remark xml:id="prop-dagger-localizations-of-Tate">
@@ -157,14 +157,14 @@
         Suppose that <m>A</m> is an analytic ring and <m>q \in A^{\gas}</m> is a topologically nilpotent unit.
         Following <xref ref="rem-dagger-via-P"/>, we may see that for any <m>M \in \Mod_A</m>,
         for each positive integer <m>m</m>,
-        <me>
+        <md>
           M \otimes_A A^{\triangleright}[T_1,\dots,T_n]_{\liquid T_1^m q, \dots, T_n^m q}
           \in \Mod_{A^{\triangleright}[T_1,\dots,T_n] \liquid T_1^{m+1} q, \dots, T_n^{m+1} q}
-        </me>.
+        </md>.
         From this it follows that for any dagger localization <m>A \to B</m>,
-        <me>
+        <md>
           \Mod_B = \Mod_{B^\triangleright} \times_{\Mod_{A^{\triangleright}}} \Mod_A
-        </me>;
+        </md>;
         that is, in the context of dagger localizations of Tate analytic rings, there is no need to keep track of the analogue of the ring of integral elements 
         in the definition of a Huber pair.
       </p>
@@ -180,14 +180,14 @@
       <statement>
         <p>
           The coordinate map
-          <me>
+          <md>
             \underline{\ZZ}[q^{\pm}] \otimes P \to \prod_\NN \underline{\ZZ}[q^{\pm}]
-          </me>
+          </md>
           induces an isomorphism
-          <men xml:id="eq-q-coalescence-base-as-series">
+          <md number="yes" xml:id="eq-q-coalescence-base-as-series">
             (\underline{\ZZ}[q^{\pm}] \otimes P)_{\liquid q} \cong \colim_{j \in \NN}
             \prod_{n \in \NN} \bigoplus_{m=-j}^j \underline{\ZZ} q^{m+n}
-          </men>
+          </md>
           including at the derived level over <m>\underline{\ZZ}[q^{\pm}]</m>.
         </p>
       </statement>
@@ -196,11 +196,11 @@
           The map <m>h\colon \underline{\ZZ}[q^{\pm}] \otimes P \to \underline{\ZZ}[q^{\pm}] \otimes P</m> acting by <m>[n] \mapsto q^n[n]</m>
           is an isomorphism and satisfies <m>h\circ \Delta_q = \Delta_1 \circ h</m>.
           It is thus sufficient to give an isomorphism
-          <me>
+          <md>
             (\underline{\ZZ}[q^{\pm}] \otimes P)_{\liquid 1} \cong \colim_{j \in \NN}
             \prod_{n \in \NN} \bigoplus_{m=-j}^j \underline{\ZZ} q^m
             = \bigoplus_{m \in \ZZ} \left(\prod_{n \in \NN} \underline{\ZZ}\right) q^m
-          </me>
+          </md>
           at the derived level. Since <m>\underline{\ZZ}[q^{\pm}]</m> is projective in <m>\CAb</m>,
           computing the derived <m>1</m>-coalescence is equivalent over <m>\underline{\ZZ}[q^{\pm}]</m> and over <m>\underline{\ZZ}</m>
           (<xref ref="rem-analytify-element-which-ring"/>).
@@ -215,9 +215,9 @@
           For any infinite <m>S \in \Prof</m>, for any morphism <m>g\colon P \to \ZZ[\underline{S}]</m> in <m>\CAb</m> 
           as constructed in <xref ref="def-construct-map-P-to-monoid"/>,
           the map
-          <me>
+          <md>
             1\otimes g\colon \underline{\ZZ}[q^{\pm}] \otimes P \to \underline{\ZZ}[q^{\pm}] \otimes \ZZ[\underline{S}]
-          </me>
+          </md>
           induces an isomorphism of <m>q</m>-coalescences and of derived <m>q</m>-coalescences over <m>\underline{\ZZ}[q^{\pm}]</m>.
         </p>
       </statement>
@@ -231,9 +231,9 @@
       <statement>
         <p>
           For any <m>S \in \Prof</m>, the map
-          <me>
+          <md>
             (\underline{\ZZ}[q^{\pm}][\underline{S}] \otimes P)_{\liquid q} \to \prod_n \underline{\ZZ}[q^{\pm}][\underline{S}]_{\liquid q} 
-          </me>
+          </md>
           is an isomorphism; moreover, neither side changes when the <m>q</m>-coalescence is taken in the derived sense over <m>\underline{\ZZ}[q^{\pm}]</m>.
         </p>
       </statement>
@@ -241,9 +241,9 @@
         <p>
           If <m>S</m> is finite, then the claim follows immediately from <xref ref="lem-identify-q-coalescence-base"/>.
           If <m>S</m> is infinite, we may apply <xref ref="lem-compare-P-to-profinite-q-liquid"/> to rewrite the map in question as
-          <me>
+          <md>
             (\underline{\ZZ}[q^{\pm}] \otimes P \otimes P)_{\liquid q} \to \prod_n (\underline{\ZZ}[q^{\pm}] \otimes P)_{\liquid q} 
-          </me>
+          </md>
           and then apply <xref ref="lem-identify-q-coalescence-base"/> again.
         </p>
       </proof>
@@ -256,9 +256,9 @@
         <p>
           For <m>A</m> a Tate analytic ring and <m>M \in \Mod_A</m>,
           the coordinate map 
-          <me>
+          <md>
             M \otimes^L_A A^{\triangleright} \langle T \rangle^\dagger \to \prod_n M
-          </me>
+          </md>
           is injective.
         </p>
       </statement>
@@ -267,13 +267,13 @@
           We fix <m>q \in A^{\gas}</m> a topologically unit and formally reduce to the case where <m>A = \underline{\ZZ}[q^{\pm}]_{\liquid q}</m>
           (for the discrete topology on <m>\underline{\ZZ}[q^{\pm}]</m>). 
           By virtue of <xref ref="rem-dagger-via-P"/>, it will suffice to check that for each positive integer <m>m</m>,
-          <me>
+          <md>
             M \otimes^L_{\underline{\ZZ}[q^{\pm}] \liquid q} \frac{(\underline{\ZZ}[q^{\pm}] \otimes P)[T]}{(T^m q - [1])} \to \prod_n M
-          </me>
+          </md>
           is injective. This formally reduces to the case <m>m=1</m>, that is, showing that
-          <me>
+          <md>
             M \otimes^L_{\underline{\ZZ}[q^{\pm}] \liquid q} (\underline{\ZZ}[q^{\pm}] \otimes P) \to \prod_n M
-          </me>
+          </md>
           is injective. We rewrite the left-hand side as
           <md>
             <mrow>
@@ -356,10 +356,10 @@
       <statement>
         <p>
           For <m>A</m> a Tate analytic ring, the map
-          <me>
+          <md>
             A^{\triangleright} \langle T \rangle^\dagger \oplus T^{-1} A^{\triangleright} \langle T^{-1} \rangle^\dagger
             \to A^{\triangleright} \langle T^{\pm} \rangle^\dagger := A^{\triangleright} \langle T,U \rangle^\dagger / (TU-1)
-          </me>
+          </md>
           is an isomorphism.
         </p>
       </statement>
@@ -374,15 +374,15 @@
         <p>
           For <m>A</m> a Tate analytic ring and <m>f,g \in A^{\triangleright}(*)</m> with <m>g \in \{1,1-f\}</m>,
           the sequence
-          <men xml:id="eq-sheafy-exact-sequence-liquid">
+          <md number="yes" xml:id="eq-sheafy-exact-sequence-liquid">
             0 \to K  \to A^{\triangleright}\left\langle \tfrac{f}{g} \right\rangle^\dagger \oplus 
             A^{\triangleright} \left\langle \tfrac{g}{f} \right\rangle^\dagger \to 
             A^{\triangleright}\left\langle \tfrac{f}{g}, \tfrac{g}{f} \right\rangle^\dagger \to 0
-          </men>
+          </md>
           is exact for
-          <me>
+          <md>
             K := \ker(\times (f-gT), A^{\triangleright} \langle T^{\pm} \rangle^\dagger
-          </me>.
+          </md>.
         </p>
       </statement>
       <proof>
@@ -405,10 +405,10 @@
           For <m>A</m> a dagger-sheafy Tate analytic ring and
           <m>f_1,\dots,f_n \in A^{\triangleright}(*)</m> generating the unit ideal,
           set
-          <me>
+          <md>
             A_{i}^\dagger := A\left\langle \tfrac{f_1}{f_i},\dots,\tfrac{f_n}{f_i} \right\rangle^\dagger
             \quad (i=1,\dots,n)
-          </me>.
+          </md>.
           Then the family <m>\{A \to A_i^\dagger\}_i</m>
           forms a covering for the idempotent topology on <m>\AnRing^{\op}</m>.
         </p>

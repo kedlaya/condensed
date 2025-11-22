@@ -35,17 +35,17 @@
       </p>
       <p>
         Put another way, the data of the map <m>f</m> is equivalent to the data of the short exact sequence of sheaves of <m>\calO_X</m>-modules
-        <me>
+        <md>
           0 \to \calL_1 \to \calO_X \oplus \calO_X \to \calL_0 \to 0
-        </me>
+        </md>
         in which <m>\calL_0</m> is invertible: the bundle <m>\calL_0</m> corresponds to <m>f^* \calO(1)</m> and the two maps <m>\calO_X \to \calL_0</m>
         correspond to the two sections <m>f^*(s_0), f^*(s_1)</m>.
       </p>
       <p>
         If <m>X = \Spec R</m> is an affine scheme, we can again replace the data with a short exact sequence of <m>R</m>-modules:
-        <me>
+        <md>
           0 \to L_1 \to R \oplus R \to L_0 \to 0
-        </me>
+        </md>
         in which <m>L_0</m> is <term>invertible</term> (projective of rank 1). In particular, this functor can be described in terms of the category of <m>R</m>-modules,
         which is equivalent to the category of quasicoherent sheaves on <m>X</m>.
       </p>
@@ -54,13 +54,13 @@
         We then have to cover <m>\Spec R</m> with two localizations corresponding to the subsets on which <m>s_0</m> and <m>s_1</m> are respectively nonzero.
         If <m>L_0</m> is trivial, then we can identify <m>s_0</m> and <m>s_1</m> with elements of <m>R</m> that generate the unit ideal
         and take the maps
-        <me>
+        <md>
           \Spec R[T]/(s_1 T - s_0) \to \Spec R, \qquad \Spec R[T]/(s_0 T - s_1) \to \Spec R
-        </me>.
+        </md>.
         The analogue in the general case is to convert <m>R \oplus R \to L_0</m> into the closed immersion
-        <me>
+        <md>
           \Spec R = \Proj_R \Sym_R(L_0) \to \Proj_R \Sym_R(R \oplus R) = \PP^1_R
-        </me>,
+        </md>,
         take the fiber product with the inclusion of one of the basic open subsets <m>\Spec R[T]</m> corresponding to dehomogenizing <m>\Sym_R(R \oplus R) \cong R[T_0, T_1]</m>
         (i.e., mapping one variable to <m>T</m> and the other to <m>1</m>), and then project via <m>\PP^1_R \to \Spec R</m>.
       </p>
@@ -78,9 +78,9 @@
     <definition xml:id="def-standard-binary-covering-Zariski">
       <p>
         For <m>R</m> a commutative ring, define a <term>standard binary covering</term> of <m>\Spec R</m> to be a covering of the form
-        <me>
+        <md>
           \Spec R\left[\tfrac{f}{g}\right] \to \Spec R, \qquad \Spec R\left[\tfrac{g}{f}\right] \to \Spec R
-        </me>
+        </md>
         for some <m>f,g \in R</m> generating the unit ideal. In particular there must exist <m>a,b \in R</m> with <m>af + bg = 1</m>,
         so <m>\frac{1}{g} = a\tfrac{f}{g}+b</m> and so <m>R\left[\tfrac{f}{g}\right] = R\left[ \tfrac{1}{g} \right]</m>;
         consequently, <m>\Spec R\left[\tfrac{f}{g}\right] \to \Spec R</m> induces an isomorphism
@@ -128,17 +128,17 @@
         </p>
         <p>
           When <m>n \gt 2</m>, set
-          <me>
+          <md>
             g := a_1 f_1 + \cdots + a_{\lfloor n/2 \rfloor} = 1 - a_{\lfloor n/2 \rfloor+1} f_{\lfloor n/2 \rfloor} - \cdots - a_n f_n
-          </me>
+          </md>
           so that <m>V_1 := \Spec R[\tfrac{1}{g}]</m>, <m>V_2 := \Spec R[\tfrac{1}{1-g}]</m> form a standard binary covering of <m>\Spec R</m>.
           In the ring <m>R[\tfrac{1}{g}]</m>, the elements <m>f_i</m> for <m>1 \leq i \leq \lfloor n/2 \rfloor</m> generate the unit ideal;
           in the ring <m>R[\tfrac{1}{1-g}]</m>, the elements <m>f_i</m> for <m>\lfloor n/2 \rfloor + 1 \leq i \leq n</m> generate the unit ideal.
           Consequently, the original covering is refined by the covering by
-          <me>
+          <md>
             \Spec R[\tfrac{1}{g}][\tfrac{1}{f_i}] \quad (i=1,\dots,\lfloor n/2 \rfloor), \quad
             \Spec R[\tfrac{1}{1-g}][\tfrac{1}{f_i}] \quad (i=\lfloor n/2 \rfloor+1, \dots,n)
-          </me>.
+          </md>.
           Since both <m>\lfloor n/2 \rfloor</m> and <m>n - \lfloor n/2 \rfloor</m> are strictly less than <m>n</m>, we may apply the induction hypothesis to
           conclude.
         </p>
@@ -173,9 +173,9 @@
       <p>
         Following <xref ref="exa-solid-Tate-algebra"/>, for any positive integer <m>n</m>, define the <term>solid Tate algebra</term> 
         <m>\underline{\ZZ}\langle T_1,\dots,T_n \rangle</m> over <m>\underline{\ZZ}</m> as the solid condensed ring corresponding to the functor in <m>\Ab_\solid</m> given by
-        <me>
+        <md>
           \prod_I \ZZ_\solid \mapsto \left( \prod_I \ZZ[T_1,\dots,T_n] \right) \cap \left( \bigoplus_I \ZZ \right) \llbracket T_1,\dots,T_n \rrbracket 
-        </me>
+        </md>
         where the intersection is taken inside <m>\left( \prod_I \ZZ \right) \llbracket T_1,\dots,T_n \rrbracket</m>.
       </p>
       <p>
@@ -190,17 +190,17 @@
         <p>
           Let <m>R</m> be a solid condensed ring admitting a topologically nilpotent unit <m>q \in R^{\circ \circ} \cap R(*)^\times</m>.
           Then 
-          <me>
+          <md>
             R [T_1,\dots,T_n]_{\liquid T_1,\dots,T_n} = R \langle T_1,\dots,T_n \rangle
-          </me>.
+          </md>.
         </p>
       </statement>
       <proof>
         <p>
           It suffices to check the case <m>n=1</m> and then induct; that is, we must check that
-          <me>
+          <md>
             R[T]_{\liquid T} \cong R \langle T \rangle
-          </me>.
+          </md>.
           This further reduces to the universal case <m>R = \underline{\ZZ((q))}</m> for the <m>q</m>-adic topology on <m>\ZZ((q))</m>.
           As noted in <xref ref="def-solid-Tate"/>, we may identify <m>R \langle T \rangle</m> with the usual notion of the Tate algebra over
           the Huber ring <m>\ZZ((q))</m>, and then it is straightforward to compare the two.
@@ -220,16 +220,16 @@
       <p>
         For <m>A^{\triangleright}</m> a solid condensed ring and <m>f_1,\dots,f_n,g \in A^{\triangleright}(*)</m>,
         define 
-        <men xml:id="eq-formula-rational-localization">
+        <md number="yes" xml:id="eq-formula-rational-localization">
            A^{\triangleright}\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g} \rangle := 
            \frac{A^{\triangleright}\langle T_1,\dots,T_n \rangle}{(f_1-gT_1,\dots,f_n-gT_n)} \left[ \frac{1}{g} \right]
-        </men>.
+        </md>.
         For <m>A</m> a solid analytic ring, we correspondingly form a homomorphism <m>A \to A \langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g} \rangle</m> by setting
-        <me>
+        <md>
           \Mod_{A \langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g} \rangle} := 
           \Mod_{A^{\triangleright}\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g} \rangle \liquid T_1,\dots,T_n}
           \times_{\Mod_{A^{\triangleright}}} \Mod_A
-        </me>.
+        </md>.
       </p>
       <p>
         Any homomorphism as above in which <m>f_1,\dots,f_n,g</m> generate the unit ideal
@@ -249,9 +249,9 @@
       <p>
         For example, if <m>f_1,\dots,f_n,g</m> and <m>f'_1,\dots,f'_m,g'</m> both generate the unit ideal, then we can define a rational localization with parameters <m>T \cup \{gg'\}</m>
         where
-        <me>
+        <md>
           T = \{t_1 \cdot t_2 \colon t_1 \in \{f_1,\dots,f_n,g\}, t_2 \in \{f'_1,\dots,f'_m,g'\}\}
-        </me>
+        </md>
         also generates the unit ideal. The resulting object is the tensor product of the two original rational localizations.
       </p>
     </remark>
@@ -261,10 +261,10 @@
         <m>1/g</m> can be written as an <m>A^{\triangleright}</m>-linear combination of <m>1, f_1/g, \dots, f_n/g</m>;
         consequently, it is not necessary to invert <m>g</m> separately in <xref ref="eq-formula-rational-localization"/>.
         That is,
-        <men xml:id="eq-formula-rational-localization-without-inversion">
+        <md number="yes" xml:id="eq-formula-rational-localization-without-inversion">
           A^{\triangleright} \left\langle \tfrac{f_1}{g}, \dots, \tfrac{f_n}{g}\right\rangle =
           \frac{A^{\triangleright}\langle T_1,\dots,T_n \rangle}{(f_1-gT_1,\dots,f_n-gT_n)}
-        </men>.
+        </md>.
       </p>
       <p>
         The distinction between rational localizations and weak rational localizations collapses 
@@ -348,9 +348,9 @@
         Unpacking terminology here,
         a subgroup <m>H</m> of <m>\Gamma</m> is <term>convex</term> if for all <m>x \leq y \in H</m>, we have <m>[x,y] \subseteq H</m>;
         and <m>v(x)</m> is <term>cofinal</term> in <m>\Gamma_v</m> if
-        <me>
+        <md>
           \Gamma_v = \bigcup_{n=1}^\infty \Gamma_v \cap [v(x)^n, \infty)
-        </me>.
+        </md>.
         (Note that we are not requiring that <m>v(x) \in H</m>.)
         When <m>A^{\triangleright}</m> is Tate, cofinality can be tested using a single topologically nilpotent unit <m>x</m>.
         The space <m>\Spv(A^{\triangleright}, A^{\circ \circ})</m> is again spectral (<xref ref="bib-Huber1"/>, Proposition 2.6(i)).
@@ -407,9 +407,9 @@
     <definition>
       <p>
         For <m>A</m> a Huber pair, define a <term>standard binary covering</term> of <m>\Spa A</m> to be a covering of the form
-        <me>
+        <md>
           U(\tfrac{f}{g}), U(\tfrac{g}{f})
-        </me>
+        </md>
         for some <m>f,g \in A</m> generating the unit ideal.
       </p>
     </definition>

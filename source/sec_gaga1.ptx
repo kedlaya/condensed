@@ -113,9 +113,9 @@
       <p>
         For any analytic ring <m>A</m>, equip <m>A[T], A[T^{-1}], A[T^{\pm}]</m> with the induced analytic ring structures;
         that is, 
-        <me>
+        <md>
           \Mod_{A[T]} = \Mod_{A^{\triangleright}[T]} \times_{\Mod_{A^{\triangleright}}} \Mod_A
-        </me>
+        </md>
         and so on.
         Define the object <m>\PP^1_A \in \LCRS</m> by glueing
         <m>\AnSpec A[T]</m> and <m>\AnSpec A[T^{-1}]</m> along <m>\AnSpec A[T^{\pm}]</m>.
@@ -127,9 +127,9 @@
         For <m>A</m> a solid analytic ring, define the object <m>\PP^1_{A \solid} \in \LCRS</m> by glueing
         <m>\AnSpec A\langle T \rangle</m> and <m>\AnSpec A\langle T^{-1} \rangle</m> along <m>\AnSpec A\langle T^{\pm} \rangle</m>.
         Here <m>A \langle T \rangle</m> denotes the analytic ring
-        <me>
+        <md>
           (A^{\triangleright} \langle T \rangle, \Mod_{A^{\triangleright} \langle T \rangle \liquid T} \times_{\Mod_{A^{\triangleright}}} \Mod_A)
-        </me>
+        </md>
         and so on.
         Using this, we obtain a natural morphism <m>\PP^1_{A\solid} \to \PP^1_{A}</m>.
       </p>
@@ -138,9 +138,9 @@
       <statement>
         <p>
           For any solid analytic ring <m>A</m>, the morphisms
-          <me>
+          <md>
             A[T] \to A \langle T \rangle, \qquad A[T] \to A \langle T^{-1} \rangle [T]
-          </me>
+          </md>
           form an idempotent covering.
         </p>
       </statement>
@@ -148,13 +148,13 @@
         <p>
           We reduce to the case <m>A = \underline{\ZZ}_{\solid}</m>. In this case <m>A</m> is sheafy, so
           we may apply <xref ref="exa-rational-localization-is-idempotent"/> to see that the two maps are idempotent, and we calculate directly that
-          <me>
+          <md>
             0 \to \underline{\ZZ}[T] \to \underline{\ZZ} \langle T \rangle \oplus \underline{\ZZ} \langle T^{-1} \rangle [T] \to \underline{\ZZ} \langle T^{\pm} \rangle \to 0
-          </me>
+          </md>
           is split exact by splitting 
-          <me>
+          <md>
             \underline{\ZZ} \langle T^{-1} \rangle [T] = \underline{\ZZ} [T] \oplus T^{-1} \underline{\ZZ} \langle T^{-1} \rangle
-          </me>.
+          </md>.
         </p>
       </proof>
     </lemma>
@@ -319,9 +319,9 @@
           <m>A \to A[\underline{S_i}]^\vee \otimes A[\underline{S}]</m> for some finite quotient <m>S_i</m> of <m>S</m>.
           We then do not change <m>\cone(f-1)</m> if we replace <m>S</m> with <m>S_i</m> by projecting along <m>A[\underline{S}] \to A[\underline{S_i}]</m>:
           more precisely, <m>f</m> acts on the exact sequence
-          <me>
+          <md>
             0 \to \ker(A[\underline{S}] \to A[\underline{S_i}]) \to A[\underline{S}] \to A[\underline{S_i}] \to 0
-          </me>
+          </md>
           and the action of <m>f</m> on the left is zero, so the induced action of <m>f-1</m> on the left is invertible.
         </p>
       </proof>

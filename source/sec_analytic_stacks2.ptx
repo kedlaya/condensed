@@ -21,9 +21,9 @@
         for any hypercovering <m>\AnSpec(A_\bullet) \to \AnSpec(A)</m> by <m>!</m>-able maps
         for which <m>\calD(\Mod_A) \cong \lim^! \calD(\Mod_{A_\bullet})</m>,
         we have
-        <me>
+        <md>
           F(A) \cong \lim X(A_\bullet)
-        </me>.
+        </md>.
         Let <m>\AnStack</m> be the category of analytic stacks.
       </p>
       <p>
@@ -77,9 +77,9 @@
     <example>
       <p>
         We can form a sequence of morphisms of analytic stacks
-        <me>
+        <md>
           X_1 \to X_2 \to X_3 \to X_4 \to X_5 \to X_6 
-        </me>
+        </md>
         in which:
         <ul>
           <li>
@@ -137,11 +137,11 @@
         <p>
           Let <m>A</m> be a solid analytic ring. Then for any <m>f \in A(*)</m>,
           for <m>g \in \{1, 1-f\}</m>, for any <m>M \in \Mod_A</m>, the sequence
-          <me>
+          <md>
             0\to M \to M \otimes_A A^{\triangleright} \left\langle \tfrac{f}{g} \right\rangle \oplus 
             M \otimes_A A^{\triangleright} \left\langle \tfrac{g}{f} \right\rangle \to 
             M \otimes_A A^{\triangleright} \left\langle \tfrac{f}{g}, \tfrac{g}{f} \right\rangle \to 0
-          </me>
+          </md>
           is exact.
         </p>
       </statement>
@@ -160,9 +160,9 @@
         <m>f_1,\dots,f_n,g\in A^{\triangleright}(*)</m> which generate the unit ideal.
         We can then factor this map through <m>A \to B_0</m>
         where
-        <me>
+        <md>
           B_0 = (B^{\triangleright}, \Mod_{B^{\triangleright}} \times_{\Mod_{A^{\triangleright}}} \Mod_A)
-        </me>;
+        </md>;
         we call the map <m>A \to B_0</m> the <term>loose rational localization</term> defined by <m>f_1,\dots,f_n,g</m>.
       </p>
       <p>
@@ -179,11 +179,11 @@
         <p>
           For <m>A</m> a solid analytic ring, for <m>f,g \in A^{\triangleright}(*)</m> which generate the unit ideal,
           for any <m>A \in \Mod_A</m>, the sequence
-          <me>
+          <md>
             0 \to M \to M \otimes_A A^{\triangleright} \left\langle \frac{f}{g} \right\rangle
             \oplus M \otimes_A A^{\triangleright} \left\langle \frac{g}{f} \right\rangle \to
             M \otimes_A A^{\triangleright} \left\langle \frac{f}{g}, \frac{g}{f} \right\rangle \to 0
-          </me>
+          </md>
           is exact.
         </p>
       </statement>
@@ -203,9 +203,9 @@
         <p>
           For <m>A</m> a solid analytic ring, for <m>f,g \in A^{\triangleright}(*)</m> which generate the unit ideal,
           the map
-          <me>
+          <md>
             \Mod_A \to \Mod_{A \left\langle f/g \right\rangle_0} \times_{\Mod_{A \left\langle f/g, g/f \right\rangle_0}} \Mod_{A \left\langle g/f \right\rangle_0}            
-          </me>
+          </md>
           is fully faithful.
         </p>
       </statement>
@@ -245,9 +245,9 @@
         <p>
           For <m>A</m> a sheafy solid analytic ring, for <m>f,g \in A^{\triangleright}(*)</m> which generate the unit ideal,
           the map
-          <me>
+          <md>
             \Mod_A \to \Mod_{A \left\langle f/g \right\rangle_0} \times_{\Mod_{A \left\langle f/g, g/f \right\rangle_0}} \Mod_{A \left\langle g/f \right\rangle_0}            
-          </me>
+          </md>
           is an equivalence of categories.
         </p>
       </statement>
@@ -280,9 +280,9 @@
         <p>
           Let <m>A</m> be a solid analytic ring and choose <m>f,g \in A^{\triangleright}(*)</m> generating the unit ideal.
           Then the base extension functor
-          <men xml:id="eq-derived-base-extension-functor">
+          <md number="yes" xml:id="eq-derived-base-extension-functor">
             D(\Mod_A) \to D(\Mod_{A \left\langle f/g \right\rangle}) \times_{D(\Mod_{A \left\langle f/g, g/f \right\rangle})} D(\Mod_{A \left\langle g/f \right\rangle})
-          </men>
+          </md>
           is an equivalence of categories.
         </p>
       </statement>
@@ -295,9 +295,9 @@
       <p>
         To see that <m>\underline{\ZZ[q]} \to P</m> is flat, we may argue as in <xref ref="lem-flat-mult-f"/>:
         form the exact sequence
-        <me>
+        <md>
           0 \to \underline{\ZZ[q]} \otimes P \stackrel{\times (q-[1])}{\to} \underline{\ZZ[q]} \otimes P \to P \to 0
-        </me>,
+        </md>,
         then observe that for any <m>M \in \Mod_{\underline{\ZZ[q]}}</m>, <m>M \otimes_{\underline{\ZZ[q]}} \underline{\ZZ[q]} \otimes P \cong M \otimes P</m>
         injects into <m>M \otimes (P \oplus \prod_{n \lt 0} \ZZ[n])</m>
         on which multiplication by <m>q-[1] = [1](1 - q[-1])</m> is an isomorphism.

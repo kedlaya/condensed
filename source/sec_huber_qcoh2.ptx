@@ -60,9 +60,9 @@
         </md>
         are the identity maps.
         When this occurs, it follows as in <xref ref="bib-Stacks"/>, tag 0FFQ that for any <m>P,Q \in \calD(\Mod_A)</m>, there is a functorial isomorphism
-        <men xml:id="eq-dual-functor">
+        <md number="yes" xml:id="eq-dual-functor">
           R\iHom_A(P, N \otimes^L_A Q) \cong R\iHom_A(M \otimes^L_A P, Q)
-        </men>:
+        </md>:
         the passage from left to right is given by tensoring with <m>M</m> and postcomposing with <m>e</m>, while the passage from right to left
         is tensoring with <m>N</m> and precomposing with <m>i</m>.
       </p>
@@ -97,10 +97,10 @@
         Let <m>A</m> be the discrete solid commutative ring corresponding to <m>\ZZ</m>.
         For <m>M := \bigoplus_\NN \underline{\ZZ}</m> and <m>N := \prod_\NN \underline{\ZZ}</m> (placed in degree <m>0</m>),
         <m>M</m> and <m>N</m> are dual to each other and even satisfy <xref ref="eq-dual-functor"/>, but neither is dualizable: we have
-        <me>
+        <md>
           \Hom_{A}(A, M \otimes_{A} N) = \bigoplus_\NN \prod_\NN \ZZ \neq \prod_\NN \bigoplus_\NN \ZZ = 
           \Hom_{A}(M, M)
-        </me>
+        </md>
         and crucially the identity matrix is missing from <m>\Hom_{A}(A, M \otimes_A N)</m>
         because we only see matrices with finitely many nonzero columns.
       </p>
@@ -117,9 +117,9 @@
       <p>
         For <m>A</m> an analytic ring, an object <m>M \in \calD(\Mod_A)</m> is <term>nuclear</term> if for all <m>S \in \Prof</m>,
         the natural map
-        <me>
+        <md>
           (A[\underline{S}]^\vee \otimes^L_A M)(*) \to \Hom_A(A[\underline{S}], M) = M(S)
-        </me>
+        </md>
         is an isomorphism in <m>\calD(\Ab)</m>. The class of nuclear objects is stable under arbitrary colimits.
         It is straightforward to check that every dualizable object is nuclear.
       </p>
@@ -133,9 +133,9 @@
         For <m>A</m> an analytic ring, a morphism <m>f \colon P \to Q</m> in <m>\calD(\Mod_A)</m>
         is <term>trace class</term> if there is some map <m>g \colon A \to P^\vee \otimes^L_A Q</m>
         such that the composition
-        <me>
+        <md>
           P \stackrel{1 \otimes g}{\to} P \otimes^L_A P^\vee \otimes^L_A Q \stackrel{e \otimes 1}{\to} Q
-        </me>
+        </md>
         is equal to <m>f</m>.
       </p>
     </definition>
@@ -164,9 +164,9 @@
           In particular, it can be written as a sum of two matrices <m>N_0 + N_1</m> where <m>N_0</m> has finitely many nonzero columns
           and <m>N_1</m> has entries in <m>A^{\circ \circ}</m>. In particular, <m>1 - N_1</m> is invertible and so the cone of <m>f-1</m>
           does not change if we replace <m>N_0+N_1</m> with 
-          <me>
+          <md>
             1 - (1+N_1+N_1^2+\cdots)(1-N_0-N_1) = (1-N_1)^{-1}N_0
-          </me>,
+          </md>,
           which is now itself a matrix with finitely many nonzero columns.
           We may thus replace the index set <m>\NN</m> with the subset corresponding to the nonzero columns without changing <m>\cone(f-1)</m>. 
         </p>
@@ -174,9 +174,9 @@
           To handle the general case, note that the problem data can be described in terms of countably many elements of <m>A^{\triangleright}(*)</m>;
           consequently, any given problem instance can be obtained by base extension from a solid analytic ring <m>A</m> 
           of the form
-          <me>
+          <md>
             A^{\triangleright}\left( \prod_I \ZZ_\solid\right) = \prod_I R[T_j \colon j \in J]
-          </me>
+          </md>
           for <m>R</m> a discrete polynomial ring over <m>\ZZ</m> in countably many variables and <m>J</m> a countable index set.
           Using <xref ref="exa-completion-of-coproduct"/>, we can interpret the given element of <m>\Hom_{A}(A, A[\underline{S}]^\vee \otimes^L_{A} A[\underline{S}])</m> 
           as an <m>\NN \times \NN</m> matrix over <m>R[T_j \colon j \in J]</m> with the property that every monomial <m>\prod_{j \in J} T_j^{e_j}</m>
@@ -198,23 +198,23 @@
       <proof>
         <p>
           We may start with a complex <m>M</m> of the form
-          <me>
+          <md>
             \cdots \to A[\underline{S_1}] \to A[\underline{S_0}] \to 0
-          </me>
+          </md>
           with all <m>S_i \in \Prof</m>.
           Since <m>M</m> is nuclear, the canonical map <m>f'\colon A[\underline{S_0}] \to M</m> can be factored as
-          <me>
+          <md>
             A[\underline{S_0}] \stackrel{1 \otimes g}{\to} 
             A[\underline{S_0}]  \otimes^L_A A[\underline{S_0}]^\vee \otimes^L_{A} A[\underline{S_0}] 
             \stackrel{e \otimes 1}{\to} A[\underline{S_0}]  
-          </me>
+          </md>
           for some <m>g'\colon A \to A[\underline{S_0}]^\vee \otimes^L_{A} M</m>. 
           Since <m>A</m> is projective in <m>\Mod_{A}</m>, we can further factor <m>g'</m>
           as
-          <me>
+          <md>
             A \stackrel{g}{\to} A[\underline{S_0}]^\vee \otimes^L_{A} A[\underline{S_0}]
             \stackrel{1 \otimes f'}{\to} A[\underline{S_0}]^\vee \otimes^L_{A} M
-          </me>;
+          </md>;
           that is, we have exhibited a trace class map <m>f\colon A[\underline{S_0}] \to A[\underline{S_0}]</m>
           such that <m>f' \circ f = f'</m>, and so <m>f' \circ (1-f) = 0</m>.
           We can then factor <m>f'</m> through a map <m>\phi\colon \cone(1-f) \to M</m>.
@@ -254,9 +254,9 @@
           Let <m>f,g \in A^{\triangleright}(*)</m> be elements that generate the unit ideal.
           Let <m>h\colon F_1 \to F_0</m> be a morphism between finite projective <m>A^{\triangleright}</m>-modules.
           If 
-          <me>
+          <md>
             \coker(h) \otimes_A A \left\langle \frac{f}{g} \right\rangle = \coker(h) \otimes_A A \left\langle \frac{g}{f} \right\rangle = 0
-          </me>,
+          </md>,
           then <m>h</m> is surjective.
         </p>
       </statement>
@@ -348,9 +348,9 @@
         A morphism <m>A \to B</m> of analytic rings is <term>idempotent</term> if 
         the map <m>B^{\triangleright} \otimes^L_A B^{\triangleright} \to B^{\triangleright}</m> is an isomorphism.
         An equivalent condition is that the composition
-        <men xml:id="eq-idempotent-composition">
+        <md number="yes" xml:id="eq-idempotent-composition">
           B^{\triangleright} \otimes^L_A B^{\triangleright} \to B^{\triangleright} \to B^{\triangleright} \otimes^L_A B^{\triangleright}
-        </men>,
+        </md>,
         where the second map is <m>b \mapsto b \otimes 1</m>, is an isomorphism.
       </p>
     </definition>
@@ -363,14 +363,14 @@
     <remark xml:id="rem-idempotent-composition">
       <p>
         If <m>A \to B \to C</m> are two idempotent morphisms, then so is <m>A \to C</m> because
-        <me>
+        <md>
           C^{\triangleright} \otimes^L_A C^{\triangleright} = C^{\triangleright} \otimes^L_{B} (B^{\triangleright} \otimes^L_A B^{\triangleright}) \otimes^L_B C^{\triangleright}
-        </me>
+        </md>
         using both <m>B^{\triangleright}</m>-module structures on <m>B^{\triangleright} \otimes^L_A B^{\triangleright}</m>.
         Conversely, if <m>A \to B</m> and <m>A \to B \to C</m> are both idempotent, then so is <m>B \to C</m> because
-        <me>
+        <md>
           C^{\triangleright} \otimes^L_B C^{\triangleright} = (C^{\triangleright} \otimes^L_A C^{\triangleright}) \otimes_{B^{\triangleright} \otimes^L_A B^{\triangleright}} B^{\triangleright}
-        </me>.
+        </md>.
       </p>
     </remark>
     <remark>
@@ -414,9 +414,9 @@
         <m>B^{\triangleright} \otimes^L_A B^{\triangleright}</m> is represented by the Koszul complex associated to the elements <m>T-f,U-f</m>
         of <m>A^{\triangleright} \langle T,U \rangle</m>. The Koszul complex does not change if we replace the sequence with <m>T-U,T-f</m>;
         it thus suffices to observe that the sequence
-        <me>
+        <md>
           0 \to A^{\triangleright}\langle T,U \rangle \stackrel{\times T-U}{\to} A^{\triangleright}\langle T,U \rangle \stackrel{U \mapsto T}{\to} A^{\triangleright}\langle T \rangle \to 0
-        </me>
+        </md>
         is <em>split</em> exact.
       </p>
       <p>
@@ -428,9 +428,9 @@
       <p>
         Let <m>A</m> be a solid analytic ring, choose <m>f \in A(*)</m>, and let <m>B</m> denote the derived <m>f</m>-completion of <m>A</m>;
         that is, for 
-        <me>
+        <md>
           A_f := \coker(1-fT, A^{\triangleright}[T])
-        </me>,
+        </md>,
         we have <m>B^{\triangleright} = \iExt^1_A(A_f/A, B)</m>
         and <m>\Mod_B := \Mod_{B^{\triangleright}} \times_{\Mod_{A^{\triangleright}}} \Mod_A</m>.
         If <m>B^{\triangleright}</m> is also the derived derived <m>f</m>-completion of <m>A^{\triangleright}</m>
@@ -457,19 +457,19 @@
       </p>
       <p>
         To see that <m>P \otimes_{\underline{\ZZ[q]}}^L P \cong P</m>, first apply <xref ref="eq-tensor-product-of-profinite"/> and <xref ref="rem-tensor-free-ab-flat"/> to write
-        <me>
+        <md>
           \ZZ[\underline{\NN_\infty}] \otimes^L_{\underline{\ZZ}} \ZZ[\underline{\NN_\infty}] \cong \ZZ[\underline{\NN_\infty \times \NN_\infty}]
-        </me>.
+        </md>.
         Then set <m>Z := (\NN_\infty \times \NN_\infty) \setminus (\NN \times \NN)</m>; using <xref ref="prop-relative-free-module"/>,
         we obtain
-        <me>
+        <md>
           (\ZZ[\underline{\NN_\infty}] \otimes^L_{\underline{\ZZ}} \ZZ[\underline{\NN_\infty}])/\ZZ[\underline{Z}] \cong \ZZ[\underline{(\NN \times \NN)_\infty}]/\ZZ[\underline{\infty}]
-        </me> 
+        </md> 
         where <m>(\NN \times \NN)_\infty</m> is the one-point compactification of <m>\NN \times \NN</m>.
         Finally, note that 
-        <me>
+        <md>
           (\ZZ[\underline{(\NN \times \NN)_\infty}]/\ZZ[\underline{\infty}])/(q \otimes 1 - 1 \otimes q) \cong P
-        </me>.
+        </md>.
       </p>
     </example>
     <definition xml:id="def-idempotent-topology">
@@ -477,9 +477,9 @@
         We define the <term>idempotent topology</term>
         as the Grothendieck topology on <m>\AnRing^{\op}</m> generated by finite families of idempotent morphisms <m>\{\AnSpec A_i \to \AnSpec A\}_{i \in I}</m>
         where the complex
-        <men xml:id="eq-idempotent-topology">
+        <md number="yes" xml:id="eq-idempotent-topology">
           0 \to A^{\triangleright} \to \bigoplus_i A_i^{\triangleright} \to \bigoplus_{i \lt j} A_i^{\triangleright} \otimes^L_A A_j^{\triangleright} \to \cdots
-        </men>
+        </md>
         is acyclic in <m>\calD(\Mod_A)</m>. 
       </p>
     </definition>
@@ -496,9 +496,9 @@
         <p>
           For any analytic ring <m>A</m>,
           the assignment 
-          <me>
+          <md>
             \AnSpec B \mapsto \calD(\Mod_{B^{\triangleright}} \times_{\Mod_{A^{\triangleright}}} \Mod_A)
-          </me> 
+          </md> 
           is a sheaf of stable <m>\infty</m>-categories for the idempotent topology on <m>\AnRing^{\op}</m>.
         </p>
       </statement>
@@ -512,9 +512,9 @@
     <example>
       <p>
         For <m>A</m> a solid analytic ring, the family
-        <me>
+        <md>
           \AnSpec A \llbracket T \rrbracket \to \AnSpec A[T], \qquad \AnSpec A [T^{\pm}] \to \AnSpec A[T]
-        </me>
+        </md>
         is a covering for the idempotent topology. In this case, <xref ref="thm-idempotent-sheaf"/> can be used to recover the <term>Beauville<ndash/>Laszlo theorem</term> for glueing vector bundles,
         as well as analogous statements for perfect and pseudocoherent complexes.
       </p>

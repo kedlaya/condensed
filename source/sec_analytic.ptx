@@ -128,9 +128,9 @@
         By the same logic with <m>M</m> replaced by <m>M \otimes \ZZ[\underline{S}]</m> for <m>S \in \Prof</m>,
         we see that also <m>\iHom_{R^{\triangleright}}(M,N) \cong \iHom_{\hat{R}^{\triangleright}}(M,N)</m>.
         However, note that it is not automatic that
-        <men xml:id="eq-compare-extensions-after-analytic-completion">
+        <md number="yes" xml:id="eq-compare-extensions-after-analytic-completion">
           \iExt^i_{R^{\triangleright}}(M,N) \cong \iExt^i_{\hat{R}^{\triangleright}}(M,N)
-        </men>
+        </md>
         for <m>i \gt 0</m> (or even the corresponding statement at the level of global sections).
         When this holds, <m>\hat{R} := (\hat{R}^{\triangleright}, \Mod_{\hat{R}} := \Mod_R)</m> is an analytic ring.
       </p>
@@ -140,9 +140,9 @@
         It can also be interpreted as saying that
         <m>\hat{R}^\triangleright</m> is also the <em>derived</em> analytic completion of <m>R^{\triangleright}</m>,
         or that 
-        <me>
+        <md>
           \hat{R}^{\triangleright} \hat{\otimes}^L_{R^{\triangleright}} \hat{R}^{\triangleright} = \hat{R}^{\triangleright}
-        </me>.
+        </md>.
         This condition will automatically satisfied in the examples we consider; see <xref ref="rem-liquefaction-kills-ext1"/>.
       </p>
     </remark>
@@ -151,13 +151,13 @@
         Building on <xref ref="rem-pre-analytic-to-analytic"/>, we verify <xref ref="eq-compare-extensions-after-analytic-completion"/> 
         for <m>M = \hat{R}^{\triangleright}, i=1</m>; in this case the claim is that <m>\iExt^1_{R^{\triangleright}}(\hat{R}^{\triangleright},N) = 0</m>. 
         For any exact sequence in <m>\Mod_{R}</m> of the form
-        <me>
+        <md>
           0 \to N \to N' \to \hat{R}^{\triangleright} \to 0
-        </me>
+        </md>
         we have <m>N' \in \Mod_{R}</m>. The pullback sequence
-        <me>
+        <md>
           0 \to N \to N' \times_{\hat{R}^{\triangleright}} R^{\triangleright} \to R^{\triangleright} \to 0
-        </me>
+        </md>
         (where the term in the middle is the fiber product, not the tensor product!)
         is split because <m>R^{\triangleright}</m> is projective as a module over itself;
         any splitting then extends by adjunction to a splitting of the original sequence.
@@ -220,9 +220,9 @@
       <p>
         For <m>R</m> a condensed commutative ring,
         define the category of <term>solid <m>R</m>-modules</term> by
-        <me>
+        <md>
           \Mod_{R\solid} := \Mod_R(\CAb_\solid) = \Mod_R \times_{\CAb} \CAb_\solid
-        </me>.
+        </md>.
         By <xref ref="prop-solid-category"/>, <m>(R, \Mod_{R \solid})</m> is a pre-analytic ring.
       </p>
       <p>
@@ -327,25 +327,25 @@
       <p>
         Picking up a thread from <xref ref="rem-exact-seq-for-P"/>,
         we compare the split exact sequence
-        <men xml:id="eq-split-sequence-P-mod-Z">
+        <md number="yes" xml:id="eq-split-sequence-P-mod-Z">
           0 \to R \to P \otimes R \to (P/\underline{\ZZ}) \otimes R \to 0
-        </men>
+        </md>
         with the nonsplit exact sequences
-        <men xml:id="eq-resolve-coker-Deltaf-liquefaction">
+        <md number="yes" xml:id="eq-resolve-coker-Deltaf-liquefaction">
           0 \to P \otimes R \stackrel{\Delta_f}{\to} P \otimes R \to \coker(\Delta_f) \to 0
-        </men>
+        </md>
         and
-        <men xml:id="eq-resolve-coker-mod-R-liquefaction">
+        <md number="yes" xml:id="eq-resolve-coker-mod-R-liquefaction">
           0 \to P \otimes R \stackrel{\Delta_f}{\to} (P/\underline{\ZZ}) \otimes R \to \coker(\Delta_f)/R \to 0
-        </men>.
+        </md>.
         The latter gives an internally projective resolution of <m>\coker(\Delta_f)/R</m> of length <m>1</m>.
       </p>
       <p>
         Let us see what taking internal Homs into <m>M \in \Mod_{R \liquid f}</m> does to these sequences.
         For <xref ref="eq-split-sequence-P-mod-Z"/>, since the sequence is split we get for every <m>i \geq 0</m> an exact sequence
-        <me>
+        <md>
           0 \to \iExt^i_R((P/\underline{\ZZ}) \otimes R, M) \to \iExt^i_R(P \otimes R, M) \to \iExt^i_R(R, M) \to 0
-        </me>;
+        </md>;
         that is, the map <m>\iHom_R((P/\underline{\ZZ}) \otimes R, M) \to \iHom_R(P \otimes R, M)</m> is injective with cokernel <m>M</m>
         and the map <m>\iExt^i_R((P/\underline{\ZZ}) \otimes R, M) \to \iExt^i_R(P \otimes R, M)</m> is an isomorphism for all <m>i \gt 0</m>.
       </p>
@@ -364,9 +364,9 @@
       </p>
       <p>
         Finally, using the exact sequence
-        <me>
+        <md>
           0 \to R \to \coker(\Delta_f) \to \coker(\Delta_f)/R \to 0 
-        </me>
+        </md>
         we deduce that the derived <m>f</m>-coalescence of <m>R</m> is concentrated in degree <m>0</m>.
         We are thus in the favorable situation of <xref ref="rem-pre-analytic-to-analytic"/>, that is,
         <m>(R_{\liquid f}, \Mod_{R \liquid f})</m> is an analytic ring.
@@ -380,13 +380,13 @@
       <p>
         If <m>S \to R</m> is a homomorphism of commutative ring objects in <m>\CAb</m>, then for any <m>f \in S</m>
         we have 
-        <me>
+        <md>
           \Mod_{R \liquid f} = \Mod_{S \liquid f} \times_{\Mod_S} \Mod_R
-        </me>.
+        </md>.
         This applies in particular when <m>f = 1</m>, in which case we may take <m>S = \ZZ</m> to obtain
-        <me>
+        <md>
           \Mod_{R \liquid 1} = \Mod_{R\solid}
-        </me>.
+        </md>.
       </p>
       <p>
         It follows that for <m>M \in \Mod_R</m>, forming the <m>f</m>-coalescence <m>M_{\liquid f}</m> commutes with restriction of scalars from <m>S</m> to <m>R</m>,
@@ -473,25 +473,25 @@
         <p>
           We next encounter a subtlety in the argument that can already be seen in terms of null sequences. 
           The strategy is to invert the function
-          <men xml:id="eq-difference-by-fg">
+          <md number="yes" xml:id="eq-difference-by-fg">
             (m_0, m_1, \dots) \mapsto (m_0 - fg m_1, m_1 - fg m_2, \dots),
-          </men>
+          </md>
           which symbolically is achieved by 
-          <me>
+          <md>
             (m_0, m_1, \dots) \mapsto \left( \sum_{n=0}^\infty (fg)^n m_n, \sum_{n=0}^\infty (fg)^n m_{n+1}, \dots \right) 
-          </me>;
+          </md>;
           however, composing the map
-          <men xml:id="eq-rescale-by-g">
+          <md number="yes" xml:id="eq-rescale-by-g">
             (m_0, m_1, \dots) \mapsto (m_0, g m_1, g^2 m_2, \dots)
-          </men>
+          </md>
           with the map
-          <me>
+          <md>
             (m_0, m_1, \dots) \mapsto \left(\sum_{n=0}^\infty f^n m_n, \sum_{n=0}^\infty f^n m_{n+1}, \dots \right)
-          </me>
+          </md>
           gives 
-          <me>
+          <md>
             (m_0, m_1, \dots) \mapsto \left( \sum_{n=0}^\infty (fg)^n m_n, g \sum_{n=0}^\infty (fg)^n m_{n+1}, g^2 \sum_{n=0}^\infty (fg)^n m_{n+2}, \dots \right)
-          </me>
+          </md>
           where the term in position <m>n</m> is the term we want but multiplied by <m>g^n</m>.
           In other words, we cannot perform the operation <xref ref="eq-difference-by-fg"/> by first rescaling by <m>g</m> as in <xref ref="eq-rescale-by-g"/>,
           then performing <m>(m_0,m_1,\dots) \mapsto (m_0-fm_1, m_1-fm_2)</m>; rather, this executes <xref ref="eq-difference-by-fg"/> plus rescaling by <m>g</m>. 
@@ -500,23 +500,23 @@
           We may resolve this by working in terms of two-dimensional arrays.
           To wit, to execute <xref ref="eq-difference-by-fg"/>, we first expand <m>(m_0, m_1, \dots)</m> into a two-dimensional array
           and rescale <em>columns</em> by powers of <m>g</m> to get
-          <me>
+          <md>
             \begin{pmatrix}
               m_0 \amp gm_1 \amp g^2m_2 \amp  \\
               m_1 \amp gm_2 \amp g^2m_3 \amp \cdots \\
               m_2 \amp gm_3 \amp g^2m_4 \amp  \\
               \amp \vdots \amp \amp \ddots 
             \end{pmatrix}
-          </me>;
+          </md>;
           difference <em>rows</em> by <m>f</m> to get 
-          <me>
+          <md>
             \begin{pmatrix}
               m_0-fgm_1 \amp gm_1-fg^2m_2 \amp g^2m_2-fg^3m_3 \amp  \\
               m_1-fgm_2 \amp gm_2-fg^2m_3 \amp g^2m_3-fg^2m-4 \amp \cdots \\
               m_2-fgm_3 \amp gm_3-fg^2m_4 \amp g^2m_4-fg^2m_5 \amp  \\
               \amp \vdots \amp \amp \ddots 
             \end{pmatrix}
-          </me>;
+          </md>;
           and finally project onto the first column, noting that this operation is a section of the first one.
         </p>
         <p>
@@ -528,9 +528,9 @@
           Differencing the rows is pullback by <m>\id \otimes \Delta_f</m>.
           Finally, projecting onto the first column is pullback by the first injection <m>\iota_1 \colon P = P \otimes \ZZ \to P \otimes P</m>.
           Undoing the pullbacks (which reverses the order of composition), we end up with a putative equality
-          <men xml:id="eq-break-down-fg-pullback">
+          <md number="yes" xml:id="eq-break-down-fg-pullback">
             \Delta_{fg} = +_P \circ (\id \otimes (h_g \circ \Delta_f)) \circ \iota_1
-          </men>
+          </md>
           of morphisms <m>P \to P \otimes R</m>.
         </p>
         <p>
@@ -541,14 +541,14 @@
         </p>
         <p>
           Now we transpose <xref ref="eq-break-down-fg-pullback"/> to get
-          <me>
+          <md>
             \Delta_{fg}^* = \iota_1^* \circ (\id \otimes (\Delta_f^* \circ h_g^*)) \circ +_P^*
-          </me>.
+          </md>.
           Given that <m>\Delta_f^*</m> is invertible on <m>\Hom_{\CAb}(P, M)</m>, and using the fact that 
           the maps <m>\iota_1^*</m> and <m>(\id \otimes h_g^*) \circ +_P^*</m> split each other, we obtain
-          <me>
+          <md>
             (\Delta_{fg}^*)^{-1} = \iota_1^* \circ (\id \otimes (\Delta_f^*)^{-1} \circ h_g^*)) \circ +_P^*
-          </me>,
+          </md>,
           which proves the claim.
         </p>
       </proof>
@@ -565,9 +565,9 @@
           It suffices to prove that <m>\Mod_{\underline{R} \liquid f} \subseteq \Mod_{\underline{R} \liquid g}</m>.
           For this, note that there exists a positive integer <m>n</m> such that <m>g^n f^{-1}</m> is topologically nilpotent.
           By <xref ref="lem-from-f-liquid-to-fg-liquid"/> and <xref ref="lem-f-solidification-versus-fn"/>, we have 
-          <me>
+          <md>
             \Mod_{R \liquid f} \subseteq \Mod_{R \liquid f(g^n f^{-1})} = \Mod_{R \liquid g^n} \subseteq \Mod_{R \liquid g}
-          </me>.
+          </md>.
         </p>
       </proof>
     </corollary>
@@ -595,13 +595,13 @@
       <proof>
         <p>
           For <m>S \in \Prof</m>, we must check that <m>\Delta^*</m> acts isomorphically on
-          <me>
+          <md>
             \Hom_{\CAb}(P \otimes \ZZ[\underline{S}], \underline{\RR})= \Hom_{\CAb}(P, \iHom_{\CAb}(\ZZ[\underline{S}], \underline{\RR}))
-          </me>.
+          </md>.
           Using <xref ref="eq-ihom-S-to-X"/> this becomes
-          <me>
+          <md>
              \Hom_{\CAb}(P, \underline{\Cts(S, \RR)})
-          </me>.
+          </md>.
           Since the compact-open topology on <m>\Cts(S, \RR)</m> is induced by the supremum norm,
           we are reduced to checking that for any null sequence of functions <m>g_n\colon S \to \RR</m> for the supremum norm and any <m>f \in (0,1)</m>,
           the sequence <m>(f^n g_n)_n</m> is summable in <m>\Cts(S, \RR)</m>. This follows by observing that the supremum norms <m>c_n</m> of <m>g_n</m> form a null sequence in <m>\RR</m>
@@ -646,17 +646,17 @@
     <definition xml:id="def-initial-ring-liquefied">
       <p>
         For <m>k=1,2,\dots</m>, define the topological ring
-        <men xml:id="eq-universal-liquefaction-filtered">
+        <md number="yes" xml:id="eq-universal-liquefaction-filtered">
           A_k^{\triangleright} := \bigcup_{c \gt 0} \prod_{m=0}^\infty \left(\ZZ \cap [-c(m+1)^{k-1}, c(m+1)^{k-1}] \right) q^m
-        </men>
+        </md>
         and set <m>A^{\triangleright} = \bigcup_k A_k^{\triangleright}</m>.
         That is, <m>A^{\triangleright}</m> consists of Laurent series whose coefficients grow polynomially in the exponent.
       </p>
       <p>
         For <m>S = \varprojlim_i S_i \in \Prof</m>, we similarly have
-        <men xml:id="eq-universal-liquefaction-filtered-with-S">
+        <md number="yes" xml:id="eq-universal-liquefaction-filtered-with-S">
           A_k^{\triangleright}\otimes \ZZ[\underline{S}] := \bigcup_{c \gt 0} \varprojlim_i \prod_{m=0}^\infty \ZZ[S_i]_{\leq c(m+1)^{k-1}} q^m
-        </men>
+        </md>
         where the subscript <m>\leq c(m+1)^{k-1}</m> means that we bound the sum of the absolute values of the coefficients accordingly.
       </p>
     </definition>
@@ -684,9 +684,9 @@
             </mrow>
           </md>.
           Since <m>|s_{i,j-i}| \leq c(j-i+1)^{k-2}</m> for all <m>i,j</m>, we have 
-          <me>
+          <md>
             \left| \sum_{i=0}^{j} s_{i,j-i} \right| \leq c \sum_{i=0}^j (j-i+1)^{k-2} \leq c(j+1)^{k-1} 
-          </me>
+          </md>
           from which we infer that <m>\sum_{i=0}^\infty s_i q^i \in A_{k}^{\triangleright}</m>.
         </p>
       </proof>
@@ -705,25 +705,25 @@
           For this, we employ a trick introduced in <xref ref="rem-sum-null-against-f"/>.
           By hypothesis, we start with an element <m>t = \sum_{m=0}^\infty t_m q^m \in A_k^{\triangleright}</m>
           such that for some <m>c\gt  0</m>, we have <m>|t_m| \leq c(m+1)^{k-1}</m> for all <m>m</m>. If <m>k=1</m>, we write
-          <me>
+          <md>
             t = \sum_{m=0}^\infty (t_{2m} q^m + t_{2m+1}q^{m+1}) q^m
-          </me>
+          </md>
           and then observe that the quantities <m>t_{2m} q^m + t_{2m+1}q^{m+1}</m> form a null sequence in <m>A_0^{\triangleright}</m>.
           If <m>k \gt 1</m>, set
-          <me>
+          <md>
             s_{i,j} := \left \lfloor \frac{t_{i+j} + j}{i+j+1} \right\rfloor
-          </me>,
+          </md>,
           so that <m>|s_{i,j}| \leq c(i+j+1)^{k-2} +1  \leq (c+1)(i+j+1)^{k-2}</m> and <m>t_m = \sum_{i=0}^m s_{i,m-i}</m>.
           Set <m>s_i := \sum_{j=0}^\infty s_{i,j} q^j</m>, so that
-          <me>
+          <md>
             t = \sum_{i=0}^\infty s_i q^i = \sum_{i=0}^\infty (s_{2i} q^i + s_{2i+1}q^{i+1}) q^i
-          </me>.
+          </md>.
           It now suffices to check that as <m>i</m> varies,
           the quantities <m>s_{2i} q^i + s_{2i+1}q^{i+1}</m> form a null sequence in <m>A_{k-1}^{\triangleright}</m>:
           write
-          <me>
+          <md>
             s_{2i+*} q^{i+*} = \sum_{j=i+*}^\infty s_{2i+*,j-i-*} q^j
-          </me>
+          </md>
           and then note that because <m>j \geq i</m>,
           <md>
             <mrow>
@@ -750,9 +750,9 @@
         <p>
           For <m>S = \varprojlim_i S_i \in \Prof</m>, we may apply 
           <xref ref="lem-filtration-on-universal-liquefaction1"/> and <xref ref="lem-filtration-on-universal-liquefaction2"/> to see that the action of <m>\Delta_q^*</m> on 
-          <me>
+          <md>
             \Hom_{\CAb}(P \otimes \ZZ[\underline{S}], A^{\triangleright}) = \Hom_{\CAb}(P, \iHom_{\CAb}(\ZZ[\underline{S}], A^{\triangleright}))
-          </me>
+          </md>
           is an isomorphism. This implies that the action on <m>\iHom_{\CAb}(P, A^{\triangleright})</m> is an isomorphism,
           and hence the desired result.
         </p>
@@ -762,10 +762,10 @@
       <statement>
         <p>
           For any <m>S \in \Prof</m> and any <m>M \in \Mod_{A_0^{\triangleright} \liquid q}</m>,
-          <men xml:id="eq-compare-homs-from-universal-liquefaction">
+          <md number="yes" xml:id="eq-compare-homs-from-universal-liquefaction">
             \Hom_{A_0^{\triangleright}}(A^{\triangleright} \otimes \ZZ[\underline{S}], M) \cong
             \Hom_{A_0^{\triangleright}}(A_0^{\triangleright} \otimes \ZZ[\underline{S}], M)
-          </men>.
+          </md>.
           Consequently, we have <m>\iHom_{A_0^{\triangleright}}(A^{\triangleright}, M) \cong \iHom_{A_0^{\triangleright}}(A_0^{\triangleright}, M)</m>.
         </p>
       </statement>
@@ -773,15 +773,15 @@
         <p>
           By replacing <m>M</m> with <m>\iHom_{\CAb}(\ZZ[\underline{S}], M)</m> and applying Hom-tensor adjunction, we reduce to the case <m>S = \{*\}</m>. 
           From <xref ref="lem-filtration-on-universal-liquefaction1"/> and <xref ref="lem-filtration-on-universal-liquefaction2"/>, we see that for <m>k \geq 0</m>,
-          <men xml:id="eq-compare-level-of-universal-liquefaction">
+          <md number="yes" xml:id="eq-compare-level-of-universal-liquefaction">
             \Hom_{A_0^{\triangleright}}(A_{k+1}^{\triangleright}, M) \cong
             \Hom_{A_0^{\triangleright}}(A_k^{\triangleright}, M)
-          </men>.
+          </md>.
           In particular, for <m>k \geq 0</m>,
-          <me>
+          <md>
             \Hom_{A_0^{\triangleright}}(A_k^{\triangleright}, M) \cong
             \Hom_{A_0^{\triangleright}}(A_0^{\triangleright}, M)
-          </me>
+          </md>
           and taking a colimit over <m>k</m> yields the claim.
         </p>
       </proof>
@@ -798,9 +798,9 @@
           For the underived coalescence, this follows directly from <xref ref="lem-compare-maps-from-universal-liquefaction"/>;
           for the derived coalescence, we must also apply <xref ref="rem-liquefaction-kills-ext1"/>.
           Alternatively, one can give a more careful argument to directly ensure that
-          <me>
+          <md>
             A^{\triangleright} \widehat{\otimes}_{A_0^{\triangleright}}^L A^{\triangleright} \cong A^{\triangleright}
-          </me>;
+          </md>;
           see <xref ref="bib-Clausen-Scholze-youtube"/>, Lecture 14, timestamp 17:00.
         </p>
       </proof>
@@ -819,9 +819,9 @@
       <statement>
         <p>
           For <m>S = \varprojlim_i S_i \in \Prof</m>, for any <m>q \in (0,1) \subset \RR</m>, the (derived) <m>q</m>-coalescence of <m>\RR[\underline{S}]</m> equals
-          <me>
+          <md>
             \bigcup_{k,c \gt 0} \varprojlim_i \left\{ \sum_{s \in s_i} x_s[s] \in \RR[S_i] \colon \sum_{s \in S_i} f_k(|x_s|) \lt c \right \}
-          </me>
+          </md>
           where <m>f_k\colon \RR_{\geq 0} \to \RR_{\geq 0}</m> is an increasing concave function
           such that <m>f_k(x) = \left| \log x \right|^{-k}</m> for <m>x</m> sufficiently small.
         </p>
@@ -852,9 +852,9 @@
         <p>
           Let <m>R</m> be a condensed commutative ring and choose <m>f,g \in R(*)</m>. Then within <m>\Mod_R</m>,
           we have an inclusion of full subcategories
-          <me>
+          <md>
             \Mod_{R \liquid f} \cap \Mod_{R \liquid g} \subseteq \Mod_{R \liquid fg}
-          </me>.
+          </md>.
         </p>
       </statement>
       <proof>
@@ -872,9 +872,9 @@
         <p>
           Let <m>R</m> be a condensed commutative ring and choose <m>f \in R(*)</m>. Then within <m>\Mod_R</m>,
           for every positive integer <m>n</m> we have an equality of full subcategories
-          <me>
+          <md>
             \Mod_{R \liquid f} = \Mod_{R \liquid f^n}
-          </me>.
+          </md>.
         </p>
       </statement>
       <proof>
@@ -936,9 +936,9 @@
         <p>
           Since <m>g</m> is topologically nilpotent, so is <m>g^n f^{-1}</m> for some positive integer <m>n</m>.
           By <xref ref="rem-f-solidification-versus-fg"/> and <xref ref="lem-f-solidification-versus-fn"/>,
-          <me>
+          <md>
             \Mod_{R \liquid f} \subseteq \Mod_{R \liquid f(g^n f^{-1})} = \Mod_{R \liquid g^n} = \Mod_{R \liquid g}
-          </me>.
+          </md>.
         </p>
       </proof>
     </corollary>
