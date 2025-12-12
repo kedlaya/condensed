@@ -311,7 +311,7 @@
           </li>
           <li>
             Each <m>T_n</m> is the complement of the images of the maps <m>\pi_n \circ i_m\colon T_m \to S \to S_n</m> for all <m>m \lt n</m>.
-            In particular, <m>T_1 = S_1</m>.
+            In particular, <m>T_0 = S_0</m>.
           </li>
         </ul>
         Let <m>j_n\colon S_n \to S</m> be the map obtained by collating the maps <m>i_m</m> for <m>m \leq n</m>.
@@ -319,7 +319,7 @@
         and then we apply <m>i_m</m> for that choice of <m>m</m>.
       </p>
       <p>
-        Define <m>T = T_1 \sqcup T_2 \sqcup \cdots</m> and fix a bijection <m>\NN \cong T</m>.
+        Define <m>T = T_0 \sqcup T_1 sqcup \cdots</m> and fix a bijection <m>\NN \cong T</m>.
         We then define the map 
         <md>
           g\colon P \cong \ZZ[\underline{T_\infty}]/\ZZ[\underline{\infty}] \to \ZZ[\underline{S}]

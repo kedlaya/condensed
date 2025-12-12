@@ -250,7 +250,7 @@
     </lemma>
     <remark xml:id="rem-length-1-projective-resolution">
       <p>
-        In <xref ref="exa-generate-finitely-presented"/>, if <m>\Hom{\ZZ}(Q, \ZZ) = 0</m> (e.g., if <m>Q</m> is torsion),
+        In <xref ref="exa-generate-finitely-presented"/>, if <m>\Hom_{\ZZ}(Q, \ZZ) = 0</m> (e.g., if <m>Q</m> is torsion),
         then <xref ref="lem-hom-from-torsion-vanishes"/> shows that the first term of <xref ref="eq-hom-from-torsion-sequence"/> vanishes;
         that is, <m>\iExt^1_{\ZZ_\solid}(Q_\solid, \ZZ_\solid)</m> admits a projective resolution of length 1 with terms of the form <m>\prod_I \ZZ_\solid</m>
         with <m>|I| \leq \kappa</m>. We will pick up on this point in <xref ref="cor-length-1-resolution-of-solid"/>.

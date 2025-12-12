@@ -92,8 +92,8 @@
         note first that the presheaf <m>S \mapsto \ZZ[X(S)]</m> maps injectively to <m>\underline{G}</m> by mapping each element of <m>X(S)</m>
         to the corresponding map from <m>S</m> to <m>G_1 \cong X</m>. This induces an injective map <m>\ZZ[\underline{X}] \to \underline{G}</m>.
         To check that this map is surjective, note that any continuous map <m>S \to G</m> factors through <m>G_n - G_n</m> for some <m>n</m>.
-        We can view <m>G_n</m> as a quotient of <m>X^{2n}</m>; then for some covering <m>S' \to S</m> the composition
-        <m>S' \to S \to G_n</m> factors through <m>X^{2n}</m> (e.g., take <m>S' = S \times_{G_n-G_n} X^{2n}</m>).
+        We can view <m>G_n-G_n</m> as a quotient of <m>X^{2n}</m>; then for some covering <m>S' \to S</m> the composition
+        <m>S' \to S \to G_n-G_n</m> factors through <m>X^{2n}</m> (e.g., take <m>S' = S \times_{G_n-G_n} X^{2n}</m>).
         We can then lift the element of <m>\underline{G}(S)</m> corresponding to the chosen map to an element of <m>\ZZ[\underline{X}](S')</m>, proving the claim.
       </p>
       <p>
@@ -309,10 +309,8 @@
           which it will suffice to split.
         </p>
         <p>
-          Apply <xref ref="lem-splitting-closed-sub"/> to construct a morphism <m>\ZZ[\underline{X}']/\ZZ[\underline{Z}'] \to \ZZ[\underline{X'}]</m> in <m>\CAb</m>
-          splitting the canonical projection. 
-          Since the composition <m>X' \to \ZZ[\underline{X}']/\ZZ[\underline{Z}'] \to \ZZ[\underline{X'}]</m> maps all of <m>Z'</m> to a single element, it factors through <m>X</m>.
-          This gives us a map <m>\ZZ[\underline{X}] \to \ZZ[\underline{X}']/\ZZ[\underline{Z}']</m> inducing the desired splitting.
+          Since the composition <m>X' \to \ZZ[\underline{X'}]/\ZZ[\underline{Z'}]</m> maps all of <m>Z'</m> to a single element, it factors through <m>X</m>.
+          This gives us a map <m>\ZZ[\underline{X}] \to \ZZ[\underline{X'}]/\ZZ[\underline{Z'}]</m> inducing the desired splitting.
         </p>
       </proof>
     </proposition>
@@ -432,7 +430,7 @@
           we get a splitting <m>T' \to S_n \times_T T'</m> by taking the projection <m>T' \to S_n</m> in the first factor and the identity in the second factor.
         </p>
         <p>
-          Now let <m>S'</m> be the closed subset of <m>S</m> consisting of <m>S_\infty</m> together with the image of one splitting of <m>S_n \to T'</m> for each <m>n \in \NN</m>;
+          Now let <m>S'</m> be the closed subset of <m>S</m> consisting of <m>S_\infty</m> together with the image of one splitting of <m>S_n \times_T T' \to T'</m> for each <m>n \in \NN</m>;
           then <m>S' \to S \to \NN_\infty \times T'</m> is a surjection which restricts to a homeomorphism over <m>\NN \times T'</m>.
           We may thus pull back the previous diagram along
            <xref ref="prop-relative-free-module"/> to identify 

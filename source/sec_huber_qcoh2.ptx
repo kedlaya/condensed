@@ -68,7 +68,7 @@
       </p>
       <p>
         In particular, when <m>M</m> is dualizable, <m>N</m> is also dualizable and
-        <m>N \cong M^\vee</m> and <m>M \cong N^\vee</m>;.
+        <m>N \cong M^\vee</m> and <m>M \cong N^\vee</m>.
         Moreover, <m>e</m> is the evaluation map and <m>i</m> is the map
         corresponding via <xref ref="eq-dual-functor"/> to the map <m>A \to \iHom_A(M, M)</m> carrying <m>1 \in A(*)</m> to the identity map
         in <m>\iHom_A(M,M)(*) = \Hom_A(M,M)</m>.
@@ -120,7 +120,7 @@
         <md>
           (A[\underline{S}]^\vee \otimes^L_A M)(*) \to \Hom_A(A[\underline{S}], M) = M(S)
         </md>
-        is an isomorphism in <m>\calD(\Ab)</m>. The class of nuclear objects is stable under arbitrary colimits.
+        is an isomorphism in <m>\calD(\Mod_A)</m>. The class of nuclear objects is stable under arbitrary colimits.
         It is straightforward to check that every dualizable object is nuclear.
       </p>
       <p>
@@ -128,7 +128,7 @@
         of <m>\calD(\Mod_A)</m>.
       </p>
     </definition>
-    <definition>
+    <definition xml:id="def-trace-class">
       <p>
         For <m>A</m> an analytic ring, a morphism <m>f \colon P \to Q</m> in <m>\calD(\Mod_A)</m>
         is <term>trace class</term> if there is some map <m>g \colon A \to P^\vee \otimes^L_A Q</m>
@@ -147,7 +147,7 @@
       <title>Solid Schwartz lemma</title>
       <statement>
         <p>
-          Let <m>A</m> be a solid analytic ring and fix <m>S \in \Prof</m>.
+          Let <m>A</m> be a solid analytic ring which is a quotient of a Huber pair and fix <m>S \in \Prof</m>.
           Then for any trace class morphism <m>f\colon A[\underline{S}] \to A[\underline{S}]</m>,
           <m>\cone(f-1)</m> is isomorphic in <m>\calD(\Mod_{A})</m> to
           a complex of the form <m>A^{\triangleright n}[-1] \to A^{\triangleright n}[0]</m>.
@@ -155,7 +155,7 @@
       </statement>
       <proof>
         <p>
-          Let us suppose first that <m>A</m> represents a Huber pair.
+          We immediately reduce to the case where <m>A</m> itself is a Huber pair.
           By <xref ref="lem-identify-solidification-of-free"/>, we have <m>A[\underline{S}] \cong \prod_\NN A</m>.
           As in <xref ref="rem-dualizable-not-double-dual"/>, 
           we can represent the given element of <m>\Hom_{A}(A, A[\underline{S}]^\vee \otimes^L_{A} A[\underline{S}])</m> 
@@ -169,20 +169,6 @@
           </md>,
           which is now itself a matrix with finitely many nonzero columns.
           We may thus replace the index set <m>\NN</m> with the subset corresponding to the nonzero columns without changing <m>\cone(f-1)</m>. 
-        </p>
-        <p>
-          To handle the general case, note that the problem data can be described in terms of countably many elements of <m>A^{\triangleright}(*)</m>;
-          consequently, any given problem instance can be obtained by base extension from a solid analytic ring <m>A</m> 
-          of the form
-          <md>
-            A^{\triangleright}\left( \prod_I \ZZ_\solid\right) = \prod_I R[T_j \colon j \in J]
-          </md>
-          for <m>R</m> a discrete polynomial ring over <m>\ZZ</m> in countably many variables and <m>J</m> a countable index set.
-          Using <xref ref="exa-completion-of-coproduct"/>, we can interpret the given element of <m>\Hom_{A}(A, A[\underline{S}]^\vee \otimes^L_{A} A[\underline{S}])</m> 
-          as an <m>\NN \times \NN</m> matrix over <m>R[T_j \colon j \in J]</m> with the property that every monomial <m>\prod_{j \in J} T_j^{e_j}</m>
-          (where <m>e_j</m> are nonnegative integers, all but finitely many equal to 0) appears in only finitely many columns.
-          We now argue as before: separate the matrix as <m>N_0 + N_1</m> where <m>N_0</m> is again the matrix of constant terms (i.e., set each <m>T_j</m> to 0),
-          and then <m>1-N_1</m> will be invertible.
           (Compare <xref ref="bib-Andreychev"/>, Lemma 5.51.)
         </p>
       </proof>
@@ -191,7 +177,8 @@
       <title>Andreychev</title>
       <statement>
         <p>
-          For <m>A</m> a sheafy solid analytic ring, any nuclear pseudocoherent object in <m>\calD(\Mod_{A})</m> is discrete;
+          Let <m>A</m> be a sheaf solid analytic ring which is a quotient of a Huber pair.
+          Then any nuclear pseudocoherent object in <m>\calD(\Mod_{A})</m> is discrete;
           that is, it is represented by a pseudocoherent complex over <m>A^{\triangleright}(*)</m>.
         </p>
       </statement>
@@ -227,7 +214,8 @@
     <theorem xml:id="thm-pseudocoherent-descent">
       <statement>
         <p>
-          For <m>A</m> a sheafy solid analytic ring, the category of pseudocoherent complexes of <m>A^{\triangleright}</m>-modules admits descent for the adic topology.
+          Let <m>A</m> be a sheafy solid analytic ring which is a quotient of a Huber pair.
+          Then the category of pseudocoherent complexes of <m>A^{\triangleright}</m>-modules admits descent for the adic topology.
           In particular (by <xref ref="rem-adjoin-top-nilpotent"/> and <xref ref="prop-sheafy-by-localizations-are-Huber"/>), 
           for <m>A</m> a sheafy Huber pair, the category of pseudocoherent complexes of <m>A^{\triangleright}</m>-modules admits descent for the adic topology.
         </p>
@@ -272,7 +260,8 @@
     <theorem xml:id="thm-pseudocoherent-descent-with-amplitude">
       <statement>
         <p>
-          For <m>A</m> a sheafy solid analytic ring, the category of pseudocoherent complexes of <m>A^{\triangleright}</m>-modules with amplitude in <m>(-\infty, 0]</m>
+          Let <m>A</m> be a sheafy solid analytic ring which is a quotient of a Huber pair.
+          The category of pseudocoherent complexes of <m>A^{\triangleright}</m>-modules with amplitude in <m>(-\infty, 0]</m>
           satisfies descent for the adic topology.
           In particular (by <xref ref="rem-adjoin-top-nilpotent"/> and <xref ref="prop-sheafy-by-localizations-are-Huber"/>), 
           for <m>A</m> a sheafy Huber ring, the category of pseudocoherent complexes of <m>A^{\triangleright}</m>-modules with amplitude in <m>(-\infty, 0]</m>
@@ -291,7 +280,8 @@
     <corollary xml:id="cor-perfect-complexes">
       <statement>
         <p>
-          For <m>A</m> a sheafy solid analytic ring, for any <m>a \leq b</m>, the category of perfect complexes of <m>A^{\triangleright}</m>-modules with amplitude in <m>[a,b]</m>
+          Let <m>A</m> be a sheafy solid analytic ring which is a quotient of a Huber pair.
+          For any <m>a \leq b</m>, the category of perfect complexes of <m>A^{\triangleright}</m>-modules with amplitude in <m>[a,b]</m>
           satisfies descent for the adic topology.
           In particular (by <xref ref="rem-adjoin-top-nilpotent"/> and <xref ref="prop-sheafy-by-localizations-are-Huber"/>), 
           for <m>A</m> a sheafy Huber pair, for any <m>a \leq b</m>, the category of perfect complexes of <m>A^{\triangleright}</m>-modules with amplitude in <m>[a,b]</m>
@@ -309,8 +299,8 @@
       <title>Kedlaya<ndash/>Liu</title>
       <statement>
         <p>
-          For <m>A</m> a sheafy solid analytic ring, the category of finite projective <m>A^{\triangleright}</m>-modules
-          satisfies descent for the adic topology.
+          Let <m>A</m> be a sheafy solid analytic ring which is a quotient of a Huber pair.
+          The category of finite projective <m>A^{\triangleright}</m>-modules satisfies descent for the adic topology.
           In particular (by <xref ref="rem-adjoin-top-nilpotent"/> and <xref ref="prop-sheafy-by-localizations-are-Huber"/>),
           for <m>A</m> a sheafy Huber pair, vector bundles on <m>\Spa A</m> are equivalent to finite projective <m>A^{\triangleright}</m>-modules via the global sections functor.
         </p>

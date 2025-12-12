@@ -210,9 +210,10 @@
       </p>
       <p>
         Note also that for <m>A</m> a commutative ring, the pair <m>(\underline{A}, \Mod_A)</m> (i.e., taking the discrete modules) is not an analytic ring: 
-        it fails the condition that <m>\iHom_{\underline{A}}(M, N) \in \Mod_A</m> for <m>M \in \Mod_{\underline{A}}, N \in \Mod_A</m>.
-        For example, take <m>R = \ZZ, M = \bigoplus_\NN \underline{\ZZ}, N = \underline{\ZZ}</m>;
-        we then have <m>\iHom_{\underline{\ZZ}}(M, N) = \prod_\NN \underline{\ZZ}</m> which is not a discrete <m>\ZZ</m>-module.
+        it fails to satisfy closure under countable limits, e.g., because <m>\prod_\NN \underline{\ZZ}</m> is not a discrete <m>\ZZ</m>-module.
+        It also fails the condition that <m>\iHom_{\underline{A}}(M, N) \in \Mod_A</m> for <m>M \in \Mod_{\underline{A}}, N \in \Mod_A</m>
+        for related reasons; for example, for <m>R = \ZZ, M = \bigoplus_\NN \underline{\ZZ}, N = \underline{\ZZ}</m>,
+        we have <m>\iHom_{\underline{\ZZ}}(M, N) = \prod_\NN \underline{\ZZ}</m>.
         This is corrected for using solid modules instead (<xref ref="exa-solid-analytic-ring"/>).
       </p>
     </remark>
@@ -459,6 +460,7 @@
           Let <m>R</m> be a condensed ring and choose <m>f,g \in R(*)</m>.
           Suppose that there exists an <m>R</m>-algebra morphism <m>h_g \colon P \otimes R \to P \otimes R</m> taking <m>[n]</m> to <m>g^n [n]</m>.
           (For example, this holds when <m>R</m> is a topological ring and <m>g</m> is topologically nilpotent.)
+          Then <m>\Mod_{R \liquid f} \subseteq \Mod_{R \liquid fg}</m>.
         </p>
       </statement>
       <proof>
@@ -553,24 +555,6 @@
         </p>
       </proof>
     </lemma>
-    <corollary xml:id="cor-liquid-top-nilpotent-unit-topological">
-      <statement>
-        <p>
-          Let <m>R</m> be a topological ring and suppose that <m>f,g \in R^\times</m> are both topologically nilpotent units.
-          Then <m>\Mod_{\underline{R} \liquid f} = \Mod_{\underline{R} \liquid g}</m>.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          It suffices to prove that <m>\Mod_{\underline{R} \liquid f} \subseteq \Mod_{\underline{R} \liquid g}</m>.
-          For this, note that there exists a positive integer <m>n</m> such that <m>g^n f^{-1}</m> is topologically nilpotent.
-          By <xref ref="lem-from-f-liquid-to-fg-liquid"/> and <xref ref="lem-f-solidification-versus-fn"/>, we have 
-          <md>
-            \Mod_{R \liquid f} \subseteq \Mod_{R \liquid f(g^n f^{-1})} = \Mod_{R \liquid g^n} \subseteq \Mod_{R \liquid g}
-          </md>.
-        </p>
-      </proof>
-    </corollary>
   </subsection>
   <subsection>
     <title>The gaseous real numbers</title>
@@ -580,9 +564,13 @@
     </p>
     <definition xml:id="def-R-liquid">
       <p>
-        By <xref ref="cor-liquid-top-nilpotent-unit-topological"/>,
-        the category <m>\Mod_{\underline{\RR} \liquid f}</m> is the same for any two choices of <m>f \in (0,1)</m>.
-        We denote it also as <m>\Mod_{\underline{\RR} \liquid}</m>.
+        For <m>R = \underline{\RR}</m> and <m>f,g \in (0,1) \subseteq \RR</m>, we can find a positive integer <m>n</m> such that <m>g^n f^{-1} \in (0,1)</m>.
+        By <xref ref="lem-from-f-liquid-to-fg-liquid"/> and <xref ref="lem-f-solidification-versus-fn"/>, we have 
+        <md>
+          \Mod_{R \liquid f} \subseteq \Mod_{R \liquid f(g^n f^{-1})} = \Mod_{R \liquid g^n} \subseteq \Mod_{R \liquid g}
+        </md>.
+        That is, the subcategory <m>\Mod_{\underline{\RR} \liquid f}</m> of <m>\Mod_R</m> is independent of <m>f</m>;
+        we thus denote it also as <m>\Mod_{\underline{\RR} \liquid}</m>.
       </p>
     </definition>
     <proposition xml:id="prop-R-gaseous-ring">
@@ -594,7 +582,7 @@
       </statement>
       <proof>
         <p>
-          For <m>S \in \Prof</m>, we must check that <m>\Delta^*</m> acts isomorphically on
+          For <m>S \in \Prof</m>, <m>f \in (0,1)</m>, we must check that <m>\Delta_f^*</m> acts isomorphically on
           <md>
             \Hom_{\CAb}(P \otimes \ZZ[\underline{S}], \underline{\RR})= \Hom_{\CAb}(P, \iHom_{\CAb}(\ZZ[\underline{S}], \underline{\RR}))
           </md>.
@@ -603,7 +591,7 @@
              \Hom_{\CAb}(P, \underline{\Cts(S, \RR)})
           </md>.
           Since the compact-open topology on <m>\Cts(S, \RR)</m> is induced by the supremum norm,
-          we are reduced to checking that for any null sequence of functions <m>g_n\colon S \to \RR</m> for the supremum norm and any <m>f \in (0,1)</m>,
+          we are reduced to checking that for any null sequence of functions <m>g_n\colon S \to \RR</m> for the supremum norm,
           the sequence <m>(f^n g_n)_n</m> is summable in <m>\Cts(S, \RR)</m>. This follows by observing that the supremum norms <m>c_n</m> of <m>g_n</m> form a null sequence in <m>\RR</m>
           and <m>f^n c_n</m> is summable, so <m>\sum_n f^n g_n</m> is absolutely convergent.
         </p>
@@ -820,7 +808,7 @@
         <p>
           For <m>S = \varprojlim_i S_i \in \Prof</m>, for any <m>q \in (0,1) \subset \RR</m>, the (derived) <m>q</m>-coalescence of <m>\RR[\underline{S}]</m> equals
           <md>
-            \bigcup_{k,c \gt 0} \varprojlim_i \left\{ \sum_{s \in s_i} x_s[s] \in \RR[S_i] \colon \sum_{s \in S_i} f_k(|x_s|) \lt c \right \}
+            \bigcup_{k,c \gt 0} \varprojlim_i \left\{ \sum_{s \in S_i} x_s[s] \in \RR[S_i] \colon \sum_{s \in S_i} f_k(|x_s|) \lt c \right \}
           </md>
           where <m>f_k\colon \RR_{\geq 0} \to \RR_{\geq 0}</m> is an increasing concave function
           such that <m>f_k(x) = \left| \log x \right|^{-k}</m> for <m>x</m> sufficiently small.
@@ -862,7 +850,7 @@
           We may reduce to the universal case <m>R = \underline{\ZZ}[f,g]_{\liquid g}</m>.
           While <m>R</m> is not a topological ring,
           we do have an <m>R</m>-algebra morphism <m>h_g \colon P \otimes R \to P \otimes R</m> taking <m>[n]</m> to <m>g^n [n]</m>
-          (since we have this on <m>P \otimes \underline{\ZZ}[f,g]</m> and then we can coalesce around <m>f</m>).
+          (since we have this on <m>P \otimes \underline{\ZZ}[f,g]</m> and then we can coalesce around <m>g</m>).
           We may thus deduce the claim from <xref ref="lem-from-f-liquid-to-fg-liquid"/>.
         </p>
       </proof>
@@ -909,39 +897,16 @@
     <lemma xml:id="rem-f-solidification-versus-fg">
       <statement>
         <p>
-          Let <m>R</m> be a condensed commutative ring and choose <m>f,g \in R(*)</m> such that <m>g</m> is topologically nilpotent.
+          Let <m>R</m> be a condensed commutative ring and choose <m>f,g \in R(*)</m> such that <m>g</m> is universally power-bounded.
           Then <m>\Mod_{R \liquid f} \subseteq \Mod_{R \liquid fg}</m>.
         </p>
       </statement>
       <proof>
         <p>
-          We may reduce to the universal case <m>R = P[f], g = [1]</m>.
-          In this case, by <xref ref="prop-initial-analytic"/>, <m>R</m> is a topological ring,
-          so we may apply <xref ref="lem-from-f-liquid-to-fg-liquid"/> to conclude.
+          This is a reformulation of <xref ref="lem-from-f-liquid-to-fg-liquid"/>.
         </p>
       </proof>
     </lemma>
-    <p>
-      We can now upgrade <xref ref="cor-liquid-top-nilpotent-unit-topological"/> as follows.
-    </p>
-    <corollary xml:id="cor-liquid-top-nilpotent-unit">
-      <statement>
-        <p>
-          Let <m>R</m> be a condensed commutative ring.
-          Suppose that <m>f \in R(*)</m> is a unit and <m>g \in R(*)</m> is topologically nilpotent.
-          We then have an inclusion <m>\Mod_{R \liquid f} \subseteq \Mod_{R \liquid g}</m>.
-        </p>
-      </statement>
-      <proof>
-        <p>
-          Since <m>g</m> is topologically nilpotent, so is <m>g^n f^{-1}</m> for some positive integer <m>n</m>.
-          By <xref ref="rem-f-solidification-versus-fg"/> and <xref ref="lem-f-solidification-versus-fn"/>,
-          <md>
-            \Mod_{R \liquid f} \subseteq \Mod_{R \liquid f(g^n f^{-1})} = \Mod_{R \liquid g^n} = \Mod_{R \liquid g}
-          </md>.
-        </p>
-      </proof>
-    </corollary>
     <definition xml:id="def-corona">
       <p>
         For <m>R</m> an analytic ring, an element <m>f \in R^{\triangleright}(*)</m> is <term>gaseous</term>
@@ -966,15 +931,12 @@
           <li>
             <m>R^{\gas}</m> is a <q>module</q>: for any <m>f \in R^{\gas}</m> and any topologically nilpotent <m>g \in R(*)</m>, we have <m>fg \in R^{\gas}</m>.
           </li>
-          <li>
-            If <m>R^{\gas}</m> contains any unit of <m>R(*)</m>, then it contains every topologically nilpotent element of <m>R(*)</m>.
-          </li>
         </ol>
       </p>
       <proof>
         <p>
           This follows by combining <xref ref="lem-f-times-g-liquid"/>, <xref ref="lem-f-solidification-versus-fn"/>,
-          <xref ref="rem-f-solidification-versus-fg"/>, and <xref ref="cor-liquid-top-nilpotent-unit"/>.
+          and <xref ref="rem-f-solidification-versus-fg"/>.
         </p>
       </proof>
     </proposition>

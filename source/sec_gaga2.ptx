@@ -26,7 +26,7 @@
         An analytic ring <m>A</m> is <term>Tate</term> if <m>A^{\gas}</m> contains a topologically nilpotent unit <m>q \in A(*)</m>;
         remember that this is a condition on all objects of <m>\Mod_A</m> (namely that <m>\Mod_A \subseteq \Mod_{A^{\triangleright} \liquid q}</m>), 
         not just the base ring <m>A^{\triangleright}</m>.
-        By <xref ref="cor-liquid-top-nilpotent-unit"/>, it follows that <m>A^{\gas}</m> contains <em>every</em> topologically nilpotent unit <m>q \in A(*)</m>.
+        As in <xref ref="def-R-liquid"/>, it follows that <m>A^{\gas}</m> contains <em>every</em> topologically nilpotent unit <m>q \in A(*)</m>.
       </p>
     </definition>
     <remark>
@@ -45,7 +45,7 @@
         consider a condensed ring <m>R</m> which not only has the property that <m>R \in \Mod_{R \liquid q}</m>
         for some unit <m>q \in R(*)</m>, but also has the property that <m>R(*)</m> contains a topologically nilpotent unit <m>r</m>
         which is not necessarily equal to <m>q</m>.
-        When this happens, by <xref ref="cor-liquid-top-nilpotent-unit"/> we will also have <m>R \in \Mod_{R \liquid r}</m>.
+        When this happens, as in <xref ref="def-R-liquid"/> we will also have <m>R \in \Mod_{R \liquid r}</m>.
       </p>
       <p>
         We can force ourselves into this situation by replacing <m>R</m> with <m>R \otimes_{\underline{\ZZ}[q^{\pm}] \liquid q} A^{\triangleright}</m>
@@ -114,7 +114,7 @@
           \times_{\Mod_{A^{\triangleright}}} \Mod_A \right)
         </md>.
         When <m>q</m> is topologically nilpotent, the construction does not depend on <m>q</m> (by <xref ref="lem-dagger-as-liquefaction"/>
-        and <xref ref="cor-liquid-top-nilpotent-unit"/>)
+        and <xref ref="def-R-liquid"/>)
         and so we omit <m>q</m> from the notation.
       </p>
       <p>

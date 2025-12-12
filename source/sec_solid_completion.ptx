@@ -58,7 +58,7 @@
             \QQ_{p} \otimes_\solid \ZZ \llbracket T \rrbracket &amp;= (\ZZ_{p} \otimes_{\solid} \ZZ \llbracket T \rrbracket)[1/p] 
           </mrow>
           <mrow>
-            &amp;= \left(\left(\ZZ\llbracket T_1 \rrbracket/(T_1-p) \right) \otimes \ZZ \llbracket T_2 \rrbracket \right)[1/p]
+            &amp;= \left(\left(\ZZ\llbracket T_1 \rrbracket/(T_1-p) \right) \otimes_\solid \ZZ \llbracket T_2 \rrbracket \right)[1/p]
           </mrow>
           <mrow>
             &amp; = \left( \ZZ\llbracket T_1, T_2 \rrbracket/(T_1-p) \right)[1/p]

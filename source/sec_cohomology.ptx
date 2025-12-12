@@ -54,11 +54,13 @@
     </corollary>
     <theorem xml:id="thm-sheaf-to-cond-on-compact-with-discrete-coeffs">
       <statement>
-        For <m>X \in \CHaus</m> and <m>M \in \Ab</m>, there are natural (in <m>X</m>) isomorphisms
-        <md>
-          H^i_{\sheaf}(X, M) \cong H^i_{\cond}(X, M)
-        </md>
-        where <m>H^i_{\sheaf}(X, \bullet)</m> denotes the usual right derived functors of the global sections functor.
+        <p>
+          For <m>X \in \CHaus</m> and <m>M \in \Ab</m>, there are natural (in <m>X</m>) isomorphisms
+          <md>
+            H^i_{\sheaf}(X, M) \cong H^i_{\cond}(X, M)
+          </md>
+          where <m>H^i_{\sheaf}(X, \bullet)</m> denotes the usual right derived functors of the global sections functor.
+        </p>
       </statement>
       <proof>
         <p>
@@ -66,8 +68,8 @@
           Using <xref ref="rem-construct-profinite-cover"/>, we may construct a simplicial hypercovering <m>X_\bullet \to X</m> by objects of <m>\Prof</m>.
           By <xref ref="lem-condensed-cohomology-of-profinite"/>, the terms of this hypercovering are acyclic and so we may compute <m>R\Gamma_{\cond}(X, M)</m> by the Čech complex
           <md>
-            0 \to \Gamma(X_0, M) \to \Gamma(X_1, M) \to \cdots.
-          </md>
+            0 \to \Gamma(X_0, M) \to \Gamma(X_1, M) \to \cdots
+          </md>.
           Since continuous functions from any <m>X_n</m> to the discrete group <m>M</m> are locally constant, the augmented version of this complex is itself a colimit of complexes associated to simplicial hypercoverings of finite sets,
           which are acyclic by <xref ref="lem-condensed-cohomology-of-profinite"/> again. 
         </p>
@@ -190,7 +192,7 @@
           </md>
           More precisely, the map from right to left is the product over <m>i \in I</m> of the maps
           <md>
-            M[-1] = R\Hom_{\CAb}(\underline{\ZZ}[1], M) \cong R\Hom_{\CAb}(\underline{\TT}, M) \to R\Hom_{\CAb}(\prod_I \underline{\TT}, M)
+            M[-1] = R\Hom_{\CAb}(\underline{\ZZ}[1], M) \cong R\Hom_{\CAb}(\underline{\TT}, M) \to R\Hom_{\CAb}\left(\prod_I \underline{\TT}, M\right)
           </md>
           where the passage from <m>\ZZ</m> to <m>\TT</m> is the connecting homomorphism from <xref ref="eq-exact-seq-for-torus"/>
           and the last arrow is induced by the <m>i</m>-th projection <m>\prod_I \underline{\TT} \to \underline{\TT}</m>.
@@ -198,14 +200,11 @@
       </statement>
       <proof>
         <p>
-          Since <m>\TT</m> is a compact CW complex,
-          this can be deduced from <xref ref="thm-sheaf-to-cond-on-compact-with-discrete-coeffs"/> and <xref ref="thm-cohom-CW-complex"/>;
-          but it can also be seen more directly as follows.
           Since <m>\underline{M}</m> is solid by <xref ref="prop-solid-vs-presumptively-solid"/>,
-          we have <m>R\Hom_{\CAb}(\prod_I \underline{\RR}, \underline{M})</m> by <xref ref="cor-solid-R-module-is-zero-monomorphism"/>.
+          we have <m>R\Hom_{\CAb}\left(\prod_I \underline{\RR}, \underline{M}\right) = 0</m> by <xref ref="cor-solid-R-module-is-zero-monomorphism"/>.
           Meanwhile, via <xref ref="prop-solid-vs-presumptively-solid"/> we have 
           <md>
-            R\Hom_{\CAb}(\prod_I \underline{\ZZ}, \underline{M}) = R\Hom_{\ZZ_\solid}(\prod_I \ZZ_\solid, M_\solid) = \bigoplus_I M[0]
+            R\Hom_{\CAb}\left(\prod_I \underline{\ZZ}, \underline{M}\right) = R\Hom_{\ZZ_\solid}\left(\prod_I \ZZ_\solid, M_\solid\right) = \bigoplus_I M[0]
           </md>
           because <m>\prod_I \underline{\ZZ}</m> is projective in <m>\Mod_{\ZZ_\solid}</m>.
           This yields the claim.

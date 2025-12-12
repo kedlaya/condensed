@@ -113,7 +113,7 @@
         <p>
           These are edited notes from a <url visual="kskedlaya.org/math205-fall24/" href="https://kskedlaya.org/math205-fall24/">graduate topics course</url> given at UC San Diego 
           during the fall 2024 quarter; recordings of the lectures can be found at the same web site.
-          The notes were typeset using <url visual="pretextbook.org" href="pretextbook.org/"><pretext /></url> so as to produce matching <url visual="kskedlaya.org/condensed/" href="https://kskedlaya.org/condensed/">HTML</url> and 
+          The notes were typeset using <url visual="https://pretextbook.org" href="https://pretextbook.org/"><pretext /></url> so as to produce matching <url visual="kskedlaya.org/condensed/" href="https://kskedlaya.org/condensed/">HTML</url> and 
           <url visual="kskedlaya.org/papers/condensed.pdf" href="https://kskedlaya.org/papers/condensed.pdf">PDF</url> versions;
           the source code is available from <url visual="github.com/kedlaya/condensed" href="https://github.com/kedlaya/condensed">this GitHub repository</url>.
           (Beware that the recordings do not correspond precisely to the notes as you see them due to numerous corrections and remarks having been
@@ -135,6 +135,9 @@
           These notes have benefited from feedback from numerous readers, including:
           Hargun Bhatia, Alina Bucur, Justin Carel, Yusuf Cherni, Rex Cheung, Dimitri Dine, JJ Garzella, 
           Christian Klevdal, Emmanuel Lepage, Friso Lohman, Shubhankar Sahai, Ehsan Shahoseini, Fukuhiro Ueda, Lucas Miguel Valle Thiele, Nathan Wenger, Chris Xu, David Zhang.
+        </p>
+        <p>
+          I plan to write a second set of notes that will eventually supersede these. Contact me directly for more information.
         </p>
       </abstract>
     </frontmatter>

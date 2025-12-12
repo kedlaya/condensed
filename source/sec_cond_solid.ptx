@@ -220,8 +220,7 @@
     <remark>
       <p>
         By <xref ref="eq-expression-of-internal-hom-sections"/> if <m>M \in \CAb</m> is solid, then the map <m>\Delta^*\colon \Hom_{\CAb}(P, M) \to \Hom_{\CAb}(P, M)</m>
-        is an isomorphism. The proof of <xref ref="lem-delta-pullback-on-Rhom"/> shows that the converse holds when <m>M \in \TopAb</m>, but it can fail in other cases,
-        e.g., for <xref ref="exa-quotient-by-discrete"/>.
+        is an isomorphism. The proof of <xref ref="lem-delta-pullback-on-Rhom"/> shows that the converse holds when <m>M \in \TopAb</m>.
       </p>
     </remark>
     <proposition xml:id="prop-solid-category">

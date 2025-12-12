@@ -89,13 +89,13 @@
       <p>
         For <m>\calA</m> a preadditive category, define the associated module category
         <md>
-          \Mod_{\calA} := \Fun^{\oplus}(\calA^{\op}, \Ab).
-        </md>
+          \Mod_{\calA} := \Fun^{\oplus}(\calA^{\op}, \Ab)
+        </md>.
         Every object <m>M</m> of <m>\calA</m> defines a representable functor <m>h_M \in \Mod_{\calA}</m>;
         that is, 
         <md>
-          h_M(N) = \Hom_{\calA^{\op}}(M, N) = \Hom_{\calA}(N, M).
-        </md>
+          h_M(N) = \Hom_{\calA^{\op}}(M, N) = \Hom_{\calA}(N, M)
+        </md>.
         We typically notate this object simply as <m>M</m>.
       </p>
     </definition>
@@ -221,9 +221,11 @@
       </proof>
     </proposition>
     <remark>
-      <xref ref="prop-formal-compact-generators"/> has the practical effect that whenever we need to verify a statement about
-      an object of <m>\Mod_{\calA}</m> that is formally compatible with taking colimits, we may reduce to the same statement
-      formulated only about objects coming from <m>\calA</m>.
+      <p>
+        <xref ref="prop-formal-compact-generators"/> has the practical effect that whenever we need to verify a statement about
+        an object of <m>\Mod_{\calA}</m> that is formally compatible with taking colimits, we may reduce to the same statement
+        formulated only about objects coming from <m>\calA</m>.
+      </p>
     </remark>
     <definition>
       <p>
